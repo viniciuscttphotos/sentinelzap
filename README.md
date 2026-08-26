@@ -74,7 +74,9 @@ existente `sentinelzap`, que atende `https://sentinelzap.vercel.app/`.
 O repositório está conectado ao projeto Vercel. Cada push aprovado em `main`
 dispara a publicação de produção, cujo build executa testes antes do Vite. A
 autorização contínua vale somente para sincronizar esta prestação de contas
-sanitizada quando o `PROGRESS.md` raiz mudar; ela não autoriza mutações na VPS.
+sanitizada quando o `PROGRESS.md` raiz mudar e depois de todo push concluído para
+a VPS do SentinelZap. A regra é exclusiva deste projeto e não autoriza, por si
+só, mutações na VPS.
 
 A sessão da Vercel CLI é persistida pelo próprio CLI fora do repositório. Os
 scripts npm reutilizam essa instalação e não baixam uma versão mutável a cada

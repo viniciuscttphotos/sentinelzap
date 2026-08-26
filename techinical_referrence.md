@@ -162,8 +162,9 @@ publica `main`; a CLI persistente oferece o caminho manual verificável.
 O `PROGRESS.md` da raiz é a autoridade histórica. Qualquer alteração nele exige,
 na mesma tarefa, síntese sanitizada em `src/data.js`, atualização do manifesto,
 `npm run check`, push de `main` e comprovação do deploy Vercel `Ready`/HTTP 200.
-Essa autorização contínua é exclusiva do portal; falha de sincronização impede o
-encerramento da tarefa e não concede acesso mutável à VPS.
+Todo push concluído para a VPS do SentinelZap também exige essa republicação. A
+regra é exclusiva deste projeto; falha de sincronização impede o encerramento da
+tarefa e a autorização documental não concede, por si só, acesso mutável à VPS.
 
 ## 9. Estado vigente
 

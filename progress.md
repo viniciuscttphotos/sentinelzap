@@ -47,9 +47,11 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   roadmap foi reconciliado com preflight, pacote, backup, aceite e recuperação
   acompanhada.
 - Regra contínua: toda alteração no `PROGRESS.md` raiz deve atualizar a síntese
-  pública na mesma tarefa. Um manifesto registra apenas SHA-256, contagem, data e
-  título mais recente; `npm run progress:verify` falha se a fonte e o portal
-  divergirem. O histórico bruto continua fora do repositório público.
+  pública na mesma tarefa, assim como todo push concluído para a VPS do
+  SentinelZap. A obrigação é exclusiva deste projeto. Um manifesto registra
+  apenas SHA-256, contagem, data e título mais recente; `npm run
+  progress:verify` falha se a fonte e o portal divergirem. O histórico bruto
+  continua fora do repositório público.
 - Comprovação do gate: durante a consolidação, a fonte recebeu novos resultados
   de preflight Linux e resiliência do backup. O digest divergente bloqueou o
   check; a síntese técnica foi atualizada e sanitizada antes de recalcular o

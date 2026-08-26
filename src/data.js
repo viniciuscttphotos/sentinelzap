@@ -902,7 +902,7 @@ const records = [
     summary:
       'O histórico técnico ganhou uma apresentação pública premium, mobile first e acessível, iniciada pelo estado atual, seguida da direção e concluída pela sequência integral de progresso.',
     result:
-      'O repositório e o projeto Vercel existentes passaram a publicar 63 sínteses sanitizadas, com busca, filtros, evidências expansíveis, impressão documental e atualização contínua governada.',
+      'O repositório e a Vercel passaram a publicar 63 sínteses sanitizadas. Mudanças no log e todo push concluído para a VPS agora exigem republicação documental neste projeto.',
     validation: '18/18 testes do portal, gate de sincronização, build Vite e 470/470 testes da raiz; deploy Ready, HTTP 200 e QA desktop/mobile sem erros ou overflow.',
     tags: ['prestação de contas', 'Vercel', 'documentação'],
   },
