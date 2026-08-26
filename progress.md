@@ -103,5 +103,6 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
 - Motivo e finalidade: cumprir a regra exclusiva do SentinelZap que vincula todo
   push na VPS à atualização da prestação de contas pública, sem acoplar o portal
   ao dashboard operacional.
-- Estado neste ponto do log: conteúdo e gates locais concluídos; envio para
-  `main` e confirmação da produção Vercel ainda pendentes no mesmo fluxo.
+- Estado final: alteração enviada para `main` e produção Vercel confirmada como
+  `Ready`, com página, ativos, robots e sitemap em HTTP 200, novo conteúdo
+  presente e cabeçalhos de segurança preservados.
