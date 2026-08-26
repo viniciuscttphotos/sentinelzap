@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 62 registros de progresso em sequência cronológica.
+3. os 63 registros de progresso em sequência cronológica.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,15 +12,15 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 61 registros técnicos da fonte foram consolidados em 61 sínteses públicas e
-somados ao registro de criação deste portal. O material não publica IPs, telefones,
+Os 62 registros técnicos da fonte foram consolidados em sínteses públicas e
+somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
 
-O release de 24/08 e o candidato local de 25/08 são estados distintos:
+O release de 24/08 e o candidato local de 26/08 são estados distintos:
 
 - produção: 454/454 testes no release publicado;
-- candidato local: 462/462 testes, aguardando acesso e push controlado;
+- candidato local: 470/470 testes, aguardando preflight, pacote, backup e aceite;
 - continuidade: dois snapshots reais e restauração ensaiada;
 - marcos: 5/5 concluídos.
 
@@ -57,14 +57,24 @@ Ou execute os dois gates em sequência:
 npm run check
 ```
 
+Executado junto da raiz operacional, `npm run check` começa por
+`npm run progress:verify`, que confronta digest, contagem e registro mais recente
+do `PROGRESS.md`. O build da Vercel usa `npm run deploy:check`, porque a fonte
+operacional deliberadamente não é enviada ao repositório público.
+
 Os testes usam `node:test` e validam contagem, ordem cronológica, horários com
 evidência, sanitização, narrativa, acessibilidade estrutural, mobile first,
 metadados sociais, configuração Vercel e cabeçalhos de segurança.
 
-## Publicação autorizada
+## Publicação e atualização contínua autorizadas
 
 O destino é o repositório público existente `sentinelzap` e o projeto Vercel
 existente `sentinelzap`, que atende `https://sentinelzap.vercel.app/`.
+
+O repositório está conectado ao projeto Vercel. Cada push aprovado em `main`
+dispara a publicação de produção, cujo build executa testes antes do Vite. A
+autorização contínua vale somente para sincronizar esta prestação de contas
+sanitizada quando o `PROGRESS.md` raiz mudar; ela não autoriza mutações na VPS.
 
 A sessão da Vercel CLI é persistida pelo próprio CLI fora do repositório. Os
 scripts npm reutilizam essa instalação e não baixam uma versão mutável a cada
@@ -88,8 +98,13 @@ gates locais. O deploy não altera o dashboard operacional.
 2. Preserve ordem por data; dentro do mesmo dia sem horário, preserve a ordem da fonte.
 3. Só preencha `time` quando houver evidência documental.
 4. Atualize as métricas apenas quando o estado correspondente tiver sido comprovado.
-5. Registre a mudança em `progress.md` e revise `techinical_referrence.md`.
-6. Execute `npm run check` antes de publicar.
+5. Depois que o `PROGRESS.md` raiz estiver final, atualize digest, contagem e último
+   cabeçalho em `sync/progress-source.json`.
+6. Registre a mudança em `progress.md` e revise `techinical_referrence.md`.
+7. Execute `npm run check`, envie `main` e confirme o deploy `Ready` e HTTP 200.
+
+Se `npm run progress:verify` acusar divergência, a tarefa não está concluída. O
+histórico bruto nunca deve ser copiado para o portal para contornar o gate.
 
 ## Estrutura
 
@@ -100,6 +115,10 @@ sentinelzap-progresso/
 │   ├── data.js                # conteúdo sanitizado e métricas
 │   ├── main.js                # renderização, busca, filtros e impressão
 │   └── styles.css             # sistema visual mobile first
+├── scripts/
+│   └── verify-progress-sync.mjs # prova local de sincronização
+├── sync/
+│   └── progress-source.json   # digest e metadados não sensíveis da fonte
 ├── test/                      # testes node:test
 ├── index.html                 # documento e metadados
 ├── vercel.json                # deploy e cabeçalhos de segurança

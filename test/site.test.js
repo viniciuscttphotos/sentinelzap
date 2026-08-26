@@ -68,6 +68,7 @@ test('Vercel aplica cabeçalhos de segurança e fallback estático', async () =>
   assert.equal(headers['X-Content-Type-Options'], 'nosniff');
   assert.equal(headers['X-Frame-Options'], 'DENY');
   assert.match(headers['Strict-Transport-Security'], /includeSubDomains/);
+  assert.equal(config.buildCommand, 'npm run deploy:check');
   assert.deepEqual(config.rewrites, [{ source: '/(.*)', destination: '/index.html' }]);
 });
 
@@ -77,11 +78,30 @@ test('scripts npm usam Vite, node:test e a CLI Vercel persistente no projeto aut
   assert.equal(packageJson.scripts.build, 'vite build');
   assert.equal(packageJson.scripts['vercel:whoami'], 'vercel whoami');
   assert.match(packageJson.scripts['vercel:link'], /--project sentinelzap\b/);
-  assert.match(packageJson.scripts['vercel:link'], /--team viniciuscttphotos-projects\b/);
+  assert.match(packageJson.scripts['vercel:link'], /--scope viniciuscttphotos-projects\b/);
+  assert.equal(packageJson.scripts['progress:verify'], 'node scripts/verify-progress-sync.mjs');
   assert.match(packageJson.scripts['vercel:prod'], /^vercel deploy --prod --yes /);
   for (const [name, command] of Object.entries(packageJson.scripts)) {
     if (name.startsWith('vercel:')) assert.doesNotMatch(command, /npx|@latest/);
   }
+});
+
+test('mantém um gate verificável entre o PROGRESS canônico e a publicação', async () => {
+  const packageJson = JSON.parse(await read('package.json'));
+  const manifest = JSON.parse(await read('sync/progress-source.json'));
+  const verifier = await read('scripts/verify-progress-sync.mjs');
+
+  assert.match(packageJson.scripts.check, /progress:verify/);
+  assert.equal(manifest.entryCount, 63);
+  assert.equal(manifest.technicalSourceRecords, 62);
+  assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
+  assert.equal(
+    manifest.newestHeading,
+    'Portal documental de prestação de contas publicado (GitHub + Vercel)',
+  );
+  assert.match(verifier, /createHash\('sha256'\)/);
+  assert.match(verifier, /progressEntries\.at\(-1\)/);
+  assert.doesNotMatch(verifier, /writeFile|appendFile/);
 });
 
 test('a página pública não se apresenta como dashboard operacional', async () => {

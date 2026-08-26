@@ -8,10 +8,10 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 61 registros-fonte e o registro do portal', () => {
-  assert.equal(reportMeta.sourceRecords, 61);
-  assert.equal(reportMeta.publishedRecords, 62);
-  assert.equal(progressEntries.length, 62);
+test('publica os 63 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 62);
+  assert.equal(reportMeta.publishedRecords, 63);
+  assert.equal(progressEntries.length, 63);
   assert.equal(progressEntries.at(-1).date, '2026-08-26');
   assert.match(progressEntries.at(-1).title, /prestação de contas/i);
 });
@@ -27,7 +27,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-23': 2,
     '2026-08-24': 4,
     '2026-08-25': 2,
-    '2026-08-26': 1,
+    '2026-08-26': 2,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -41,9 +41,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 62 }, (_, index) => index + 1),
+    Array.from({ length: 63 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 62);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 63);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -57,6 +57,7 @@ test('só apresenta os horários respaldados por evidência', () => {
     '2026-08-19|21:06 UTC',
     '2026-08-20|12:08 UTC',
     '2026-08-25|18:38:58 UTC',
+    '2026-08-26|13:50:18 BRT',
   ]);
 });
 
@@ -71,7 +72,7 @@ test('ordena horários comprovados dentro de cada data', () => {
 
 test('diferencia o release publicado do candidato local', () => {
   const releaseMetric = executiveMetrics.find(({ value }) => value === '454/454');
-  const candidateMetric = executiveMetrics.find(({ value }) => value === '462/462');
+  const candidateMetric = executiveMetrics.find(({ value }) => value === '470/470');
   assert.match(releaseMetric.note, /publicado/i);
   assert.match(candidateMetric.note, /ainda distinta da produção/i);
 
@@ -79,11 +80,16 @@ test('diferencia o release publicado do candidato local', () => {
     date === '2026-08-24' && title.startsWith('Push concluído'),
   );
   const candidateRecord = progressEntries.find(({ date, title }) =>
-    date === '2026-08-25' && title.startsWith('Semax'),
+    date === '2026-08-26' && title.startsWith('Recuperação idempotente'),
   );
   assert.equal(releaseRecord.context, 'Produção');
   assert.equal(candidateRecord.context, 'Local');
-  assert.match(candidateRecord.state, /push/i);
+  assert.equal(candidateRecord.state, 'Validado');
+
+  const semaxRecord = progressEntries.find(({ date, title }) =>
+    date === '2026-08-25' && title.startsWith('Semax'),
+  );
+  assert.match(semaxRecord.validation, /462\/462/);
 });
 
 test('cada registro traz prestação de contas completa', () => {

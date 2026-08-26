@@ -22,7 +22,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 62 registros sanitizados
+     └── métricas, roadmap e 63 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -48,7 +48,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, quatro métricas executivas, cinco prioridades do
-  roadmap, os 62 registros e as opções derivadas de filtro;
+  roadmap, os 63 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva a ordem crescente das datas e a ordem documental dentro do mesmo dia;
@@ -92,7 +92,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 62 registros, distribuição por data, sequência, horários,
+- verifica contagem de 63 registros, distribuição por data, sequência, horários,
   métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -125,6 +125,7 @@ Comandos oficiais:
 
 ```bash
 npm ci
+npm run progress:verify
 npm test
 npm run build
 ```
@@ -136,8 +137,16 @@ cada execução nem incluir sua cadeia transitiva no build do portal. A sessão
 persistente fica fora do repositório. `.vercel/`, variáveis e tokens são ignorados
 pelo Git.
 
+`npm run check` executa primeiro `progress:verify` e depois testes/build. O gate
+de sincronização lê o `PROGRESS.md` raiz, calcula SHA-256 em memória e compara
+digest, contagem e cabeçalho mais recente com `sync/progress-source.json` e com a
+última entrada pública. Ele nunca copia ou imprime o histórico. O build remoto,
+onde a fonte operacional não existe, usa `npm run deploy:check` para executar
+testes e build antes da publicação.
+
 O deploy do portal substitui somente a landing web histórica. Não reinicia, migra
-ou modifica o dashboard/API operacional.
+ou modifica o dashboard/API operacional. A integração GitHub do projeto Vercel
+publica `main`; a CLI persistente oferece o caminho manual verificável.
 
 ## 7. Segurança e limitações
 
@@ -148,9 +157,21 @@ ou modifica o dashboard/API operacional.
   enviado pelo aplicativo.
 - A URL canônica pressupõe a publicação no projeto Vercel autorizado.
 
-## 8. Estado vigente
+## 8. Sincronização obrigatória
 
-Em 26/08/2026, implementação e conteúdo estão concluídos localmente. `npm test`
-aprovou 14/14 testes e o build Vite 8.2.2 gerou o pacote estático de produção com
-156 kB em disco. A publicação externa ainda não foi executada por este subprojeto
-e deve ser registrada em `progress.md` somente depois de comprovada.
+O `PROGRESS.md` da raiz é a autoridade histórica. Qualquer alteração nele exige,
+na mesma tarefa, síntese sanitizada em `src/data.js`, atualização do manifesto,
+`npm run check`, push de `main` e comprovação do deploy Vercel `Ready`/HTTP 200.
+Essa autorização contínua é exclusiva do portal; falha de sincronização impede o
+encerramento da tarefa e não concede acesso mutável à VPS.
+
+## 9. Estado vigente
+
+Em 26/08/2026, o portal contém 62 registros técnicos da fonte e o registro de sua
+publicação, totalizando 63. O estado atual diferencia o release operacional de
+454/454 testes do candidato local de 470/470 e registra uma conta principal e
+três gerenciadas conectadas na leitura mais recente. A página está publicada em
+`https://sentinelzap.vercel.app/`, e a landing anterior está preservada na tag
+`legacy-landing-2026-08-26`. O gate de sincronização, 18/18 testes do portal,
+build Vite, 470/470 testes da raiz e QA desktop/mobile estão aprovados; os
+detalhes permanecem registrados no log cumulativo.

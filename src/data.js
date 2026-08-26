@@ -2,10 +2,10 @@ export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
   updatedAt: '26 de agosto de 2026',
   period: '15 a 26 de agosto de 2026',
-  sourceRecords: 61,
-  publishedRecords: 62,
+  sourceRecords: 62,
+  publishedRecords: 63,
   productionReleaseDate: '24 de agosto de 2026',
-  candidateDate: '25 de agosto de 2026',
+  candidateDate: '26 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
     'Os registros estão ordenados por data. Quando não há horário comprovado, nenhum horário é apresentado e a ordem documental da fonte é preservada dentro do mesmo dia.',
@@ -23,9 +23,9 @@ export const executiveMetrics = Object.freeze([
     note: 'Pacote efetivamente publicado em 24/08.',
   },
   {
-    value: '462/462',
+    value: '470/470',
     label: 'testes no candidato local',
-    note: 'Versão validada em 25/08, ainda distinta da produção.',
+    note: 'Versão validada em 26/08, ainda distinta da produção.',
   },
   {
     value: '2',
@@ -45,11 +45,11 @@ export const roadmap = Object.freeze([
   },
   {
     priority: 'Imediato',
-    title: 'Resolver a conta protegida por divergência de identidade',
+    title: 'Preparar e publicar a recuperação resiliente validada em 26/08',
     description:
-      'Manter a sessão preservada até uma pessoa autorizada decidir entre aceitar a identidade detectada ou iniciar novo pareamento.',
-    owner: 'Equipe autorizada',
-    gate: 'Validação humana explícita',
+      'Concluir o preflight, gerar e confrontar o pacote code-only e só então implantar com backup e aceite pós-deploy, sem misturar código e estado operacional.',
+    owner: 'Operação técnica',
+    gate: 'Acesso válido e autorização de push',
   },
   {
     priority: 'Antes de novas vendas',
@@ -68,12 +68,12 @@ export const roadmap = Object.freeze([
     gate: 'Monitor independente comprovado',
   },
   {
-    priority: 'Próximo release',
-    title: 'Publicar o candidato validado de 25/08',
+    priority: 'Após o próximo release',
+    title: 'Executar a recuperação histórica de forma acompanhada',
     description:
-      'Transferir o pacote code-only já testado quando o acesso administrativo aceito for restabelecido, preservando todo o estado operacional.',
-    owner: 'Operação técnica',
-    gate: 'Acesso válido e autorização de push',
+      'Usar a ação técnica autenticada com limites explícitos, acompanhando contagens seguras e preservando o ponto de continuidade em qualquer falha parcial.',
+    owner: 'Operação autorizada',
+    gate: 'Release publicado e acompanhamento humano',
   },
 ]);
 
@@ -871,7 +871,7 @@ const records = [
     title: 'Semax e Selank intranasais no catálogo técnico',
     context: 'Local',
     kind: 'Implementação',
-    state: 'Pronto para push',
+    state: 'Validado',
     summary:
       'Dois materiais técnicos foram incorporados ao catálogo com IDs estáveis, aliases de rota e coleção física explícita.',
     result:
@@ -881,15 +881,29 @@ const records = [
   },
   {
     date: '2026-08-26',
-    title: 'Criação da página pública de prestação de contas',
+    title: 'Recuperação idempotente do histórico e varredura resiliente',
     context: 'Local',
-    kind: 'Documentação',
-    state: 'Pronto para publicação',
+    kind: 'Implementação',
+    state: 'Validado',
     summary:
-      'Foi criado um portal estático premium, mobile first e acessível para apresentar onde o projeto está, para onde vai e todo o progresso em ordem cronológica.',
+      'Foi preparado um fluxo autenticado para recuperar textos privados elegíveis sem repetir efeitos comerciais, junto de uma varredura isolada por conversa e do preflight Linux do pacote.',
     result:
-      'Os 61 registros-fonte foram consolidados e sanitizados, totalizando 62 entradas com este registro. O portal está preparado para substituir a landing histórica no projeto web existente.',
-    validation: 'Testes e build do subprojeto documentam a preparação; a publicação externa permanece pendente até o deploy autorizado ser concluído.',
+      'Replays e falhas parciais permanecem seguros. Uma falha transitória na pré-cópia de backup abortou antes de parar o serviço e recebeu tratamento restrito, mantendo a cópia congelada rigorosa.',
+    validation: '470/470 testes locais; o pacote isolado aprovou 445/445 testes disponíveis e 20/20 legados. O primeiro backup falhou de forma segura, sem interromper o serviço.',
+    tags: ['histórico', 'idempotência', 'backup'],
+  },
+  {
+    date: '2026-08-26',
+    time: '13:50:18 BRT',
+    title: 'Portal documental de prestação de contas publicado (GitHub + Vercel)',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'O histórico técnico ganhou uma apresentação pública premium, mobile first e acessível, iniciada pelo estado atual, seguida da direção e concluída pela sequência integral de progresso.',
+    result:
+      'O repositório e o projeto Vercel existentes passaram a publicar 63 sínteses sanitizadas, com busca, filtros, evidências expansíveis, impressão documental e atualização contínua governada.',
+    validation: '18/18 testes do portal, gate de sincronização, build Vite e 470/470 testes da raiz; deploy Ready, HTTP 200 e QA desktop/mobile sem erros ou overflow.',
     tags: ['prestação de contas', 'Vercel', 'documentação'],
   },
 ];
