@@ -2,10 +2,9 @@ export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
   updatedAt: '26 de agosto de 2026',
   period: '15 a 26 de agosto de 2026',
-  sourceRecords: 62,
-  publishedRecords: 63,
-  productionReleaseDate: '24 de agosto de 2026',
-  candidateDate: '26 de agosto de 2026',
+  sourceRecords: 63,
+  publishedRecords: 64,
+  productionReleaseDate: '26 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
     'Os registros estão ordenados por data. Quando não há horário comprovado, nenhum horário é apresentado e a ordem documental da fonte é preservada dentro do mesmo dia.',
@@ -18,17 +17,17 @@ export const executiveMetrics = Object.freeze([
     note: 'Visão, aplicação, CRM, SQLite e produção segura.',
   },
   {
-    value: '454/454',
-    label: 'testes no release de produção',
-    note: 'Pacote efetivamente publicado em 24/08.',
+    value: '471/471',
+    label: 'testes na versão publicada',
+    note: 'Validação local integral do release vigente.',
   },
   {
-    value: '470/470',
-    label: 'testes no candidato local',
-    note: 'Versão validada em 26/08, ainda distinta da produção.',
+    value: '466/466',
+    label: 'testes no pacote Linux',
+    note: 'Suíte disponível no pacote isolado antes do push.',
   },
   {
-    value: '2',
+    value: '3',
     label: 'snapshots reais comprovados',
     note: 'Backup e restauração ensaiada concluídos.',
   },
@@ -45,11 +44,11 @@ export const roadmap = Object.freeze([
   },
   {
     priority: 'Imediato',
-    title: 'Preparar e publicar a recuperação resiliente validada em 26/08',
+    title: 'Executar a recuperação histórica de forma acompanhada',
     description:
-      'Concluir o preflight, gerar e confrontar o pacote code-only e só então implantar com backup e aceite pós-deploy, sem misturar código e estado operacional.',
-    owner: 'Operação técnica',
-    gate: 'Acesso válido e autorização de push',
+      'Usar a ação técnica autenticada com limites explícitos, acompanhar somente contagens seguras e preservar o ponto de continuidade diante de falhas parciais.',
+    owner: 'Operação autorizada',
+    gate: 'Sessão técnica autenticada e acompanhamento humano',
   },
   {
     priority: 'Antes de novas vendas',
@@ -68,12 +67,12 @@ export const roadmap = Object.freeze([
     gate: 'Monitor independente comprovado',
   },
   {
-    priority: 'Após o próximo release',
-    title: 'Executar a recuperação histórica de forma acompanhada',
+    priority: 'Contínuo',
+    title: 'Manter a prestação de contas sincronizada',
     description:
-      'Usar a ação técnica autenticada com limites explícitos, acompanhando contagens seguras e preservando o ponto de continuidade em qualquer falha parcial.',
-    owner: 'Operação autorizada',
-    gate: 'Release publicado e acompanhamento humano',
+      'Publicar uma síntese sanitizada após cada push deste projeto, mantendo o histórico bruto e os detalhes operacionais fora do portal.',
+    owner: 'Operação técnica',
+    gate: 'Gates locais verdes e publicação confirmada',
   },
 ]);
 
@@ -881,16 +880,16 @@ const records = [
   },
   {
     date: '2026-08-26',
-    title: 'Recuperação idempotente do histórico e varredura resiliente',
-    context: 'Local',
-    kind: 'Implementação',
-    state: 'Validado',
+    title: 'Recuperação idempotente do texto do histórico e varredura resiliente (publicada)',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
     summary:
-      'Foi preparado um fluxo autenticado para recuperar textos privados elegíveis sem repetir efeitos comerciais, junto de uma varredura isolada por conversa e do preflight Linux do pacote.',
+      'O fluxo autenticado para recuperar textos privados elegíveis sem repetir efeitos comerciais foi publicado junto da varredura isolada por conversa e de limites explícitos.',
     result:
-      'Replays e falhas parciais permanecem seguros. Uma falha transitória na pré-cópia de backup abortou antes de parar o serviço e recebeu tratamento restrito, mantendo a cópia congelada rigorosa.',
-    validation: '470/470 testes locais; o pacote isolado aprovou 445/445 testes disponíveis e 20/20 legados. O primeiro backup falhou de forma segura, sem interromper o serviço.',
-    tags: ['histórico', 'idempotência', 'backup'],
+      'Replays e falhas parciais permanecem seguros; backup e restauração isolada foram repetidos com sucesso, totalizando três snapshots comprovados. A recuperação efetiva continua reservada à ação humana autenticada.',
+    validation: '470/470 testes locais; 445 testes principais e 20 legados no pacote Linux; serviço, banco, conexões e restauração aprovados após o push.',
+    tags: ['histórico', 'idempotência', 'produção'],
   },
   {
     date: '2026-08-26',
@@ -905,6 +904,19 @@ const records = [
       'O repositório e a Vercel passaram a publicar 63 sínteses sanitizadas. Mudanças no log e todo push concluído para a VPS agora exigem republicação documental neste projeto.',
     validation: '18/18 testes do portal, gate de sincronização, build Vite e 470/470 testes da raiz; deploy Ready, HTTP 200 e QA desktop/mobile sem erros ou overflow.',
     tags: ['prestação de contas', 'Vercel', 'documentação'],
+  },
+  {
+    date: '2026-08-26',
+    title: 'Confirmação detalhada antes de movimentar pedidos (publicada)',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'A mudança de status de pedidos passou a exigir confirmação explícita com cliente, vendedora, itens, valores, recebido líquido, estornado, saldo e impacto da transição.',
+    result:
+      'Nenhuma alteração é enviada antes da confirmação; duplo envio e fechamento durante a requisição ficam bloqueados, cancelamentos alertam sobre valores sem estorno automático e pedidos sem itens falham fechado.',
+    validation: '471/471 testes locais e 466/466 no pacote Linux; deploy diferencial sem reinício, com serviço, autenticação, banco e quatro sessões de navegador preservados.',
+    tags: ['pedidos', 'confirmação', 'produção'],
   },
 ];
 

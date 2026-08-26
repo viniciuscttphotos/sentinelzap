@@ -22,7 +22,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 63 registros sanitizados
+     └── métricas, roadmap e 64 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -48,7 +48,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, quatro métricas executivas, cinco prioridades do
-  roadmap, os 63 registros e as opções derivadas de filtro;
+  roadmap, os 64 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva a ordem crescente das datas e a ordem documental dentro do mesmo dia;
@@ -92,7 +92,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 63 registros, distribuição por data, sequência, horários,
+- verifica contagem de 64 registros, distribuição por data, sequência, horários,
   métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -168,11 +168,14 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 26/08/2026, o portal contém 62 registros técnicos da fonte e o registro de sua
-publicação, totalizando 63. O estado atual diferencia o release operacional de
-454/454 testes do candidato local de 470/470 e registra uma conta principal e
-três gerenciadas conectadas na leitura mais recente. A página está publicada em
+Em 26/08/2026, o portal contém 63 registros técnicos da fonte e o registro de sua
+publicação, totalizando 64. O estado atual apresenta separadamente os 471/471
+testes locais da versão publicada e os 466/466 disponíveis no pacote Linux,
+além de registrar uma conta principal e três gerenciadas conectadas na leitura
+mais recente e três snapshots reais com restauração ensaiada. O código de
+recuperação histórica já está publicado, mas seu
+acionamento continua reservado à ação humana autenticada. A página está publicada em
 `https://sentinelzap.vercel.app/`, e a landing anterior está preservada na tag
 `legacy-landing-2026-08-26`. O gate de sincronização, 18/18 testes do portal,
-build Vite, 470/470 testes da raiz e QA desktop/mobile estão aprovados; os
+build Vite, 471/471 testes da raiz e verificação HTTP estão aprovados; os
 detalhes permanecem registrados no log cumulativo.

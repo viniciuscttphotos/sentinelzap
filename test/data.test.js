@@ -8,12 +8,15 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 63 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 62);
-  assert.equal(reportMeta.publishedRecords, 63);
-  assert.equal(progressEntries.length, 63);
+test('publica os 64 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 63);
+  assert.equal(reportMeta.publishedRecords, 64);
+  assert.equal(progressEntries.length, 64);
   assert.equal(progressEntries.at(-1).date, '2026-08-26');
-  assert.match(progressEntries.at(-1).title, /prestação de contas/i);
+  assert.equal(
+    progressEntries.at(-1).title,
+    'Confirmação detalhada antes de movimentar pedidos (publicada)',
+  );
 });
 
 test('preserva a distribuição documental por data', () => {
@@ -27,7 +30,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-23': 2,
     '2026-08-24': 4,
     '2026-08-25': 2,
-    '2026-08-26': 2,
+    '2026-08-26': 3,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -41,9 +44,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 63 }, (_, index) => index + 1),
+    Array.from({ length: 64 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 63);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 64);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -70,11 +73,11 @@ test('ordena horários comprovados dentro de cada data', () => {
   }
 });
 
-test('diferencia o release publicado do candidato local', () => {
-  const releaseMetric = executiveMetrics.find(({ value }) => value === '454/454');
-  const candidateMetric = executiveMetrics.find(({ value }) => value === '470/470');
-  assert.match(releaseMetric.note, /publicado/i);
-  assert.match(candidateMetric.note, /ainda distinta da produção/i);
+test('reflete o release vigente e suas validações local e Linux', () => {
+  const localMetric = executiveMetrics.find(({ value }) => value === '471/471');
+  const linuxMetric = executiveMetrics.find(({ value }) => value === '466/466');
+  assert.match(localMetric.note, /release vigente/i);
+  assert.match(linuxMetric.note, /pacote isolado/i);
 
   const releaseRecord = progressEntries.find(({ date, title }) =>
     date === '2026-08-24' && title.startsWith('Push concluído'),
@@ -83,8 +86,19 @@ test('diferencia o release publicado do candidato local', () => {
     date === '2026-08-26' && title.startsWith('Recuperação idempotente'),
   );
   assert.equal(releaseRecord.context, 'Produção');
-  assert.equal(candidateRecord.context, 'Local');
-  assert.equal(candidateRecord.state, 'Validado');
+  assert.equal(candidateRecord.context, 'Produção');
+  assert.equal(candidateRecord.state, 'Publicado');
+  assert.equal(
+    candidateRecord.title,
+    'Recuperação idempotente do texto do histórico e varredura resiliente (publicada)',
+  );
+  assert.match(candidateRecord.result, /ação humana autenticada/i);
+
+  const orderMoveRecord = progressEntries.at(-1);
+  assert.equal(orderMoveRecord.context, 'Produção');
+  assert.equal(orderMoveRecord.state, 'Publicado');
+  assert.match(orderMoveRecord.validation, /471\/471/);
+  assert.match(orderMoveRecord.validation, /466\/466/);
 
   const semaxRecord = progressEntries.find(({ date, title }) =>
     date === '2026-08-25' && title.startsWith('Semax'),
@@ -114,7 +128,7 @@ test('conteúdo público não contém indicadores sensíveis ou exploráveis', (
     { label: 'telefone longo', pattern: /\b\d{10,15}\b/ },
     { label: 'hash longo', pattern: /\b[a-f0-9]{40,}\b/i },
     { label: 'caminho operacional', pattern: /(?:\/opt\/|\/Users\/|\.ssh\/|file:\/\/)/i },
-    { label: 'identificador interno', pattern: /(?:assignedSellerId|accountId|@lid|@c\.us)/i },
+    { label: 'identificador interno', pattern: /(?:assignedSellerId|accountId|externalId|orderId|skuId|trackingCode|customerCpf|shippingAddress|@lid|@c\.us)/i },
     { label: 'credencial em URL', pattern: /https?:\/\/[^\s"/]+:[^\s"@]+@/i },
   ];
   for (const { label, pattern } of forbidden) {
@@ -128,5 +142,6 @@ test('roadmap preserva os gates humanos e externos vigentes', () => {
   assert.match(roadmapText, /credenciais iniciais/i);
   assert.match(roadmapText, /vendedora real/i);
   assert.match(roadmapText, /alerta externo/i);
-  assert.match(roadmapText, /autorização de push/i);
+  assert.match(roadmapText, /sessão técnica autenticada/i);
+  assert.match(roadmapText, /prestação de contas sincronizada/i);
 });

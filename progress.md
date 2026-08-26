@@ -81,3 +81,27 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   operacional.
 - Estado: publicação e reconciliação concluídas no GitHub/Vercel; nenhuma mutação
   foi realizada na VPS operacional.
+
+## 2026-08-26 — Republicação após os pushes de histórico e pedidos
+
+- Arquivos e trechos: `src/data.js`, estado executivo, roadmap e dois registros
+  de produção; `index.html`, narrativa e contadores; `test/`, contratos de
+  sincronização e sanitização; `sync/progress-source.json`, manifesto da fonte;
+  `README.md`, `progress.md` e `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a recuperação resiliente de histórico foi reconciliada como
+  publicada, com sua ativação humana ainda pendente, e a confirmação detalhada
+  antes de mover pedidos foi adicionada como o 64º registro. O estado executivo
+  passou a refletir a versão publicada com 471 testes locais, 466 testes no
+  pacote Linux e três snapshots reais comprovados.
+- Privacidade: as sínteses informam somente comportamento, gates e contagens
+  agregadas. Permanecem ausentes endereços de infraestrutura, telefones,
+  usuários, identificadores internos, hashes, caminhos, credenciais, conteúdo
+  de conversas e outros detalhes exploráveis.
+- Validação: `npm run progress:verify` e `npm run check` comprovam os 64
+  registros, 18/18 testes do portal, sanitização, build Vite e correspondência
+  com a fonte canônica. A suíte operacional da raiz permaneceu em 471/471.
+- Motivo e finalidade: cumprir a regra exclusiva do SentinelZap que vincula todo
+  push na VPS à atualização da prestação de contas pública, sem acoplar o portal
+  ao dashboard operacional.
+- Estado neste ponto do log: conteúdo e gates locais concluídos; envio para
+  `main` e confirmação da produção Vercel ainda pendentes no mesmo fluxo.
