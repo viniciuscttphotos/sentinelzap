@@ -1,2015 +1,243 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SentinelZap — Moderação Inteligente para Grupos de WhatsApp</title>
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <style>
-    /* ============================================
-       SentinelZap - MVP Presentation Style
-       Apple-Inspired Premium Design
-       ============================================ */
-
-    /* CSS Variables */
-    :root {
-      --bg-primary: #ffffff;
-      --bg-secondary: #f5f5f7;
-      --bg-card: #ffffff;
-      --bg-card-hover: #fafafa;
-      --border-color: #d2d2d7;
-      --text-primary: #1d1d1f;
-      --text-secondary: #6e6e73;
-      --text-muted: #a1a1a6;
-      --accent: #d4a017;
-      --accent-hover: #e6b422;
-      --accent-dim: rgba(212, 160, 23, 0.08);
-      --success: #34c759;
-      --warning: #ff9500;
-      --danger: #ff3b30;
-      --radius: 12px;
-      --radius-lg: 16px;
-      --radius-xl: 24px;
-      --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
-      --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
-      --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-      --sidebar-width: 220px;
-      --info: #0071e3;
-    }
-
-    /* ============================================
-       DASHBOARD DEMO STYLES (from project CSS)
-       ============================================ */
-    .demo-dashboard {
-      background: var(--bg-secondary);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--border-color);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .demo-dashboard-header {
-      background: #1d1d1f;
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .demo-dashboard-header span {
-      font-size: 11px;
-      color: rgba(255,255,255,0.7);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    @media (min-width: 600px) {
-      .demo-dashboard-header {
-        padding: 12px 16px;
-      }
-      .demo-dashboard-header span {
-        font-size: 13px;
-      }
-    }
-
-    .demo-dots {
-      display: flex;
-      gap: 6px;
-    }
-
-    .demo-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    @media (min-width: 600px) {
-      .demo-dot {
-        width: 12px;
-        height: 12px;
-      }
-    }
-
-    .demo-dot.red { background: #ff5f57; }
-    .demo-dot.yellow { background: #febc2e; }
-    .demo-dot.green { background: #28c840; }
-
-    .demo-dashboard-body {
-      display: flex;
-      flex-direction: column;
-      min-height: auto;
-    }
-
-    .demo-sidebar {
-      width: 100%;
-      background: var(--bg-primary);
-      border-right: none;
-      border-bottom: 1px solid var(--border-color);
-      padding: 8px 0;
-      flex-shrink: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0;
-    }
-
-    .demo-sidebar-logo {
-      width: 100%;
-      padding: 8px 12px 8px;
-      border-bottom: 1px solid var(--border-color);
-      margin-bottom: 0;
-    }
-
-    .demo-nav-item {
-      flex: 1 0 auto;
-      justify-content: center;
-      padding: 8px 8px;
-      font-size: 11px;
-      white-space: nowrap;
-    }
-
-    .demo-nav-item.active {
-      border-right: none;
-      border-bottom: 2px solid var(--accent);
-    }
-
-    @media (min-width: 768px) {
-      .demo-dashboard-body {
-        flex-direction: row;
-        min-height: 320px;
-      }
-
-      .demo-sidebar {
-        width: var(--sidebar-width);
-        border-right: 1px solid var(--border-color);
-        border-bottom: none;
-        display: block;
-        padding: 16px 0;
-      }
-
-      .demo-sidebar-logo {
-        padding: 0 16px 16px;
-        border-bottom: 1px solid var(--border-color);
-        margin-bottom: 8px;
-      }
-
-      .demo-nav-item {
-        flex: none;
-        justify-content: flex-start;
-        padding: 10px 16px;
-        font-size: 13px;
-      }
-
-      .demo-nav-item.active {
-        border-right: 2px solid var(--accent);
-        border-bottom: none;
-      }
-    }
-
-    .demo-nav-item i {
-      width: 16px;
-      height: 16px;
-    }
-
-    .demo-main {
-      flex: 1;
-      padding: 16px;
-      overflow: hidden;
-    }
-
-    @media (min-width: 768px) {
-      .demo-main {
-        padding: 20px;
-      }
-    }
-
-    .demo-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    @media (min-width: 600px) {
-      .demo-stats-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-      }
-    }
-
-    .demo-stat-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 12px;
-      transition: var(--transition);
-    }
-
-    @media (min-width: 600px) {
-      .demo-stat-card {
-        padding: 14px;
-      }
-    }
-
-    .demo-stat-card:hover {
-      transform: translateY(-1px);
-      box-shadow: var(--shadow);
-    }
-
-    .demo-stat-icon {
-      font-size: 16px;
-      margin-bottom: 6px;
-      opacity: 0.8;
-    }
-
-    @media (min-width: 600px) {
-      .demo-stat-icon {
-        font-size: 18px;
-        margin-bottom: 8px;
-      }
-    }
-
-    .demo-stat-value {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 2px;
-      letter-spacing: -0.5px;
-    }
-
-    @media (min-width: 600px) {
-      .demo-stat-value {
-        font-size: 24px;
-      }
-    }
-
-    .demo-stat-label {
-      font-size: 11px;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-
-    .demo-stat-card.danger .demo-stat-value { color: var(--danger); }
-    .demo-stat-card.success .demo-stat-value { color: var(--success); }
-    .demo-stat-card.warning .demo-stat-value { color: var(--warning); }
-    .demo-stat-card.info .demo-stat-value { color: var(--info); }
-
-    .demo-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 14px;
-      box-shadow: var(--shadow);
-    }
-
-    @media (min-width: 768px) {
-      .demo-card {
-        padding: 16px;
-      }
-    }
-
-    .demo-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .demo-card-header h3 {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .demo-table-container {
-      overflow-x: auto;
-      border-radius: var(--radius);
-      border: 1px solid var(--border-color);
-    }
-
-    .demo-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .demo-table thead th {
-      text-align: left;
-      padding: 6px 8px;
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      border-bottom: 1px solid var(--border-color);
-      background: var(--bg-secondary);
-      white-space: nowrap;
-    }
-
-    .demo-table tbody td {
-      padding: 6px 8px;
-      border-bottom: 1px solid var(--border-color);
-      font-size: 11px;
-    }
-
-    @media (min-width: 600px) {
-      .demo-table thead th {
-        padding: 8px 12px;
-        font-size: 11px;
-      }
-      .demo-table tbody td {
-        padding: 8px 12px;
-        font-size: 12px;
-      }
-    }
-
-    .demo-table tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    .demo-table tbody tr:hover {
-      background: var(--bg-secondary);
-    }
-
-    .demo-badge {
-      display: inline-block;
-      padding: 3px 8px;
-      border-radius: 20px;
-      font-size: 10px;
-      font-weight: 600;
-    }
-
-    .demo-badge-link { background: rgba(0, 113, 227, 0.1); color: var(--info); }
-    .demo-badge-badword { background: rgba(255, 59, 48, 0.1); color: var(--danger); }
-    .demo-badge-flood { background: rgba(255, 149, 0, 0.1); color: var(--warning); }
-    .demo-badge-removed { background: rgba(255, 59, 48, 0.1); color: var(--danger); }
-    .demo-badge-active { background: rgba(52, 199, 89, 0.1); color: var(--success); }
-
-    .demo-msg-cell {
-      max-width: 120px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    @media (min-width: 600px) {
-      .demo-msg-cell {
-        max-width: 160px;
-      }
-    }
-
-    /* ============================================
-       SCREENSHOTS SECTION (Mobile-First)
-       ============================================ */
-    .screenshots-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .screenshots-grid .screenshot-card {
-      background: none;
-      border: none;
-      padding: 0;
-      box-shadow: none;
-    }
-
-    .screenshots-grid .screenshot-card:hover {
-      transform: none;
-      box-shadow: none;
-    }
-
-    .screenshot-info h4 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      margin-top: 16px;
-    }
-
-    .screenshot-info p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    @media (min-width: 900px) {
-      .screenshots-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 32px;
-      }
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-    }
-
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #d1d1d6; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #a1a1a6; }
-
-    /* ============================================
-       HERO SECTION
-       ============================================ */
-    .hero {
-      background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 50%, #1d1d1f 100%);
-      color: white;
-      padding: 80px 40px 100px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 50%, rgba(212, 160, 23, 0.12) 0%, transparent 50%),
-                  radial-gradient(circle at 70% 50%, rgba(212, 160, 23, 0.06) 0%, transparent 50%);
-      animation: heroGlow 8s ease-in-out infinite alternate;
-    }
-
-    @keyframes heroGlow {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(-2%, -2%); }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 8px 20px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 32px;
-      letter-spacing: 0.3px;
-    }
-
-    .hero-badge .dot {
-      width: 8px;
-      height: 8px;
-      background: var(--success);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .hero h1 {
-      font-size: 56px;
-      font-weight: 800;
-      letter-spacing: -1.5px;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, #ffffff 0%, #a1a1a6 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero h1 .highlight {
-      background: linear-gradient(135deg, var(--accent) 0%, #f5d742 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero p {
-      font-size: 20px;
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.6;
-      max-width: 700px;
-      margin: 0 auto 40px;
-      font-weight: 400;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 16px 32px;
-      border: none;
-      border-radius: var(--radius);
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      font-family: inherit;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-      box-shadow: 0 4px 20px rgba(212, 160, 23, 0.3);
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(212, 160, 23, 0.4);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-2px);
-    }
-
-    .btn-lg {
-      padding: 18px 40px;
-      font-size: 18px;
-      border-radius: 14px;
-    }
-
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 60px;
-      margin-top: 60px;
-      padding-top: 40px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .hero-stat {
-      text-align: center;
-    }
-
-    .hero-stat .value {
-      font-size: 36px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      background: linear-gradient(135deg, var(--accent) 0%, #f5d742 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-stat .label {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.5);
-      margin-top: 4px;
-      font-weight: 500;
-    }
-
-    /* ============================================
-       SECTION COMMON
-       ============================================ */
-    .section {
-      padding: 80px 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-header .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--accent-dim);
-      color: var(--accent);
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-
-    .section-header h2 {
-      font-size: 40px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      color: var(--text-primary);
-      margin-bottom: 12px;
-    }
-
-    .section-header p {
-      font-size: 18px;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    .section-alt {
-      background: var(--bg-secondary);
-    }
-
-    /* ============================================
-       PROBLEM / SOLUTION
-       ============================================ */
-    .problem-solution {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 40px;
-    }
-
-    .problem-box, .solution-box {
-      padding: 40px;
-      border-radius: var(--radius-xl);
-      position: relative;
-    }
-
-    .problem-box {
-      background: rgba(255, 59, 48, 0.05);
-      border: 1px solid rgba(255, 59, 48, 0.15);
-    }
-
-    .solution-box {
-      background: rgba(52, 199, 89, 0.05);
-      border: 1px solid rgba(52, 199, 89, 0.15);
-    }
-
-    .problem-box .box-icon, .solution-box .box-icon {
-      font-size: 32px;
-      margin-bottom: 16px;
-    }
-
-    .problem-box h3, .solution-box h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    .problem-box h3 { color: var(--danger); }
-    .solution-box h3 { color: var(--success); }
-
-    .problem-box ul, .solution-box ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .problem-box li, .solution-box li {
-      padding: 10px 0;
-      font-size: 15px;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .problem-box li:last-child, .solution-box li:last-child {
-      border-bottom: none;
-    }
-
-    .problem-box li::before {
-      content: '✕';
-      color: var(--danger);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .solution-box li::before {
-      content: '✓';
-      color: var(--success);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    /* ============================================
-       FEATURES GRID
-       ============================================ */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 24px;
-    }
-
-    .feature-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: transparent;
-    }
-
-    .feature-card .feature-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .feature-card .feature-icon.moderation { background: rgba(255, 59, 48, 0.1); color: var(--danger); }
-    .feature-card .feature-icon.content { background: rgba(212, 160, 23, 0.1); color: var(--accent); }
-    .feature-card .feature-icon.management { background: rgba(255, 149, 0, 0.1); color: var(--warning); }
-    .feature-card .feature-icon.automation { background: rgba(52, 199, 89, 0.1); color: var(--success); }
-    .feature-card .feature-icon.dashboard { background: rgba(212, 160, 23, 0.1); color: var(--accent); }
-    .feature-card .feature-icon.security { background: rgba(255, 59, 48, 0.1); color: var(--danger); }
-
-    .feature-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--text-primary);
-    }
-
-    .feature-card p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .feature-card .feature-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .feature-card .feature-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      border-radius: 100px;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .feature-tag.tag-moderation { background: rgba(255, 59, 48, 0.08); color: var(--danger); }
-    .feature-tag.tag-content { background: rgba(212, 160, 23, 0.08); color: var(--accent); }
-    .feature-tag.tag-automation { background: rgba(52, 199, 89, 0.08); color: var(--success); }
-    .feature-tag.tag-management { background: rgba(255, 149, 0, 0.08); color: var(--warning); }
-
-    /* ============================================
-       DIFFERENTIALS
-       ============================================ */
-    .differentials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .differential-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 24px;
-      text-align: center;
-      transition: var(--transition);
-    }
-
-    .differential-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-    }
-
-    .differential-card .diff-icon {
-      font-size: 36px;
-      margin-bottom: 12px;
-    }
-
-    .differential-card h4 {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .differential-card p {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    /* ============================================
-       PRICING
-       ============================================ */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .pricing-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-xl);
-      padding: 40px 32px;
-      text-align: center;
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .pricing-card.featured {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px var(--accent), var(--shadow-lg);
-      transform: scale(1.03);
-    }
-
-    .pricing-card.featured:hover {
-      transform: scale(1.03) translateY(-4px);
-    }
-
-    .pricing-card .popular-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--accent);
-      color: white;
-      padding: 6px 20px;
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-    }
-
-    .pricing-card .plan-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
-    }
-
-    .pricing-card .plan-price {
-      font-size: 48px;
-      font-weight: 800;
-      letter-spacing: -2px;
-      color: var(--text-primary);
-      margin-bottom: 4px;
-    }
-
-    .pricing-card .plan-price .currency {
-      font-size: 24px;
-      font-weight: 600;
-      vertical-align: super;
-    }
-
-    .pricing-card .plan-period {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 24px;
-    }
-
-    .pricing-card .plan-features {
-      list-style: none;
-      padding: 0;
-      margin-bottom: 32px;
-      text-align: left;
-    }
-
-    .pricing-card .plan-features li {
-      padding: 10px 0;
-      font-size: 14px;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .pricing-card .plan-features li:last-child {
-      border-bottom: none;
-    }
-
-    .pricing-card .plan-features li::before {
-      content: '';
-      flex-shrink: 0;
-    }
-    .pricing-card .plan-features li i {
-      color: var(--success);
-      flex-shrink: 0;
-    }
-
-    .pricing-card .btn {
-      width: 100%;
-      justify-content: center;
-    }
-
-    /* ============================================
-       TARGET AUDIENCE
-       ============================================ */
-    .audience-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .audience-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 24px 20px;
-      text-align: center;
-      transition: var(--transition);
-    }
-
-    .audience-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
-    }
-
-    .audience-card .audience-icon {
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
-
-    .audience-card h4 {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .audience-card p {
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
-
-    /* ============================================
-       ROADMAP
-       ============================================ */
-    .roadmap {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .roadmap-phase {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      position: relative;
-    }
-
-    .roadmap-phase .phase-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .roadmap-phase .phase-number {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      font-weight: 800;
-      color: white;
-      flex-shrink: 0;
-    }
-
-    .phase-number.p1 { background: var(--accent); }
-    .phase-number.p2 { background: var(--warning); }
-    .phase-number.p3 { background: var(--success); }
-    .phase-number.p4 { background: var(--danger); }
-
-    .roadmap-phase .phase-title {
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    .roadmap-phase .phase-period {
-      font-size: 12px;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .roadmap-phase ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .roadmap-phase li {
-      padding: 8px 0;
-      font-size: 13px;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-    }
-
-    .roadmap-phase li:last-child {
-      border-bottom: none;
-    }
-
-    .roadmap-phase li .check {
-      color: var(--success);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .roadmap-phase li .future {
-      color: var(--text-muted);
-      flex-shrink: 0;
-    }
-
-    /* ============================================
-       CTA SECTION
-       ============================================ */
-    .cta-section {
-      background: linear-gradient(135deg, #1d1d1f 0%, #2d2d2f 100%);
-      color: white;
-      text-align: center;
-      padding: 100px 40px;
-    }
-
-    .cta-section h2 {
-      font-size: 44px;
-      font-weight: 800;
-      letter-spacing: -1.5px;
-      margin-bottom: 16px;
-    }
-
-    .cta-section p {
-      font-size: 18px;
-      color: rgba(255, 255, 255, 0.6);
-      max-width: 600px;
-      margin: 0 auto 40px;
-      line-height: 1.6;
-    }
-
-    .cta-section .btn-primary {
-      font-size: 20px;
-      padding: 20px 48px;
-    }
-
-    .cta-section .contact-info {
-      margin-top: 24px;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.4);
-    }
-
-    .cta-section .contact-info a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    /* ============================================
-       FAQ
-       ============================================ */
-    .faq-list {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .faq-item {
-      border-bottom: 1px solid var(--border-color);
-      padding: 20px 0;
-    }
-
-    .faq-item:first-child {
-      border-top: 1px solid var(--border-color);
-    }
-
-    .faq-item .faq-question {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text-primary);
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .faq-item .faq-question .faq-toggle {
-      font-size: 20px;
-      color: var(--text-muted);
-      transition: var(--transition);
-      flex-shrink: 0;
-    }
-
-    .faq-item .faq-answer {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-top: 12px;
-      display: none;
-    }
-
-    .faq-item.open .faq-answer {
-      display: block;
-    }
-
-    .faq-item.open .faq-toggle {
-      transform: rotate(45deg);
-    }
-
-    /* ============================================
-       FOOTER
-       ============================================ */
-    .footer {
-      background: var(--bg-secondary);
-      padding: 40px;
-      text-align: center;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .footer .logo {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-    }
-
-    .footer p {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    /* ============================================
-       RESPONSIVE
-       ============================================ */
-    @media (max-width: 768px) {
-      .hero { padding: 60px 24px 80px; }
-      .hero h1 { font-size: 36px; }
-      .hero p { font-size: 17px; }
-      .hero-stats { gap: 30px; flex-wrap: wrap; }
-      .hero-stat .value { font-size: 28px; }
-
-      .section { padding: 60px 24px; }
-      .section-header h2 { font-size: 30px; }
-
-      .problem-solution { grid-template-columns: 1fr; }
-
-      .features-grid { grid-template-columns: 1fr; }
-
-      .pricing-grid { grid-template-columns: 1fr; }
-      .pricing-card.featured { transform: none; }
-      .pricing-card.featured:hover { transform: translateY(-4px); }
-
-      .cta-section { padding: 60px 24px; }
-      .cta-section h2 { font-size: 32px; }
-      .cta-section .btn-primary { font-size: 17px; padding: 16px 32px; }
-
-      .roadmap { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 { font-size: 28px; }
-      .hero-actions { flex-direction: column; align-items: center; }
-      .btn-lg { width: 100%; justify-content: center; }
-      .hero-stats { flex-direction: column; gap: 20px; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- ============================================
-       HERO
-       ============================================ -->
-  <section class="hero">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        MVP v1.0 — Disponível Agora
-      </div>
-      <h1>
-        Modere seu Grupo<br>
-        <span class="highlight">WhatsApp Automaticamente</span>
-      </h1>
-      <p>
-        O SentinelZap é um serviço gerenciado de moderação. Nós hospedamos em VPS dedicada, mantemos tudo atualizado e você acessa apenas o painel web — sem complicação, sem manutenção, sem necessidade de conhecimento técnico.
-      </p>
-      <div class="hero-actions">
-        <a href="https://wa.me/5541997644023" target="_blank" class="btn btn-primary btn-lg">
-          <i data-lucide="shopping-cart" style="width: 20px; height: 20px;"></i>
-          Adquirir Agora
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#081b33" />
+    <meta
+      name="description"
+      content="Prestação de contas executiva do SentinelZap: estado atual, próximos passos e progresso cronológico verificado."
+    />
+    <meta name="author" content="Zyntra" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href="https://sentinelzap.vercel.app/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="SentinelZap" />
+    <meta property="og:title" content="SentinelZap — Prestação de contas" />
+    <meta
+      property="og:description"
+      content="Onde estamos, para onde vamos e o progresso documentado do projeto."
+    />
+    <meta property="og:url" content="https://sentinelzap.vercel.app/" />
+    <meta property="og:image" content="https://sentinelzap.vercel.app/logo-zyntra.png" />
+    <meta property="og:image:alt" content="Marca Zyntra" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SentinelZap — Prestação de contas" />
+    <meta
+      name="twitter:description"
+      content="Relatório executivo, roadmap e histórico cronológico verificado."
+    />
+    <meta name="twitter:image" content="https://sentinelzap.vercel.app/logo-zyntra.png" />
+    <title>SentinelZap — Prestação de contas</title>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="site-header" data-site-header>
+      <div class="shell header-inner">
+        <a class="brand" href="#inicio" aria-label="Zyntra — voltar ao início">
+          <img src="/logo-zyntra.png" width="664" height="141" alt="Zyntra" />
         </a>
-        <a href="#features" class="btn btn-secondary btn-lg">
-          <i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i>
-          Ver Funcionalidades
-        </a>
+        <nav class="primary-nav" aria-label="Navegação principal">
+          <a href="#agora">Agora</a>
+          <a href="#direcao">Direção</a>
+          <a href="#progresso">Progresso</a>
+        </nav>
+        <button class="print-button" type="button" aria-label="Imprimir relatório completo" data-print>
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+            <path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v7H7z" />
+          </svg>
+          <span>Imprimir</span>
+        </button>
       </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="value">10k+</div>
-          <div class="label">Milhares de Usuários Monitorados</div>
-        </div>
-        <div class="hero-stat">
-          <div class="value">100%</div>
-          <div class="label">Moderação Automática</div>
-        </div>
-        <div class="hero-stat">
-          <div class="value">24/7</div>
-          <div class="label">Proteção Ininterrupta</div>
-        </div>
-        <div class="hero-stat">
-          <div class="value">3</div>
-          <div class="label">Strikes e Remoção</div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+    </header>
 
-  <!-- ============================================
-       PROBLEM / SOLUTION
-       ============================================ -->
-  <section class="section" id="problem">
-    <div class="section-header">
-      <div class="tag">O Problema</div>
-      <h2>Cansou de apagar spam manualmente?</h2>
-      <p>Se você administra um grupo grande no WhatsApp, sabe como é exaustivo monitorar 24 horas por dia.</p>
-    </div>
-    <div class="problem-solution">
-      <div class="problem-box">
-        <div class="box-icon"><i data-lucide="frown" style="width: 32px; height: 32px; color: var(--danger);"></i></div>
-        <h3>Antes do SentinelZap</h3>
-        <ul>
-          <li>Precisava monitorar o grupo 24h por dia</li>
-          <li>Apagar links e spam manualmente</li>
-          <li>Aplicar advertências na mão para cada infrator</li>
-          <li>Banir spammers um por um</li>
-          <li>Sem estatísticas ou relatórios do grupo</li>
-          <li>Perdia conteúdo importante no meio do spam</li>
-        </ul>
-      </div>
-      <div class="solution-box">
-        <div class="box-icon"><i data-lucide="sparkles" style="width: 32px; height: 32px; color: var(--success);"></i></div>
-        <h3>Com o SentinelZap</h3>
-        <ul>
-          <li>Moderação 100% automática em tempo real</li>
-          <li>Links proibidos são apagados instantaneamente</li>
-          <li>Sistema de 3 advertências progressivas</li>
-          <li>Spammers são removidos automaticamente</li>
-          <li>Dashboard completo com estatísticas</li>
-          <li>Conteúdo automatizado de RSS e Instagram</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       FEATURES
-       ============================================ -->
-  <section class="section section-alt" id="features">
-    <div class="section-header">
-      <div class="tag">Funcionalidades</div>
-      <h2>Tudo que você precisa para moderar</h2>
-      <p>Um conjunto completo de ferramentas para manter seu grupo organizado e seguro.</p>
-    </div>
-
-    <div class="features-grid">
-
-      <!-- Moderação de Links -->
-      <div class="feature-card">
-        <div class="feature-icon moderation"><i data-lucide="link"></i></div>
-        <h3>Filtro de Links</h3>
-        <p>Detecta e bloqueia automaticamente URLs não autorizadas. Suporta whitelist de domínios permitidos e bloqueia links de concorrentes, phishing e spam.</p>
-        <div class="feature-tags">
-          <span class="feature-tag tag-moderation"><i data-lucide="link" style="width: 11px; height: 11px;"></i> http://</span>
-          <span class="feature-tag tag-moderation"><i data-lucide="globe" style="width: 11px; height: 11px;"></i> www.</span>
-          <span class="feature-tag tag-moderation"><i data-lucide="message-circle" style="width: 11px; height: 11px;"></i> chat.whatsapp.com</span>
-          <span class="feature-tag tag-moderation"><i data-lucide="smartphone" style="width: 11px; height: 11px;"></i> t.me / discord.gg</span>
-        </div>
-      </div>
-
-      <!-- Filtro de Palavras -->
-      <div class="feature-card">
-        <div class="feature-icon moderation"><i data-lucide="ban"></i></div>
-        <h3>Filtro de Palavras</h3>
-        <p>Lista personalizável de termos proibidos. Palavrões, insultos e termos indesejados são detectados e a mensagem é removida automaticamente.</p>
-        <div class="feature-tags">
-          <span class="feature-tag tag-moderation"><i data-lucide="list" style="width: 11px; height: 11px;"></i> Lista customizável</span>
-          <span class="feature-tag tag-moderation"><i data-lucide="zap" style="width: 11px; height: 11px;"></i> Tempo real</span>
-          <span class="feature-tag tag-moderation"><i data-lucide="settings" style="width: 11px; height: 11px;"></i> Configurável</span>
-        </div>
-      </div>
-
-      <!-- Anti-Spam -->
-      <div class="feature-card">
-        <div class="feature-icon moderation"><i data-lucide="shield-alert"></i></div>
-        <h3>Anti-Spam Inteligente</h3>
-        <p>Três camadas de proteção contra spam: detecta flood (>5 mensagens em 10s), repetição de mensagens 3x consecutivas e uso excessivo de CAPS LOCK (>80%).</p>
-        <div class="feature-tags">
-          <span class="feature-tag tag-moderation"><i data-lucide="waves" style="width: 11px; height: 11px;"></i> Flood Detection</span>
-          <span class="feature-tag tag-moderation"><i data-lucide="repeat" style="width: 11px; height: 11px;"></i> Repetição</span>
-          <span class="feature-tag tag-moderation"><i data-lucide="type" style="width: 11px; height: 11px;"></i> Caps Lock</span>
-        </div>
-      </div>
-
-      <!-- Sistema de Advertências -->
-      <div class="feature-card">
-        <div class="feature-icon moderation"><i data-lucide="gavel"></i></div>
-        <h3>Sistema de Advertências</h3>
-        <p>3 strikes e o usuário é removido. 1ª advertência: mensagem educativa. 2ª: aviso severo. 3ª: remoção automática do grupo. Tudo registrado em logs.</p>
-        <div class="feature-tags">
-          <span class="feature-tag tag-moderation"><i data-lucide="alert-circle" style="width: 11px; height: 11px;"></i> 1ª: Aviso</span>
-          <span class="feature-tag tag-moderation"><i data-lucide="alert-triangle" style="width: 11px; height: 11px;"></i> 2ª: Alerta</span>
-          <span class="feature-tag tag-moderation"><i data-lucide="ban" style="width: 11px; height: 11px;"></i> 3ª: Remoção</span>
-        </div>
-      </div>
-
-      <!-- RSS Feeder -->
-      <div class="feature-card">
-        <div class="feature-icon content"><i data-lucide="rss"></i></div>
-        <h3>RSS Feeder</h3>
-        <p>Transforme seu grupo em um canal de notícias! Monitore feeds RSS e publique automaticamente novos conteúdos. Com tradução automática de inglês para português.</p>
-        <div class="feature-tags">
-          <span class="feature-tag tag-content"><i data-lucide="newspaper" style="width: 11px; height: 11px;"></i> Notícias</span>
-          <span class="feature-tag tag-content"><i data-lucide="languages" style="width: 11px; height: 11px;"></i> Tradução Auto</span>
-          <span class="feature-tag tag-content"><i data-lucide="clock" style="width: 11px; height: 11px;"></i> Agendável</span>
-        </div>
-      </div>
-
-      <!-- Instagram Feeder -->
-      <div class="feature-card">
-        <div class="feature-icon content"><i data-lucide="camera"></i></div>
-        <h3>Instagram Feeder</h3>
-        <p>Conecte contas do Instagram e publique automaticamente novos posts no grupo. Ideal para comunidades de fãs, influenciadores e marcas.</p>
-        <div class="feature-tags">
-          <span class="feature-tag tag-content"><i data-lucide="image" style="width: 11px; height: 11px;"></i> Fotos</span>
-          <span class="feature-tag tag-content"><i data-lucide="refresh-cw" style="width: 11px; height: 11px;"></i> Automático</span>
-          <span class="feature-tag tag-content"><i data-lucide="smartphone" style="width: 11px; height: 11px;"></i> Multi-contas</span>
-        </div>
-      </div>
-
-      <!-- Mensagens Agendadas -->
-      <div class="feature-card">
-        <div class="feature-icon automation"><i data-lucide="clock"></i></div>
-        <h3>Mensagens Agendadas</h3>
-        <p>Programe mensagens para serem enviadas automaticamente em horários específicos. Perfeito para avisos, regras do grupo, lembretes e conteúdo periódico.</p>
-        <div class="feature-tags">
-          <span class="feature-tag tag-automation"><i data-lucide="calendar" style="width: 11px; height: 11px;"></i> Recorrência</span>
-          <span class="feature-tag tag-automation"><i data-lucide="clock" style="width: 11px; height: 11px;"></i> Mín: 1h</span>
-          <span class="feature-tag tag-automation"><i data-lucide="list" style="width: 11px; height: 11px;"></i> Até 20/grupo</span>
-        </div>
-      </div>
-
-      <!-- Dashboard Web -->
-      <div class="feature-card">
-        <div class="feature-icon dashboard"><i data-lucide="layout-dashboard"></i></div>
-        <h3>Painel Web Completo</h3>
-        <p>Dashboard visual com estatísticas em tempo real: grupos monitorados, infrações, advertências, usuários removidos. Gerencie tudo pelo navegador.</p>
-        <div class="feature-tags">
-          <span class="feature-tag tag-management"><i data-lucide="bar-chart" style="width: 11px; height: 11px;"></i> Estatísticas</span>
-          <span class="feature-tag tag-management"><i data-lucide="file-text" style="width: 11px; height: 11px;"></i> Logs Detalhados</span>
-          <span class="feature-tag tag-management"><i data-lucide="settings" style="width: 11px; height: 11px;"></i> Configurações</span>
-        </div>
-      </div>
-
-      <!-- Sistema de Logs -->
-      <div class="feature-card">
-        <div class="feature-icon security"><i data-lucide="file-text"></i></div>
-        <h3>Registro Completo de Logs</h3>
-        <p>Todas as ações são registradas: infrações cometidas, advertências aplicadas, usuários removidos. Consulte por data, grupo, usuário ou tipo de infração.</p>
-        <div class="feature-tags">
-          <span class="feature-tag tag-moderation"><i data-lucide="archive" style="width: 11px; height: 11px;"></i> Histórico</span>
-          <span class="feature-tag tag-moderation"><i data-lucide="search" style="width: 11px; height: 11px;"></i> Filtros</span>
-          <span class="feature-tag tag-moderation"><i data-lucide="bar-chart" style="width: 11px; height: 11px;"></i> Análise</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================================
-       DIFFERENTIALS
-       ============================================ -->
-  <section class="section">
-    <div class="section-header">
-      <div class="tag">Diferenciais</div>
-      <h2>Por que escolher o SentinelZap?</h2>
-      <p>Nenhum outro moderador de WhatsApp oferece tudo isso.</p>
-    </div>
-    <div class="differentials-grid">
-      <div class="differential-card">
-        <div class="diff-icon"><i data-lucide="server" style="width: 36px; height: 36px; stroke-width: 1.5;"></i></div>
-        <h4>Serviço Gerenciado</h4>
-        <p>Nós hospedamos e mantemos tudo. Você só acessa o painel web. Sem preocupações com infraestrutura ou manutenção.</p>
-      </div>
-      <div class="differential-card">
-        <div class="diff-icon"><i data-lucide="shield" style="width: 36px; height: 36px; stroke-width: 1.5;"></i></div>
-        <h4>Engenharia Reversa</h4>
-        <p>Construído com técnicas de engenharia reversa e scraping — não usamos API Business da Meta. Mais flexível e independente.</p>
-      </div>
-      <div class="differential-card">
-        <div class="diff-icon"><i data-lucide="smartphone" style="width: 36px; height: 36px; stroke-width: 1.5;"></i></div>
-        <h4>WhatsApp Real</h4>
-        <p>Usa conta real do WhatsApp. Não precisa de API Business paga. Conexão via QR Code como qualquer WhatsApp Web.</p>
-      </div>
-      <div class="differential-card">
-        <div class="diff-icon"><i data-lucide="refresh-cw" style="width: 36px; height: 36px; stroke-width: 1.5;"></i></div>
-        <h4>RSS + Instagram</h4>
-        <p>Transforme seu grupo em um canal de conteúdo automatizado. Notícias, posts e atualizações sem esforço.</p>
-      </div>
-      <div class="differential-card">
-        <div class="diff-icon"><i data-lucide="languages" style="width: 36px; height: 36px; stroke-width: 1.5;"></i></div>
-        <h4>Tradução Automática</h4>
-        <p>Notícias em inglês são traduzidas automaticamente para português antes de publicar no grupo.</p>
-      </div>
-      <div class="differential-card">
-        <div class="diff-icon"><i data-lucide="layout-dashboard" style="width: 36px; height: 36px; stroke-width: 1.5;"></i></div>
-        <h4>Painel Visual</h4>
-        <p>Gestão completa pelo navegador. Sem precisar decorar comandos de chat. Interface limpa e intuitiva.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       SCREENSHOTS
-       ============================================ -->
-  <section class="section">
-    <div class="section-header">
-      <div class="tag">Painel</div>
-      <h2>Veja como funciona</h2>
-      <p>Interface web completa para gerenciar todos os aspectos da moderação.</p>
-    </div>
-    <div class="screenshots-grid">
-      <!-- Dashboard Demo 1: Principal -->
-      <div class="screenshot-card">
-        <div class="screenshot-img" style="padding: 0; background: transparent;">
-          <div class="demo-dashboard">
-            <div class="demo-dashboard-header">
-              <div class="demo-dots">
-                <div class="demo-dot red"></div>
-                <div class="demo-dot yellow"></div>
-                <div class="demo-dot green"></div>
-              </div>
-              <span>sentinelzap.com/dashboard</span>
+    <main id="conteudo">
+      <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-grid shell">
+          <div class="hero-copy">
+            <p class="eyebrow">Relatório executivo · prestação de contas</p>
+            <h1 id="hero-title">Onde estamos agora</h1>
+            <p class="hero-lead">
+              O SentinelZap está em produção como uma plataforma modular de atendimento,
+              CRM e operação comercial, com entrada HTTPS autenticada, persistência SQLite
+              validada e continuidade ensaiada.
+            </p>
+            <p class="hero-detail">
+              O release publicado em 24 de agosto está estável e comprovado por
+              <strong>454 de 454 testes</strong>. Em paralelo, existe um candidato local mais
+              recente, aprovado em <strong>462 de 462 testes</strong>, aguardando acesso
+              administrativo válido para publicação controlada.
+            </p>
+            <div class="status-row" aria-label="Estado executivo">
+              <span class="status-pill status-pill--live"><i aria-hidden="true"></i>Produção ativa</span>
+              <span class="status-pill">5 de 5 marcos concluídos</span>
+              <span class="status-pill">Atualizado em 26/08/2026</span>
             </div>
-            <div class="demo-dashboard-body">
-              <div class="demo-sidebar">
-                <div class="demo-sidebar-logo">
-                  <span>🛡️ SentinelZap</span>
-                </div>
-                <div class="demo-nav-item active">
-                  <i data-lucide="layout-dashboard"></i>
-                  Dashboard
-                </div>
-                <div class="demo-nav-item">
-                  <i data-lucide="users"></i>
-                  Grupos
-                </div>
-                <div class="demo-nav-item">
-                  <i data-lucide="shield"></i>
-                  Moderação
-                </div>
-                <div class="demo-nav-item">
-                  <i data-lucide="file-text"></i>
-                  Logs
-                </div>
-                <div class="demo-nav-item">
-                  <i data-lucide="settings"></i>
-                  Configurações
-                </div>
-              </div>
-              <div class="demo-main">
-                <div class="demo-stats-grid">
-                  <div class="demo-stat-card info">
-                    <div class="demo-stat-icon">👥</div>
-                    <div class="demo-stat-value">12</div>
-                    <div class="demo-stat-label">Grupos</div>
-                  </div>
-                  <div class="demo-stat-card danger">
-                    <div class="demo-stat-icon">⚠️</div>
-                    <div class="demo-stat-value">847</div>
-                    <div class="demo-stat-label">Infrações</div>
-                  </div>
-                  <div class="demo-stat-card warning">
-                    <div class="demo-stat-icon">📝</div>
-                    <div class="demo-stat-value">156</div>
-                    <div class="demo-stat-label">Advertências</div>
-                  </div>
-                  <div class="demo-stat-card success">
-                    <div class="demo-stat-icon">🔗</div>
-                    <div class="demo-stat-value">3.2k</div>
-                    <div class="demo-stat-label">Usuários</div>
-                  </div>
-                </div>
-                <div class="demo-card">
-                  <div class="demo-card-header">
-                    <h3>Logs Recentes</h3>
-                    <span style="font-size: 11px; color: var(--text-muted);">Últimas 24h</span>
-                  </div>
-                  <div class="demo-table-container">
-                    <table class="demo-table">
-                      <thead>
-                        <tr>
-                          <th>Horário</th>
-                          <th>Grupo</th>
-                          <th>Tipo</th>
-                          <th>Mensagem</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>14:32</td>
-                          <td>🚀 Freelancers BR</td>
-                          <td><span class="demo-badge demo-badge-badword">Palavrão</span></td>
-                          <td class="demo-msg-cell">mensagem oculta...</td>
-                        </tr>
-                        <tr>
-                          <td>14:28</td>
-                          <td>💰 Crypto Brasil</td>
-                          <td><span class="demo-badge demo-badge-link">Link</span></td>
-                          <td class="demo-msg-cell">https://spam-link.com</td>
-                        </tr>
-                        <tr>
-                          <td>14:15</td>
-                          <td>🎮 Gamers BR</td>
-                          <td><span class="demo-badge demo-badge-flood">Spam</span></td>
-                          <td class="demo-msg-cell">mensagem oculta...</td>
-                        </tr>
-                        <tr>
-                          <td>13:58</td>
-                          <td>🚀 Freelancers BR</td>
-                          <td><span class="demo-badge demo-badge-removed">Removida</span></td>
-                          <td class="demo-msg-cell">mensagem oculta...</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+          </div>
+          <aside class="hero-note" aria-label="Nota de escopo">
+            <p class="hero-note__label">Leitura do contratante</p>
+            <p>
+              Este documento registra entregas, validações, decisões e próximos gates. Dados
+              pessoais e detalhes operacionais exploráveis foram removidos deliberadamente.
+            </p>
+            <dl>
+              <div><dt>Período</dt><dd>15–26 ago 2026</dd></div>
+              <div><dt>Registros</dt><dd>62 consolidados</dd></div>
+              <div><dt>Fonte</dt><dd>Histórico técnico verificado</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="metrics-section" id="agora" aria-labelledby="metrics-title">
+        <div class="shell">
+          <div class="section-heading section-heading--compact">
+            <p class="eyebrow">Estado executivo</p>
+            <h2 id="metrics-title">Evidências que sustentam o status</h2>
+            <p>
+              Números do release e do candidato são apresentados separadamente para não
+              confundir o que já está em produção com o que ainda aguarda publicação.
+            </p>
+          </div>
+          <div class="metric-grid" data-metrics></div>
+
+          <div class="status-brief">
+            <div>
+              <span class="brief-index">01</span>
+              <h3>Base operacional</h3>
+              <p>API protegida atrás de proxy HTTPS, aplicação em loopback e dados centrais em SQLite.</p>
+            </div>
+            <div>
+              <span class="brief-index">02</span>
+              <h3>Operação conectada</h3>
+              <p>Uma conta principal e duas gerenciadas ativas; uma quarta sessão permanece protegida para decisão humana.</p>
+            </div>
+            <div>
+              <span class="brief-index">03</span>
+              <h3>Continuidade comprovada</h3>
+              <p>Destino append-only, dois snapshots reais, backup concluído e restauração isolada validada.</p>
             </div>
           </div>
         </div>
-        <div class="screenshot-info">
-          <h4>Dashboard Principal</h4>
-          <p>Visão geral com estatísticas em tempo real: grupos, infrações, advertências e usuários monitorados.</p>
-        </div>
-      </div>
+      </section>
 
-      <!-- Dashboard Demo 2: Configurações de Moderação -->
-      <div class="screenshot-card">
-        <div class="screenshot-img" style="padding: 0; background: transparent;">
-          <div class="demo-dashboard">
-            <div class="demo-dashboard-header">
-              <div class="demo-dots">
-                <div class="demo-dot red"></div>
-                <div class="demo-dot yellow"></div>
-                <div class="demo-dot green"></div>
-              </div>
-              <span>sentinelzap.com/settings</span>
+      <section class="direction-section" id="direcao" aria-labelledby="direction-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="eyebrow">Próxima etapa</p>
+            <h2 id="direction-title">Para onde vamos</h2>
+            <p>
+              O núcleo técnico está entregue. O próximo ciclo fecha decisões humanas e gates
+              operacionais antes de ampliar automação ou publicar o candidato mais recente.
+            </p>
+          </div>
+          <ol class="roadmap" data-roadmap></ol>
+        </div>
+      </section>
+
+      <section class="timeline-section" id="progresso" aria-labelledby="timeline-title">
+        <div class="shell">
+          <div class="section-heading timeline-heading">
+            <div>
+              <p class="eyebrow">Registro de trabalho</p>
+              <h2 id="timeline-title">Progresso em sequência até o final</h2>
             </div>
-            <div class="demo-dashboard-body">
-              <div class="demo-sidebar">
-                <div class="demo-sidebar-logo">
-                  <span>🛡️ SentinelZap</span>
-                </div>
-                <div class="demo-nav-item">
-                  <i data-lucide="layout-dashboard"></i>
-                  Dashboard
-                </div>
-                <div class="demo-nav-item">
-                  <i data-lucide="users"></i>
-                  Grupos
-                </div>
-                <div class="demo-nav-item">
-                  <i data-lucide="shield"></i>
-                  Moderação
-                </div>
-                <div class="demo-nav-item">
-                  <i data-lucide="file-text"></i>
-                  Logs
-                </div>
-                <div class="demo-nav-item active">
-                  <i data-lucide="settings"></i>
-                  Configurações
-                </div>
-              </div>
-              <div class="demo-main">
-                <div class="demo-card" style="margin-bottom: 12px;">
-                  <div class="demo-card-header">
-                    <h3>Palavras Proibidas</h3>
-                    <span style="font-size: 11px; color: var(--success);">● Ativo</span>
-                  </div>
-                  <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-                    <span class="demo-badge demo-badge-badword" style="cursor: default;">palavrão1</span>
-                    <span class="demo-badge demo-badge-badword" style="cursor: default;">spam</span>
-                    <span class="demo-badge demo-badge-badword" style="cursor: default;">fraude</span>
-                    <span class="demo-badge demo-badge-badword" style="cursor: default;">golpe</span>
-                    <span class="demo-badge demo-badge-badword" style="cursor: default;">link-proibido</span>
-                  </div>
-                </div>
-                <div class="demo-card" style="margin-bottom: 12px;">
-                  <div class="demo-card-header">
-                    <h3>Links Permitidos</h3>
-                    <span style="font-size: 11px; color: var(--success);">● Ativo</span>
-                  </div>
-                  <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-                    <span class="demo-badge demo-badge-link" style="cursor: default;">youtube.com</span>
-                    <span class="demo-badge demo-badge-link" style="cursor: default;">github.com</span>
-                    <span class="demo-badge demo-badge-link" style="cursor: default;">wa.me</span>
-                  </div>
-                </div>
-                <div class="demo-card">
-                  <div class="demo-card-header">
-                    <h3>Configurações</h3>
-                  </div>
-                  <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <span style="font-size: 12px; color: var(--text-primary);">Anti-Spam</span>
-                      <span class="demo-badge demo-badge-active">Ativo</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <span style="font-size: 12px; color: var(--text-primary);">Anti-Link</span>
-                      <span class="demo-badge demo-badge-active">Ativo</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <span style="font-size: 12px; color: var(--text-primary);">Anti-Palvão</span>
-                      <span class="demo-badge demo-badge-active">Ativo</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <span style="font-size: 12px; color: var(--text-primary);">Auto-Remover</span>
-                      <span class="demo-badge demo-badge-active">Ativo</span>
-                    </div>
-                  </div>
-                </div>
+            <p>
+              Histórico sanitizado, ordenado por data e rastreável por contexto. Horários só
+              aparecem quando existe evidência documental.
+            </p>
+          </div>
+
+          <div class="filter-panel" aria-label="Filtros do histórico">
+            <div class="search-field">
+              <label for="search">Buscar no relatório</label>
+              <div class="search-control">
+                <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+                  <circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path>
+                </svg>
+                <input
+                  id="search"
+                  type="search"
+                  inputmode="search"
+                  autocomplete="off"
+                  placeholder="Ex.: SQLite, CRM, backup…"
+                  data-search
+                />
+                <button type="button" class="clear-search" data-clear-search hidden>Limpar</button>
               </div>
             </div>
+            <div class="filter-fields">
+              <div>
+                <label for="context-filter">Ambiente</label>
+                <select id="context-filter" data-context-filter>
+                  <option value="">Todos</option>
+                </select>
+              </div>
+              <div>
+                <label for="kind-filter">Tipo de registro</label>
+                <select id="kind-filter" data-kind-filter>
+                  <option value="">Todos</option>
+                </select>
+              </div>
+              <button type="button" class="reset-filters" data-reset-filters>Redefinir filtros</button>
+            </div>
+            <div class="filter-summary">
+              <p class="result-count" data-result-count aria-live="polite"></p>
+              <p class="ordering-note" data-ordering-note></p>
+            </div>
+          </div>
+
+          <div class="timeline" data-timeline></div>
+          <div class="empty-state" data-empty-state hidden>
+            <span aria-hidden="true">∅</span>
+            <h3>Nenhum registro encontrado</h3>
+            <p>Tente remover filtros ou usar um termo mais amplo.</p>
+            <button type="button" data-empty-reset>Mostrar todo o histórico</button>
           </div>
         </div>
-        <div class="screenshot-info">
-          <h4>Configuração de Regras</h4>
-          <p>Configure palavras proibidas, links permitidos, limites de spam e advertências pelo painel web.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- ============================================
-       TARGET AUDIENCE
-       ============================================ -->
-  <section class="section section-alt">
-    <div class="section-header">
-      <div class="tag">Para Quem é</div>
-      <h2>Ideal para você que...</h2>
-      <p>O SentinelZap foi feito pensando em quem realmente precisa de moderação de qualidade.</p>
-    </div>
-    <div class="audience-grid">
-      <div class="audience-card">
-        <div class="audience-icon"><i data-lucide="crown" style="width: 32px; height: 32px; stroke-width: 1.5;"></i></div>
-        <h4>Admins de Grupos Grandes</h4>
-        <p>Grupos com 100+ membros que sofrem com spam, links e flood diariamente</p>
-      </div>
-      <div class="audience-card">
-        <div class="audience-icon"><i data-lucide="users" style="width: 32px; height: 32px; stroke-width: 1.5;"></i></div>
-        <h4>Comunidades de Nicho</h4>
-        <p>Grupos de F1, esportes, tecnologia, games — qualquer comunidade que queira organização</p>
-      </div>
-      <div class="audience-card">
-        <div class="audience-icon"><i data-lucide="building" style="width: 32px; height: 32px; stroke-width: 1.5;"></i></div>
-        <h4>Empresas com Comunidades</h4>
-        <p>Marcas que mantêm grupos de clientes e fãs no WhatsApp e precisam de profissionalismo</p>
-      </div>
-      <div class="audience-card">
-        <div class="audience-icon"><i data-lucide="video" style="width: 32px; height: 32px; stroke-width: 1.5;"></i></div>
-        <h4>Criadores de Conteúdo</h4>
-        <p>YouTubers, streamers e influenciadores com comunidades ativas no WhatsApp</p>
-      </div>
-      <div class="audience-card">
-        <div class="audience-icon"><i data-lucide="megaphone" style="width: 32px; height: 32px; stroke-width: 1.5;"></i></div>
-        <h4>Equipes de Marketing</h4>
-        <p>Que usam WhatsApp para disparar conteúdo automatizado via RSS e Instagram Feeder</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       PRICING
-       ============================================ -->
-  <section class="section" id="pricing">
-    <div class="section-header">
-      <div class="tag">Planos</div>
-      <h2>Investimento Mensal</h2>
-      <p>Serviço gerenciado — nós cuidamos da infraestrutura, você só usa. Deploy em VPS dedicada com monitoramento 24/7.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="pricing-card">
-        <div class="plan-name">1 Grupo</div>
-        <div class="plan-price"><span class="currency">R$</span>97</div>
-        <div class="plan-period">por mês</div>
-        <ul class="plan-features">
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Moderação completa (links + palavras + spam)</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Sistema de 3 advertências</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Dashboard web completo</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Logs de atividades</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Suporte via WhatsApp</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Manutenção e atualizações inclusas</li>
-        </ul>
-        <a href="https://wa.me/5541997644023" target="_blank" class="btn btn-primary">
-          <i data-lucide="shopping-cart" style="width: 16px; height: 16px;"></i>
-          Contratar
-        </a>
-      </div>
-
-      <div class="pricing-card featured">
-        <div class="popular-badge">MAIS POPULAR</div>
-        <div class="plan-name">3 Grupos</div>
-        <div class="plan-price"><span class="currency">R$</span>197</div>
-        <div class="plan-period">por mês</div>
-        <ul class="plan-features">
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Moderação em até 3 grupos</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> RSS Feeder com tradução automática</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Instagram Feeder</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Mensagens agendadas</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Dashboard + logs completos</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Suporte prioritário</li>
-        </ul>
-        <a href="https://wa.me/5541997644023" target="_blank" class="btn btn-primary">
-          <i data-lucide="shopping-cart" style="width: 16px; height: 16px;"></i>
-          Contratar
-        </a>
-      </div>
-
-      <div class="pricing-card">
-        <div class="plan-name">5 Grupos</div>
-        <div class="plan-price"><span class="currency">R$</span>297</div>
-        <div class="plan-period">por mês</div>
-        <ul class="plan-features">
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Moderação em até 5 grupos</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Todos os recursos do plano 3 Grupos</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Personalizações de regras</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Suporte VIP</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Setup assistido</li>
-          <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Prioridade em novas funcionalidades</li>
-        </ul>
-        <a href="https://wa.me/5541997644023" target="_blank" class="btn btn-primary">
-          <i data-lucide="shopping-cart" style="width: 16px; height: 16px;"></i>
-          Contratar
-        </a>
-      </div>
-    </div>
-    <div style="text-align: center; margin-top: 32px; padding: 24px; background: var(--bg-secondary); border-radius: var(--radius-lg);">
-      <p style="font-size: 15px; color: var(--text-secondary);">
-        <i data-lucide="help-circle" style="width: 16px; height: 16px; vertical-align: middle;"></i>
-        Precisa moderar <strong>mais de 5 grupos</strong>? 
-        <a href="https://wa.me/5541997644023" target="_blank" style="color: var(--accent); font-weight: 600; text-decoration: none;">
-          Consulte uma proposta on demand
-        </a>
-      </p>
-    </div>
-  </section>
-
-  <!-- ============================================
-       ROADMAP
-       ============================================ -->
-  <section class="section section-alt">
-    <div class="section-header">
-      <div class="tag">Futuro</div>
-      <h2>O que está por vir</h2>
-      <p>O SentinelZap está em evolução constante. Veja o que já entregamos e o que vem pela frente.</p>
-    </div>
-    <div class="roadmap">
-      <div class="roadmap-phase">
-        <div class="phase-header">
-          <div class="phase-number p1">1</div>
+      <section class="assurance-section" aria-labelledby="assurance-title">
+        <div class="shell assurance-grid">
           <div>
-            <div class="phase-title">Estabilização</div>
-            <div class="phase-period">Mês 1-2</div>
+            <p class="eyebrow">Integridade documental</p>
+            <h2 id="assurance-title">O que este relatório garante</h2>
           </div>
+          <ul>
+            <li>Datas e horários não são estimados.</li>
+            <li>Release publicado e candidato local são tratados como estados diferentes.</li>
+            <li>Produção, trabalho local, decisões e validações aparecem identificados.</li>
+            <li>IPs, telefones, usuários, identificadores, hashes, caminhos e credenciais foram removidos.</li>
+            <li>Este portal não hospeda nem substitui o dashboard operacional.</li>
+          </ul>
         </div>
-        <ul>
-          <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--success); flex-shrink: 0;"></i> Anti-spam de figurinhas</li>
-          <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--success); flex-shrink: 0;"></i> Comandos no chat (!ban, !warn)</li>
-          <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--success); flex-shrink: 0;"></i> Mute temporário</li>
-          <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--success); flex-shrink: 0;"></i> Backup automático</li>
-          <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--success); flex-shrink: 0;"></i> Gráficos no dashboard</li>
-          <li><i data-lucide="check" style="width: 14px; height: 14px; color: var(--success); flex-shrink: 0;"></i> Exportar logs (CSV)</li>
-        </ul>
-      </div>
-      <div class="roadmap-phase">
-        <div class="phase-header">
-          <div class="phase-number p2">2</div>
-          <div>
-            <div class="phase-title">Expansão</div>
-            <div class="phase-period">Mês 3-4</div>
-          </div>
-        </div>
-        <ul>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Banco SQLite (mais performance)</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Boas-vindas automáticas</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Regras do grupo automáticas</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Nível de confiança</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Login no painel</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Modo escuro</li>
-        </ul>
-      </div>
-      <div class="roadmap-phase">
-        <div class="phase-header">
-          <div class="phase-number p3">3</div>
-          <div>
-            <div class="phase-title">Premium</div>
-            <div class="phase-period">Mês 5-6</div>
-          </div>
-        </div>
-        <ul>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> YouTube Feeder</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Twitter/X Feeder</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> IA para moderação</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Relatórios em PDF</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Chatbot simples</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Licenciamento via API</li>
-        </ul>
-      </div>
-      <div class="roadmap-phase">
-        <div class="phase-header">
-          <div class="phase-number p4">4</div>
-          <div>
-            <div class="phase-title">Escala</div>
-            <div class="phase-period">Mês 7-12</div>
-          </div>
-        </div>
-        <ul>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Multi-instância</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> API pública</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Webhooks</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> White label</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Gateway de pagamentos</li>
-          <li><i data-lucide="circle" style="width: 12px; height: 12px; color: var(--text-muted); flex-shrink: 0;"></i> Programa de afiliados</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+      </section>
+    </main>
 
-  <!-- ============================================
-       FAQ
-       ============================================ -->
-  <section class="section">
-    <div class="section-header">
-      <div class="tag">FAQ</div>
-      <h2>Perguntas Frequentes</h2>
-      <p>Tire suas dúvidas sobre o SentinelZap.</p>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item open" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          O WhatsApp pode bloquear meu número?
-          <span class="faq-toggle">+</span>
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <div>
+          <img src="/logo-zyntra.png" width="664" height="141" alt="Zyntra" />
+          <p>SentinelZap · prestação de contas documental</p>
         </div>
-        <div class="faq-answer">
-          O SentinelZap opera através de engenharia reversa e scraping do WhatsApp Web — não utilizamos a API Business oficial da Meta. Isso nos dá mais flexibilidade e independência, mas existe risco inerente de bloqueio. Por isso, utilizamos um número secundário dedicado (não seu número pessoal) e seguimos boas práticas para minimizar qualquer risco. Nossa equipe monitora constantemente as mudanças na plataforma para manter a estabilidade.
+        <div class="footer-meta">
+          <p>Atualizado em 26 de agosto de 2026</p>
+          <p>Conteúdo público sanitizado · 62 registros</p>
         </div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          Preciso de conhecimentos técnicos para usar?
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          Não! O SentinelZap é um serviço gerenciado — nós hospedamos em VPS dedicada, mantemos a infraestrutura e cuidamos de toda a manutenção. Você só precisa acessar o painel web pelo navegador para configurar regras, visualizar estatísticas e gerenciar seu grupo. Não precisa instalar nada no seu computador.
-        </div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          Funciona no celular ou só no computador?
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          O SentinelZap roda 24/7 em nossos servidores VPS dedicados. Você acessa tudo pelo painel web de qualquer dispositivo com navegador — celular, tablet ou computador. Não precisa manter nenhum computador ligado, nós cuidamos de toda a infraestrutura.
-        </div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          Quantos grupos posso moderar?
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          Nossos planos são definidos por quantidade de grupos: 1 grupo (R$97/mês), 3 grupos (R$197/mês) ou 5 grupos (R$297/mês). Cada grupo recebe moderação completa, feeders de conteúdo e dashboard individual. Precisa de mais de 5 grupos? Consulte uma proposta personalizada.
-        </div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          O RSS Feeder traduz automaticamente?
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          Sim! Notícias em inglês são detectadas e traduzidas automaticamente para português brasileiro antes de serem publicadas no grupo. Isso está disponível nos planos de 3 e 5 grupos.
-        </div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          Posso personalizar as regras de moderação?
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          Sim! Diretamente pelo painel web você configura: lista de palavras proibidas, whitelist de links permitidos, limites de flood e repetição, e número de advertências antes da remoção. Tudo em tempo real, sem precisar de suporte técnico.
-        </div>
-      </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-question">
-          Como funciona o suporte?
-          <span class="faq-toggle">+</span>
-        </div>
-        <div class="faq-answer">
-          O suporte é via WhatsApp e e-mail. Todos os planos incluem suporte direto. Planos de 3 e 5 grupos têm suporte prioritário com atendimento mais ágil. Como o serviço é gerenciado, cuidamos de toda manutenção e atualizações — você só usa.
-        </div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- ============================================
-       CTA
-       ============================================ -->
-  <section class="cta-section">
-    <h2>Pronto para transformar seu grupo?</h2>
-    <p>Contrate o SentinelZap hoje e nunca mais se preocupe com spam, links e flood no seu grupo de WhatsApp. Serviço gerenciado — você só usa, nós cuidamos de tudo.</p>
-    <a href="https://wa.me/5541997644023" target="_blank" class="btn btn-primary btn-lg">
-      <i data-lucide="zap" style="width: 22px; height: 22px;"></i>
-      Quero o SentinelZap
-    </a>
-    <div class="contact-info">
-      Dúvidas? Chame no <a href="https://wa.me/5541997644023" target="_blank">WhatsApp</a> ou envie um e-mail para <a href="mailto:contato@sentinelzap.com">contato@sentinelzap.com</a>
-    </div>
-  </section>
+    <button class="back-to-top" type="button" aria-label="Voltar ao topo" data-back-to-top hidden>
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="m6 15 6-6 6 6" /></svg>
+    </button>
 
-  <!-- ============================================
-       FOOTER
-       ============================================ -->
-  <footer class="footer">
-    <div class="logo">SentinelZap</div>
-    <p>Moderação Inteligente para Grupos de WhatsApp — MVP v1.0</p>
-    <p style="margin-top: 8px; font-size: 12px;">&copy; 2026 SentinelZap. Todos os direitos reservados.</p>
-  </footer>
-
-  <script>
-    // Initialize Lucide icons
-    lucide.createIcons();
-
-    // FAQ Toggle
-    function toggleFaq(element) {
-      element.classList.toggle('open');
-    }
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
-
-</body>
+    <noscript>
+      <div class="noscript-note">Ative o JavaScript para consultar e filtrar o histórico completo.</div>
+    </noscript>
+  </body>
 </html>

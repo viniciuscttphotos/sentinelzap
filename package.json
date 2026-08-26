@@ -1,0 +1,26 @@
+{
+  "name": "sentinelzap-progresso",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Relatório executivo e documental do progresso do SentinelZap.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test",
+    "check": "npm test && npm run build",
+    "vercel:whoami": "vercel whoami",
+    "vercel:login": "vercel login",
+    "vercel:link": "vercel link --yes --team viniciuscttphotos-projects --project sentinelzap",
+    "vercel:pull": "vercel pull --yes --environment=production --scope viniciuscttphotos-projects",
+    "vercel:deploy": "vercel deploy --yes --scope viniciuscttphotos-projects",
+    "vercel:prod": "vercel deploy --prod --yes --scope viniciuscttphotos-projects"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}
