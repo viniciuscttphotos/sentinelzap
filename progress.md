@@ -106,3 +106,26 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
 - Estado final: alteração enviada para `main` e produção Vercel confirmada como
   `Ready`, com página, ativos, robots e sitemap em HTTP 200, novo conteúdo
   presente e cabeçalhos de segurança preservados.
+
+## 2026-08-26 — Sincronização da configuração comercial publicada
+
+- Arquivos e trechos: `src/data.js`, métricas e novo registro; `index.html`,
+  contadores visíveis; `test/`, contratos de conteúdo e manifesto;
+  `sync/progress-source.json`, prova da fonte; `README.md`, `progress.md` e
+  `techinical_referrence.md`, documentação vigente.
+- O que foi feito: incorporada a síntese sanitizada da configuração publicada
+  que diferencia quem atende de quem recebe comissão por indicação, elevando a
+  prestação de contas a 65 registros e atualizando as métricas comprovadas para
+  472 testes locais e 467 disponíveis no pacote Linux.
+- Privacidade: a entrada descreve somente o comportamento percebido, a
+  validação agregada e o estado de publicação. Não foram copiados endereços,
+  caminhos, identificadores, hashes, nomes, telefones, credenciais nem detalhes
+  operacionais exploráveis do histórico bruto.
+- Motivo e finalidade: manter a página pública alinhada ao registro canônico
+  depois do push do SentinelZap, documentando a melhoria de clareza sem expor o
+  ambiente operacional.
+- Validação e estado: `npm run progress:verify` comprovou 65 registros
+  documentais, 64 técnicos e correspondência integral com a fonte; `npm run
+  check` aprovou os 18/18 testes, a sanitização e o build Vite. Estado final:
+  alteração enviada para `main` e produção Vercel confirmada como `Ready`, com
+  HTTP 200, conteúdo atualizado e cabeçalhos de segurança preservados.

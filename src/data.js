@@ -2,8 +2,8 @@ export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
   updatedAt: '26 de agosto de 2026',
   period: '15 a 26 de agosto de 2026',
-  sourceRecords: 63,
-  publishedRecords: 64,
+  sourceRecords: 64,
+  publishedRecords: 65,
   productionReleaseDate: '26 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -17,12 +17,12 @@ export const executiveMetrics = Object.freeze([
     note: 'Visão, aplicação, CRM, SQLite e produção segura.',
   },
   {
-    value: '471/471',
+    value: '472/472',
     label: 'testes na versão publicada',
     note: 'Validação local integral do release vigente.',
   },
   {
-    value: '466/466',
+    value: '467/467',
     label: 'testes no pacote Linux',
     note: 'Suíte disponível no pacote isolado antes do push.',
   },
@@ -917,6 +917,20 @@ const records = [
       'Nenhuma alteração é enviada antes da confirmação; duplo envio e fechamento durante a requisição ficam bloqueados, cancelamentos alertam sobre valores sem estorno automático e pedidos sem itens falham fechado.',
     validation: '471/471 testes locais e 466/466 no pacote Linux; deploy diferencial sem reinício, com serviço, autenticação, banco e quatro sessões de navegador preservados.',
     tags: ['pedidos', 'confirmação', 'produção'],
+  },
+  {
+    date: '2026-08-26',
+    title: 'Configuração clara de vendedora e indicador (publicada)',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'A tela de Contas passou a separar claramente a pessoa que atende da pessoa que recebe comissão por indicação, com ativação explícita, percentual agrupado e explicações junto aos campos.',
+    result:
+      'O formulário deixou de comprimir rótulos e controles em cartões estreitos; remoções agora são persistidas de verdade, os papéis continuam distintos e novas vendas sem vendedora permanecem bloqueadas.',
+    validation:
+      '472/472 testes locais e 467/467 no pacote Linux; publicação estática sem reinício, com serviço, autenticação, banco e sessões operacionais preservados.',
+    tags: ['contas', 'comissionamento', 'usabilidade', 'produção'],
   },
 ];
 
