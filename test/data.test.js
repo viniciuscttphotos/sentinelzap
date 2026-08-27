@@ -8,14 +8,14 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 69 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 68);
-  assert.equal(reportMeta.publishedRecords, 69);
-  assert.equal(progressEntries.length, 69);
+test('publica os 70 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 69);
+  assert.equal(reportMeta.publishedRecords, 70);
+  assert.equal(progressEntries.length, 70);
   assert.equal(progressEntries.at(-1).date, '2026-08-27');
   assert.equal(
     progressEntries.at(-1).title,
-    'Push da correção da recuperação histórica e do salvamento comercial',
+    'Correção local do atraso do node-cron (aguardando push)',
   );
 });
 
@@ -31,7 +31,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-24': 4,
     '2026-08-25': 2,
     '2026-08-26': 5,
-    '2026-08-27': 3,
+    '2026-08-27': 4,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -45,9 +45,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 69 }, (_, index) => index + 1),
+    Array.from({ length: 70 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 69);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 70);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -141,7 +141,7 @@ test('distingue o release vigente, o pacote Linux e as contas conectadas', () =>
   assert.match(historyCorrectionRecord.result, /aguarda autorização de push/i);
   assert.match(historyCorrectionRecord.validation, /537\/537/);
 
-  const deployedHistoryRecord = progressEntries.at(-1);
+  const deployedHistoryRecord = progressEntries.at(-2);
   assert.equal(deployedHistoryRecord.context, 'Produção');
   assert.equal(deployedHistoryRecord.state, 'Publicado');
   assert.match(deployedHistoryRecord.summary, /botão explícito/i);
@@ -149,6 +149,17 @@ test('distingue o release vigente, o pacote Linux e as contas conectadas', () =>
   assert.match(deployedHistoryRecord.validation, /537\/537/);
   assert.match(deployedHistoryRecord.validation, /532\/532/);
   assert.match(deployedHistoryRecord.validation, /sete snapshots/i);
+
+  const cronCandidateRecord = progressEntries.at(-1);
+  assert.equal(cronCandidateRecord.context, 'Local');
+  assert.equal(cronCandidateRecord.kind, 'Implementação');
+  assert.equal(cronCandidateRecord.state, 'Validado');
+  assert.match(cronCandidateRecord.summary, /três avisos.*8,7 segundos/i);
+  assert.match(cronCandidateRecord.result, /lote atômico/i);
+  assert.match(cronCandidateRecord.result, /cinco jobs.*single-flight.*noOverlap.*catch-up/i);
+  assert.match(cronCandidateRecord.result, /uma recuperação pesada/i);
+  assert.match(cronCandidateRecord.validation, /545\/545/);
+  assert.match(cronCandidateRecord.validation, /produção permanece inalterada/i);
 
   const semaxRecord = progressEntries.find(({ date, title }) =>
     date === '2026-08-25' && title.startsWith('Semax'),
@@ -193,5 +204,6 @@ test('roadmap preserva os gates humanos e externos vigentes', () => {
   assert.match(roadmapText, /vendedora real/i);
   assert.match(roadmapText, /alerta externo/i);
   assert.match(roadmapText, /sessão técnica autenticada/i);
+  assert.match(roadmapText, /candidato publicado/i);
   assert.match(roadmapText, /prestação de contas sincronizada/i);
 });

@@ -237,3 +237,35 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   os cabeçalhos de segurança esperados. A inspeção do DOM publicado confirmou
   69 cartões, o push atual como primeiro registro e a mesma precedência quando o
   filtro de produção estava ativo.
+
+## 2026-08-27 — Sincronização local da resiliência do agendador
+
+- Arquivos e trechos: `src/data.js`, metadados, roadmap e novo registro;
+  `index.html` e `README.md`, contadores e distinção entre release e candidato;
+  `test/data.test.js` e `test/site.test.js`, distribuição, sequência e registro
+  mais recente; `sync/progress-source.json`, prova da fonte; `progress.md` e
+  `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a linha do tempo passou a 70 registros, dos quais 69 vêm da
+  fonte técnica. O novo registro sanitizado documenta que três avisos e cerca de
+  8,7 segundos de atraso coincidiram com o salvamento comercial, enquanto as
+  recuperações históricas começaram depois do evento observado.
+- Síntese pública: o candidato local substitui duas operações integrais por um
+  lote atômico e uma escrita SQLite restrita aos participantes, separa os cinco
+  jobs e aplica single-flight, `noOverlap` e catch-up coalescido. As varreduras
+  cedem CPU e a recuperação pesada passa a ocorrer uma conta por vez.
+- Estado executivo: as métricas do release publicado continuam em 537/537 testes
+  locais e 532/532 no pacote Linux. Os 545/545 testes pertencem somente ao novo
+  candidato, que aguarda pedido explícito de push e não alterou a produção.
+- Roadmap: a recuperação histórica ficou condicionada à publicação explícita do
+  candidato e, depois disso, continua como ação humana autenticada e acompanhada,
+  uma conta por vez.
+- Privacidade: endereços de infraestrutura, caminhos, hashes, identificadores,
+  credenciais, nomes, telefones, mensagens e detalhes exploráveis permanecem fora
+  do portal.
+- Motivo e finalidade: manter a prestação de contas alinhada ao registro canônico,
+  distinguir claramente validação local de release operacional e não apresentar
+  a recuperação pesada como segura antes da publicação da correção.
+- Validação e estado final: `npm run progress:verify` comprovou 70 registros
+  documentais, 69 técnicos e o digest da fonte; `npm run check` aprovou 19/19
+  testes e o build Vite 8.2.2. Esta atualização permanece local: não houve
+  commit, push ou deploy do portal.

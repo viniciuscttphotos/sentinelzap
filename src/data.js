@@ -2,8 +2,8 @@ export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
   updatedAt: '27 de agosto de 2026',
   period: '15 a 27 de agosto de 2026',
-  sourceRecords: 68,
-  publishedRecords: 69,
+  sourceRecords: 69,
+  publishedRecords: 70,
   productionReleaseDate: '27 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -49,11 +49,11 @@ export const roadmap = Object.freeze([
   },
   {
     priority: 'Imediato',
-    title: 'Executar a recuperação histórica de forma acompanhada',
+    title: 'Publicar o candidato e então recuperar o histórico',
     description:
-      'Usar a ação técnica autenticada, uma conta por vez, com limites explícitos e acompanhar somente contagens seguras.',
-    owner: 'Operação autorizada',
-    gate: 'Sessão técnica autenticada e acompanhamento humano',
+      'Primeiro publicar, mediante novo pedido explícito de push, a correção local já validada. Somente depois usar a ação técnica autenticada, uma conta por vez, e acompanhar contagens seguras.',
+    owner: 'Operação técnica e autorizada',
+    gate: 'Candidato publicado, sessão técnica autenticada e acompanhamento humano',
   },
   {
     priority: 'Antes de novas vendas',
@@ -992,6 +992,20 @@ const records = [
     validation:
       '537/537 testes locais e 532/532 no pacote Linux; serviço, API, HTTPS, SQLite, quatro contas, sete snapshots, restore drill e monitor TLS aprovados após o push.',
     tags: ['histórico', 'contas', 'usabilidade', 'produção'],
+  },
+  {
+    date: '2026-08-27',
+    title: 'Correção local do atraso do node-cron (aguardando push)',
+    context: 'Local',
+    kind: 'Implementação',
+    state: 'Validado',
+    summary:
+      'O diagnóstico correlacionou três avisos e cerca de 8,7 segundos de atraso ao salvamento comercial; as recuperações históricas começaram depois e não causaram o evento observado.',
+    result:
+      'Vendedora e comissionado agora são gravados em lote atômico por uma transação SQLite restrita aos participantes, sem reprocessar integralmente o ecossistema. Os cinco jobs foram separados e ganharam single-flight, noOverlap e catch-up coalescido; varreduras cedem CPU e só uma recuperação pesada pode ocorrer por vez.',
+    validation:
+      '545/545 testes locais aprovados. O candidato ainda aguarda pedido explícito de push e a produção permanece inalterada.',
+    tags: ['agendador', 'SQLite', 'histórico', 'candidato'],
   },
 ];
 

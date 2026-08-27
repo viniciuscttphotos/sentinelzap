@@ -1,9 +1,9 @@
 {
   "source": "../PROGRESS.md",
-  "sha256": "c81b6870a3d6054de27c57df8ae0476237b20fe9510ffd39e7c205ab945cf693",
-  "entryCount": 69,
-  "technicalSourceRecords": 68,
+  "sha256": "185df9741ae6d6cbf35b7ab82cb1d565c7e1f9d8f51a2efc2b6c69ca3459a2af",
+  "entryCount": 70,
+  "technicalSourceRecords": 69,
   "newestDate": "2026-08-27",
-  "newestHeading": "Push da correção da recuperação histórica e do salvamento comercial",
-  "synchronizedAt": "2026-08-27T13:59:03-03:00"
+  "newestHeading": "Correção local do atraso do node-cron (aguardando push)",
+  "synchronizedAt": "2026-08-27T14:33:47-03:00"
 }

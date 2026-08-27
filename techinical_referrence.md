@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 69 registros sanitizados
+     └── métricas, roadmap e 70 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -49,7 +49,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, cinco métricas executivas, cinco prioridades do
-  roadmap, os 69 registros e as opções derivadas de filtro;
+  roadmap, os 70 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -96,7 +96,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 69 registros, distribuição por data, sequência canônica,
+- verifica contagem de 70 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -175,16 +175,19 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 27/08/2026, o portal contém 68 registros técnicos da fonte e o registro de sua
-publicação, totalizando 69. O estado atual apresenta 537/537 testes locais do
+Em 27/08/2026, o portal contém 69 registros técnicos da fonte e o registro de sua
+publicação, totalizando 70. O estado atual preserva 537/537 testes locais do
 release publicado e 532/532 testes disponíveis no pacote Linux, além de uma
 conta principal e três gerenciadas conectadas e sete snapshots reais com
 restauração ensaiada. A correção da recuperação histórica e o salvamento
-comercial explícito já foram publicados; o acionamento de **Recuperar histórico**
-continua como ação humana autenticada posterior. A fonte permanece crescente,
+comercial explícito já foram publicados. Separadamente, o candidato local de
+resiliência do agendador e dos caminhos pesados aprovou 545/545 testes, continua
+fora da produção e exige novo pedido explícito de push; somente após essa
+publicação o roadmap libera o acionamento autenticado de **Recuperar histórico**,
+uma conta por vez. A fonte permanece crescente,
 enquanto a interface e a impressão exibem do registro mais recente ao mais
 antigo. A página está publicada em
 `https://sentinelzap.vercel.app/`, e a landing anterior está preservada na tag
-`legacy-landing-2026-08-26`. O gate de sincronização, 19/19 testes do portal,
-build Vite, publicação em `main` e verificações HTTP e de ordem no DOM do release
-vigente estão aprovados. Os detalhes permanecem registrados no log cumulativo.
+`legacy-landing-2026-08-26`. O gate de sincronização e os testes/build do portal
+validam o candidato documental local; commit, push e deploy desta atualização
+ainda não ocorreram. Os detalhes permanecem registrados no log cumulativo.

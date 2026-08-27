@@ -16,8 +16,8 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(html, /69 consolidados/);
-  assert.doesNotMatch(html, /candidato[^.]{0,120}aguardando/i);
+  assert.match(html, /70 consolidados/);
+  assert.match(html, /candidato local[^.]{0,120}545 de 545 testes[^.]{0,120}aguarda push/i);
 });
 
 test('HTML oferece SEO, OpenGraph e marcos básicos de acessibilidade', async () => {
@@ -101,12 +101,12 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const verifier = await read('scripts/verify-progress-sync.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 69);
-  assert.equal(manifest.technicalSourceRecords, 68);
+  assert.equal(manifest.entryCount, 70);
+  assert.equal(manifest.technicalSourceRecords, 69);
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Push da correção da recuperação histórica e do salvamento comercial',
+    'Correção local do atraso do node-cron (aguardando push)',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /progressEntries\.at\(-1\)/);
