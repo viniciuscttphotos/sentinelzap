@@ -145,10 +145,13 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
 - Privacidade: permanecem fora do portal endereços, caminhos, identificadores,
   hashes, credenciais, nomes, telefones, conteúdo de conversa e detalhes
   operacionais exploráveis.
-- Validação e estado nesta revisão: `npm run progress:verify` comprovou 66
+- Validação e estado final: `npm run progress:verify` comprovou 66
   registros documentais, 65 técnicos e o digest da fonte; `npm run check`
   aprovou 18/18 testes, sanitização e build Vite. O diff ficou sem erro de
   whitespace. A cópia code-only do candidato operacional também aprovou
-  526/526 testes transportáveis e reproduziu o manifesto; o portal está pronto
-  para o push documental autorizado. O código
-  operacional permanece congelado e a VPS não foi acessada nem modificada.
+  526/526 testes transportáveis e reproduziu o manifesto. A publicação
+  documental autorizada foi enviada para `main`; a implantação integrada foi
+  confirmada como `Ready`, e a URL canônica respondeu HTTP 200 com os 66
+  registros, os resultados 527/527 e 526/526 e os cabeçalhos de segurança
+  esperados. O código operacional permanece congelado e a VPS não foi acessada
+  nem modificada.
