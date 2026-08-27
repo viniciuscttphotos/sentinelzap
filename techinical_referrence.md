@@ -186,6 +186,5 @@ enquanto a interface e a impressão exibem do registro mais recente ao mais
 antigo. A página está publicada em
 `https://sentinelzap.vercel.app/`, e a landing anterior está preservada na tag
 `legacy-landing-2026-08-26`. O gate de sincronização, 19/19 testes do portal,
-build Vite e verificação HTTP do release anterior estão aprovados; o release de
-CRM e sua migração compatível já foram publicados e validados. Os
-detalhes permanecem registrados no log cumulativo.
+build Vite, publicação em `main` e verificações HTTP e de ordem no DOM do release
+vigente estão aprovados. Os detalhes permanecem registrados no log cumulativo.

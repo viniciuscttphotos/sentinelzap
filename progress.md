@@ -230,7 +230,10 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
 - Motivo e finalidade: cumprir a sincronização obrigatória do push e permitir que
   o contratante encontre primeiro o estado mais atual sem reescrever nem perder a
   rastreabilidade histórica.
-- Validação local: `npm run progress:verify` comprovou 69 registros documentais,
-  68 técnicos e o digest da fonte; `npm run check` aprovou 19/19 testes,
-  sanitização e build Vite. Estado de publicação: envio para `main` e validação
-  do release integrado em andamento nesta tarefa.
+- Validação e estado final: `npm run progress:verify` comprovou 69 registros
+  documentais, 68 técnicos e o digest da fonte; `npm run check` aprovou 19/19
+  testes, sanitização e build Vite. A alteração foi enviada para `main`; a
+  implantação integrada ficou `Ready`, e a URL canônica respondeu HTTP 200 com
+  os cabeçalhos de segurança esperados. A inspeção do DOM publicado confirmou
+  69 cartões, o push atual como primeiro registro e a mesma precedência quando o
+  filtro de produção estava ativo.
