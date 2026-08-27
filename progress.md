@@ -238,7 +238,7 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   69 cartões, o push atual como primeiro registro e a mesma precedência quando o
   filtro de produção estava ativo.
 
-## 2026-08-27 — Sincronização local da resiliência do agendador
+## 2026-08-27 — Sincronização e publicação da resiliência do agendador
 
 - Arquivos e trechos: `src/data.js`, metadados, roadmap e novo registro;
   `index.html` e `README.md`, contadores e distinção entre release e candidato;
@@ -267,5 +267,7 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   a recuperação pesada como segura antes da publicação da correção.
 - Validação e estado final: `npm run progress:verify` comprovou 70 registros
   documentais, 69 técnicos e o digest da fonte; `npm run check` aprovou 19/19
-  testes e o build Vite 8.2.2. Esta atualização permanece local: não houve
-  commit, push ou deploy do portal.
+  testes e o build Vite 8.2.2. A atualização foi enviada ao `main`, a integração
+  publicou o portal com estado `Ready` e a URL canônica respondeu HTTP 200 com
+  os cabeçalhos de segurança, os novos contadores e o registro local mais
+  recente. O dashboard operacional e a VPS não foram modificados.

@@ -188,6 +188,9 @@ uma conta por vez. A fonte permanece crescente,
 enquanto a interface e a impressão exibem do registro mais recente ao mais
 antigo. A página está publicada em
 `https://sentinelzap.vercel.app/`, e a landing anterior está preservada na tag
-`legacy-landing-2026-08-26`. O gate de sincronização e os testes/build do portal
-validam o candidato documental local; commit, push e deploy desta atualização
-ainda não ocorreram. Os detalhes permanecem registrados no log cumulativo.
+`legacy-landing-2026-08-26`. O gate de sincronização, 19/19 testes e o build do
+portal foram aprovados; a atualização foi enviada ao `main`, ficou `Ready` pela
+integração e a URL canônica respondeu HTTP 200 com os cabeçalhos de segurança e
+o conteúdo atualizado. Essa publicação é apenas documental: o candidato do
+monólito continua local e a VPS operacional permanece inalterada. Os detalhes
+ficam registrados no log cumulativo.
