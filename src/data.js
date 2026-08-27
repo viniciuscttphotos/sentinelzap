@@ -2,8 +2,8 @@ export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
   updatedAt: '26 de agosto de 2026',
   period: '15 a 26 de agosto de 2026',
-  sourceRecords: 64,
-  publishedRecords: 65,
+  sourceRecords: 65,
+  publishedRecords: 66,
   productionReleaseDate: '26 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -17,9 +17,14 @@ export const executiveMetrics = Object.freeze([
     note: 'Visão, aplicação, CRM, SQLite e produção segura.',
   },
   {
+    value: '527/527',
+    label: 'testes no candidato local',
+    note: 'Auditoria integral do CRM aprovada sem bloqueios.',
+  },
+  {
     value: '472/472',
-    label: 'testes na versão publicada',
-    note: 'Validação local integral do release vigente.',
+    label: 'testes no release publicado',
+    note: 'Validação local integral da versão atualmente em produção.',
   },
   {
     value: '467/467',
@@ -931,6 +936,20 @@ const records = [
     validation:
       '472/472 testes locais e 467/467 no pacote Linux; publicação estática sem reinício, com serviço, autenticação, banco e sessões operacionais preservados.',
     tags: ['contas', 'comissionamento', 'usabilidade', 'produção'],
+  },
+  {
+    date: '2026-08-26',
+    title: 'Auditoria integral do CRM e correções QA-00 a QA-52 (local, aguardando push)',
+    context: 'Local',
+    kind: 'Implementação',
+    state: 'Validado',
+    summary:
+      'Uma revisão independente percorreu experiência de uso, regras comerciais, APIs, persistência, continuidade e isolamento dos testes do CRM.',
+    result:
+      'Os 53 itens foram aprovados após correções de clareza, acessibilidade, paginação, integridade e recuperação segura; a versão operacional continua aguardando autorização de push.',
+    validation:
+      '527/527 testes locais e 526/526 no pacote isolado, com auditoria final sem bloqueios e banco-sentinela de teste inalterado.',
+    tags: ['CRM', 'qualidade', 'acessibilidade', 'testes'],
   },
 ];
 

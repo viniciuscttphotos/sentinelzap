@@ -129,3 +129,26 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   check` aprovou os 18/18 testes, a sanitização e o build Vite. Estado final:
   alteração enviada para `main` e produção Vercel confirmada como `Ready`, com
   HTTP 200, conteúdo atualizado e cabeçalhos de segurança preservados.
+
+## 2026-08-26 — Sincronização da auditoria integral do CRM
+
+- Arquivos e trechos: `src/data.js`, metadados, métricas e novo registro;
+  `index.html`, contadores; `test/data.test.js` e `test/site.test.js`, contratos
+  de cronologia e conteúdo; `sync/progress-source.json`, prova da fonte;
+  `README.md`, `progress.md` e `techinical_referrence.md`, documentação vigente.
+- O que foi feito: incorporada uma síntese sanitizada da auditoria QA completa,
+  distinguindo o candidato local aprovado do release que continua em produção.
+  A linha do tempo passou a 66 registros, dos quais 65 correspondem aos
+  registros técnicos da fonte.
+- Motivo e finalidade: manter a prestação de contas sincronizada com o log
+  canônico sem sugerir que as correções locais já foram implantadas na VPS.
+- Privacidade: permanecem fora do portal endereços, caminhos, identificadores,
+  hashes, credenciais, nomes, telefones, conteúdo de conversa e detalhes
+  operacionais exploráveis.
+- Validação e estado nesta revisão: `npm run progress:verify` comprovou 66
+  registros documentais, 65 técnicos e o digest da fonte; `npm run check`
+  aprovou 18/18 testes, sanitização e build Vite. O diff ficou sem erro de
+  whitespace. A cópia code-only do candidato operacional também aprovou
+  526/526 testes transportáveis e reproduziu o manifesto; o portal está pronto
+  para o push documental autorizado. O código
+  operacional permanece congelado e a VPS não foi acessada nem modificada.

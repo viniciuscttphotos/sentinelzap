@@ -1,9 +1,9 @@
 {
   "source": "../PROGRESS.md",
-  "sha256": "93eedf5ce4bfa5dd4838fd6e9f57173c246ea7f73196fee9dea4926abd595449",
-  "entryCount": 65,
-  "technicalSourceRecords": 64,
+  "sha256": "9dfc5a5876d3361629383b28e604efab703446bbc348dc3fbfa8eaa619e82de7",
+  "entryCount": 66,
+  "technicalSourceRecords": 65,
   "newestDate": "2026-08-26",
-  "newestHeading": "Configuração clara de vendedora e indicador (publicada)",
-  "synchronizedAt": "2026-08-26T17:19:27-03:00"
+  "newestHeading": "Auditoria integral do CRM e correções QA-00 a QA-52 (local, aguardando push)",
+  "synchronizedAt": "2026-08-26T23:06:49-03:00"
 }
