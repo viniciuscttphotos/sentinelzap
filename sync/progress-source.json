@@ -1,9 +1,9 @@
 {
   "source": "../PROGRESS.md",
-  "sha256": "ba3b73474689ff5e3df88fa284a9034f96f262b0b9621fcc0819f6d5fd578a14",
-  "entryCount": 67,
-  "technicalSourceRecords": 66,
+  "sha256": "e8fcd36b1ee6a6579d130ffa1ba3c2ce576adfd54e9e1b032843010c1e7d5fcc",
+  "entryCount": 68,
+  "technicalSourceRecords": 67,
   "newestDate": "2026-08-27",
-  "newestHeading": "Push da auditoria integral do CRM, migração segura e validação operacional",
-  "synchronizedAt": "2026-08-27T11:40:13-03:00"
+  "newestHeading": "Correção local da recuperação histórica e distinção da varredura automática (aguardando push)",
+  "synchronizedAt": "2026-08-27T12:48:10-03:00"
 }

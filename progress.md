@@ -182,3 +182,27 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   incluindo 18/18 testes, sanitização e build Vite. A alteração foi enviada para
   `main`; a publicação integrada foi confirmada como `Ready`, com HTTP 200,
   conteúdo atualizado e cabeçalhos de segurança preservados.
+
+## 2026-08-27 — Sincronização da correção local de recuperação histórica e salvamento comercial
+
+- Arquivos e trechos: `src/data.js`, metadados, roadmap e novo registro;
+  `index.html`, contadores; `test/data.test.js` e `test/site.test.js`, contratos
+  de cronologia e sincronização; `sync/progress-source.json`, prova da fonte;
+  `README.md`, `progress.md` e `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a linha do tempo passou a 68 registros, dos quais 67
+  correspondem à fonte técnica. O release operacional permaneceu identificado
+  por 533/533 testes e ganhou, separadamente, o candidato local aprovado em
+  537/537, ainda condicionado a um pedido explícito de push.
+- Síntese pública: a recuperação manual foi distinguida do auto-scan
+  concorrente, falhas continuam isoladas e o editor comercial ganhou ação
+  explícita de salvamento. O roadmap passou a exigir a publicação do candidato
+  antes de acionar a recuperação acompanhada nas contas.
+- Privacidade: não foram publicados endereços de infraestrutura, caminhos,
+  identificadores, hashes, credenciais, nomes, telefones, mensagens ou detalhes
+  operacionais exploráveis.
+- Motivo e finalidade: manter a prestação de contas alinhada ao log canônico sem
+  representar a correção local como já implantada no dashboard operacional.
+- Validação e estado: `npm run progress:verify` e `npm run check` aprovados,
+  incluindo 18/18 testes, sanitização e build Vite. A alteração foi enviada para
+  `main`; a publicação integrada foi confirmada como `Ready`, com HTTP 200,
+  conteúdo atualizado e cabeçalhos de segurança preservados.

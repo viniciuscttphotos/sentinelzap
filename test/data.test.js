@@ -8,14 +8,14 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 67 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 66);
-  assert.equal(reportMeta.publishedRecords, 67);
-  assert.equal(progressEntries.length, 67);
+test('publica os 68 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 67);
+  assert.equal(reportMeta.publishedRecords, 68);
+  assert.equal(progressEntries.length, 68);
   assert.equal(progressEntries.at(-1).date, '2026-08-27');
   assert.equal(
     progressEntries.at(-1).title,
-    'Push da auditoria integral do CRM, migração segura e validação operacional',
+    'Correção local da recuperação histórica e distinção da varredura automática (aguardando push)',
   );
 });
 
@@ -31,7 +31,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-24': 4,
     '2026-08-25': 2,
     '2026-08-26': 5,
-    '2026-08-27': 1,
+    '2026-08-27': 2,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -45,9 +45,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 67 }, (_, index) => index + 1),
+    Array.from({ length: 68 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 67);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 68);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -122,13 +122,22 @@ test('distingue o release vigente, o pacote Linux e as contas conectadas', () =>
   assert.match(qaRecord.validation, /527\/527/);
   assert.match(qaRecord.validation, /526\/526/);
 
-  const deployedQaRecord = progressEntries.at(-1);
+  const deployedQaRecord = progressEntries.find(({ title }) =>
+    title.startsWith('Push da auditoria integral do CRM, migração segura'),
+  );
   assert.equal(deployedQaRecord.context, 'Produção');
   assert.equal(deployedQaRecord.state, 'Publicado');
   assert.match(deployedQaRecord.summary, /paginaç[aã]o/i);
   assert.match(deployedQaRecord.result, /métricas derivadas/i);
   assert.match(deployedQaRecord.validation, /533\/533/);
   assert.match(deployedQaRecord.validation, /528\/528/);
+
+  const historyCorrectionRecord = progressEntries.at(-1);
+  assert.equal(historyCorrectionRecord.context, 'Local');
+  assert.equal(historyCorrectionRecord.state, 'Validado');
+  assert.match(historyCorrectionRecord.summary, /varredura automática/i);
+  assert.match(historyCorrectionRecord.result, /aguarda autorização de push/i);
+  assert.match(historyCorrectionRecord.validation, /537\/537/);
 
   const semaxRecord = progressEntries.find(({ date, title }) =>
     date === '2026-08-25' && title.startsWith('Semax'),

@@ -16,7 +16,7 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(html, /67 consolidados/);
+  assert.match(html, /68 consolidados/);
   assert.doesNotMatch(html, /candidato[^.]{0,120}aguardando/i);
 });
 
@@ -94,12 +94,12 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const verifier = await read('scripts/verify-progress-sync.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 67);
-  assert.equal(manifest.technicalSourceRecords, 66);
+  assert.equal(manifest.entryCount, 68);
+  assert.equal(manifest.technicalSourceRecords, 67);
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Push da auditoria integral do CRM, migração segura e validação operacional',
+    'Correção local da recuperação histórica e distinção da varredura automática (aguardando push)',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /progressEntries\.at\(-1\)/);

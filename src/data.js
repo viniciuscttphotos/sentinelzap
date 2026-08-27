@@ -2,8 +2,8 @@ export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
   updatedAt: '27 de agosto de 2026',
   period: '15 a 27 de agosto de 2026',
-  sourceRecords: 66,
-  publishedRecords: 67,
+  sourceRecords: 67,
+  publishedRecords: 68,
   productionReleaseDate: '27 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -51,9 +51,9 @@ export const roadmap = Object.freeze([
     priority: 'Imediato',
     title: 'Executar a recuperação histórica de forma acompanhada',
     description:
-      'Usar a ação técnica autenticada com limites explícitos, acompanhar somente contagens seguras e preservar o ponto de continuidade diante de falhas parciais.',
+      'Publicar primeiro a correção local validada e, depois, usar a ação técnica autenticada com limites explícitos e acompanhar somente contagens seguras.',
     owner: 'Operação autorizada',
-    gate: 'Sessão técnica autenticada e acompanhamento humano',
+    gate: 'Push autorizado, sessão técnica autenticada e acompanhamento humano',
   },
   {
     priority: 'Antes de novas vendas',
@@ -964,6 +964,20 @@ const records = [
     validation:
       '533/533 testes locais e 528/528 no pacote Linux; serviço, API, HTTPS, banco, quatro contas, backups e restauração ensaiada aprovados após o push.',
     tags: ['CRM', 'usabilidade', 'migração', 'produção'],
+  },
+  {
+    date: '2026-08-27',
+    title: 'Correção local da recuperação histórica e distinção da varredura automática (aguardando push)',
+    context: 'Local',
+    kind: 'Implementação',
+    state: 'Validado',
+    summary:
+      'A recuperação manual foi separada da varredura automática concorrente, os resumos ganharam linguagem própria e a configuração comercial recebeu um botão explícito de salvamento.',
+    result:
+      'O clique manual deixa de herdar um lote automático em andamento, falhas individuais permanecem isoladas e mudanças legítimas no nome do contato não impedem a recuperação; a versão operacional ainda aguarda autorização de push.',
+    validation:
+      '537/537 testes locais aprovados, duas revisões independentes sem bloqueadores e candidato mantido fora da produção.',
+    tags: ['histórico', 'contas', 'usabilidade', 'candidato'],
   },
 ];
 
