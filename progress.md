@@ -155,3 +155,30 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   registros, os resultados 527/527 e 526/526 e os cabeçalhos de segurança
   esperados. O código operacional permanece congelado e a VPS não foi acessada
   nem modificada.
+
+## 2026-08-27 — Sincronização do push da auditoria integral do CRM
+
+- Arquivos e trechos: `src/data.js`, metadados, métricas e novo registro;
+  `index.html`, estado executivo e contadores; `test/data.test.js` e
+  `test/site.test.js`, contratos de cronologia, conteúdo e sincronização;
+  `sync/progress-source.json`, prova da fonte; `README.md`, `progress.md` e
+  `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a entrada antes marcada como candidata foi preservada como
+  histórico e ganhou um registro posterior de publicação. A linha do tempo
+  passou a 67 registros, dos quais 66 correspondem às entradas técnicas da
+  fonte. O estado executivo agora apresenta 533/533 testes locais, 528/528 no
+  pacote Linux, quatro contas conectadas e cinco snapshots reais.
+- Síntese pública: paginação, tarefa prioritária, totais estáveis, separação
+  financeira, cartões móveis, linguagem simples, erros junto do campo e a
+  evolução compatível das métricas derivadas foram descritos sem copiar detalhes
+  internos do ambiente.
+- Privacidade: continuam ausentes endereços de infraestrutura, caminhos,
+  identificadores, hashes, credenciais, nomes, telefones, conteúdo de conversas
+  e qualquer detalhe operacional explorável.
+- Motivo e finalidade: cumprir a sincronização obrigatória após o push do
+  SentinelZap e mostrar ao contratante o efeito prático da auditoria sem ligar o
+  portal ao dashboard operacional.
+- Validação e estado: `npm run progress:verify` e `npm run check` aprovados,
+  incluindo 18/18 testes, sanitização e build Vite. A alteração foi enviada para
+  `main`; a publicação integrada foi confirmada como `Ready`, com HTTP 200,
+  conteúdo atualizado e cabeçalhos de segurança preservados.

@@ -8,14 +8,14 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 66 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 65);
-  assert.equal(reportMeta.publishedRecords, 66);
-  assert.equal(progressEntries.length, 66);
-  assert.equal(progressEntries.at(-1).date, '2026-08-26');
+test('publica os 67 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 66);
+  assert.equal(reportMeta.publishedRecords, 67);
+  assert.equal(progressEntries.length, 67);
+  assert.equal(progressEntries.at(-1).date, '2026-08-27');
   assert.equal(
     progressEntries.at(-1).title,
-    'Auditoria integral do CRM e correções QA-00 a QA-52 (local, aguardando push)',
+    'Push da auditoria integral do CRM, migração segura e validação operacional',
   );
 });
 
@@ -31,6 +31,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-24': 4,
     '2026-08-25': 2,
     '2026-08-26': 5,
+    '2026-08-27': 1,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -44,9 +45,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 66 }, (_, index) => index + 1),
+    Array.from({ length: 67 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 66);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 67);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -73,13 +74,13 @@ test('ordena horários comprovados dentro de cada data', () => {
   }
 });
 
-test('distingue o candidato auditado do release vigente e do pacote Linux', () => {
-  const candidateMetric = executiveMetrics.find(({ value }) => value === '527/527');
-  const localMetric = executiveMetrics.find(({ value }) => value === '472/472');
-  const linuxMetric = executiveMetrics.find(({ value }) => value === '467/467');
-  assert.match(candidateMetric.note, /CRM.*sem bloqueios/i);
-  assert.match(localMetric.note, /produção/i);
+test('distingue o release vigente, o pacote Linux e as contas conectadas', () => {
+  const localMetric = executiveMetrics.find(({ value }) => value === '533/533');
+  const linuxMetric = executiveMetrics.find(({ value }) => value === '528/528');
+  const accountsMetric = executiveMetrics.find(({ value }) => value === '4/4');
+  assert.match(localMetric.note, /CRM.*push/i);
   assert.match(linuxMetric.note, /pacote isolado/i);
+  assert.match(accountsMetric.note, /principal.*gerenciadas/i);
 
   const releaseRecord = progressEntries.find(({ date, title }) =>
     date === '2026-08-24' && title.startsWith('Push concluído'),
@@ -114,12 +115,20 @@ test('distingue o candidato auditado do release vigente e do pacote Linux', () =
   assert.match(assignmentRecord.validation, /472\/472/);
   assert.match(assignmentRecord.validation, /467\/467/);
 
-  const qaRecord = progressEntries.at(-1);
+  const qaRecord = progressEntries.find(({ title }) => title.startsWith('Auditoria integral do CRM'));
   assert.equal(qaRecord.context, 'Local');
   assert.equal(qaRecord.state, 'Validado');
   assert.match(qaRecord.result, /aguardando autorização de push/i);
   assert.match(qaRecord.validation, /527\/527/);
   assert.match(qaRecord.validation, /526\/526/);
+
+  const deployedQaRecord = progressEntries.at(-1);
+  assert.equal(deployedQaRecord.context, 'Produção');
+  assert.equal(deployedQaRecord.state, 'Publicado');
+  assert.match(deployedQaRecord.summary, /paginaç[aã]o/i);
+  assert.match(deployedQaRecord.result, /métricas derivadas/i);
+  assert.match(deployedQaRecord.validation, /533\/533/);
+  assert.match(deployedQaRecord.validation, /528\/528/);
 
   const semaxRecord = progressEntries.find(({ date, title }) =>
     date === '2026-08-25' && title.startsWith('Semax'),

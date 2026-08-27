@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 66 registros de progresso em sequência cronológica.
+3. os 67 registros de progresso em sequência cronológica.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,18 +12,17 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 65 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 66 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
 
-O release vigente de 26/08 possui validações complementares e explicitamente
+O release vigente de 27/08 possui validações complementares e explicitamente
 separadas:
 
-- candidato local de CRM: 527/527 testes na raiz e 526/526 no pacote isolado, com auditoria QA sem bloqueios e ainda sem push operacional;
-- validação local: 472/472 testes na versão publicada;
-- pacote Linux: 467/467 testes disponíveis antes do push;
-- continuidade: três snapshots reais e restauração ensaiada;
+- validação local: 533/533 testes na versão publicada;
+- pacote Linux: 528/528 testes transportáveis antes do push;
+- continuidade: cinco snapshots reais e restauração ensaiada;
 - operação: uma conta principal e três gerenciadas conectadas;
 - ação humana pendente: executar a recuperação histórica pelo painel autenticado;
 - marcos: 5/5 concluídos.

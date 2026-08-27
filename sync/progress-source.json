@@ -1,9 +1,9 @@
 {
   "source": "../PROGRESS.md",
-  "sha256": "9dfc5a5876d3361629383b28e604efab703446bbc348dc3fbfa8eaa619e82de7",
-  "entryCount": 66,
-  "technicalSourceRecords": 65,
-  "newestDate": "2026-08-26",
-  "newestHeading": "Auditoria integral do CRM e correções QA-00 a QA-52 (local, aguardando push)",
-  "synchronizedAt": "2026-08-26T23:06:49-03:00"
+  "sha256": "ba3b73474689ff5e3df88fa284a9034f96f262b0b9621fcc0819f6d5fd578a14",
+  "entryCount": 67,
+  "technicalSourceRecords": 66,
+  "newestDate": "2026-08-27",
+  "newestHeading": "Push da auditoria integral do CRM, migração segura e validação operacional",
+  "synchronizedAt": "2026-08-27T11:40:13-03:00"
 }

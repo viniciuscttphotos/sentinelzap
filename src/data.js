@@ -1,10 +1,10 @@
 export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
-  updatedAt: '26 de agosto de 2026',
-  period: '15 a 26 de agosto de 2026',
-  sourceRecords: 65,
-  publishedRecords: 66,
-  productionReleaseDate: '26 de agosto de 2026',
+  updatedAt: '27 de agosto de 2026',
+  period: '15 a 27 de agosto de 2026',
+  sourceRecords: 66,
+  publishedRecords: 67,
+  productionReleaseDate: '27 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
     'Os registros estão ordenados por data. Quando não há horário comprovado, nenhum horário é apresentado e a ordem documental da fonte é preservada dentro do mesmo dia.',
@@ -17,22 +17,22 @@ export const executiveMetrics = Object.freeze([
     note: 'Visão, aplicação, CRM, SQLite e produção segura.',
   },
   {
-    value: '527/527',
-    label: 'testes no candidato local',
-    note: 'Auditoria integral do CRM aprovada sem bloqueios.',
-  },
-  {
-    value: '472/472',
+    value: '533/533',
     label: 'testes no release publicado',
-    note: 'Validação local integral da versão atualmente em produção.',
+    note: 'Auditoria integral do CRM aprovada antes do push.',
   },
   {
-    value: '467/467',
+    value: '528/528',
     label: 'testes no pacote Linux',
-    note: 'Suíte disponível no pacote isolado antes do push.',
+    note: 'Suíte transportável aprovada no pacote isolado.',
   },
   {
-    value: '3',
+    value: '4/4',
+    label: 'contas conectadas',
+    note: 'Uma principal e três gerenciadas após a publicação.',
+  },
+  {
+    value: '5',
     label: 'snapshots reais comprovados',
     note: 'Backup e restauração ensaiada concluídos.',
   },
@@ -950,6 +950,20 @@ const records = [
     validation:
       '527/527 testes locais e 526/526 no pacote isolado, com auditoria final sem bloqueios e banco-sentinela de teste inalterado.',
     tags: ['CRM', 'qualidade', 'acessibilidade', 'testes'],
+  },
+  {
+    date: '2026-08-27',
+    title: 'Push da auditoria integral do CRM, migração segura e validação operacional',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'A auditoria integral do CRM foi publicada com paginação, linguagem simples, cartões móveis, estados claros, erros junto dos campos e contratos mais rígidos de domínio, persistência e recuperação.',
+    result:
+      'Listas grandes ficaram mais leves, a tarefa prioritária ganhou acesso direto, totais globais permanecem corretos, pedidos pendentes foram separados de pagamentos reais e a evolução compatível ajustou somente métricas derivadas sem perder registros ou sessões.',
+    validation:
+      '533/533 testes locais e 528/528 no pacote Linux; serviço, API, HTTPS, banco, quatro contas, backups e restauração ensaiada aprovados após o push.',
+    tags: ['CRM', 'usabilidade', 'migração', 'produção'],
   },
 ];
 
