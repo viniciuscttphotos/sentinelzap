@@ -4,7 +4,8 @@
 
 `sentinelzap-progresso` é a página pública de prestação de contas do SentinelZap.
 Seu objetivo é traduzir o histórico técnico em uma narrativa executiva verificável:
-estado atual, direção imediata e progresso cronológico.
+estado atual, direção imediata e progresso verificado, com as mudanças mais
+recentes apresentadas primeiro.
 
 O portal foi preparado para ser a página principal do projeto web existente
 `sentinelzap`. Ele não é o dashboard operacional, não executa o monólito e não
@@ -22,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 68 registros sanitizados
+     └── métricas, roadmap e 69 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -38,8 +39,8 @@ JavaScript e ativos estáticos.
 ### `index.html`
 
 - define a hierarquia semântica do documento;
-- abre com “Onde estamos agora”, seguido de “Para onde vamos” e “Progresso em
-  sequência até o final”;
+- abre com “Onde estamos agora”, seguido de “Para onde vamos” e “Progresso do
+  mais recente ao mais antigo”;
 - contém metadados SEO, canonical, OpenGraph, Twitter Card e favicon;
 - oferece skip link, landmarks, rótulos, região `aria-live` e fallback `noscript`;
 - referencia exclusivamente recursos locais de execução.
@@ -48,10 +49,11 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, cinco métricas executivas, cinco prioridades do
-  roadmap, os 68 registros e as opções derivadas de filtro;
+  roadmap, os 69 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
-- preserva a ordem crescente das datas e a ordem documental dentro do mesmo dia;
+- preserva como fonte canônica a ordem crescente das datas e a ordem documental
+  dentro do mesmo dia;
 - usa `time: null` por padrão e inclui horário apenas quando comprovado;
 - não contém dados pessoais nem detalhes de infraestrutura exploráveis.
 
@@ -59,7 +61,9 @@ JavaScript e ativos estáticos.
 
 - cria elementos com APIs nativas do DOM e usa `textContent`, evitando interpolação
   de conteúdo editorial em HTML;
-- renderiza métricas, roadmap e linha do tempo agrupada por dia;
+- deriva uma cópia imutável e invertida da fonte canônica e renderiza métricas,
+  roadmap e linha do tempo agrupada por dia, do registro mais recente ao mais
+  antigo;
 - normaliza acentos para busca textual;
 - filtra por ambiente e tipo e persiste filtros não sensíveis na query string;
 - controla impressão, indicador de leitura e retorno ao topo;
@@ -92,8 +96,8 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 68 registros, distribuição por data, sequência, horários,
-  métricas, gates e sanitização;
+- verifica contagem de 69 registros, distribuição por data, sequência canônica,
+  inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
 
@@ -101,8 +105,9 @@ JavaScript e ativos estáticos.
 
 1. O navegador carrega `index.html` e o bundle gerado pelo Vite.
 2. `main.js` importa os objetos imutáveis de `data.js`.
-3. O conteúdo é materializado com DOM nativo.
-4. Busca e filtros operam integralmente em memória.
+3. `main.js` cria uma cópia invertida de `progressEntries`, sem mutar a fonte.
+4. O conteúdo é materializado com DOM nativo; busca e filtros operam sobre a
+   cópia de apresentação integralmente em memória.
 5. A impressão usa o mesmo documento e uma folha específica, sem exportação remota.
 
 Nenhum dado é enviado ou recebido depois do carregamento estático.
@@ -116,7 +121,9 @@ O histórico bruto não deve ser copiado para o portal. Cada atualização exige
   caminhos, credenciais e pormenores exploráveis;
 - distinção explícita entre trabalho local, produção, decisão e validação;
 - horário somente com evidência;
-- manutenção da ordem documental quando registros do mesmo dia não possuem horário;
+- manutenção da ordem documental crescente na fonte quando registros do mesmo
+  dia não possuem horário; a apresentação visual inverte essa sequência sem
+  inventar horários;
 - atualização do log e revisão desta referência.
 
 ## 6. Build, testes e deploy
@@ -168,16 +175,17 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 27/08/2026, o portal contém 67 registros técnicos da fonte e o registro de sua
-publicação, totalizando 68. O estado atual apresenta separadamente os 533/533
-testes locais do release publicado, os 528/528 testes disponíveis no pacote
-Linux e o candidato local aprovado em 537/537 testes, além de registrar uma
-conta principal e três gerenciadas conectadas na leitura mais recente e cinco
-snapshots reais com restauração ensaiada. A correção da recuperação histórica
-aguarda push explícito; somente depois dele o acionamento deve ocorrer por ação
-humana autenticada. A página está publicada em
+Em 27/08/2026, o portal contém 68 registros técnicos da fonte e o registro de sua
+publicação, totalizando 69. O estado atual apresenta 537/537 testes locais do
+release publicado e 532/532 testes disponíveis no pacote Linux, além de uma
+conta principal e três gerenciadas conectadas e sete snapshots reais com
+restauração ensaiada. A correção da recuperação histórica e o salvamento
+comercial explícito já foram publicados; o acionamento de **Recuperar histórico**
+continua como ação humana autenticada posterior. A fonte permanece crescente,
+enquanto a interface e a impressão exibem do registro mais recente ao mais
+antigo. A página está publicada em
 `https://sentinelzap.vercel.app/`, e a landing anterior está preservada na tag
-`legacy-landing-2026-08-26`. O gate de sincronização, 18/18 testes do portal,
+`legacy-landing-2026-08-26`. O gate de sincronização, 19/19 testes do portal,
 build Vite e verificação HTTP do release anterior estão aprovados; o release de
 CRM e sua migração compatível já foram publicados e validados. Os
 detalhes permanecem registrados no log cumulativo.

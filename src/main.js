@@ -7,6 +7,7 @@ import {
   roadmap,
 } from './data.js';
 
+const timelineEntries = Object.freeze([...progressEntries].reverse());
 const $ = (selector, scope = document) => scope.querySelector(selector);
 
 function createElement(tagName, className, text) {
@@ -205,7 +206,7 @@ function applyFilters({ persist = true } = {}) {
   const query = normalize(controls.search.value);
   const context = controls.context.value;
   const kind = controls.kind.value;
-  const filtered = progressEntries.filter((record) => {
+  const filtered = timelineEntries.filter((record) => {
     const matchesQuery = !query || getRecordHaystack(record).includes(query);
     const matchesContext = !context || record.context === context;
     const matchesKind = !kind || record.kind === kind;

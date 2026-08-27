@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 68 registros de progresso em sequência cronológica.
+3. os 69 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,7 +12,7 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 67 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 68 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
@@ -20,12 +20,11 @@ credenciais ou detalhes operacionais exploráveis.
 O release vigente de 27/08 possui validações complementares e explicitamente
 separadas:
 
-- validação local: 533/533 testes na versão publicada;
-- pacote Linux: 528/528 testes transportáveis antes do push;
-- continuidade: cinco snapshots reais e restauração ensaiada;
+- validação local: 537/537 testes na versão publicada;
+- pacote Linux: 532/532 testes transportáveis antes do push;
+- continuidade: sete snapshots reais e restauração ensaiada;
 - operação: uma conta principal e três gerenciadas conectadas;
-- candidato local: 537/537 testes, aguardando autorização de push;
-- ação humana pendente: depois do push, executar a recuperação histórica pelo
+- ação humana pendente: executar a recuperação histórica pelo
   painel autenticado;
 - marcos: 5/5 concluídos.
 
@@ -67,9 +66,10 @@ Executado junto da raiz operacional, `npm run check` começa por
 do `PROGRESS.md`. O build da Vercel usa `npm run deploy:check`, porque a fonte
 operacional deliberadamente não é enviada ao repositório público.
 
-Os testes usam `node:test` e validam contagem, ordem cronológica, horários com
-evidência, sanitização, narrativa, acessibilidade estrutural, mobile first,
-metadados sociais, configuração Vercel e cabeçalhos de segurança.
+Os testes usam `node:test` e validam contagem, fonte canônica crescente,
+apresentação decrescente, horários com evidência, sanitização, narrativa,
+acessibilidade estrutural, mobile first, metadados sociais, configuração Vercel
+e cabeçalhos de segurança.
 
 ## Publicação e atualização contínua autorizadas
 
@@ -102,7 +102,9 @@ gates locais. O deploy não altera o dashboard operacional.
 ## Atualização do relatório
 
 1. Edite `src/data.js` com uma síntese pública, verificável e sanitizada.
-2. Preserve ordem por data; dentro do mesmo dia sem horário, preserve a ordem da fonte.
+2. Preserve a fonte canônica em ordem crescente e a ordem documental dentro do
+   mesmo dia; a interface inverte uma cópia para mostrar o registro mais recente
+   primeiro.
 3. Só preencha `time` quando houver evidência documental.
 4. Atualize as métricas apenas quando o estado correspondente tiver sido comprovado.
 5. Depois que o `PROGRESS.md` raiz estiver final, atualize digest, contagem e último

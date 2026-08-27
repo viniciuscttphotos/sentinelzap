@@ -1,9 +1,9 @@
 {
   "source": "../PROGRESS.md",
-  "sha256": "e8fcd36b1ee6a6579d130ffa1ba3c2ce576adfd54e9e1b032843010c1e7d5fcc",
-  "entryCount": 68,
-  "technicalSourceRecords": 67,
+  "sha256": "8cceb0d30a855b966428ffc7f1a32e3609bfe4c378696baa3ee646adb3d59b92",
+  "entryCount": 69,
+  "technicalSourceRecords": 68,
   "newestDate": "2026-08-27",
-  "newestHeading": "Correção local da recuperação histórica e distinção da varredura automática (aguardando push)",
-  "synchronizedAt": "2026-08-27T12:48:10-03:00"
+  "newestHeading": "Push da correção da recuperação histórica e do salvamento comercial",
+  "synchronizedAt": "2026-08-27T13:53:01-03:00"
 }

@@ -8,14 +8,14 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 68 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 67);
-  assert.equal(reportMeta.publishedRecords, 68);
-  assert.equal(progressEntries.length, 68);
+test('publica os 69 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 68);
+  assert.equal(reportMeta.publishedRecords, 69);
+  assert.equal(progressEntries.length, 69);
   assert.equal(progressEntries.at(-1).date, '2026-08-27');
   assert.equal(
     progressEntries.at(-1).title,
-    'Correção local da recuperação histórica e distinção da varredura automática (aguardando push)',
+    'Push da correção da recuperação histórica e do salvamento comercial',
   );
 });
 
@@ -31,7 +31,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-24': 4,
     '2026-08-25': 2,
     '2026-08-26': 5,
-    '2026-08-27': 2,
+    '2026-08-27': 3,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -45,9 +45,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 68 }, (_, index) => index + 1),
+    Array.from({ length: 69 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 68);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 69);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -75,11 +75,11 @@ test('ordena horários comprovados dentro de cada data', () => {
 });
 
 test('distingue o release vigente, o pacote Linux e as contas conectadas', () => {
-  const localMetric = executiveMetrics.find(({ value }) => value === '533/533');
-  const linuxMetric = executiveMetrics.find(({ value }) => value === '528/528');
+  const localMetric = executiveMetrics.find(({ value }) => value === '537/537');
+  const linuxMetric = executiveMetrics.find(({ value }) => value === '532/532');
   const accountsMetric = executiveMetrics.find(({ value }) => value === '4/4');
-  assert.match(localMetric.note, /CRM.*push/i);
-  assert.match(linuxMetric.note, /pacote isolado/i);
+  assert.match(localMetric.note, /recuperação histórica.*push/i);
+  assert.match(linuxMetric.note, /staging Linux/i);
   assert.match(accountsMetric.note, /principal.*gerenciadas/i);
 
   const releaseRecord = progressEntries.find(({ date, title }) =>
@@ -132,12 +132,23 @@ test('distingue o release vigente, o pacote Linux e as contas conectadas', () =>
   assert.match(deployedQaRecord.validation, /533\/533/);
   assert.match(deployedQaRecord.validation, /528\/528/);
 
-  const historyCorrectionRecord = progressEntries.at(-1);
+  const historyCorrectionRecord = progressEntries.find(({ title }) =>
+    title.startsWith('Correção local da recuperação histórica'),
+  );
   assert.equal(historyCorrectionRecord.context, 'Local');
   assert.equal(historyCorrectionRecord.state, 'Validado');
   assert.match(historyCorrectionRecord.summary, /varredura automática/i);
   assert.match(historyCorrectionRecord.result, /aguarda autorização de push/i);
   assert.match(historyCorrectionRecord.validation, /537\/537/);
+
+  const deployedHistoryRecord = progressEntries.at(-1);
+  assert.equal(deployedHistoryRecord.context, 'Produção');
+  assert.equal(deployedHistoryRecord.state, 'Publicado');
+  assert.match(deployedHistoryRecord.summary, /botão explícito/i);
+  assert.match(deployedHistoryRecord.result, /ainda não executada/i);
+  assert.match(deployedHistoryRecord.validation, /537\/537/);
+  assert.match(deployedHistoryRecord.validation, /532\/532/);
+  assert.match(deployedHistoryRecord.validation, /sete snapshots/i);
 
   const semaxRecord = progressEntries.find(({ date, title }) =>
     date === '2026-08-25' && title.startsWith('Semax'),

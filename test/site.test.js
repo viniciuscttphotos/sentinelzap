@@ -12,11 +12,11 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   const html = await read('index.html');
   const nowIndex = html.indexOf('Onde estamos agora');
   const directionIndex = html.indexOf('Para onde vamos');
-  const progressIndex = html.indexOf('Progresso em sequência até o final');
+  const progressIndex = html.indexOf('Progresso do mais recente ao mais antigo');
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(html, /68 consolidados/);
+  assert.match(html, /69 consolidados/);
   assert.doesNotMatch(html, /candidato[^.]{0,120}aguardando/i);
 });
 
@@ -42,6 +42,13 @@ test('impressão sempre inclui o relatório completo e restaura filtros depois',
   assert.match(javascript, /afterprint.*restoreAfterPrint/);
   assert.match(javascript, /applyFilters\(\{ persist: false \}\)/);
   assert.match(javascript, /details\.open = true/);
+});
+
+test('linha do tempo inverte somente a apresentação e mantém a fonte canônica', async () => {
+  const javascript = await read('src/main.js');
+  assert.match(javascript, /Object\.freeze\(\[\.\.\.progressEntries\]\.reverse\(\)\)/);
+  assert.match(javascript, /timelineEntries\.filter/);
+  assert.doesNotMatch(javascript, /progressEntries\.reverse\(\)/);
 });
 
 test('retorno ao topo respeita a preferência de movimento reduzido', async () => {
@@ -94,12 +101,12 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const verifier = await read('scripts/verify-progress-sync.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 68);
-  assert.equal(manifest.technicalSourceRecords, 67);
+  assert.equal(manifest.entryCount, 69);
+  assert.equal(manifest.technicalSourceRecords, 68);
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Correção local da recuperação histórica e distinção da varredura automática (aguardando push)',
+    'Push da correção da recuperação histórica e do salvamento comercial',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /progressEntries\.at\(-1\)/);

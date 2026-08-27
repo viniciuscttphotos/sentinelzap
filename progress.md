@@ -206,3 +206,31 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   incluindo 18/18 testes, sanitização e build Vite. A alteração foi enviada para
   `main`; a publicação integrada foi confirmada como `Ready`, com HTTP 200,
   conteúdo atualizado e cabeçalhos de segurança preservados.
+
+## 2026-08-27 — Sincronização do push e mudanças recentes no topo
+
+- Arquivos e trechos: `src/data.js`, estado executivo, roadmap e novo registro;
+  `src/main.js`, cópia invertida usada pela apresentação; `index.html`, título,
+  contadores e orientação da linha do tempo; `test/data.test.js` e
+  `test/site.test.js`, contratos de sincronização e ordenação;
+  `sync/progress-source.json`, prova da fonte; `README.md`, `progress.md` e
+  `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a linha do tempo passou a 69 registros, dos quais 68
+  correspondem à fonte técnica. A fonte canônica continua crescente e imutável,
+  mas a tela, os filtros e a impressão usam uma cópia invertida para apresentar
+  primeiro as mudanças mais recentes.
+- Síntese pública: a recuperação histórica e o salvamento comercial explícito
+  foram marcados como publicados; o estado executivo passou a 537/537 testes
+  locais, 532/532 no pacote Linux, quatro contas conectadas e sete snapshots. O
+  acionamento de **Recuperar histórico** continua corretamente identificado como
+  ação humana autenticada ainda pendente.
+- Privacidade: permanecem ausentes endereços de infraestrutura, caminhos,
+  identificadores, hashes, credenciais, nomes, telefones, mensagens e detalhes
+  operacionais exploráveis.
+- Motivo e finalidade: cumprir a sincronização obrigatória do push e permitir que
+  o contratante encontre primeiro o estado mais atual sem reescrever nem perder a
+  rastreabilidade histórica.
+- Validação local: `npm run progress:verify` comprovou 69 registros documentais,
+  68 técnicos e o digest da fonte; `npm run check` aprovou 19/19 testes,
+  sanitização e build Vite. Estado de publicação: envio para `main` e validação
+  do release integrado em andamento nesta tarefa.

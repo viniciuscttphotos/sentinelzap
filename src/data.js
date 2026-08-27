@@ -2,12 +2,12 @@ export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
   updatedAt: '27 de agosto de 2026',
   period: '15 a 27 de agosto de 2026',
-  sourceRecords: 67,
-  publishedRecords: 68,
+  sourceRecords: 68,
+  publishedRecords: 69,
   productionReleaseDate: '27 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
-    'Os registros estão ordenados por data. Quando não há horário comprovado, nenhum horário é apresentado e a ordem documental da fonte é preservada dentro do mesmo dia.',
+    'A linha do tempo mostra primeiro o registro documental mais recente. A fonte canônica permanece crescente; quando não há horário comprovado, nenhum horário é inventado.',
 });
 
 export const executiveMetrics = Object.freeze([
@@ -17,14 +17,14 @@ export const executiveMetrics = Object.freeze([
     note: 'Visão, aplicação, CRM, SQLite e produção segura.',
   },
   {
-    value: '533/533',
+    value: '537/537',
     label: 'testes no release publicado',
-    note: 'Auditoria integral do CRM aprovada antes do push.',
+    note: 'Recuperação histórica e salvamento comercial aprovados antes do push.',
   },
   {
-    value: '528/528',
+    value: '532/532',
     label: 'testes no pacote Linux',
-    note: 'Suíte transportável aprovada no pacote isolado.',
+    note: 'Suíte transportável aprovada no staging Linux.',
   },
   {
     value: '4/4',
@@ -32,9 +32,9 @@ export const executiveMetrics = Object.freeze([
     note: 'Uma principal e três gerenciadas após a publicação.',
   },
   {
-    value: '5',
+    value: '7',
     label: 'snapshots reais comprovados',
-    note: 'Backup e restauração ensaiada concluídos.',
+    note: 'Backups pré e pós-deploy e restauração ensaiada concluídos.',
   },
 ]);
 
@@ -51,9 +51,9 @@ export const roadmap = Object.freeze([
     priority: 'Imediato',
     title: 'Executar a recuperação histórica de forma acompanhada',
     description:
-      'Publicar primeiro a correção local validada e, depois, usar a ação técnica autenticada com limites explícitos e acompanhar somente contagens seguras.',
+      'Usar a ação técnica autenticada, uma conta por vez, com limites explícitos e acompanhar somente contagens seguras.',
     owner: 'Operação autorizada',
-    gate: 'Push autorizado, sessão técnica autenticada e acompanhamento humano',
+    gate: 'Sessão técnica autenticada e acompanhamento humano',
   },
   {
     priority: 'Antes de novas vendas',
@@ -978,6 +978,20 @@ const records = [
     validation:
       '537/537 testes locais aprovados, duas revisões independentes sem bloqueadores e candidato mantido fora da produção.',
     tags: ['histórico', 'contas', 'usabilidade', 'candidato'],
+  },
+  {
+    date: '2026-08-27',
+    title: 'Push da correção da recuperação histórica e do salvamento comercial',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'A correção que separa a recuperação manual da varredura automática concorrente foi implantada junto do botão explícito para salvar vendedora, comissionado e percentual.',
+    result:
+      'O painel agora identifica cada tipo de varredura, preserva operações com opções diferentes e torna o salvamento comercial inequívoco; a recuperação histórica real continua como ação humana autenticada, ainda não executada.',
+    validation:
+      '537/537 testes locais e 532/532 no pacote Linux; serviço, API, HTTPS, SQLite, quatro contas, sete snapshots, restore drill e monitor TLS aprovados após o push.',
+    tags: ['histórico', 'contas', 'usabilidade', 'produção'],
   },
 ];
 
