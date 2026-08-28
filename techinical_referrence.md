@@ -192,7 +192,8 @@ registro mais recente ao mais antigo.
 
 A página pública continua destinada a `https://sentinelzap.vercel.app/`, e a
 landing anterior está preservada na tag `legacy-landing-2026-08-26`. Esta revisão
-documental passou por `progress:verify`, pelos 19 testes e pelo build; o envio a
-`main` e a comprovação `Ready`/HTTP 200 ainda pertencem à etapa principal. Ela não concede
-controle sobre o dashboard operacional nem automatiza as ações humanas
-pendentes. Os detalhes ficam registrados no log cumulativo.
+documental passou por `progress:verify`, pelos 19 testes, pelo build e pela busca
+de sanitização; foi enviada ao `main`, ficou `Ready` pela integração e respondeu
+HTTP 200 na URL canônica com conteúdo e cabeçalhos de segurança aprovados. Ela
+não concede controle sobre o dashboard operacional nem automatiza as ações
+humanas pendentes. Os detalhes ficam registrados no log cumulativo.

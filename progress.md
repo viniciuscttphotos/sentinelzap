@@ -297,11 +297,11 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
 - Motivo e finalidade: cumprir a sincronização obrigatória após o push do
   SentinelZap, distinguir o candidato histórico do release vigente e manter
   transparentes as ações humanas pendentes.
-- Validação e estado: `npm run progress:verify` comprovou 71 registros
+- Validação e estado final: `npm run progress:verify` comprovou 71 registros
   documentais, 70 técnicos, o primeiro cabeçalho e o digest da fonte; `npm run
-  check` aprovou 19/19 testes e o build Vite 8.2.2. O commit, o push de `main` e
-  a comprovação Vercel permanecem sob responsabilidade da etapa principal desta
-  tarefa.
+  check` aprovou 19/19 testes e o build Vite 8.2.2. A atualização foi enviada ao
+  `main` junto da correção posterior do QR; a integração ficou `Ready`, e a URL
+  canônica respondeu HTTP 200 com conteúdo e cabeçalhos de segurança aprovados.
 
 ## 2026-08-27 — Sincronização da correção publicada do QR
 
@@ -327,8 +327,8 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
 - Motivo e finalidade: cumprir a sincronização obrigatória após o push do
   SentinelZap e orientar a ação humana restante sem acoplar o portal ao dashboard
   operacional.
-- Validação e estado: 52/52 testes focados, 561/561 testes locais e 556/556 no
-  pacote Linux sustentam a síntese. `npm run progress:verify`, `npm run check`,
-  revisão de whitespace e busca de sanitização pertencem a esta etapa local; o
-  commit, o push de `main` e a comprovação Vercel permanecem sob responsabilidade
-  da etapa principal da tarefa.
+- Validação e estado final: 52/52 testes focados, 561/561 testes locais e 556/556
+  no pacote Linux sustentam a síntese. `npm run progress:verify`, `npm run check`,
+  revisão de whitespace e busca de sanitização passaram; a alteração foi enviada
+  ao `main`, a integração ficou `Ready` e a URL canônica respondeu HTTP 200 com
+  os 72 registros, o conteúdo esperado e os cabeçalhos de segurança preservados.
