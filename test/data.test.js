@@ -8,14 +8,14 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 70 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 69);
-  assert.equal(reportMeta.publishedRecords, 70);
-  assert.equal(progressEntries.length, 70);
+test('publica os 72 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 71);
+  assert.equal(reportMeta.publishedRecords, 72);
+  assert.equal(progressEntries.length, 72);
   assert.equal(progressEntries.at(-1).date, '2026-08-27');
   assert.equal(
     progressEntries.at(-1).title,
-    'Correção local do atraso do node-cron (aguardando push)',
+    'Push da correção do QR da quarta conta CRM',
   );
 });
 
@@ -31,7 +31,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-24': 4,
     '2026-08-25': 2,
     '2026-08-26': 5,
-    '2026-08-27': 4,
+    '2026-08-27': 6,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -45,9 +45,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 70 }, (_, index) => index + 1),
+    Array.from({ length: 72 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 70);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 72);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -74,13 +74,15 @@ test('ordena horários comprovados dentro de cada data', () => {
   }
 });
 
-test('distingue o release vigente, o pacote Linux e as contas conectadas', () => {
-  const localMetric = executiveMetrics.find(({ value }) => value === '537/537');
-  const linuxMetric = executiveMetrics.find(({ value }) => value === '532/532');
-  const accountsMetric = executiveMetrics.find(({ value }) => value === '4/4');
-  assert.match(localMetric.note, /recuperação histórica.*push/i);
-  assert.match(linuxMetric.note, /staging Linux/i);
-  assert.match(accountsMetric.note, /principal.*gerenciadas/i);
+test('distingue o release vigente, o pacote Linux e o estado das contas', () => {
+  const localMetric = executiveMetrics.find(({ value }) => value === '561/561');
+  const linuxMetric = executiveMetrics.find(({ value }) => value === '556/556');
+  const accountsMetric = executiveMetrics.find(({ value }) => value === '4 + 1 QR');
+  const snapshotsMetric = executiveMetrics.find(({ value }) => value === '12');
+  assert.match(localMetric.note, /release.*publicado/i);
+  assert.match(linuxMetric.note, /staging Linux.*push/i);
+  assert.match(accountsMetric.note, /principal.*gerenciadas.*quinta.*QR/i);
+  assert.match(snapshotsMetric.label, /snapshots reais/i);
 
   const releaseRecord = progressEntries.find(({ date, title }) =>
     date === '2026-08-24' && title.startsWith('Push concluído'),
@@ -141,7 +143,9 @@ test('distingue o release vigente, o pacote Linux e as contas conectadas', () =>
   assert.match(historyCorrectionRecord.result, /aguarda autorização de push/i);
   assert.match(historyCorrectionRecord.validation, /537\/537/);
 
-  const deployedHistoryRecord = progressEntries.at(-2);
+  const deployedHistoryRecord = progressEntries.find(({ title }) =>
+    title === 'Push da correção da recuperação histórica e do salvamento comercial'
+  );
   assert.equal(deployedHistoryRecord.context, 'Produção');
   assert.equal(deployedHistoryRecord.state, 'Publicado');
   assert.match(deployedHistoryRecord.summary, /botão explícito/i);
@@ -150,7 +154,9 @@ test('distingue o release vigente, o pacote Linux e as contas conectadas', () =>
   assert.match(deployedHistoryRecord.validation, /532\/532/);
   assert.match(deployedHistoryRecord.validation, /sete snapshots/i);
 
-  const cronCandidateRecord = progressEntries.at(-1);
+  const cronCandidateRecord = progressEntries.find(({ title }) =>
+    title === 'Correção local do atraso do node-cron (aguardando push)'
+  );
   assert.equal(cronCandidateRecord.context, 'Local');
   assert.equal(cronCandidateRecord.kind, 'Implementação');
   assert.equal(cronCandidateRecord.state, 'Validado');
@@ -160,6 +166,39 @@ test('distingue o release vigente, o pacote Linux e as contas conectadas', () =>
   assert.match(cronCandidateRecord.result, /uma recuperação pesada/i);
   assert.match(cronCandidateRecord.validation, /545\/545/);
   assert.match(cronCandidateRecord.validation, /produção permanece inalterada/i);
+
+  const cronReleaseRecord = progressEntries.find(({ title }) =>
+    title === 'Push da resiliência do node-cron e retomada serial da recuperação histórica'
+  );
+  assert.equal(cronReleaseRecord.context, 'Produção');
+  assert.equal(cronReleaseRecord.kind, 'Implantação');
+  assert.equal(cronReleaseRecord.state, 'Publicado');
+  assert.equal(
+    cronReleaseRecord.title,
+    'Push da resiliência do node-cron e retomada serial da recuperação histórica',
+  );
+  assert.match(cronReleaseRecord.summary, /agendador.*salvamento comercial atômico/i);
+  assert.match(cronReleaseRecord.result, /primeira recuperação.*ainda estava ativa/i);
+  assert.match(cronReleaseRecord.result, /controle manual do usuário autenticado/i);
+  assert.match(cronReleaseRecord.result, /automação temporária excluída/i);
+  assert.match(cronReleaseRecord.validation, /545\/545/);
+  assert.match(cronReleaseRecord.validation, /540\/540/);
+  assert.match(cronReleaseRecord.validation, /nove snapshots/i);
+
+  const qrReleaseRecord = progressEntries.at(-1);
+  assert.equal(qrReleaseRecord.context, 'Produção');
+  assert.equal(qrReleaseRecord.kind, 'Implantação');
+  assert.equal(qrReleaseRecord.state, 'Publicado');
+  assert.equal(qrReleaseRecord.title, 'Push da correção do QR da quarta conta CRM');
+  assert.match(qrReleaseRecord.summary, /corrida.*inicialização.*reconexão/i);
+  assert.match(qrReleaseRecord.summary, /single-flight/i);
+  assert.match(qrReleaseRecord.result, /QR.*disponível.*leitura manual/i);
+  assert.match(qrReleaseRecord.result, /sem logout.*exclusão de sessão/i);
+  assert.match(qrReleaseRecord.validation, /52\/52/);
+  assert.match(qrReleaseRecord.validation, /561\/561/);
+  assert.match(qrReleaseRecord.validation, /556\/556/);
+  assert.match(qrReleaseRecord.validation, /12 snapshots/i);
+  assert.match(qrReleaseRecord.validation, /serviço.*API.*banco.*backups.*restauração.*TLS/i);
 
   const semaxRecord = progressEntries.find(({ date, title }) =>
     date === '2026-08-25' && title.startsWith('Semax'),
@@ -203,7 +242,9 @@ test('roadmap preserva os gates humanos e externos vigentes', () => {
   assert.match(roadmapText, /credenciais iniciais/i);
   assert.match(roadmapText, /vendedora real/i);
   assert.match(roadmapText, /alerta externo/i);
-  assert.match(roadmapText, /sessão técnica autenticada/i);
-  assert.match(roadmapText, /candidato publicado/i);
+  assert.match(roadmapText, /usuário autenticado/i);
+  assert.match(roadmapText, /conta CRM adicional/i);
+  assert.match(roadmapText, /escanear manualmente.*QR já disponível/i);
+  assert.match(roadmapText, /sem automação de acompanhamento/i);
   assert.match(roadmapText, /prestação de contas sincronizada/i);
 });

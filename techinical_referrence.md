@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 70 registros sanitizados
+     └── métricas, roadmap e 72 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -49,7 +49,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, cinco métricas executivas, cinco prioridades do
-  roadmap, os 70 registros e as opções derivadas de filtro;
+  roadmap, os 72 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -96,7 +96,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 70 registros, distribuição por data, sequência canônica,
+- verifica contagem de 72 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -175,22 +175,24 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 27/08/2026, o portal contém 69 registros técnicos da fonte e o registro de sua
-publicação, totalizando 70. O estado atual preserva 537/537 testes locais do
-release publicado e 532/532 testes disponíveis no pacote Linux, além de uma
-conta principal e três gerenciadas conectadas e sete snapshots reais com
-restauração ensaiada. A correção da recuperação histórica e o salvamento
-comercial explícito já foram publicados. Separadamente, o candidato local de
-resiliência do agendador e dos caminhos pesados aprovou 545/545 testes, continua
-fora da produção e exige novo pedido explícito de push; somente após essa
-publicação o roadmap libera o acionamento autenticado de **Recuperar histórico**,
-uma conta por vez. A fonte permanece crescente,
-enquanto a interface e a impressão exibem do registro mais recente ao mais
-antigo. A página está publicada em
-`https://sentinelzap.vercel.app/`, e a landing anterior está preservada na tag
-`legacy-landing-2026-08-26`. O gate de sincronização, 19/19 testes e o build do
-portal foram aprovados; a atualização foi enviada ao `main`, ficou `Ready` pela
-integração e a URL canônica respondeu HTTP 200 com os cabeçalhos de segurança e
-o conteúdo atualizado. Essa publicação é apenas documental: o candidato do
-monólito continua local e a VPS operacional permanece inalterada. Os detalhes
-ficam registrados no log cumulativo.
+Em 27/08/2026, o portal contém 71 registros técnicos da fonte e o registro de sua
+publicação, totalizando 72. O release vigente foi aprovado em 561/561 testes
+locais e 556/556 testes transportáveis no pacote Linux, com uma conta principal,
+três gerenciadas conectadas, o QR de uma quinta conta disponível para leitura
+manual, 12 snapshots reais e restauração ensaiada. A resiliência do agendador,
+o salvamento comercial atômico, o limite global de uma recuperação pesada por
+vez e o fluxo seguro de QR já foram publicados no ambiente operacional.
+
+A primeira recuperação histórica foi retomada serialmente e ainda estava ativa
+no repasse, sem contagem final comprovada. A continuidade dessa recuperação, as
+demais recuperações e a leitura manual do QR já disponível ficaram sob controle
+do usuário autenticado; a automação temporária de acompanhamento foi excluída.
+A fonte permanece crescente, enquanto a interface e a impressão exibem do
+registro mais recente ao mais antigo.
+
+A página pública continua destinada a `https://sentinelzap.vercel.app/`, e a
+landing anterior está preservada na tag `legacy-landing-2026-08-26`. Esta revisão
+documental passou por `progress:verify`, pelos 19 testes e pelo build; o envio a
+`main` e a comprovação `Ready`/HTTP 200 ainda pertencem à etapa principal. Ela não concede
+controle sobre o dashboard operacional nem automatiza as ações humanas
+pendentes. Os detalhes ficam registrados no log cumulativo.

@@ -2,8 +2,8 @@ export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
   updatedAt: '27 de agosto de 2026',
   period: '15 a 27 de agosto de 2026',
-  sourceRecords: 69,
-  publishedRecords: 70,
+  sourceRecords: 71,
+  publishedRecords: 72,
   productionReleaseDate: '27 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -17,22 +17,22 @@ export const executiveMetrics = Object.freeze([
     note: 'Visão, aplicação, CRM, SQLite e produção segura.',
   },
   {
-    value: '537/537',
+    value: '561/561',
     label: 'testes no release publicado',
-    note: 'Recuperação histórica e salvamento comercial aprovados antes do push.',
+    note: 'Release do fluxo seguro de QR validado localmente e publicado com segurança.',
   },
   {
-    value: '532/532',
+    value: '556/556',
     label: 'testes no pacote Linux',
-    note: 'Suíte transportável aprovada no staging Linux.',
+    note: 'Suíte transportável aprovada no staging Linux antes do push.',
   },
   {
-    value: '4/4',
-    label: 'contas conectadas',
-    note: 'Uma principal e três gerenciadas após a publicação.',
+    value: '4 + 1 QR',
+    label: 'estado das contas',
+    note: 'Uma principal e três gerenciadas conectadas; a quinta aguarda a leitura do QR já disponível.',
   },
   {
-    value: '7',
+    value: '12',
     label: 'snapshots reais comprovados',
     note: 'Backups pré e pós-deploy e restauração ensaiada concluídos.',
   },
@@ -49,11 +49,11 @@ export const roadmap = Object.freeze([
   },
   {
     priority: 'Imediato',
-    title: 'Publicar o candidato e então recuperar o histórico',
+    title: 'Concluir as recuperações e escanear o QR disponível',
     description:
-      'Primeiro publicar, mediante novo pedido explícito de push, a correção local já validada. Somente depois usar a ação técnica autenticada, uma conta por vez, e acompanhar contagens seguras.',
-    owner: 'Operação técnica e autorizada',
-    gate: 'Candidato publicado, sessão técnica autenticada e acompanhamento humano',
+      'Continuar a recuperação histórica uma conta por vez e escanear manualmente o QR já disponível para a conta CRM adicional pelo fluxo oficial do painel. Essas ações ficaram sob controle do usuário autenticado, sem automação de acompanhamento.',
+    owner: 'Usuário autenticado',
+    gate: 'Ação manual no painel e conferência de contagens sanitizadas',
   },
   {
     priority: 'Antes de novas vendas',
@@ -1006,6 +1006,34 @@ const records = [
     validation:
       '545/545 testes locais aprovados. O candidato ainda aguarda pedido explícito de push e a produção permanece inalterada.',
     tags: ['agendador', 'SQLite', 'histórico', 'candidato'],
+  },
+  {
+    date: '2026-08-27',
+    title: 'Push da resiliência do node-cron e retomada serial da recuperação histórica',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'A resiliência do agendador, o salvamento comercial atômico e os limites cooperativos das varreduras foram publicados em uma implantação controlada, mantendo o estado operacional protegido.',
+    result:
+      'O release ficou ativo com os jobs isolados e uma recuperação pesada por vez. A primeira recuperação foi retomada e ainda estava ativa no repasse; as demais e a conexão de uma conta CRM adicional ficaram sob controle manual do usuário autenticado, com a automação temporária excluída.',
+    validation:
+      '545/545 testes locais e 540/540 no pacote Linux; nove snapshots, backups, restauração ensaiada, serviço, banco e quatro contas conectadas aprovados após o push.',
+    tags: ['agendador', 'histórico', 'continuidade', 'produção'],
+  },
+  {
+    date: '2026-08-27',
+    title: 'Push da correção do QR da quarta conta CRM',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'Uma corrida entre inicialização e reconexão foi corrigida, assim como o caso em que a conexão sincronizava antes dos listeners de prontidão; o acompanhamento do QR passou a ser single-flight.',
+    result:
+      'O QR da quinta conta ficou disponível para leitura manual, sem logout ou exclusão de sessão. As outras quatro contas permaneceram conectadas e não exigem novo reinício.',
+    validation:
+      '52/52 testes focados, 561/561 locais e 556/556 no pacote Linux; 12 snapshots e gates de serviço, API, banco, backups, restauração e TLS aprovados.',
+    tags: ['QR', 'multi-conta', 'continuidade', 'produção'],
   },
 ];
 

@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 70 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 72 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,7 +12,7 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 69 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 71 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
@@ -20,13 +20,14 @@ credenciais ou detalhes operacionais exploráveis.
 O release vigente de 27/08 possui validações complementares e explicitamente
 separadas:
 
-- validação local: 537/537 testes na versão publicada;
-- pacote Linux: 532/532 testes transportáveis antes do push;
-- candidato local: 545/545 testes, ainda sem publicação operacional;
-- continuidade: sete snapshots reais e restauração ensaiada;
-- operação: uma conta principal e três gerenciadas conectadas;
-- ação humana pendente: publicar o candidato mediante novo pedido explícito de
-  push e só então executar a recuperação histórica pelo painel autenticado;
+- validação local: 561/561 testes na versão publicada;
+- pacote Linux: 556/556 testes transportáveis antes do push;
+- continuidade: 12 snapshots reais e restauração ensaiada;
+- operação: uma conta principal e três gerenciadas conectadas, com o QR de
+  uma quinta conta já disponível para leitura manual;
+- ação humana pendente: continuar as recuperações, uma conta por vez, e
+  escanear o QR já disponível pelo painel oficial; essas ações ficaram sob
+  controle do usuário autenticado e a automação temporária foi excluída;
 - marcos: 5/5 concluídos.
 
 ## Requisitos

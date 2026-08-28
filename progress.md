@@ -271,3 +271,64 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   publicou o portal com estado `Ready` e a URL canônica respondeu HTTP 200 com
   os cabeçalhos de segurança, os novos contadores e o registro local mais
   recente. O dashboard operacional e a VPS não foram modificados.
+
+## 2026-08-27 — Sincronização do push da resiliência e repasse das ações manuais
+
+- Arquivos e trechos: `src/data.js`, metadados, métricas, roadmap e novo registro;
+  `index.html`, estado atual, contadores e continuidade; `test/data.test.js` e
+  `test/site.test.js`, contratos de cronologia, conteúdo e manifesto;
+  `sync/progress-source.json`, prova da fonte; `README.md`, `progress.md` e
+  `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a linha do tempo passou a 71 registros, dos quais 70 vêm da
+  fonte técnica. A entrada local de resiliência foi preservada e ganhou um novo
+  registro posterior de produção, com o mesmo título do primeiro cabeçalho da
+  fonte canônica. A interface continua invertendo apenas uma cópia da fonte para
+  apresentar esse push no topo.
+- Estado executivo: o release publicado registra 545/545 testes locais, 540/540
+  no pacote Linux, uma conta principal e três gerenciadas conectadas e nove
+  snapshots reais com restauração ensaiada.
+- Continuidade: a primeira recuperação foi retomada de forma serial e ainda
+  estava ativa no repasse, sem conclusão ou contagem final declarada. As demais
+  recuperações e a conexão de uma conta CRM adicional ficaram sob controle
+  manual do usuário autenticado, e a automação temporária foi excluída.
+- Privacidade: não foram publicados endereços de infraestrutura, caminhos,
+  hashes, identificadores, credenciais, nomes, telefones, conteúdo de mensagens
+  ou detalhes operacionais exploráveis.
+- Motivo e finalidade: cumprir a sincronização obrigatória após o push do
+  SentinelZap, distinguir o candidato histórico do release vigente e manter
+  transparentes as ações humanas pendentes.
+- Validação e estado: `npm run progress:verify` comprovou 71 registros
+  documentais, 70 técnicos, o primeiro cabeçalho e o digest da fonte; `npm run
+  check` aprovou 19/19 testes e o build Vite 8.2.2. O commit, o push de `main` e
+  a comprovação Vercel permanecem sob responsabilidade da etapa principal desta
+  tarefa.
+
+## 2026-08-27 — Sincronização da correção publicada do QR
+
+- Arquivos e trechos: `src/data.js`, metadados, métricas, roadmap e novo registro;
+  `index.html` e `README.md`, estado atual e contadores; `test/data.test.js` e
+  `test/site.test.js`, contratos de cronologia, conteúdo e manifesto;
+  `sync/progress-source.json`, prova da fonte; `progress.md` e
+  `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a linha do tempo passou a 72 registros, dos quais 71 vêm da
+  fonte técnica. O novo registro sanitizado documenta a correção da corrida de
+  inicialização/reconexão e do evento de prontidão antecipado, além do
+  acompanhamento single-flight do QR.
+- Estado executivo: o release publicado registra 561/561 testes locais, 556/556
+  no pacote Linux, uma conta principal e três gerenciadas conectadas, um QR
+  adicional disponível para leitura manual e 12 snapshots reais com restauração
+  ensaiada.
+- Continuidade: a correção entregou o QR sem logout ou exclusão de sessão. O
+  roadmap substitui a conexão genérica da conta adicional pela leitura manual do
+  QR já disponível; as recuperações históricas continuam sob controle humano.
+- Privacidade: não foram publicados endereços de infraestrutura, caminhos,
+  hashes, identificadores, processos, credenciais, nomes, telefones, QR bruto,
+  conteúdo de mensagens ou detalhes operacionais exploráveis.
+- Motivo e finalidade: cumprir a sincronização obrigatória após o push do
+  SentinelZap e orientar a ação humana restante sem acoplar o portal ao dashboard
+  operacional.
+- Validação e estado: 52/52 testes focados, 561/561 testes locais e 556/556 no
+  pacote Linux sustentam a síntese. `npm run progress:verify`, `npm run check`,
+  revisão de whitespace e busca de sanitização pertencem a esta etapa local; o
+  commit, o push de `main` e a comprovação Vercel permanecem sob responsabilidade
+  da etapa principal da tarefa.
