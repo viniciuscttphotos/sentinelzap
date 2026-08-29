@@ -203,7 +203,8 @@ decisão explícita antes de retomar OAuth, Jadlog ou smoke controlado.
 
 A página pública continua destinada a `https://sentinelzap.vercel.app/`, e a
 landing anterior está preservada na tag `legacy-landing-2026-08-26`. Esta
-sincronização local passou por `progress:verify`, pelos 19 testes do portal, pelo
-build Vite e pela busca de sanitização, mas ainda não recebeu commit ou
-publicação. Ela não concede controle sobre o dashboard e não automatiza as
+sincronização passou por `progress:verify`, pelos 19 testes do portal, pelo build
+Vite e pela busca de sanitização; foi enviada ao `main`, teve deploy de produção
+`Ready` e respondeu HTTP 200 no alias canônico com os cabeçalhos de segurança
+preservados. Ela não concede controle sobre o dashboard e não automatiza as
 ações humanas pendentes. Os detalhes ficam registrados no log cumulativo.

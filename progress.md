@@ -452,7 +452,7 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   a integração ficou `Ready` e a URL canônica respondeu HTTP 200 com os 76
   registros e os cabeçalhos de segurança preservados.
 
-## 2026-08-29 — Sincronização local do release Sandbox instalado
+## 2026-08-29 — Sincronização e publicação do release Sandbox instalado
 
 - Arquivos e trechos: `src/data.js`, metadados, métricas, roadmap e novo
   registro; `index.html`, estado executivo e contadores; `test/data.test.js` e
@@ -477,7 +477,8 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
 - Motivo e finalidade: prestar contas do deploy sem confundir instalação com
   ativação do provedor e sem promover as correções locais interrompidas a
   release publicado.
-- Validação e estado: `npm run progress:verify` comprovou 77 registros
+- Validação e publicação: `npm run progress:verify` comprovou 77 registros
   documentais e 76 técnicos; `npm run check` aprovou 19/19 testes, sanitização
-  e o build Vite 8.2.2. Esta sincronização permanece local, sem commit, push ou
-  publicação.
+  e o build Vite 8.2.2. A atualização foi enviada ao `main`, a integração ficou
+  `Ready` e a URL canônica respondeu HTTP 200 com os 77 registros e os
+  cabeçalhos de segurança preservados.
