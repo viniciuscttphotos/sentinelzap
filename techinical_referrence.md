@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 75 registros sanitizados
+     └── métricas, roadmap e 76 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -49,7 +49,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, cinco métricas executivas, seis prioridades do
-  roadmap, os 75 registros e as opções derivadas de filtro;
+  roadmap, os 76 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -96,7 +96,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 75 registros, distribuição por data, sequência canônica,
+- verifica contagem de 76 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -175,8 +175,8 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 29/08/2026, o portal contém 74 registros técnicos da fonte e o registro de sua
-publicação, totalizando 75. O release vigente continua aprovado em 561/561 testes
+Em 29/08/2026, o portal contém 75 registros técnicos da fonte e o registro de sua
+publicação, totalizando 76. O release vigente continua aprovado em 561/561 testes
 locais e 556/556 testes transportáveis no pacote Linux, com uma conta principal,
 três gerenciadas conectadas, o QR de uma quinta conta disponível para leitura
 manual, 12 snapshots reais e restauração ensaiada. A resiliência do agendador,
@@ -190,11 +190,13 @@ do usuário autenticado; a automação temporária de acompanhamento foi excluí
 A fonte permanece crescente, enquanto a interface e a impressão exibem do
 registro mais recente ao mais antigo.
 
-O primeiro registro de 29/08 abre somente em planejamento local a fase de
-logística com frete padrão, motoboy manual, compra humana posterior à quitação,
-etiqueta, documento de transporte, rastreio e notificações. O portal não integra
-nem chama o provedor logístico; a linha do tempo distingue essa intenção do
-release de produção vigente.
+O primeiro registro de 29/08 abre o planejamento da fase de logística com frete
+padrão, motoboy manual, compra humana posterior à quitação, etiqueta, documento
+de transporte, rastreio e notificações. O registro técnico mais recente conclui
+a fundação local com recuperação consultiva, descarte comprovado e revisão
+auditável, validada em 699/699 testes. O portal não integra nem chama o provedor
+logístico; contratos de sandbox, composição operacional e push explícito
+continuam gates antes de produção.
 
 No segundo registro de 29/08, o atalho de confirmação manual de pagamento na aba
 Pedidos aparece como implementação local validada inicialmente em 641/641
@@ -202,11 +204,17 @@ testes. Ele reutiliza o fluxo financeiro existente, não cria automação de
 pagamento e aguarda um push isolado; portanto não integra o release de produção
 vigente nem representa mutação operacional concluída.
 
-No registro mais recente, Aprovações passa a identificar o cliente na lista, no
+No terceiro registro de 29/08, Aprovações passa a identificar o cliente na lista, no
 detalhe e no modal mediante consulta mínima, autorizada e restrita ao escopo da
 conta. O gate conjunto final aprovou 659/659 testes locais e cobre também o
 atalho de pagamento. Os dois hotfixes continuam candidatos locais para push
 isolado; a VPS operacional permaneceu intocada.
+
+No registro mais recente, a fundação logística local aparece como candidata
+validada. O roadmap deixa de prometer sua implementação e passa a exigir
+comprovação em sandbox, configuração fiscal, armazenamento privado, webhook,
+autorização por conta, cancelamento e conciliação antes de uma ativação
+explicitamente autorizada.
 
 A página pública continua destinada a `https://sentinelzap.vercel.app/`, e a
 landing anterior está preservada na tag `legacy-landing-2026-08-26`. Esta

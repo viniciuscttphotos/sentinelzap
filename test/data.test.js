@@ -8,14 +8,14 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 75 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 74);
-  assert.equal(reportMeta.publishedRecords, 75);
-  assert.equal(progressEntries.length, 75);
+test('publica os 76 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 75);
+  assert.equal(reportMeta.publishedRecords, 76);
+  assert.equal(progressEntries.length, 76);
   assert.equal(progressEntries.at(-1).date, '2026-08-29');
   assert.equal(
     progressEntries.at(-1).title,
-    'Nome do cliente nas Aprovações (local, aguardando push)',
+    'Fundação logística Melhor Envio e motoboy concluída localmente',
   );
 });
 
@@ -32,7 +32,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-25': 2,
     '2026-08-26': 5,
     '2026-08-27': 6,
-    '2026-08-29': 3,
+    '2026-08-29': 4,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -46,9 +46,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 75 }, (_, index) => index + 1),
+    Array.from({ length: 76 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 75);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 76);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -238,7 +238,9 @@ test('distingue o release vigente, o pacote Linux e o estado das contas', () => 
   assert.match(paymentShortcutRecord.validation, /aguarda um push isolado/i);
   assert.match(paymentShortcutRecord.validation, /produção foi alterado/i);
 
-  const approvalCustomerRecord = progressEntries.at(-1);
+  const approvalCustomerRecord = progressEntries.find(({ title }) =>
+    title === 'Nome do cliente nas Aprovações (local, aguardando push)'
+  );
   assert.equal(approvalCustomerRecord.context, 'Local');
   assert.equal(approvalCustomerRecord.kind, 'Implementação');
   assert.equal(approvalCustomerRecord.state, 'Validado');
@@ -251,6 +253,23 @@ test('distingue o release vigente, o pacote Linux e o estado das contas', () => 
   assert.match(approvalCustomerRecord.validation, /dois?.*hotfix|Este hotfix.*atalho de pagamento/i);
   assert.match(approvalCustomerRecord.validation, /candidatos locais.*push isolado/i);
   assert.match(approvalCustomerRecord.validation, /VPS operacional permaneceu intocada/i);
+
+  const logisticsImplementationRecord = progressEntries.at(-1);
+  assert.equal(
+    logisticsImplementationRecord.title,
+    'Fundação logística Melhor Envio e motoboy concluída localmente',
+  );
+  assert.equal(logisticsImplementationRecord.context, 'Local');
+  assert.equal(logisticsImplementationRecord.kind, 'Implementação');
+  assert.equal(logisticsImplementationRecord.state, 'Validado');
+  assert.match(logisticsImplementationRecord.summary, /fundação logística.*concluída localmente/i);
+  assert.match(logisticsImplementationRecord.summary, /cotação.*escolha humana.*compra explícita/i);
+  assert.match(logisticsImplementationRecord.summary, /motoboy manual/i);
+  assert.match(logisticsImplementationRecord.result, /recuperação consultiva.*descarte.*revisão auditável/i);
+  assert.match(logisticsImplementationRecord.result, /sandbox.*push explícito/i);
+  assert.match(logisticsImplementationRecord.validation, /199\/199.*480\/480.*20\/20/i);
+  assert.match(logisticsImplementationRecord.validation, /699\/699/i);
+  assert.match(logisticsImplementationRecord.validation, /nenhum provedor.*ambiente operacional foi alterado/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {
@@ -294,7 +313,8 @@ test('roadmap preserva os gates humanos, logísticos e externos vigentes', () =>
   assert.match(roadmapText, /escanear manualmente.*QR já disponível/i);
   assert.match(roadmapText, /sem automação de acompanhamento/i);
   assert.match(roadmapText, /prestação de contas sincronizada/i);
-  assert.match(roadmapText, /nova operação logística local/i);
-  assert.match(roadmapText, /compra explícita após a quitação/i);
-  assert.match(roadmapText, /sandbox antes de produção/i);
+  assert.match(roadmapText, /fundação logística validada/i);
+  assert.match(roadmapText, /sandbox/i);
+  assert.match(roadmapText, /configuração fiscal.*armazenamento privado.*webhook.*autorização.*conciliação/i);
+  assert.match(roadmapText, /push explícito antes de produção/i);
 });

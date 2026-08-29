@@ -422,3 +422,32 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   testes, sanitização e o build Vite 8.2.2. A atualização foi enviada ao `main`,
   a integração ficou `Ready` e a URL canônica respondeu HTTP 200 com os 75
   registros e os cabeçalhos de segurança preservados.
+
+## 2026-08-29 — Sincronização e publicação da fundação logística local
+
+- Arquivos e trechos: `src/data.js`, metadados, roadmap e novo registro;
+  `index.html` e `README.md`, estado atual e contadores; `test/data.test.js` e
+  `test/site.test.js`, contratos de cronologia, conteúdo e manifesto;
+  `sync/progress-source.json`, prova da fonte; `progress.md` e
+  `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a linha do tempo passou a 76 registros, dos quais 75 vêm da
+  fonte técnica. A síntese sanitizada registra a fundação logística concluída
+  localmente, com cálculo de frete, motoboy manual, escolha humana da cotação,
+  compra explícita após a quitação, documentos privados, rastreio, comunicação
+  idempotente, recuperação e revisão auditável.
+- Fronteira preservada: o registro não publica dados pessoais, identificadores,
+  caminhos, credenciais, hashes ou detalhes exploráveis. O roadmap passou da
+  implementação para a comprovação de sandbox e preparação da ativação segura;
+  nenhum serviço externo, saldo, sessão ou ambiente operacional foi alterado.
+- Estado executivo: o candidato local aprovou 199/199 testes na primeira fase,
+  480/480 na segunda e 20/20 regressões legadas, total de 699/699. O release
+  publicado continua identificado separadamente por suas validações próprias;
+  a integração logística ainda depende dos gates operacionais e de push
+  explícito.
+- Motivo e finalidade: prestar contas da implementação sem confundir candidato
+  local com produção nem antecipar ativação, compra ou comunicação real.
+- Validação e publicação: `npm run progress:verify` comprovou 76 registros
+  documentais, 75 técnicos e o digest da fonte; `npm run check` aprovou 19/19
+  testes, sanitização e o build Vite 8.2.2. A atualização foi enviada ao `main`,
+  a integração ficou `Ready` e a URL canônica respondeu HTTP 200 com os 76
+  registros e os cabeçalhos de segurança preservados.

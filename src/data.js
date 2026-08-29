@@ -2,8 +2,8 @@ export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
   updatedAt: '29 de agosto de 2026',
   period: '15 a 29 de agosto de 2026',
-  sourceRecords: 74,
-  publishedRecords: 75,
+  sourceRecords: 75,
+  publishedRecords: 76,
   productionReleaseDate: '27 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -41,11 +41,11 @@ export const executiveMetrics = Object.freeze([
 export const roadmap = Object.freeze([
   {
     priority: 'Próxima fase',
-    title: 'Implementar a nova operação logística local',
+    title: 'Ativar com segurança a fundação logística validada',
     description:
-      'Entregar frete padrão, motoboy manual, cotação com escolha humana, compra explícita após a quitação, etiqueta, documento fiscal de transporte, rastreio e comunicação sem duplicidade.',
+      'Comprovar contratos no sandbox e preparar configuração fiscal, armazenamento privado, webhook, autorização por conta, cancelamento e conciliação antes de qualquer uso real.',
     owner: 'Operação técnica e logística',
-    gate: 'Implementação local, suíte integral verde e contratos comprovados em sandbox antes de produção',
+    gate: 'Sandbox e gates operacionais verdes, apresentação do candidato e push explícito antes de produção',
   },
   {
     priority: 'Imediato',
@@ -1084,6 +1084,20 @@ const records = [
     validation:
       'Gate final conjunto aprovado em 659/659 testes locais. Este hotfix e o atalho de pagamento em Pedidos permanecem candidatos locais para push isolado; a VPS operacional permaneceu intocada.',
     tags: ['aprovações', 'cliente', 'privacidade', 'candidato'],
+  },
+  {
+    date: '2026-08-29',
+    title: 'Fundação logística Melhor Envio e motoboy concluída localmente',
+    context: 'Local',
+    kind: 'Implementação',
+    state: 'Validado',
+    summary:
+      'A fundação logística foi concluída localmente com frete calculado, motoboy manual, cotação de escolha humana, compra explícita somente após a quitação, etiqueta e documento de transporte privados, rastreio e mensagens idempotentes.',
+    result:
+      'Recuperação consultiva, descarte comprovado de carrinho e revisão auditável de resultados incertos evitam repetir compras ou comunicações; a ativação real continua condicionada aos contratos de sandbox, à composição operacional e a um push explícito.',
+    validation:
+      'Suíte integral aprovada em 199/199, 480/480 e 20/20 testes legados, total de 699/699. Clientes externos foram simulados; nenhum provedor, saldo, sessão ou ambiente operacional foi alterado.',
+    tags: ['logística', 'Melhor Envio', 'motoboy', 'candidato'],
   },
 ];
 

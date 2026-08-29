@@ -16,7 +16,7 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(html, /75 consolidados/);
+  assert.match(html, /76 consolidados/);
   assert.match(html, /561 de 561 testes locais[^.]{0,120}556 de 556 testes no pacote\s+Linux/i);
   assert.match(html, /recuperações[^.]{0,240}controle\s+manual do usuário autenticado/i);
   assert.match(html, /QR de uma quinta conta[^.]{0,120}leitura\s+manual/i);
@@ -24,6 +24,9 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.match(html, /atalho[^.]{0,160}Pedidos[^.]{0,160}identificação do cliente[^.]{0,100}Aprovações/i);
   assert.match(html, /aprovados juntos em 659 de 659 testes/i);
   assert.match(html, /Ambos aguardam[^.]{0,100}push isolado[^.]{0,120}não integram esse release/i);
+  assert.match(html, /fundação\s+logística[^.]{0,100}implementada e validada localmente em 699 de 699 testes/i);
+  assert.match(html, /contratos de sandbox[^.]{0,120}gates de ativação[^.]{0,80}pendentes/i);
+  assert.match(html, /sem transação real/i);
   assert.match(html, /VPS operacional\s+intocada/i);
 });
 
@@ -108,12 +111,12 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const verifier = await read('scripts/verify-progress-sync.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 75);
-  assert.equal(manifest.technicalSourceRecords, 74);
+  assert.equal(manifest.entryCount, 76);
+  assert.equal(manifest.technicalSourceRecords, 75);
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Nome do cliente nas Aprovações (local, aguardando push)',
+    'Fundação logística Melhor Envio e motoboy concluída localmente',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /heading\.date >= latest\.date/);
