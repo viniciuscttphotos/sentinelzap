@@ -392,3 +392,33 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   documentais, 73 técnicos e o digest da fonte; `npm run check` aprovou 19/19
   testes, sanitização e o build Vite 8.2.2. A sincronização permanece somente
   local, sem commit, push ou publicação.
+
+## 2026-08-29 — Sincronização e publicação do nome do cliente nas Aprovações
+
+- Arquivos e trechos: `src/data.js`, metadados e novo registro; `index.html` e
+  `README.md`, estado atual e contadores; `test/data.test.js` e
+  `test/site.test.js`, contratos de cronologia, conteúdo e manifesto;
+  `sync/progress-source.json`, prova da fonte; `progress.md` e
+  `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a linha do tempo passou a 75 registros, dos quais 74 vêm da
+  fonte técnica. A síntese sanitizada registra que Aprovações passou a mostrar o
+  cliente na lista, no detalhe e no modal, inclusive quando o rótulo não estava
+  disponível na primeira página de contatos.
+- Fronteira preservada: a correção usa consulta mínima, autorizada e limitada ao
+  escopo da conta, sem publicar nomes, identificadores, dados de contato ou
+  detalhes do Cliente 360. O atalho de pagamento em Pedidos foi mantido como
+  candidato local separado da criação de pedido.
+- Estado executivo: o gate final conjunto aprovou 659/659 testes locais e cobre
+  os dois hotfixes. Ambos aguardam push operacional isolado e não integram o
+  release vigente; a VPS operacional permaneceu intocada.
+- Privacidade: endereços de infraestrutura, caminhos operacionais, hashes,
+  identificadores, credenciais, nomes, telefones, conteúdo de mensagens e
+  detalhes exploráveis continuam fora dos dados renderizados.
+- Motivo e finalidade: prestar contas da correção de contexto visual sem expor
+  clientes reais, confundir candidato com produção ou misturar os hotfixes com a
+  fase logística local.
+- Validação e publicação: `npm run progress:verify` comprovou 75 registros
+  documentais, 74 técnicos e o digest da fonte; `npm run check` aprovou 19/19
+  testes, sanitização e o build Vite 8.2.2. A atualização foi enviada ao `main`,
+  a integração ficou `Ready` e a URL canônica respondeu HTTP 200 com os 75
+  registros e os cabeçalhos de segurança preservados.

@@ -1,9 +1,9 @@
 {
   "source": "../PROGRESS.md",
-  "sha256": "c678b5b53f78e1be7f32c1d5e07f946e1cf21226f27648ca2919b47bdab069e7",
-  "entryCount": 74,
-  "technicalSourceRecords": 73,
+  "sha256": "c33e2b38d4f9efadb24dfe60ee49758a50eb87e6677070bf63eec61e45012dd4",
+  "entryCount": 75,
+  "technicalSourceRecords": 74,
   "newestDate": "2026-08-29",
-  "newestHeading": "Atalho de confirmação manual na aba Pedidos (local, aguardando push)",
-  "synchronizedAt": "2026-08-29T10:43:39-03:00"
+  "newestHeading": "Nome do cliente nas Aprovações (local, aguardando push)",
+  "synchronizedAt": "2026-08-29T11:19:11-03:00"
 }

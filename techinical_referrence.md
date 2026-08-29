@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 74 registros sanitizados
+     └── métricas, roadmap e 75 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -49,7 +49,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, cinco métricas executivas, seis prioridades do
-  roadmap, os 74 registros e as opções derivadas de filtro;
+  roadmap, os 75 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -96,7 +96,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 74 registros, distribuição por data, sequência canônica,
+- verifica contagem de 75 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -175,8 +175,8 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 29/08/2026, o portal contém 73 registros técnicos da fonte e o registro de sua
-publicação, totalizando 74. O release vigente continua aprovado em 561/561 testes
+Em 29/08/2026, o portal contém 74 registros técnicos da fonte e o registro de sua
+publicação, totalizando 75. O release vigente continua aprovado em 561/561 testes
 locais e 556/556 testes transportáveis no pacote Linux, com uma conta principal,
 três gerenciadas conectadas, o QR de uma quinta conta disponível para leitura
 manual, 12 snapshots reais e restauração ensaiada. A resiliência do agendador,
@@ -196,17 +196,23 @@ etiqueta, documento de transporte, rastreio e notificações. O portal não inte
 nem chama o provedor logístico; a linha do tempo distingue essa intenção do
 release de produção vigente.
 
-No registro mais recente, o atalho de confirmação manual de pagamento na aba
-Pedidos aparece como implementação local validada em 641/641 testes. Ele
-reutiliza o fluxo financeiro existente, não cria automação de pagamento e
-aguarda um push isolado; portanto não integra o release de produção vigente nem
-representa mutação operacional concluída.
+No segundo registro de 29/08, o atalho de confirmação manual de pagamento na aba
+Pedidos aparece como implementação local validada inicialmente em 641/641
+testes. Ele reutiliza o fluxo financeiro existente, não cria automação de
+pagamento e aguarda um push isolado; portanto não integra o release de produção
+vigente nem representa mutação operacional concluída.
+
+No registro mais recente, Aprovações passa a identificar o cliente na lista, no
+detalhe e no modal mediante consulta mínima, autorizada e restrita ao escopo da
+conta. O gate conjunto final aprovou 659/659 testes locais e cobre também o
+atalho de pagamento. Os dois hotfixes continuam candidatos locais para push
+isolado; a VPS operacional permaneceu intocada.
 
 A página pública continua destinada a `https://sentinelzap.vercel.app/`, e a
-landing anterior está preservada na tag `legacy-landing-2026-08-26`. A última
-publicação comprovada permanece a de 27/08; a sincronização de 29/08 está
-somente no workspace, onde `progress:verify`, os 19 testes de portal, a busca de
-sanitização e o build Vite passaram. Ela aguarda a consolidação da implementação
-operacional antes do envio ao `main`, não concede controle sobre o dashboard e
-não automatiza as ações humanas pendentes. Os detalhes ficam registrados no
-log cumulativo.
+landing anterior está preservada na tag `legacy-landing-2026-08-26`. Esta
+revisão passou por `progress:verify`, pelos 19 testes do portal, pelo build Vite
+e pela busca de sanitização; foi enviada ao `main`, ficou `Ready` pela integração
+e respondeu HTTP 200 na URL canônica com conteúdo e cabeçalhos de segurança
+aprovados. Ela não concede controle sobre o dashboard, não altera a VPS e não
+automatiza as ações humanas pendentes. Os detalhes ficam registrados no log
+cumulativo.

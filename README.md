@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 74 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 75 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,7 +12,7 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 73 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 74 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
@@ -38,6 +38,11 @@ planejamento; não representa integração ativa nem mudança em produção.
 Também em 29/08, a aba Pedidos ganhou localmente atalhos para a confirmação
 manual de pagamento. A correção foi aprovada em 641/641 testes e aguarda um push
 isolado; o portal não a apresenta como parte do release de produção vigente.
+
+Na mesma data, Aprovações passou a identificar o cliente na lista, no detalhe e
+no modal por meio de uma consulta mínima e autorizada. O gate conjunto mais
+recente aprovou 659/659 testes. Os dois hotfixes continuam candidatos locais para
+push isolado, e a VPS operacional permaneceu intocada.
 
 ## Requisitos
 

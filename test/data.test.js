@@ -8,14 +8,14 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 74 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 73);
-  assert.equal(reportMeta.publishedRecords, 74);
-  assert.equal(progressEntries.length, 74);
+test('publica os 75 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 74);
+  assert.equal(reportMeta.publishedRecords, 75);
+  assert.equal(progressEntries.length, 75);
   assert.equal(progressEntries.at(-1).date, '2026-08-29');
   assert.equal(
     progressEntries.at(-1).title,
-    'Atalho de confirmação manual na aba Pedidos (local, aguardando push)',
+    'Nome do cliente nas Aprovações (local, aguardando push)',
   );
 });
 
@@ -32,7 +32,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-25': 2,
     '2026-08-26': 5,
     '2026-08-27': 6,
-    '2026-08-29': 2,
+    '2026-08-29': 3,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -46,9 +46,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 74 }, (_, index) => index + 1),
+    Array.from({ length: 75 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 74);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 75);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -223,7 +223,9 @@ test('distingue o release vigente, o pacote Linux e o estado das contas', () => 
   assert.match(logisticsPlanningRecord.validation, /não houve edição de código/i);
   assert.match(logisticsPlanningRecord.validation, /mutação em produção/i);
 
-  const paymentShortcutRecord = progressEntries.at(-1);
+  const paymentShortcutRecord = progressEntries.find(({ title }) =>
+    title === 'Atalho de confirmação manual na aba Pedidos (local, aguardando push)'
+  );
   assert.equal(paymentShortcutRecord.context, 'Local');
   assert.equal(paymentShortcutRecord.kind, 'Implementação');
   assert.equal(paymentShortcutRecord.state, 'Validado');
@@ -235,6 +237,20 @@ test('distingue o release vigente, o pacote Linux e o estado das contas', () => 
   assert.match(paymentShortcutRecord.validation, /641\/641 testes locais/i);
   assert.match(paymentShortcutRecord.validation, /aguarda um push isolado/i);
   assert.match(paymentShortcutRecord.validation, /produção foi alterado/i);
+
+  const approvalCustomerRecord = progressEntries.at(-1);
+  assert.equal(approvalCustomerRecord.context, 'Local');
+  assert.equal(approvalCustomerRecord.kind, 'Implementação');
+  assert.equal(approvalCustomerRecord.state, 'Validado');
+  assert.match(approvalCustomerRecord.summary, /Aprovações.*cliente.*lista.*detalhe.*modal/i);
+  assert.match(approvalCustomerRecord.summary, /primeira página de contatos/i);
+  assert.match(approvalCustomerRecord.result, /consulta mínima.*autorizada.*escopo da conta/i);
+  assert.match(approvalCustomerRecord.result, /cache separado.*resultados concorrentes/i);
+  assert.match(approvalCustomerRecord.result, /fallback neutro.*não há nome cadastrado/i);
+  assert.match(approvalCustomerRecord.validation, /659\/659 testes locais/i);
+  assert.match(approvalCustomerRecord.validation, /dois?.*hotfix|Este hotfix.*atalho de pagamento/i);
+  assert.match(approvalCustomerRecord.validation, /candidatos locais.*push isolado/i);
+  assert.match(approvalCustomerRecord.validation, /VPS operacional permaneceu intocada/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {

@@ -2,8 +2,8 @@ export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
   updatedAt: '29 de agosto de 2026',
   period: '15 a 29 de agosto de 2026',
-  sourceRecords: 73,
-  publishedRecords: 74,
+  sourceRecords: 74,
+  publishedRecords: 75,
   productionReleaseDate: '27 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -1070,6 +1070,20 @@ const records = [
     validation:
       '641/641 testes locais aprovados. A correção permanece somente no workspace e aguarda um push isolado; nenhum arquivo, serviço, sessão, pedido ou pagamento de produção foi alterado.',
     tags: ['pedidos', 'pagamento', 'usabilidade', 'candidato'],
+  },
+  {
+    date: '2026-08-29',
+    title: 'Nome do cliente nas Aprovações (local, aguardando push)',
+    context: 'Local',
+    kind: 'Implementação',
+    state: 'Validado',
+    summary:
+      'A tela de Aprovações passou a identificar o cliente na lista, no detalhe e no modal, corrigindo o caso em que o rótulo não estava disponível fora da primeira página de contatos.',
+    result:
+      'Uma consulta mínima, autorizada e limitada ao escopo da conta carrega apenas os rótulos necessários por página; a interface usa cache separado, reconcilia resultados concorrentes, escapa o texto e mantém fallback neutro quando não há nome cadastrado.',
+    validation:
+      'Gate final conjunto aprovado em 659/659 testes locais. Este hotfix e o atalho de pagamento em Pedidos permanecem candidatos locais para push isolado; a VPS operacional permaneceu intocada.',
+    tags: ['aprovações', 'cliente', 'privacidade', 'candidato'],
   },
 ];
 
