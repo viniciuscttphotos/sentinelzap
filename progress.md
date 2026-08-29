@@ -332,3 +332,63 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   revisão de whitespace e busca de sanitização passaram; a alteração foi enviada
   ao `main`, a integração ficou `Ready` e a URL canônica respondeu HTTP 200 com
   os 72 registros, o conteúdo esperado e os cabeçalhos de segurança preservados.
+
+## 2026-08-29 — Sincronização local do planejamento logístico
+
+- Arquivos e trechos: `src/data.js`, metadados, roadmap e novo registro;
+  `index.html` e `README.md`, estado atual e contadores; `test/data.test.js` e
+  `test/site.test.js`, contratos de cronologia, planejamento e manifesto;
+  `scripts/verify-progress-sync.mjs`, seleção cronológica do cabeçalho mais
+  recente; `sync/progress-source.json`, prova da fonte; `progress.md` e
+  `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a linha do tempo passou a 73 registros, dos quais 72 vêm da
+  fonte técnica. O roadmap e o novo registro apresentam de forma sanitizada as
+  regras de frete, motoboy manual, pacote inicial, compra humana posterior à
+  quitação, etiqueta, documento de transporte, rastreio e comunicação.
+- Fronteira preservada: a fase foi identificada como planejamento local. As
+  métricas do release publicado continuam em 561/561 testes locais e 556/556 no
+  pacote Linux; não houve chamada ao provedor logístico, compra, alteração de
+  sessão, push ou mutação na VPS operacional.
+- Robustez do gate: o verificador deixou de presumir que o primeiro cabeçalho
+  físico do log é sempre o mais recente e agora escolhe a maior data, usando a
+  última ocorrência documental quando há empate. Isso preserva a conferência do
+  manifesto em um log cumulativo que recebe novas entradas.
+- Privacidade: endereços de infraestrutura, caminhos operacionais, hashes,
+  identificadores, credenciais, nomes, telefones, conteúdo de mensagens e
+  detalhes exploráveis continuam fora dos dados renderizados.
+- Motivo e finalidade: dar visibilidade ao novo ciclo aprovado sem representar
+  planejamento como funcionalidade pronta ou alterar o estado publicado.
+- Validação e estado: `npm run progress:verify` comprovou 73 registros
+  documentais, 72 técnicos e o digest da fonte; `npm run check` aprovou 19/19
+  testes, sanitização e o build Vite 8.2.2. A atualização permanece somente
+  local, sem commit, push ou publicação.
+
+## 2026-08-29 — Sincronização local do atalho de pagamento em Pedidos
+
+- Arquivos e trechos: `src/data.js`, metadados e novo registro; `index.html` e
+  `README.md`, estado atual e contadores; `test/data.test.js` e
+  `test/site.test.js`, contratos de cronologia, conteúdo e manifesto;
+  `sync/progress-source.json`, prova da fonte; `progress.md` e
+  `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a linha do tempo passou a 74 registros, dos quais 73 vêm da
+  fonte técnica. A nova síntese sanitizada registra que a aba Pedidos ganhou
+  atalhos para abrir a confirmação manual de pagamento, sem misturar essa ação
+  com a criação de pedido.
+- Fronteira preservada: o fluxo reaproveita a confirmação financeira existente
+  e restringe a ação por pedido aos casos aguardando pagamento e com saldo
+  positivo. Não houve criação de rota, automação financeira ou representação de
+  pagamento concluído sem decisão humana.
+- Estado executivo: a correção foi aprovada em 641/641 testes locais, mas aguarda
+  um push isolado e não integra o release de produção vigente. A fase logística
+  local já documentada foi preservada sem ser apresentada como funcionalidade
+  publicada.
+- Privacidade: endereços de infraestrutura, caminhos operacionais, hashes,
+  identificadores, credenciais, nomes, telefones, conteúdo de mensagens e
+  detalhes exploráveis continuam fora dos dados renderizados.
+- Motivo e finalidade: tornar transparente a correção da lacuna de interface e
+  seu gate de implantação sem antecipar estado remoto nem expor dados
+  operacionais.
+- Validação e estado: `npm run progress:verify` comprovou 74 registros
+  documentais, 73 técnicos e o digest da fonte; `npm run check` aprovou 19/19
+  testes, sanitização e o build Vite 8.2.2. A sincronização permanece somente
+  local, sem commit, push ou publicação.

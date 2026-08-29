@@ -1,9 +1,9 @@
 export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
-  updatedAt: '27 de agosto de 2026',
-  period: '15 a 27 de agosto de 2026',
-  sourceRecords: 71,
-  publishedRecords: 72,
+  updatedAt: '29 de agosto de 2026',
+  period: '15 a 29 de agosto de 2026',
+  sourceRecords: 73,
+  publishedRecords: 74,
   productionReleaseDate: '27 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -39,6 +39,14 @@ export const executiveMetrics = Object.freeze([
 ]);
 
 export const roadmap = Object.freeze([
+  {
+    priority: 'Próxima fase',
+    title: 'Implementar a nova operação logística local',
+    description:
+      'Entregar frete padrão, motoboy manual, cotação com escolha humana, compra explícita após a quitação, etiqueta, documento fiscal de transporte, rastreio e comunicação sem duplicidade.',
+    owner: 'Operação técnica e logística',
+    gate: 'Implementação local, suíte integral verde e contratos comprovados em sandbox antes de produção',
+  },
   {
     priority: 'Imediato',
     title: 'Concluir as decisões humanas de acesso',
@@ -1034,6 +1042,34 @@ const records = [
     validation:
       '52/52 testes focados, 561/561 locais e 556/556 no pacote Linux; 12 snapshots e gates de serviço, API, banco, backups, restauração e TLS aprovados.',
     tags: ['QR', 'multi-conta', 'continuidade', 'produção'],
+  },
+  {
+    date: '2026-08-29',
+    title: 'Abertura da fase Melhor Envio e logística manual (planejamento local)',
+    context: 'Documentação',
+    kind: 'Planejamento',
+    state: 'Planejado',
+    summary:
+      'Foi consolidado o escopo da nova fase logística: frete padrão de R$ 50, gratuidade acima de R$ 1.500 em produtos após descontos e motoboy manual de R$ 150 no município de São Paulo, com promessa no mesmo dia até 12h em dia útil.',
+    result:
+      'O contrato de fase separa aprovação, quitação e compra do frete; define pacote inicial de 30 × 20 × 15 cm e 900 g, escolha humana da cotação, etiqueta e documento de transporte, rastreio assíncrono, mensagens idempotentes, cancelamento e ativação gradual.',
+    validation:
+      'Planejamento e referência revisados localmente; nesta abertura não houve edição de código, execução da suíte, compra de frete, alteração de sessão ou mutação em produção.',
+    tags: ['logística', 'Melhor Envio', 'motoboy', 'planejamento'],
+  },
+  {
+    date: '2026-08-29',
+    title: 'Atalho de confirmação manual na aba Pedidos (local, aguardando push)',
+    context: 'Local',
+    kind: 'Implementação',
+    state: 'Validado',
+    summary:
+      'A aba Pedidos ganhou atalhos explícitos para abrir a confirmação manual de pagamento, mantendo a criação do pedido separada do registro de dinheiro recebido.',
+    result:
+      'O cabeçalho abre o fluxo financeiro já existente e cada pedido aguardando pagamento com saldo positivo pode pré-selecionar seu valor restante; pedidos quitados, cancelados ou sem saldo não exibem a ação, sem nova rota ou automação financeira.',
+    validation:
+      '641/641 testes locais aprovados. A correção permanece somente no workspace e aguarda um push isolado; nenhum arquivo, serviço, sessão, pedido ou pagamento de produção foi alterado.',
+    tags: ['pedidos', 'pagamento', 'usabilidade', 'candidato'],
   },
 ];
 

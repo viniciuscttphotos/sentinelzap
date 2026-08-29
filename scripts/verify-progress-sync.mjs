@@ -14,7 +14,10 @@ const sha256 = createHash('sha256').update(source).digest('hex');
 const headings = [...source.matchAll(/^###\s+(\d{4}-\d{2}-\d{2})\s+—\s+(.+)$/gm)].map(
   ([, date, title]) => ({ date, title: title.trim() }),
 );
-const newest = headings[0];
+const newest = headings.reduce(
+  (latest, heading) => (!latest || heading.date >= latest.date ? heading : latest),
+  null,
+);
 const publishedNewest = progressEntries.at(-1);
 const errors = [];
 

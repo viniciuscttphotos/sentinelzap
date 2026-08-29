@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 72 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 74 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,7 +12,7 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 71 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 73 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
@@ -29,6 +29,15 @@ separadas:
   escanear o QR já disponível pelo painel oficial; essas ações ficaram sob
   controle do usuário autenticado e a automação temporária foi excluída;
 - marcos: 5/5 concluídos.
+
+Em 29/08, o roadmap ganhou a fase local de logística: regras de frete e motoboy,
+escolha humana da cotação e compra explícita depois da quitação, etiqueta,
+documento de transporte, rastreio e comunicação idempotente. Esse registro é
+planejamento; não representa integração ativa nem mudança em produção.
+
+Também em 29/08, a aba Pedidos ganhou localmente atalhos para a confirmação
+manual de pagamento. A correção foi aprovada em 641/641 testes e aguarda um push
+isolado; o portal não a apresenta como parte do release de produção vigente.
 
 ## Requisitos
 

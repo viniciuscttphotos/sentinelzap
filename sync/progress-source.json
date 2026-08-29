@@ -1,9 +1,9 @@
 {
   "source": "../PROGRESS.md",
-  "sha256": "aa3d2efa2be2749ba36a24a5a7dd5f102d53db4216bc88167ba7b1f47ba4326d",
-  "entryCount": 72,
-  "technicalSourceRecords": 71,
-  "newestDate": "2026-08-27",
-  "newestHeading": "Push da correção do QR da quarta conta CRM",
-  "synchronizedAt": "2026-08-27T22:00:19-03:00"
+  "sha256": "c678b5b53f78e1be7f32c1d5e07f946e1cf21226f27648ca2919b47bdab069e7",
+  "entryCount": 74,
+  "technicalSourceRecords": 73,
+  "newestDate": "2026-08-29",
+  "newestHeading": "Atalho de confirmação manual na aba Pedidos (local, aguardando push)",
+  "synchronizedAt": "2026-08-29T10:43:39-03:00"
 }

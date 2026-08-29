@@ -8,14 +8,14 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 72 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 71);
-  assert.equal(reportMeta.publishedRecords, 72);
-  assert.equal(progressEntries.length, 72);
-  assert.equal(progressEntries.at(-1).date, '2026-08-27');
+test('publica os 74 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 73);
+  assert.equal(reportMeta.publishedRecords, 74);
+  assert.equal(progressEntries.length, 74);
+  assert.equal(progressEntries.at(-1).date, '2026-08-29');
   assert.equal(
     progressEntries.at(-1).title,
-    'Push da correção do QR da quarta conta CRM',
+    'Atalho de confirmação manual na aba Pedidos (local, aguardando push)',
   );
 });
 
@@ -32,6 +32,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-25': 2,
     '2026-08-26': 5,
     '2026-08-27': 6,
+    '2026-08-29': 2,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -45,9 +46,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 72 }, (_, index) => index + 1),
+    Array.from({ length: 74 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 72);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 74);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -185,7 +186,9 @@ test('distingue o release vigente, o pacote Linux e o estado das contas', () => 
   assert.match(cronReleaseRecord.validation, /540\/540/);
   assert.match(cronReleaseRecord.validation, /nove snapshots/i);
 
-  const qrReleaseRecord = progressEntries.at(-1);
+  const qrReleaseRecord = progressEntries.find(({ title }) =>
+    title === 'Push da correção do QR da quarta conta CRM'
+  );
   assert.equal(qrReleaseRecord.context, 'Produção');
   assert.equal(qrReleaseRecord.kind, 'Implantação');
   assert.equal(qrReleaseRecord.state, 'Publicado');
@@ -204,6 +207,34 @@ test('distingue o release vigente, o pacote Linux e o estado das contas', () => 
     date === '2026-08-25' && title.startsWith('Semax'),
   );
   assert.match(semaxRecord.validation, /462\/462/);
+
+  const logisticsPlanningRecord = progressEntries.find(({ title }) =>
+    title === 'Abertura da fase Melhor Envio e logística manual (planejamento local)'
+  );
+  assert.equal(logisticsPlanningRecord.context, 'Documentação');
+  assert.equal(logisticsPlanningRecord.kind, 'Planejamento');
+  assert.equal(logisticsPlanningRecord.state, 'Planejado');
+  assert.match(logisticsPlanningRecord.summary, /frete padrão de R\$ 50/i);
+  assert.match(logisticsPlanningRecord.summary, /acima de R\$ 1\.500/i);
+  assert.match(logisticsPlanningRecord.summary, /motoboy manual de R\$ 150/i);
+  assert.match(logisticsPlanningRecord.summary, /até 12h/i);
+  assert.match(logisticsPlanningRecord.result, /30 × 20 × 15 cm.*900 g/i);
+  assert.match(logisticsPlanningRecord.result, /escolha humana da cotação/i);
+  assert.match(logisticsPlanningRecord.validation, /não houve edição de código/i);
+  assert.match(logisticsPlanningRecord.validation, /mutação em produção/i);
+
+  const paymentShortcutRecord = progressEntries.at(-1);
+  assert.equal(paymentShortcutRecord.context, 'Local');
+  assert.equal(paymentShortcutRecord.kind, 'Implementação');
+  assert.equal(paymentShortcutRecord.state, 'Validado');
+  assert.match(paymentShortcutRecord.summary, /aba Pedidos.*confirmação manual de pagamento/i);
+  assert.match(paymentShortcutRecord.summary, /criação do pedido.*separada/i);
+  assert.match(paymentShortcutRecord.result, /aguardando pagamento.*saldo positivo/i);
+  assert.match(paymentShortcutRecord.result, /quitados.*cancelados.*sem saldo.*não exibem/i);
+  assert.match(paymentShortcutRecord.result, /sem nova rota ou automação financeira/i);
+  assert.match(paymentShortcutRecord.validation, /641\/641 testes locais/i);
+  assert.match(paymentShortcutRecord.validation, /aguarda um push isolado/i);
+  assert.match(paymentShortcutRecord.validation, /produção foi alterado/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {
@@ -236,8 +267,8 @@ test('conteúdo público não contém indicadores sensíveis ou exploráveis', (
   }
 });
 
-test('roadmap preserva os gates humanos e externos vigentes', () => {
-  assert.equal(roadmap.length, 5);
+test('roadmap preserva os gates humanos, logísticos e externos vigentes', () => {
+  assert.equal(roadmap.length, 6);
   const roadmapText = roadmap.map((item) => Object.values(item).join(' ')).join(' ');
   assert.match(roadmapText, /credenciais iniciais/i);
   assert.match(roadmapText, /vendedora real/i);
@@ -247,4 +278,7 @@ test('roadmap preserva os gates humanos e externos vigentes', () => {
   assert.match(roadmapText, /escanear manualmente.*QR já disponível/i);
   assert.match(roadmapText, /sem automação de acompanhamento/i);
   assert.match(roadmapText, /prestação de contas sincronizada/i);
+  assert.match(roadmapText, /nova operação logística local/i);
+  assert.match(roadmapText, /compra explícita após a quitação/i);
+  assert.match(roadmapText, /sandbox antes de produção/i);
 });
