@@ -451,3 +451,33 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   testes, sanitização e o build Vite 8.2.2. A atualização foi enviada ao `main`,
   a integração ficou `Ready` e a URL canônica respondeu HTTP 200 com os 76
   registros e os cabeçalhos de segurança preservados.
+
+## 2026-08-29 — Sincronização local do release Sandbox instalado
+
+- Arquivos e trechos: `src/data.js`, metadados, métricas, roadmap e novo
+  registro; `index.html`, estado executivo e contadores; `test/data.test.js` e
+  `test/site.test.js`, contratos de cronologia, conteúdo e manifesto;
+  `sync/progress-source.json`, prova da fonte; `README.md`, `progress.md` e
+  `techinical_referrence.md`, documentação vigente.
+- O que foi feito: a linha do tempo passou a 77 registros, dos quais 76 vêm da
+  fonte técnica. A síntese registra o release Sandbox-only instalado e
+  deliberadamente desativado, as cinco contas conectadas, os hotfixes de
+  Pedidos e Aprovações e os novos cards CBL publicados no mesmo pacote.
+- Fronteira preservada: o portal informa que não houve credencial, autorização,
+  chamada externa, OAuth, configuração Jadlog, smoke mutável ou uso de API
+  real. Nenhum dado pessoal, identificador, segredo, rastreio ou detalhe
+  operacional explorável foi incorporado ao conteúdo público.
+- Evidências: o release é apresentado com 772 testes locais aprovados, zero falhas e
+  um skip esperado, 768/768 no Linux, backup, restauração e TLS aprovados e 14
+  snapshots. Os dois hardenings posteriores aparecem como locais, validados em
+  10/10 testes focados, mas sem gate integral porque a suíte foi interrompida.
+- Correção durante o gate: o primeiro teste identificou a ambiguidade entre
+  duas métricas `5/5`; o rótulo numérico das contas foi tornado inequívoco e a
+  suíte passou integralmente na repetição.
+- Motivo e finalidade: prestar contas do deploy sem confundir instalação com
+  ativação do provedor e sem promover as correções locais interrompidas a
+  release publicado.
+- Validação e estado: `npm run progress:verify` comprovou 77 registros
+  documentais e 76 técnicos; `npm run check` aprovou 19/19 testes, sanitização
+  e o build Vite 8.2.2. Esta sincronização permanece local, sem commit, push ou
+  publicação.

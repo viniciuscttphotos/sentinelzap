@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 76 registros sanitizados
+     └── métricas, roadmap e 77 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -49,7 +49,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, cinco métricas executivas, seis prioridades do
-  roadmap, os 76 registros e as opções derivadas de filtro;
+  roadmap, os 77 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -96,7 +96,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 76 registros, distribuição por data, sequência canônica,
+- verifica contagem de 77 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -175,52 +175,35 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 29/08/2026, o portal contém 75 registros técnicos da fonte e o registro de sua
-publicação, totalizando 76. O release vigente continua aprovado em 561/561 testes
-locais e 556/556 testes transportáveis no pacote Linux, com uma conta principal,
-três gerenciadas conectadas, o QR de uma quinta conta disponível para leitura
-manual, 12 snapshots reais e restauração ensaiada. A resiliência do agendador,
-o salvamento comercial atômico, o limite global de uma recuperação pesada por
-vez e o fluxo seguro de QR já foram publicados no ambiente operacional.
+Em 29/08/2026, o portal contém 76 registros técnicos da fonte e o registro de sua
+publicação, totalizando 77. O release vigente teve 772 testes aprovados
+locais, sem falhas e com um skip esperado, e em 768/768 testes transportáveis no
+Linux. Uma conta principal e quatro gerenciadas estão conectadas. Backups,
+restauração isolada e TLS passaram, totalizando 14 snapshots reais.
 
-A primeira recuperação histórica foi retomada serialmente e ainda estava ativa
-no repasse, sem contagem final comprovada. A continuidade dessa recuperação, as
-demais recuperações e a leitura manual do QR já disponível ficaram sob controle
-do usuário autenticado; a automação temporária de acompanhamento foi excluída.
-A fonte permanece crescente, enquanto a interface e a impressão exibem do
-registro mais recente ao mais antigo.
+A recuperação histórica continua sob controle humano e sem contagem final
+declarada. A fonte permanece crescente, enquanto a interface e a impressão
+exibem do registro mais recente ao mais antigo.
 
-O primeiro registro de 29/08 abre o planejamento da fase de logística com frete
-padrão, motoboy manual, compra humana posterior à quitação, etiqueta, documento
-de transporte, rastreio e notificações. O registro técnico mais recente conclui
-a fundação local com recuperação consultiva, descarte comprovado e revisão
-auditável, validada em 699/699 testes. O portal não integra nem chama o provedor
-logístico; contratos de sandbox, composição operacional e push explícito
-continuam gates antes de produção.
+Os quatro primeiros registros de 29/08 preservam as etapas documentais e locais:
+planejamento da logística, atalhos de pagamento em Pedidos, identificação do
+cliente em Aprovações e conclusão da fundação logística. O quinto registra o
+deploy que publicou a fundação, os dois hotfixes e os novos cards CBL.
 
-No segundo registro de 29/08, o atalho de confirmação manual de pagamento na aba
-Pedidos aparece como implementação local validada inicialmente em 641/641
-testes. Ele reutiliza o fluxo financeiro existente, não cria automação de
-pagamento e aguarda um push isolado; portanto não integra o release de produção
-vigente nem representa mutação operacional concluída.
+A integração instalada aceita exclusivamente o Sandbox, mas permanece
+desativada e sem credenciais ou chamadas externas. OAuth, configuração Jadlog,
+smoke mutável e API real não foram executados. O portal documental continua sem
+qualquer conexão com o provedor ou com o dashboard operacional.
 
-No terceiro registro de 29/08, Aprovações passa a identificar o cliente na lista, no
-detalhe e no modal mediante consulta mínima, autorizada e restrita ao escopo da
-conta. O gate conjunto final aprovou 659/659 testes locais e cobre também o
-atalho de pagamento. Os dois hotfixes continuam candidatos locais para push
-isolado; a VPS operacional permaneceu intocada.
-
-No registro mais recente, a fundação logística local aparece como candidata
-validada. O roadmap deixa de prometer sua implementação e passa a exigir
-comprovação em sandbox, configuração fiscal, armazenamento privado, webhook,
-autorização por conta, cancelamento e conciliação antes de uma ativação
-explicitamente autorizada.
+Dois hardenings posteriores ao release passaram 10/10 testes focados, mas
+continuam locais e não publicados. A suíte integral correspondente foi
+interrompida por solicitação do usuário e não constitui gate verde. O roadmap
+agora exige concluir essa suíte, reconstruir e revalidar o pacote e obter nova
+decisão explícita antes de retomar OAuth, Jadlog ou smoke controlado.
 
 A página pública continua destinada a `https://sentinelzap.vercel.app/`, e a
 landing anterior está preservada na tag `legacy-landing-2026-08-26`. Esta
-revisão passou por `progress:verify`, pelos 19 testes do portal, pelo build Vite
-e pela busca de sanitização; foi enviada ao `main`, ficou `Ready` pela integração
-e respondeu HTTP 200 na URL canônica com conteúdo e cabeçalhos de segurança
-aprovados. Ela não concede controle sobre o dashboard, não altera a VPS e não
-automatiza as ações humanas pendentes. Os detalhes ficam registrados no log
-cumulativo.
+sincronização local passou por `progress:verify`, pelos 19 testes do portal, pelo
+build Vite e pela busca de sanitização, mas ainda não recebeu commit ou
+publicação. Ela não concede controle sobre o dashboard e não automatiza as
+ações humanas pendentes. Os detalhes ficam registrados no log cumulativo.

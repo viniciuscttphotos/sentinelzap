@@ -8,14 +8,14 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 76 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 75);
-  assert.equal(reportMeta.publishedRecords, 76);
-  assert.equal(progressEntries.length, 76);
+test('publica os 77 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 76);
+  assert.equal(reportMeta.publishedRecords, 77);
+  assert.equal(progressEntries.length, 77);
   assert.equal(progressEntries.at(-1).date, '2026-08-29');
   assert.equal(
     progressEntries.at(-1).title,
-    'Fundação logística Melhor Envio e motoboy concluída localmente',
+    'Sandbox logístico instalado na VPS e ativação interrompida de forma segura',
   );
 });
 
@@ -32,7 +32,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-25': 2,
     '2026-08-26': 5,
     '2026-08-27': 6,
-    '2026-08-29': 4,
+    '2026-08-29': 5,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -46,9 +46,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 76 }, (_, index) => index + 1),
+    Array.from({ length: 77 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 76);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 77);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -76,14 +76,15 @@ test('ordena horários comprovados dentro de cada data', () => {
 });
 
 test('distingue o release vigente, o pacote Linux e o estado das contas', () => {
-  const localMetric = executiveMetrics.find(({ value }) => value === '561/561');
-  const linuxMetric = executiveMetrics.find(({ value }) => value === '556/556');
-  const accountsMetric = executiveMetrics.find(({ value }) => value === '4 + 1 QR');
-  const snapshotsMetric = executiveMetrics.find(({ value }) => value === '12');
-  assert.match(localMetric.note, /release.*publicado/i);
-  assert.match(linuxMetric.note, /staging Linux.*push/i);
-  assert.match(accountsMetric.note, /principal.*gerenciadas.*quinta.*QR/i);
+  const localMetric = executiveMetrics.find(({ value }) => value === '772 aprovados');
+  const linuxMetric = executiveMetrics.find(({ value }) => value === '768/768');
+  const accountsMetric = executiveMetrics.find(({ value }) => value === '5/5 contas');
+  const snapshotsMetric = executiveMetrics.find(({ value }) => value === '14');
+  assert.match(localMetric.note, /integral.*pacote.*sem falhas.*skip esperado/i);
+  assert.match(linuxMetric.note, /payload.*staging Linux.*deploy/i);
+  assert.match(accountsMetric.note, /principal.*quatro gerenciadas.*conectadas/i);
   assert.match(snapshotsMetric.label, /snapshots reais/i);
+  assert.match(snapshotsMetric.note, /restauração.*TLS/i);
 
   const releaseRecord = progressEntries.find(({ date, title }) =>
     date === '2026-08-24' && title.startsWith('Push concluído'),
@@ -254,7 +255,9 @@ test('distingue o release vigente, o pacote Linux e o estado das contas', () => 
   assert.match(approvalCustomerRecord.validation, /candidatos locais.*push isolado/i);
   assert.match(approvalCustomerRecord.validation, /VPS operacional permaneceu intocada/i);
 
-  const logisticsImplementationRecord = progressEntries.at(-1);
+  const logisticsImplementationRecord = progressEntries.find(({ title }) =>
+    title === 'Fundação logística Melhor Envio e motoboy concluída localmente'
+  );
   assert.equal(
     logisticsImplementationRecord.title,
     'Fundação logística Melhor Envio e motoboy concluída localmente',
@@ -270,6 +273,24 @@ test('distingue o release vigente, o pacote Linux e o estado das contas', () => 
   assert.match(logisticsImplementationRecord.validation, /199\/199.*480\/480.*20\/20/i);
   assert.match(logisticsImplementationRecord.validation, /699\/699/i);
   assert.match(logisticsImplementationRecord.validation, /nenhum provedor.*ambiente operacional foi alterado/i);
+
+  const sandboxReleaseRecord = progressEntries.at(-1);
+  assert.equal(
+    sandboxReleaseRecord.title,
+    'Sandbox logístico instalado na VPS e ativação interrompida de forma segura',
+  );
+  assert.equal(sandboxReleaseRecord.context, 'Produção');
+  assert.equal(sandboxReleaseRecord.kind, 'Implantação');
+  assert.equal(sandboxReleaseRecord.state, 'Publicado');
+  assert.match(sandboxReleaseRecord.summary, /Sandbox-only.*desativada.*sem credenciais.*chamadas externas/i);
+  assert.match(sandboxReleaseRecord.summary, /Pedidos.*Aprovações.*cards CBL/i);
+  assert.match(sandboxReleaseRecord.result, /cinco contas conectadas.*estado protegido/i);
+  assert.match(sandboxReleaseRecord.result, /OAuth.*Jadlog.*smoke.*API real.*não foram executados/i);
+  assert.match(sandboxReleaseRecord.result, /dois hardenings.*apenas locais/i);
+  assert.match(sandboxReleaseRecord.validation, /772 testes locais.*sem falhas.*skip esperado/i);
+  assert.match(sandboxReleaseRecord.validation, /768\/768.*Linux/i);
+  assert.match(sandboxReleaseRecord.validation, /backup.*restauração.*TLS.*14 snapshots/i);
+  assert.match(sandboxReleaseRecord.validation, /10\/10 focados.*integral.*interrompida.*não constitui gate verde/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {
@@ -309,12 +330,10 @@ test('roadmap preserva os gates humanos, logísticos e externos vigentes', () =>
   assert.match(roadmapText, /vendedora real/i);
   assert.match(roadmapText, /alerta externo/i);
   assert.match(roadmapText, /usuário autenticado/i);
-  assert.match(roadmapText, /conta CRM adicional/i);
-  assert.match(roadmapText, /escanear manualmente.*QR já disponível/i);
-  assert.match(roadmapText, /sem automação de acompanhamento/i);
+  assert.match(roadmapText, /cinco contas estão conectadas/i);
+  assert.match(roadmapText, /recuperações.*não foi declarada/i);
   assert.match(roadmapText, /prestação de contas sincronizada/i);
-  assert.match(roadmapText, /fundação logística validada/i);
-  assert.match(roadmapText, /sandbox/i);
-  assert.match(roadmapText, /configuração fiscal.*armazenamento privado.*webhook.*autorização.*conciliação/i);
-  assert.match(roadmapText, /push explícito antes de produção/i);
+  assert.match(roadmapText, /hardenings locais.*Sandbox/i);
+  assert.match(roadmapText, /suíte integral.*reconstruir.*revalidar.*OAuth.*Jadlog.*smoke/i);
+  assert.match(roadmapText, /novo pacote aprovado.*nova decisão explícita/i);
 });

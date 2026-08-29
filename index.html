@@ -68,21 +68,16 @@
               validada e continuidade ensaiada.
             </p>
             <p class="hero-detail">
-              A versão publicada em 27 de agosto está estável e comprovada por
-              <strong>561 de 561 testes locais</strong> e 556 de 556 testes no pacote
-              Linux. A resiliência do agendador, o salvamento comercial atômico e o fluxo
-              seguro de QR já estão ativos. Uma conta principal e três gerenciadas permanecem
-              conectadas, enquanto o QR de uma quinta conta está disponível para leitura
-              manual. A continuidade das recuperações e essa leitura ficaram sob controle
-              manual do usuário autenticado, sem automação de acompanhamento e sem
-              declaração de conclusão das recuperações. Em 29 de agosto, a fundação
-              logística foi implementada e validada localmente em 699 de 699 testes,
-              sem transação real e com os contratos de sandbox e gates de ativação
-              ainda pendentes. Dois hotfixes locais — o atalho
-              de confirmação manual de pagamento em Pedidos e a identificação do cliente
-              em Aprovações — foram aprovados juntos em 659 de 659 testes. Ambos aguardam
-              push isolado, não integram esse release e mantiveram a VPS operacional
-              intocada.
+              A versão publicada em 29 de agosto está estável e comprovada por
+              <strong>772 testes locais aprovados</strong>, sem falhas e com um skip esperado,
+              e 768 de 768 testes no pacote Linux. As cinco contas estão conectadas; as
+              recuperações históricas continuam sob controle manual do usuário autenticado,
+              sem declaração de conclusão. A fundação logística foi instalada em modo
+              exclusivamente Sandbox, mas permanece desativada, sem credenciais, autorização
+              ou chamadas ao provedor. Os atalhos de pagamento em Pedidos, a identificação
+              do cliente em Aprovações e os novos cards CBL foram publicados no mesmo pacote.
+              Dois hardenings posteriores passaram 10 de 10 testes focados, mas seguem somente
+              locais: a suíte integral foi interrompida e não constitui um gate verde.
             </p>
             <div class="status-row" aria-label="Estado executivo">
               <span class="status-pill status-pill--live"><i aria-hidden="true"></i>Produção ativa</span>
@@ -98,7 +93,7 @@
             </p>
             <dl>
               <div><dt>Período</dt><dd>15–29 ago 2026</dd></div>
-              <div><dt>Registros</dt><dd>76 consolidados</dd></div>
+              <div><dt>Registros</dt><dd>77 consolidados</dd></div>
               <div><dt>Fonte</dt><dd>Histórico técnico verificado</dd></div>
             </dl>
           </aside>
@@ -126,12 +121,12 @@
             <div>
               <span class="brief-index">02</span>
               <h3>Operação conectada</h3>
-              <p>Uma conta principal e três gerenciadas conectadas; o QR de uma quinta conta está disponível para leitura manual.</p>
+              <p>Uma conta principal e quatro gerenciadas conectadas depois do release.</p>
             </div>
             <div>
               <span class="brief-index">03</span>
               <h3>Continuidade comprovada</h3>
-              <p>Destino append-only, 12 snapshots reais, backups concluídos e restauração isolada validada.</p>
+              <p>Destino append-only, 14 snapshots reais, backups concluídos, restauração isolada e TLS validados.</p>
             </div>
           </div>
         </div>
@@ -143,10 +138,10 @@
             <p class="eyebrow">Próxima etapa</p>
             <h2 id="direction-title">Para onde vamos</h2>
             <p>
-              O núcleo técnico, o release mais recente e a fundação logística local estão
-              entregues. O próximo ciclo comprova contratos no sandbox e prepara a ativação
-              segura, preservando as ações humanas autenticadas e a produção até todos os
-              gates ficarem verdes e existir pedido explícito de push.
+              O release Sandbox-only está instalado e deliberadamente desativado. O próximo
+              ciclo deve primeiro concluir a suíte integral dos dois hardenings locais e
+              reconstruir o pacote. OAuth, Jadlog e smoke controlado só podem ser retomados
+              depois desses gates e de uma nova decisão explícita.
             </p>
           </div>
           <ol class="roadmap" data-roadmap></ol>
@@ -240,7 +235,7 @@
         </div>
         <div class="footer-meta">
           <p>Atualizado em 29 de agosto de 2026</p>
-          <p>Conteúdo público sanitizado · 76 registros</p>
+          <p>Conteúdo público sanitizado · 77 registros</p>
         </div>
       </div>
     </footer>

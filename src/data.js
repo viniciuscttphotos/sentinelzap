@@ -2,9 +2,9 @@ export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
   updatedAt: '29 de agosto de 2026',
   period: '15 a 29 de agosto de 2026',
-  sourceRecords: 75,
-  publishedRecords: 76,
-  productionReleaseDate: '27 de agosto de 2026',
+  sourceRecords: 76,
+  publishedRecords: 77,
+  productionReleaseDate: '29 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
     'A linha do tempo mostra primeiro o registro documental mais recente. A fonte canônica permanece crescente; quando não há horário comprovado, nenhum horário é inventado.',
@@ -17,35 +17,35 @@ export const executiveMetrics = Object.freeze([
     note: 'Visão, aplicação, CRM, SQLite e produção segura.',
   },
   {
-    value: '561/561',
+    value: '772 aprovados',
     label: 'testes no release publicado',
-    note: 'Release do fluxo seguro de QR validado localmente e publicado com segurança.',
+    note: 'Suíte integral autoritativa do pacote aprovada sem falhas e com um skip esperado.',
   },
   {
-    value: '556/556',
+    value: '768/768',
     label: 'testes no pacote Linux',
-    note: 'Suíte transportável aprovada no staging Linux antes do push.',
+    note: 'Mesmo payload aprovado integralmente no staging Linux e durante o deploy.',
   },
   {
-    value: '4 + 1 QR',
+    value: '5/5 contas',
     label: 'estado das contas',
-    note: 'Uma principal e três gerenciadas conectadas; a quinta aguarda a leitura do QR já disponível.',
+    note: 'Uma conta principal e quatro gerenciadas conectadas depois do release.',
   },
   {
-    value: '12',
+    value: '14',
     label: 'snapshots reais comprovados',
-    note: 'Backups pré e pós-deploy e restauração ensaiada concluídos.',
+    note: 'Backups pré e pós-deploy, restauração isolada e TLS aprovados.',
   },
 ]);
 
 export const roadmap = Object.freeze([
   {
-    priority: 'Próxima fase',
-    title: 'Ativar com segurança a fundação logística validada',
+    priority: 'Próximo gate',
+    title: 'Concluir os hardenings locais antes de retomar o Sandbox',
     description:
-      'Comprovar contratos no sandbox e preparar configuração fiscal, armazenamento privado, webhook, autorização por conta, cancelamento e conciliação antes de qualquer uso real.',
+      'Finalizar a suíte integral das duas correções posteriores ao release, reconstruir e revalidar o pacote e só então decidir sobre OAuth, Jadlog e smoke controlado.',
     owner: 'Operação técnica e logística',
-    gate: 'Sandbox e gates operacionais verdes, apresentação do candidato e push explícito antes de produção',
+    gate: 'Suíte integral verde, novo pacote aprovado e nova decisão explícita antes de tocar na VPS',
   },
   {
     priority: 'Imediato',
@@ -57,9 +57,9 @@ export const roadmap = Object.freeze([
   },
   {
     priority: 'Imediato',
-    title: 'Concluir as recuperações e escanear o QR disponível',
+    title: 'Concluir as recuperações históricas sob controle humano',
     description:
-      'Continuar a recuperação histórica uma conta por vez e escanear manualmente o QR já disponível para a conta CRM adicional pelo fluxo oficial do painel. Essas ações ficaram sob controle do usuário autenticado, sem automação de acompanhamento.',
+      'Continuar a recuperação histórica uma conta por vez e conferir contagens sanitizadas. As cinco contas estão conectadas, mas a conclusão das recuperações não foi declarada.',
     owner: 'Usuário autenticado',
     gate: 'Ação manual no painel e conferência de contagens sanitizadas',
   },
@@ -1098,6 +1098,20 @@ const records = [
     validation:
       'Suíte integral aprovada em 199/199, 480/480 e 20/20 testes legados, total de 699/699. Clientes externos foram simulados; nenhum provedor, saldo, sessão ou ambiente operacional foi alterado.',
     tags: ['logística', 'Melhor Envio', 'motoboy', 'candidato'],
+  },
+  {
+    date: '2026-08-29',
+    title: 'Sandbox logístico instalado na VPS e ativação interrompida de forma segura',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'O release Sandbox-only foi instalado com a integração logística desativada e sem credenciais ou chamadas externas; os hotfixes de Pedidos e Aprovações e os novos cards CBL seguiram no mesmo pacote.',
+    result:
+      'O serviço permaneceu estável com cinco contas conectadas e estado protegido. OAuth, Jadlog, smoke mutável e API real não foram executados; dois hardenings posteriores continuam apenas locais.',
+    validation:
+      'Release aprovado em 772 testes locais, sem falhas e com um skip esperado, e 768/768 no Linux; backup, restauração e TLS passaram com 14 snapshots. Os hardenings locais passaram 10/10 focados, mas a suíte integral foi interrompida e não constitui gate verde.',
+    tags: ['logística', 'Sandbox', 'deploy', 'continuidade'],
   },
 ];
 

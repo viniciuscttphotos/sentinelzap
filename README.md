@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 76 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 77 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,39 +12,35 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 75 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 76 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
 
-O release vigente de 27/08 possui validações complementares e explicitamente
+O release vigente de 29/08 possui validações complementares e explicitamente
 separadas:
 
-- validação local: 561/561 testes na versão publicada;
-- pacote Linux: 556/556 testes transportáveis antes do push;
-- continuidade: 12 snapshots reais e restauração ensaiada;
-- operação: uma conta principal e três gerenciadas conectadas, com o QR de
-  uma quinta conta já disponível para leitura manual;
-- ação humana pendente: continuar as recuperações, uma conta por vez, e
-  escanear o QR já disponível pelo painel oficial; essas ações ficaram sob
-  controle do usuário autenticado e a automação temporária foi excluída;
+- validação local: 772 testes aprovados na versão publicada, zero falhas e um skip
+  esperado;
+- pacote Linux: 768/768 testes transportáveis antes e durante o push;
+- continuidade: 14 snapshots reais, restauração ensaiada e TLS aprovados;
+- operação: uma conta principal e quatro gerenciadas conectadas;
+- ação humana pendente: continuar as recuperações, uma conta por vez, sob
+  controle do usuário autenticado;
 - marcos: 5/5 concluídos.
 
-Em 29/08, a fase local de logística saiu do planejamento e ganhou uma fundação
-implementada: regras de frete e motoboy, escolha humana da cotação e compra
-explícita depois da quitação, documentos privados, rastreio, comunicação
-idempotente, recuperação e revisão auditável. A suíte integral aprovou 699/699;
-o roadmap agora trata de comprovar contratos no sandbox e preparar a ativação.
-Esse candidato não representa integração ativa nem mudança em produção.
+Em 29/08, a fundação logística foi instalada em modo exclusivamente Sandbox,
+mas permaneceu desativada, sem credenciais, autorização ou chamadas externas.
+OAuth, configuração Jadlog, smoke mutável e API real não foram executados. O
+mesmo release publicou os atalhos de pagamento em Pedidos, a identificação do
+cliente em Aprovações e os novos cards CBL, sem automatizar decisões financeiras
+ou comerciais.
 
-Também em 29/08, a aba Pedidos ganhou localmente atalhos para a confirmação
-manual de pagamento. A correção foi aprovada em 641/641 testes e aguarda um push
-isolado; o portal não a apresenta como parte do release de produção vigente.
-
-Na mesma data, Aprovações passou a identificar o cliente na lista, no detalhe e
-no modal por meio de uma consulta mínima e autorizada. O gate conjunto mais
-recente aprovou 659/659 testes. Os dois hotfixes continuam candidatos locais para
-push isolado, e a VPS operacional permaneceu intocada.
+Depois do deploy, dois hardenings da integração passaram 10/10 testes focados,
+mas permanecem somente locais e não publicados. A suíte integral correspondente
+foi interrompida por solicitação do usuário; esse resultado parcial não é um
+gate verde. Antes de retomar o Sandbox será necessário concluir a suíte integral,
+reconstruir o pacote e obter uma nova decisão explícita.
 
 ## Requisitos
 
