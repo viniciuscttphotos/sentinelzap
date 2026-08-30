@@ -18,21 +18,23 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(html, /79 consolidados/);
+  assert.match(html, /80 consolidados/);
   assert.match(html, /772 testes locais aprovados[^.]{0,160}768 de 768 testes no pacote Linux/i);
-  assert.match(html, /cinco contas estão conectadas/i);
+  assert.match(html, /aceite comprovou cinco contas conectadas/i);
   assert.match(html, /fundação logística instalada[^.]{0,120}desativada[^.]{0,100}sem credenciais[^.]{0,100}chamadas\s+ao provedor/i);
   assert.match(html, /candidato local de confiabilidade[^.]{0,200}Guardião IA[^.]{0,160}recuperação de mensagens/i);
-  assert.match(html, /935 testes aprovados e um skip esperado em 936[^.]{0,80}sem falhas/i);
-  assert.match(html, /370 arquivos[^.]{0,80}114\.395\.897[^.]{0,120}930 de 931 testes/i);
-  assert.match(html, /cinco contratos do empacotador[^.]{0,100}fora do payload/i);
-  assert.match(html, /148\.000 abordagens[^.]{0,100}37 produtos[^.]{0,100}4\.000 formulações/i);
-  assert.match(html, /ensaio separado[^.]{0,80}111 de 111 turnos robô-a-robô/i);
-  assert.match(html, /sem iniciar WhatsApp[^.]{0,100}Chrome[^.]{0,100}rede externa[^.]{0,100}dados pessoais/i);
+  assert.match(html, /gate integral atual está pendente[^.]{0,120}interrompida[^.]{0,80}130[^.]{0,80}não constitui aprovação/i);
+  assert.match(html, /160\.000 casos combinatórios offline[^.]{0,100}40 produtos[^.]{0,100}4\.000 casos[^.]{0,100}20 famílias/i);
+  assert.match(html, /240 turnos de diálogos fixos[^.]{0,80}240 falhas injetadas[^.]{0,80}30 turnos[^.]{0,80}160 chamadas a provedor simulado[^.]{0,80}casos isolados/i);
+  assert.match(html, /não são conversas com LLM real[^.]{0,180}comparação semântica/i);
+  assert.match(html, /96 botões estáticos[^.]{0,80}40 templates dinâmicos[^.]{0,80}24 formulários[^.]{0,80}20 foram[^.]{0,80}quatro logísticos[^.]{0,80}sem\s+navegador real/i);
+  assert.match(html, /despacho foi testado em VM, sem\s+navegador real/i);
   assert.match(html, /Etiquetas[^.]{0,120}integração logística real[^.]{0,100}fora/i);
-  assert.match(html, /21[^.]{0,100}produto e card[^.]{0,120}indisponibilidade segura/i);
-  assert.match(html, /candidato ainda não foi enviado à VPS/i);
-  assert.match(html, /próximo ciclo é o push controlado do candidato[^.]{0,100}pedido explícito/i);
+  assert.match(html, /20[^.]{0,100}produto e card[^.]{0,120}indisponibilidade segura/i);
+  assert.match(html, /candidato ainda não\s+foi enviado à VPS/i);
+  assert.match(html, /carregamento inconsistente de configuração[^.]{0,100}quórum insuficiente/i);
+  assert.match(html, /Mídia sem legenda permanece para revisão\s+manual/i);
+  assert.match(html, /próximo ciclo é concluir os gates do candidato[^.]{0,150}pedido explícito/i);
 });
 
 test('HTML oferece SEO, OpenGraph e marcos básicos de acessibilidade', async () => {
@@ -145,13 +147,13 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const verifier = await read('scripts/verify-progress-sync.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 79);
-  assert.equal(manifest.technicalSourceRecords, 78);
+  assert.equal(manifest.entryCount, 80);
+  assert.equal(manifest.technicalSourceRecords, 79);
   assert.equal(manifest.synchronizedAt, reportMeta.updatedAtIso);
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Horário de Brasília tornado obrigatório na prestação de contas',
+    'Retomada adversarial da confiabilidade e delimitação das evidências',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /heading\.date >= latest\.date/);

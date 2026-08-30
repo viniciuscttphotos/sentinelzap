@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 79 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 80 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,7 +12,7 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 78 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 79 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
@@ -36,30 +36,38 @@ mesmo release publicou os atalhos de pagamento em Pedidos, a identificação do
 cliente em Aprovações e os novos cards CBL, sem automatizar decisões financeiras
 ou comerciais.
 
-Em 30/08, uma força-tarefa concluiu localmente um novo candidato de
-confiabilidade. O Guardião IA, a fila durável de recuperação de mensagens, a
-confirmação idempotente de entregas e os fluxos humanos do CRM entre cliente,
-pedido e pagamento manual foram reforçados. O gate integral terminou com 936
-testes concluídos, 935 aprovados e um skip esperado, sem falhas.
-O pacote code-only candidato foi reproduzido com 370 arquivos e 114.395.897
-bytes. Uma cópia descartável do artefato concluiu 931 testes, com 930 aprovados,
-um skip esperado e zero falhas; os cinco contratos do próprio empacotador não
-viajam no payload por desenho.
+Em 30/08, a retomada adversarial encontrou novas falhas de negação, contexto,
+moderação e recuperação no candidato local de confiabilidade. O gate integral
+atual está pendente: a última execução foi interrompida com código 130 e não
+constitui aprovação. Os números do ciclo anterior continuam preservados no
+histórico, mas não substituem a validação das alterações posteriores.
 
-A validação conversacional isolada aprovou 148.000 abordagens de produto: 37
-produtos com 4.000 formulações naturais cada. Separadamente, o ensaio
-robô-a-robô aprovou 111/111 turnos e o confronto com respostas humanas permaneceu
-somente agregado e sanitizado. A campanha não iniciou WhatsApp, Chrome,
-aplicação nem rede externa e não usou dados pessoais. Etiquetas e
-integração logística real ficaram fora da entrega. O inventário identificou 21
-combinações de produto e card sem arte exata; nesses casos, o comportamento
-aprovado é informar indisponibilidade sem substituir o material por outro. A
-criação dessas artes permanece como backlog de conteúdo.
+As evidências atuais são separadas por método:
 
-Esse candidato continua somente local e aguarda pedido explícito de push. O
-estado de produção permanece sendo o release de 29/08 descrito acima; a
-prestação pública do candidato não representa implantação na VPS nem aceite no
-runtime operacional.
+- matriz combinatória offline: 160.000 casos, distribuídos em 40 produtos com
+  4.000 casos por produto e 20 famílias de cenários;
+- diálogos roteirizados: 240 turnos fixos, sem conversação livre entre IAs;
+- transporte: 240 falhas injetadas, sem entrega no WhatsApp;
+- geração: 30 turnos integrados; 160 chamadas a provedor simulado no total,
+  incluindo casos isolados, sem LLM real;
+- CRM: 96 botões estáticos e 40 templates dinâmicos inventariados; 24
+  formulários, com 20 exercitados e quatro logísticos excluídos. O despacho dos
+  controles foi executado em uma máquina virtual de testes (VM), não em
+  navegador real;
+- conteúdo: 20 combinações de produto e card ainda sem arte exata; o robô deve
+  informar indisponibilidade sem substituir o material por outro.
+
+O diagnóstico público do Guardião é limitado a carregamento inconsistente de
+configuração e quórum insuficiente. Mídia sem legenda permanece para revisão
+manual. O confronto com respostas humanas é somente agregado e sanitizado,
+não uma avaliação semântica. IA real, entrega no WhatsApp e aceite operacional
+acompanhado continuam pendentes; etiquetas e Melhor Envio real permanecem fora
+do escopo.
+
+O candidato continua somente local, precisa concluir seus gates e aguarda
+pedido explícito de push. A produção de 29/08 não foi alterada. Esta preparação
+documental tampouco representa publicação: o instante final, o manifesto e os
+gates do portal ainda serão consolidados depois da suíte integral.
 
 ## Requisitos
 
@@ -150,7 +158,9 @@ gates locais. O deploy não altera o dashboard operacional.
 3. Mantenha `REPORT_TIME_ZONE` como `America/Sao_Paulo` e o rótulo público
    “horário de Brasília”. Associe `publishedAt: REPORT_UPDATED_AT` ao registro
    mais recente quando o instante documentar sua publicação; nunca atribua esse
-   horário retroativamente a um evento sem evidência.
+   horário retroativamente a um evento sem evidência. Ao acrescentar um registro,
+   preserve o `publishedAt` anterior como literal comprovado, sem vinculá-lo à
+   constante renovada. O registro 79 mantém `2026-08-30T09:34:04-03:00`.
 4. Preserve a fonte canônica em ordem crescente e a ordem documental dentro do
    mesmo dia; a interface inverte uma cópia para mostrar o registro mais recente
    primeiro.

@@ -1,6 +1,6 @@
 const REPORT_TIME_ZONE = 'America/Sao_Paulo';
 const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
-const REPORT_UPDATED_AT = '2026-08-30T09:34:04-03:00';
+const REPORT_UPDATED_AT = '2026-08-30T19:03:34-03:00';
 
 function formatReportUpdatedAt(value) {
   const date = new Date(value);
@@ -32,8 +32,8 @@ export const reportMeta = Object.freeze({
   timeZone: REPORT_TIME_ZONE,
   timeZoneLabel: REPORT_TIME_ZONE_LABEL,
   period: '15 a 30 de agosto de 2026',
-  sourceRecords: 78,
-  publishedRecords: 79,
+  sourceRecords: 79,
+  publishedRecords: 80,
   productionReleaseDate: '29 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -42,49 +42,49 @@ export const reportMeta = Object.freeze({
 
 export const executiveMetrics = Object.freeze([
   {
-    value: '935 + 1 skip',
-    label: 'gate integral do candidato local',
-    note: '936 testes concluídos, sem falhas; o único skip esperado depende de ferramenta indisponível no ambiente local.',
+    value: 'Gate pendente',
+    label: 'reauditoria do candidato local',
+    note: 'A última execução integral foi interrompida com código 130 e não é gate verde. A repetição final ainda precisa terminar.',
   },
   {
-    value: '148.000',
-    label: 'abordagens conversacionais sintéticas',
-    note: 'Campanha isolada de contexto, conversa, entrega de texto e cards, sem rede externa nem dados pessoais.',
+    value: '160.000',
+    label: 'matriz combinatória offline',
+    note: '40 produtos × 4.000 casos em 20 famílias de cenários. Essa contagem não equivale a conversas com um modelo de linguagem real.',
   },
   {
-    value: '37 × 4.000',
-    label: 'cobertura natural por produto',
-    note: 'Trinta e sete produtos receberam quatro mil formulações únicas cada, com comparação humana apenas agregada e sanitizada.',
+    value: '240 + 240',
+    label: 'turnos fixos e falhas injetadas',
+    note: 'Ensaios separados: 240 turnos de diálogos roteirizados e 240 falhas controladas de entrega; não são conversas livres entre IAs.',
+  },
+  {
+    value: '30 / 160',
+    label: 'geração com provedor simulado',
+    note: '30 turnos integrados de geração; 160 chamadas a respostas simuladas de provedor no total, incluindo casos isolados. Nenhuma chamada real a um modelo de linguagem foi feita.',
+  },
+  {
+    value: '96 + 40',
+    label: 'botões estáticos e templates do CRM',
+    note: '24 formulários inventariados: 20 exercitados e quatro logísticos excluídos. O despacho foi testado em máquina virtual de testes (VM), sem navegador real.',
   },
   {
     value: '772 / 768',
-    label: 'evidências do release vigente',
-    note: 'Produção permanece no release de 29/08: 772 testes locais e 768 no pacote Linux.',
-  },
-  {
-    value: '5/5 contas',
-    label: 'estado das contas',
-    note: 'Uma conta principal e quatro gerenciadas conectadas depois do release.',
-  },
-  {
-    value: '14',
-    label: 'snapshots reais comprovados',
-    note: 'Backups pré e pós-deploy, restauração isolada e TLS aprovados.',
+    label: 'aceites históricos da versão em produção',
+    note: 'Produção permanece no release de 29/08: 772 testes locais e 768 no pacote Linux; o aceite registrou cinco contas e 14 snapshots.',
   },
 ]);
 
 export const roadmap = Object.freeze([
   {
     priority: 'Próximo gate',
-    title: 'Publicar o candidato local somente após pedido explícito de push',
+    title: 'Fechar os gates do candidato local antes de um pedido explícito de push',
     description:
-      'O candidato de confiabilidade está validado localmente. A produção continua no release de 29/08 até uma implantação controlada, com etiquetas e integração logística real mantidas fora do escopo.',
+      'A reauditoria ainda exige conclusão da suíte integral, pacote reproduzível e validação no ambiente de destino. A produção continua no release de 29/08; etiquetas e integração logística real permanecem fora do escopo.',
     owner: 'Operação técnica',
-    gate: 'Pedido explícito de push, pacote aprovado e gates seguros no ambiente de destino',
+    gate: 'Suíte integral verde, pacote aprovado, pedido explícito de push e gates seguros no destino',
   },
   {
     priority: 'Conteúdo',
-    title: 'Completar as 21 combinações de produto e card sem arte exata',
+    title: 'Completar as 20 combinações de produto e card sem arte exata',
     description:
       'Produzir e aprovar as artes ausentes antes de prometer cobertura visual universal. Até lá, o robô informa indisponibilidade sem substituir o material por outro produto ou formato.',
     owner: 'Conteúdo e operação comercial',
@@ -92,11 +92,11 @@ export const roadmap = Object.freeze([
   },
   {
     priority: 'Após o push',
-    title: 'Comprovar os fluxos corrigidos no runtime acompanhado',
+    title: 'Comprovar IA real, moderação e fluxos no runtime acompanhado',
     description:
-      'Executar recuperação histórica, moderação, conversação e entrega de cards de forma controlada, com resultados agregados e sem expor mensagens, sessões ou identificadores.',
+      'Executar recuperação histórica, moderação, conversação e entrega de cards de forma controlada. Corrigir o carregamento inconsistente de configuração e o quórum insuficiente do Guardião; validar IA real e comparação semântica humana. Mídia sem legenda exige revisão manual.',
     owner: 'Usuário autenticado e operação técnica',
-    gate: 'Candidato publicado e aceite operacional sanitizado',
+    gate: 'Candidato publicado, configuração íntegra, quórum suficiente e aceite operacional sanitizado',
   },
   {
     priority: 'Imediato',
@@ -1167,12 +1167,12 @@ const records = [
     result:
       'Uma campanha sintética aprovou 148.000 abordagens de produto, com 37 produtos e 4.000 formulações naturais por produto. Separadamente, o ensaio robô-a-robô aprovou 111/111 turnos e a comparação com respostas humanas permaneceu apenas agregada e sanitizada. Etiquetas e integração logística real ficaram fora. Em 21 combinações de produto e card sem arte exata, o sistema responde indisponibilidade segura e mantém a criação das artes como backlog de conteúdo.',
     validation:
-      'Gate integral: 936 testes concluídos, 935 aprovados e um skip esperado, sem falhas. O pacote code-only reproduziu 370 arquivos e 114.395.897 bytes; sua cópia descartável concluiu 931 testes, com 930 aprovados, um skip esperado e zero falhas. Os cinco contratos do empacotador ficaram fora do payload por desenho. A campanha não iniciou WhatsApp, Chrome, aplicação, rede externa nem usou dados pessoais. O candidato permanece local; nenhum push do candidato para a VPS nem mudança no runtime de produção foi realizado.',
+      'Gate integral: 936 testes concluídos, 935 aprovados e um skip esperado, sem falhas. O pacote code-only reproduziu 370 arquivos e 114.395.897 bytes; sua cópia descartável concluiu 931 testes, com 930 aprovados, um skip esperado e zero falhas. Os cinco contratos do empacotador ficaram fora do payload por desenho. A campanha não iniciou WhatsApp, Chrome, aplicação, rede externa nem usou dados pessoais. O candidato permanece local; nenhum push do candidato para a VPS nem mudança no runtime de produção foi realizado. Retificação posterior: as abordagens acima são combinações determinísticas e os turnos são roteiros fixos, sem LLM real nem comprovação de equivalência semântica com respostas humanas. O aceite deste ciclo anterior não valida as alterações atuais.',
     tags: ['confiabilidade', 'IA', 'CRM', 'candidato'],
   },
   {
     date: '2026-08-30',
-    publishedAt: REPORT_UPDATED_AT,
+    publishedAt: '2026-08-30T09:34:04-03:00',
     title: 'Horário de Brasília tornado obrigatório na prestação de contas',
     context: 'Documentação',
     kind: 'Governança',
@@ -1184,6 +1184,21 @@ const records = [
     validation:
       'O instante ISO com offset -03:00, o fuso IANA America/Sao_Paulo, o registro mais recente e o manifesto são confrontados pelos gates automatizados. A publicação permaneceu exclusivamente documental, sem alteração nas VPS ou no runtime operacional.',
     tags: ['prestação de contas', 'horário de Brasília', 'governança', 'Vercel'],
+  },
+  {
+    date: '2026-08-30',
+    publishedAt: REPORT_UPDATED_AT,
+    title: 'Retomada adversarial da confiabilidade e delimitação das evidências',
+    context: 'Local',
+    kind: 'Reauditoria',
+    state: 'Em validação',
+    summary:
+      'A reauditoria encontrou novas falhas de interpretação de negações, troca de contexto, consenso de moderação e retomada de recuperação. Correções locais e testes do despacho dos controles do CRM em ambiente isolado reforçam o candidato, sem alterar a produção.',
+    result:
+      'A matriz passou a 160.000 casos combinatórios offline: 40 produtos × 4.000 casos e 20 famílias. Há ensaios separados de 240 turnos fixos, 240 falhas injetadas e geração com 30 turnos integrados; as 160 chamadas a provedor simulado incluem também casos isolados. O CRM inventaria 96 botões estáticos, 40 templates dinâmicos e 24 formulários, dos quais 20 foram exercitados em máquina virtual de testes (VM) e quatro logísticos excluídos; isso não é QA em navegador real. Restam 20 combinações de produto e card sem arte exata. O diagnóstico do Guardião identificou carregamento inconsistente de configuração e quórum insuficiente; mídia sem legenda permanece para revisão manual.',
+    validation:
+      'Gate integral pendente: a última execução foi interrompida com código 130 e não constitui aprovação. Os resultados finais e o pacote ainda precisam ser reconferidos. A campanha é offline, não usa LLM real nem WhatsApp; o confronto humano disponível é somente agregado, não uma avaliação semântica das respostas. IA real, entrega no WhatsApp e aceite operacional continuam pendentes. Etiquetas e Melhor Envio real permanecem fora. A produção de 29/08 não foi alterada e o push do candidato segue pendente.',
+    tags: ['reauditoria', 'limites da evidência', 'IA', 'CRM', 'candidato'],
   },
 ];
 

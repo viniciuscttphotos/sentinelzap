@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 79 registros sanitizados
+     └── métricas, roadmap e 80 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -49,7 +49,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, seis métricas executivas, sete prioridades do
-  roadmap, os 79 registros e as opções derivadas de filtro;
+  roadmap, os 80 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -60,6 +60,8 @@ JavaScript e ativos estáticos.
   depender do fuso configurado no navegador;
 - associa `publishedAt` do registro documental mais recente ao mesmo instante
   apenas quando ele representa sua publicação comprovada;
+- preserva o instante comprovado de registros anteriores como literal, sem
+  reescrever a história quando `REPORT_UPDATED_AT` for renovado;
 - usa `time: null` por padrão e inclui horário apenas quando comprovado;
 - não contém dados pessoais nem detalhes de infraestrutura exploráveis.
 
@@ -105,7 +107,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 79 registros, distribuição por data, sequência canônica,
+- verifica contagem de 80 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -190,14 +192,20 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 30/08/2026, o portal contém 78 registros técnicos da fonte e um registro
-documental de publicação, totalizando 79. O registro mais recente torna
-obrigatória a exibição da data e do horário de atualização no horário de
-Brasília. O release de produção vigente continua sendo o de
-29/08, que teve 772 testes aprovados
-locais, sem falhas e com um skip esperado, e em 768/768 testes transportáveis no
-Linux. Uma conta principal e quatro gerenciadas estão conectadas. Backups,
-restauração isolada e TLS passaram, totalizando 14 snapshots reais.
+Em 30/08/2026, a preparação local do portal contém 79 registros técnicos da
+fonte e um registro documental de publicação, totalizando 80. O mais recente é
+“Retomada adversarial da confiabilidade e delimitação das evidências”. O
+registro 79 conserva seu instante comprovado de publicação,
+`2026-08-30T09:34:04-03:00`; somente o novo registro acompanha a constante da
+última atualização. O instante provisório desta edição ainda precisa ser
+substituído pelo instante final, sincronizado ao manifesto e aos três fallbacks
+HTML antes dos gates e da publicação.
+
+O release de produção vigente continua sendo o de 29/08. Seu aceite histórico
+registrou 772 testes locais aprovados, sem falhas e com um skip esperado, e
+768/768 testes transportáveis no Linux, uma conta principal e quatro gerenciadas
+conectadas. Backups, restauração isolada e TLS passaram, totalizando 14 snapshots
+reais. Isso não é uma nova verificação do runtime durante a reauditoria local.
 
 A recuperação histórica continua sob controle humano e sem contagem final
 declarada. A fonte permanece crescente, enquanto a interface e a impressão
@@ -213,31 +221,45 @@ desativada e sem credenciais ou chamadas externas. OAuth, configuração Jadlog,
 smoke mutável e API real não foram executados. O portal documental continua sem
 qualquer conexão com o provedor ou com o dashboard operacional.
 
-O registro de 30/08 descreve um candidato local de confiabilidade separado do
-release. Ele reforça Guardião IA, fila durável de recuperação, confirmação
-idempotente de entregas e fluxos humanos do CRM entre cliente, pedido e
-pagamento manual. Seu gate integral concluiu 936 testes: 935 aprovados, um skip
-esperado e zero falhas.
-O pacote code-only candidato reproduziu 370 arquivos e 114.395.897 bytes. Sua
-cópia descartável concluiu 931 testes: 930 aprovados, um skip esperado e zero
-falhas; os cinco contratos do empacotador são excluídos do payload por desenho.
+O ciclo anterior do candidato permanece no histórico com seus 936 testes
+concluídos, o pacote reproduzido e os ensaios então realizados. Uma nota de
+retificação no próprio registro esclarece que seus casos eram combinações
+determinísticas e roteiros fixos, sem LLM real nem comprovação de equivalência
+semântica humana, e que seu aceite não valida o código atual. O registro 80
+não reutiliza esses aceites para as alterações posteriores: a retomada
+adversarial encontrou novas falhas de negação, troca de contexto, moderação e
+recuperação. A última suíte integral foi interrompida com código 130, portanto
+o gate atual e a reconferência do pacote continuam pendentes.
 
-A campanha conversacional desse candidato aprovou 148.000 abordagens de produto
-isoladas, distribuídas em 37 produtos e 4.000 formulações por produto. Em eixo
-separado, o ensaio robô-a-robô aprovou 111/111 turnos e a comparação humana
-permaneceu somente agregada e sanitizada. A campanha não iniciou WhatsApp,
-Chrome, aplicação ou rede externa e não usou dados pessoais. Etiquetas
-e integração logística real permaneceram fora do escopo. Para as 21 combinações
-de produto e card sem arte exata, o conteúdo público documenta indisponibilidade
-segura e um backlog explícito de criação de artes, sem prometer cobertura
-universal.
+As seis métricas executivas agora distinguem o gate pendente, a matriz
+combinatória offline, os turnos fixos e falhas injetadas, a geração com provedor
+simulado, o inventário do CRM e o aceite histórico da produção. A campanha
+ampliada contém 160.000 casos, com 40 produtos × 4.000 casos em 20 famílias.
+Separadamente, há 240 turnos de diálogos fixos e 240 falhas injetadas de
+transporte. A geração exercita 30 turnos integrados, com 160 chamadas a provedor
+simulado no total, incluindo os casos isolados. Esses números não representam
+LLM real, conversação livre entre IAs, entrega no WhatsApp ou avaliação semântica
+das respostas humanas. A evidência humana disponível permanece somente agregada
+e sanitizada.
 
-O roadmap agora exige pedido explícito de push antes de qualquer implantação do
-candidato e, depois disso, aceite operacional acompanhado. O portal não
-representa a validação local como mudança já aplicada à VPS.
+O CRM possui um inventário de 96 botões estáticos, 40 templates dinâmicos e 24
+formulários. Vinte formulários foram exercitados; os quatro logísticos ficaram
+explicitamente fora. O ensaio executa o despacho dos controles em máquina
+virtual de testes (VM), sem navegador real, portanto não atesta layout,
+interação visual ou comportamento nativo completo do navegador. Etiquetas e
+integração logística real não foram acionadas.
+
+O diagnóstico público do Guardião informa somente carregamento inconsistente
+de configuração e quórum insuficiente. Mídia sem legenda exige revisão manual.
+As 20 combinações de produto e card sem arte exata permanecem em backlog com
+indisponibilidade segura, sem substituição por arte incorreta. IA real,
+WhatsApp, comparação semântica humana e aceite operacional continuam pendentes.
+O roadmap exige fechar os gates locais e do pacote, obter pedido explícito de
+push e cumprir os gates do destino antes de qualquer implantação. A produção
+de 29/08 permanece intacta.
 
 A página pública continua destinada a `https://sentinelzap.vercel.app/`, e a
-landing anterior está preservada na tag `legacy-landing-2026-08-26`. Esta
+landing anterior está preservada na tag `legacy-landing-2026-08-26`. Uma
 versão publicada anterior passou por `progress:verify`, pelos 19 testes do portal,
 pelo build Vite e pela busca de sanitização, e permanece disponível no alias
 canônico com os cabeçalhos de segurança preservados. A atualização documental
@@ -245,6 +267,8 @@ de 30/08 estabilizou a fonte, regenerou o manifesto, aprovou `progress:verify`,
 21/21 testes, build e sanitização e foi enviada ao `main`. A integração Vercel
 ficou `Ready`; o alias canônico respondeu HTTP 200 com os 79 registros, o
 conteúdo novo, o horário explícito de Brasília e os cabeçalhos de segurança
-previstos. Ela não concede controle
-sobre o dashboard e não automatiza as ações humanas pendentes. Os detalhes
-ficam registrados no log cumulativo.
+previstos. Esses são aceites históricos da publicação com 79 registros, não
+gates da preparação atual com 80. Nesta edição, o manifesto foi deliberadamente
+preservado até a estabilização da fonte, e testes, build, commit e publicação
+não foram executados. O portal não concede controle sobre o dashboard e não
+automatiza as ações humanas pendentes. Os detalhes ficam no log cumulativo.

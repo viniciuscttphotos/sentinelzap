@@ -8,14 +8,14 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 79 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 78);
-  assert.equal(reportMeta.publishedRecords, 79);
-  assert.equal(progressEntries.length, 79);
+test('publica os 80 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 79);
+  assert.equal(reportMeta.publishedRecords, 80);
+  assert.equal(progressEntries.length, 80);
   assert.equal(progressEntries.at(-1).date, '2026-08-30');
   assert.equal(
     progressEntries.at(-1).title,
-    'Horário de Brasília tornado obrigatório na prestação de contas',
+    'Retomada adversarial da confiabilidade e delimitação das evidências',
   );
 });
 
@@ -55,7 +55,10 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   const latestRecord = progressEntries.at(-1);
   assert.equal(latestRecord.publishedAt, reportMeta.updatedAtIso);
   assert.equal(latestRecord.date, reportMeta.updatedAtIso.slice(0, 10));
-  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 1);
+  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 2);
+  const priorPublication = progressEntries.find(({ sequence }) => sequence === 79);
+  assert.equal(priorPublication.publishedAt, '2026-08-30T09:34:04-03:00');
+  assert.notEqual(priorPublication.publishedAt, reportMeta.updatedAtIso);
 });
 
 test('preserva a distribuição documental por data', () => {
@@ -72,7 +75,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-26': 5,
     '2026-08-27': 6,
     '2026-08-29': 5,
-    '2026-08-30': 2,
+    '2026-08-30': 3,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -86,9 +89,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 79 }, (_, index) => index + 1),
+    Array.from({ length: 80 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 79);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 80);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -116,17 +119,19 @@ test('ordena horários comprovados dentro de cada data', () => {
 });
 
 test('distingue o candidato local, o release vigente e o estado das contas', () => {
-  const candidateMetric = executiveMetrics.find(({ value }) => value === '935 + 1 skip');
-  const campaignMetric = executiveMetrics.find(({ value }) => value === '148.000');
+  const candidateMetric = executiveMetrics.find(({ value }) => value === 'Gate pendente');
+  const campaignMetric = executiveMetrics.find(({ value }) => value === '160.000');
   const releaseMetric = executiveMetrics.find(({ value }) => value === '772 / 768');
-  const accountsMetric = executiveMetrics.find(({ value }) => value === '5/5 contas');
-  const snapshotsMetric = executiveMetrics.find(({ value }) => value === '14');
-  assert.match(candidateMetric.note, /936 testes.*sem falhas.*skip esperado/i);
-  assert.match(campaignMetric.note, /contexto.*cards.*sem rede externa.*dados pessoais/i);
+  const scriptedMetric = executiveMetrics.find(({ value }) => value === '240 + 240');
+  const generationMetric = executiveMetrics.find(({ value }) => value === '30 / 160');
+  const crmMetric = executiveMetrics.find(({ value }) => value === '96 + 40');
+  assert.match(candidateMetric.note, /integral.*interrompida.*130.*não é gate verde/i);
+  assert.match(campaignMetric.note, /40 produtos.*4\.000 casos.*20 famílias.*não equivale.*modelo.*real/i);
   assert.match(releaseMetric.note, /produção.*29\/08.*772 testes locais.*768.*Linux/i);
-  assert.match(accountsMetric.note, /principal.*quatro gerenciadas.*conectadas/i);
-  assert.match(snapshotsMetric.label, /snapshots reais/i);
-  assert.match(snapshotsMetric.note, /restauração.*TLS/i);
+  assert.match(releaseMetric.note, /aceite.*cinco contas.*14 snapshots/i);
+  assert.match(scriptedMetric.note, /240 turnos.*roteirizados.*240 falhas.*não são conversas livres/i);
+  assert.match(generationMetric.note, /30 turnos.*160 chamadas.*simuladas.*casos isolados.*Nenhuma chamada real/i);
+  assert.match(crmMetric.note, /24 formulários.*20 exercitados.*quatro logísticos excluídos.*VM.*sem navegador real/i);
 
   const releaseRecord = progressEntries.find(({ date, title }) =>
     date === '2026-08-24' && title.startsWith('Push concluído'),
@@ -358,8 +363,10 @@ test('distingue o candidato local, o release vigente e o estado das contas', () 
   assert.match(reliabilityCandidateRecord.validation, /cinco contratos do empacotador.*fora do payload/i);
   assert.match(reliabilityCandidateRecord.validation, /não iniciou WhatsApp.*Chrome.*aplicação.*rede externa.*dados pessoais/i);
   assert.match(reliabilityCandidateRecord.validation, /permanece local.*nenhum push do candidato para a VPS.*runtime de produção/i);
+  assert.match(reliabilityCandidateRecord.validation, /Retificação posterior.*combinações determinísticas.*roteiros fixos.*sem LLM real.*semântica.*respostas humanas/i);
+  assert.match(reliabilityCandidateRecord.validation, /aceite deste ciclo anterior não valida as alterações atuais/i);
 
-  const timestampGovernanceRecord = progressEntries.at(-1);
+  const timestampGovernanceRecord = progressEntries.find(({ sequence }) => sequence === 79);
   assert.equal(
     timestampGovernanceRecord.title,
     'Horário de Brasília tornado obrigatório na prestação de contas',
@@ -370,6 +377,24 @@ test('distingue o candidato local, o release vigente e o estado das contas', () 
   assert.match(timestampGovernanceRecord.summary, /data.*horário.*Brasília.*fuso.*navegador/i);
   assert.match(timestampGovernanceRecord.result, /Hero.*nota executiva.*rodapé/i);
   assert.match(timestampGovernanceRecord.validation, /ISO.*-03:00.*America\/Sao_Paulo.*manifesto/i);
+});
+
+test('reauditoria delimita evidência offline, limites humanos e ausência de novo push', () => {
+  const record = progressEntries.at(-1);
+  assert.equal(record.context, 'Local');
+  assert.equal(record.kind, 'Reauditoria');
+  assert.equal(record.state, 'Em validação');
+  assert.match(record.result, /160\.000 casos combinatórios offline.*40 produtos.*4\.000 casos.*20 famílias/i);
+  assert.match(record.result, /240 turnos fixos.*240 falhas injetadas.*30 turnos.*160 chamadas.*simulado.*casos isolados/i);
+  assert.match(record.result, /96 botões estáticos.*40 templates dinâmicos.*24 formulários.*20.*exercitados.*quatro.*excluídos/i);
+  assert.match(record.result, /máquina virtual de testes \(VM\).*não é QA em navegador real/i);
+  assert.match(record.result, /20 combinações.*sem arte exata/i);
+  assert.match(record.result, /carregamento inconsistente de configuração.*quórum insuficiente/i);
+  assert.match(record.result, /mídia sem legenda.*revisão manual/i);
+  assert.match(record.validation, /integral pendente.*interrompida.*130.*não constitui aprovação/i);
+  assert.match(record.validation, /não usa LLM real nem WhatsApp/i);
+  assert.match(record.validation, /somente agregado.*não uma avaliação semântica/i);
+  assert.match(record.validation, /produção de 29\/08 não foi alterada.*push.*pendente/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {
@@ -412,6 +437,7 @@ test('roadmap preserva os gates humanos, logísticos e externos vigentes', () =>
   assert.match(roadmapText, /prestação de contas sincronizada/i);
   assert.match(roadmapText, /candidato local.*pedido explícito de push/i);
   assert.match(roadmapText, /etiquetas.*integração logística real.*fora do escopo/i);
-  assert.match(roadmapText, /21 combinações.*sem arte exata/i);
+  assert.match(roadmapText, /20 combinações.*sem arte exata/i);
   assert.match(roadmapText, /recuperação histórica.*moderação.*conversação.*cards/i);
+  assert.match(roadmapText, /quórum insuficiente.*IA real.*comparação semântica humana/i);
 });

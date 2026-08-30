@@ -68,28 +68,39 @@
               validada e continuidade ensaiada.
             </p>
             <p class="hero-detail">
-              A versão publicada em 29 de agosto está estável e comprovada por
+              A versão em produção continua sendo a de 29 de agosto, cujo aceite registrou
               <strong>772 testes locais aprovados</strong>, sem falhas e com um skip esperado,
-              e 768 de 768 testes no pacote Linux. As cinco contas estão conectadas e a
+              e 768 de 768 testes no pacote Linux. O aceite comprovou cinco contas conectadas e a
               fundação logística instalada permanece desativada, sem credenciais ou chamadas
-              ao provedor. Separadamente, um candidato local de confiabilidade concluiu o
-              reforço do Guardião IA, da recuperação de mensagens, da confirmação idempotente
-              de entregas e dos fluxos humanos do CRM. O gate integral terminou com
-              <strong>935 testes aprovados e um skip esperado em 936</strong>, sem falhas.
-              O pacote code-only candidato foi reproduzido com 370 arquivos e 114.395.897
-              bytes; sua cópia descartável aprovou 930 de 931 testes, com um skip esperado,
-              enquanto os cinco contratos do empacotador ficaram fora do payload por desenho.
-              Uma campanha isolada cobriu 148.000 abordagens, 37 produtos e 4.000 formulações
-              por produto. Em ensaio separado, 111 de 111 turnos robô-a-robô passaram. A
-              campanha ocorreu sem iniciar WhatsApp, Chrome, aplicação ou rede externa e sem
-              usar dados pessoais. Etiquetas e integração logística real ficaram fora. As 21
+              ao provedor. O candidato local de confiabilidade está em reauditoria do
+              Guardião IA, da recuperação de mensagens, da entrega de cards e dos fluxos humanos
+              do CRM. <strong>O gate integral atual está pendente</strong>: a última execução
+              foi interrompida com código 130 e não constitui aprovação. O candidato ainda não
+              foi enviado à VPS.
+            </p>
+            <p class="hero-detail">
+              A matriz ampliada contém 160.000 casos combinatórios offline, com 40 produtos,
+              4.000 casos por produto e 20 famílias de cenários. Ensaios separados incluem
+              240 turnos de diálogos fixos, 240 falhas injetadas e geração com 30 turnos integrados;
+              160 chamadas a provedor simulado no total, incluindo casos isolados. Esses números
+              não são conversas com LLM real,
+              nem comprovam entrega no WhatsApp ou comparação semântica com atendentes humanos.
+              O CRM tem 96 botões estáticos, 40 templates dinâmicos e 24 formulários: 20 foram
+              exercitados e quatro logísticos foram excluídos; o despacho foi testado em VM, sem
+              navegador real. Etiquetas e integração logística real ficaram fora. As 20
               combinações de produto e card sem arte exata retornam indisponibilidade segura e
-              permanecem como backlog de conteúdo. Esse candidato ainda não foi enviado à VPS.
+              permanecem como backlog de conteúdo.
+            </p>
+            <p class="hero-detail">
+              O diagnóstico do Guardião identificou carregamento inconsistente de configuração
+              e quórum insuficiente. Enquanto essas condições não forem resolvidas, a moderação
+              automática não pode ser considerada operacional. Mídia sem legenda permanece para revisão
+              manual. IA real, envio no WhatsApp e avaliação semântica humana seguem pendentes.
             </p>
             <div class="status-row" aria-label="Estado executivo">
               <span class="status-pill status-pill--live"><i aria-hidden="true"></i>Produção ativa</span>
-              <span class="status-pill">Candidato local validado</span>
-              <time class="status-pill" datetime="2026-08-30T09:34:04-03:00" data-report-updated-at>Conteúdo atualizado em 30 de agosto de 2026 às 09:34:04 (horário de Brasília)</time>
+              <span class="status-pill">Reauditoria local em validação</span>
+              <time class="status-pill" datetime="2026-08-30T19:03:34-03:00" data-report-updated-at>Conteúdo atualizado em 30 de agosto de 2026 às 19:03:34 (horário de Brasília)</time>
             </div>
           </div>
           <aside class="hero-note" aria-label="Nota de escopo">
@@ -100,8 +111,8 @@
             </p>
             <dl>
               <div><dt>Período</dt><dd>15–30 ago 2026</dd></div>
-              <div><dt>Registros</dt><dd>79 consolidados</dd></div>
-              <div><dt>Última atualização</dt><dd><time datetime="2026-08-30T09:34:04-03:00" data-report-updated-at>Conteúdo atualizado em 30 de agosto de 2026 às 09:34:04 (horário de Brasília)</time></dd></div>
+              <div><dt>Registros</dt><dd>80 consolidados</dd></div>
+              <div><dt>Última atualização</dt><dd><time datetime="2026-08-30T19:03:34-03:00" data-report-updated-at>Conteúdo atualizado em 30 de agosto de 2026 às 19:03:34 (horário de Brasília)</time></dd></div>
               <div><dt>Fonte</dt><dd>Histórico técnico verificado</dd></div>
             </dl>
           </aside>
@@ -114,8 +125,8 @@
             <p class="eyebrow">Estado executivo</p>
             <h2 id="metrics-title">Evidências que sustentam o status</h2>
             <p>
-              Os números distinguem o release que continua em produção do candidato validado
-              apenas localmente, sem antecipar implantação ou aceite operacional.
+              Os números distinguem a versão em produção, testes locais e simulações offline.
+              Contagem de casos não equivale a conversa com IA real, implantação ou aceite operacional.
             </p>
           </div>
           <div class="metric-grid" data-metrics></div>
@@ -128,8 +139,8 @@
             </div>
             <div>
               <span class="brief-index">02</span>
-              <h3>Operação conectada</h3>
-              <p>Uma conta principal e quatro gerenciadas conectadas depois do release.</p>
+              <h3>Aceite histórico das contas</h3>
+              <p>O aceite de 29/08 registrou uma conta principal e quatro gerenciadas conectadas.</p>
             </div>
             <div>
               <span class="brief-index">03</span>
@@ -146,9 +157,10 @@
             <p class="eyebrow">Próxima etapa</p>
             <h2 id="direction-title">Para onde vamos</h2>
             <p>
-              O próximo ciclo é o push controlado do candidato, somente após pedido explícito.
-              Depois da implantação, os fluxos corrigidos ainda exigem aceite operacional
-              acompanhado. As 21 artes ausentes formam um backlog separado; etiquetas,
+              O próximo ciclo é concluir os gates do candidato e conferir o pacote; o push
+              controlado depende de pedido explícito. Depois da implantação, IA real, entrega
+              no WhatsApp e os fluxos corrigidos ainda exigem aceite operacional acompanhado.
+              As 20 combinações sem arte exata formam um backlog separado; etiquetas,
               credenciais e integração logística real permanecem fora desta entrega.
             </p>
           </div>
@@ -227,6 +239,7 @@
           <ul>
             <li>Datas e horários não são estimados.</li>
             <li>Validação local e validação do pacote Linux são apresentadas separadamente.</li>
+            <li>Simulações offline não são apresentadas como conversas com IA real ou aceite no WhatsApp.</li>
             <li>Produção, trabalho local, decisões e validações aparecem identificados.</li>
             <li>IPs, telefones, usuários, identificadores, hashes, caminhos e credenciais foram removidos.</li>
             <li>Este portal não hospeda nem substitui o dashboard operacional.</li>
@@ -242,8 +255,8 @@
           <p>SentinelZap · prestação de contas documental</p>
         </div>
         <div class="footer-meta">
-          <p><time datetime="2026-08-30T09:34:04-03:00" data-report-updated-at>Conteúdo atualizado em 30 de agosto de 2026 às 09:34:04 (horário de Brasília)</time></p>
-          <p>Conteúdo público sanitizado · 79 registros</p>
+          <p><time datetime="2026-08-30T19:03:34-03:00" data-report-updated-at>Conteúdo atualizado em 30 de agosto de 2026 às 19:03:34 (horário de Brasília)</time></p>
+          <p>Conteúdo público sanitizado · 80 registros</p>
         </div>
       </div>
     </footer>

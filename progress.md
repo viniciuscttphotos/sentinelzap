@@ -560,3 +560,56 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
 - Estado: a alteração foi consolidada em 79 registros publicados e 78 técnicos,
   com o instante final de conteúdo sincronizado ao manifesto. Esta publicação é
   exclusivamente documental e não autoriza nem representa mutação na VPS.
+
+## 2026-08-30 19:02:07 (horário de Brasília) — Preparação da retomada adversarial e dos limites de evidência
+
+- Arquivos e trechos: `src/data.js`, metadados, métricas, roadmap, retificação do
+  registro anterior e novo registro 80; `index.html`, narrativa executiva,
+  contadores e três horários de fallback; `test/data.test.js` e
+  `test/site.test.js`, contratos de conteúdo, contagem, limitações e preservação
+  do horário anterior; `README.md` e `techinical_referrence.md`, estado atual e
+  governança editorial.
+- O que foi feito: preparação de 80 registros públicos, originados de 79
+  registros técnicos e do marco documental de publicação. O novo registro
+  “Retomada adversarial da confiabilidade e delimitação das evidências” permanece
+  `Em validação`; a última suíte integral foi interrompida com código 130, e
+  sua repetição ainda estava em andamento nesta edição, sem aceite final.
+- Motivo e finalidade: distinguir correções locais, inventário, ensaios
+  simulados e validações reais. A matriz de 160.000 casos representa 40 produtos
+  × 4.000 casos em 20 famílias combinatórias offline, não conversação com LLM
+  real. Há 240 turnos fixos e 240 falhas injetadas em eixos separados; a geração
+  exercita 30 turnos integrados e 160 chamadas simuladas no total, incluindo
+  casos isolados. A evidência humana segue agregada, sem comparação semântica.
+- CRM e conteúdo: inventário de 96 botões estáticos, 40 templates dinâmicos e
+  24 formulários; 20 formulários exercitados e quatro logísticos excluídos.
+  O despacho é executado em máquina virtual de testes (VM), sem navegador real.
+  Permanecem 20 combinações de produto e card sem arte exata; etiquetas e Melhor
+  Envio real ficam fora. O Guardião é descrito publicamente somente por
+  carregamento inconsistente de configuração e quórum insuficiente; mídia sem
+  legenda exige revisão manual.
+- Preservação histórica: o texto anterior foi mantido com uma nota explícita
+  de retificação sobre combinações determinísticas, roteiros fixos e limites do
+  aceite anterior. O registro 79 mantém `2026-08-30T09:34:04-03:00`; o novo
+  registro e os três fallbacks usam provisoriamente
+  `2026-08-30T18:53:53-03:00`, instante que será renovado pela coordenação junto
+  ao manifesto antes da publicação.
+- Validação desta preparação: revisão estática e `git diff --check` sem
+  achados. Nenhum teste, build, commit ou publicação foi executado neste passo;
+  o manifesto foi deliberadamente preservado enquanto a fonte é consolidada.
+  Os contratos aguardam sincronização e execução pela coordenação.
+- Estado operacional: produção de 29/08 intacta, candidato somente local e
+  push operacional pendente. IA real, entrega no WhatsApp e aceite operacional
+  permanecem pendentes; esta preparação não iniciou aplicação, Chrome, sessão
+  WhatsApp ou acesso a dados operacionais.
+
+## 2026-08-30 19:04:50 (horário de Brasília) — Gate da publicação intermediária
+
+- `src/data.js`, os três fallbacks de `index.html` e
+  `sync/progress-source.json` sincronizados em `2026-08-30T19:03:34-03:00`.
+  Fonte canônica com 80 registros/79 técnicos; estado permanece Em validação.
+- `progress:verify`, `npm run check`, 22/22 testes, build Vite e
+  `git diff --check` terminaram com saída zero. Revisão dos novos textos
+  públicos não encontrou identificadores, segredos ou detalhes operacionais.
+- Encaminhamento documental ao Git principal para atualização pela integração
+  Vercel. A conclusão depende de Ready, HTTP 200, cabeçalhos e data/hora visíveis;
+  nenhuma implantação operacional está incluída.
