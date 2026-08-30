@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 78 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 79 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,7 +12,7 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 77 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 78 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
@@ -104,6 +104,13 @@ apresentação decrescente, horários com evidência, sanitização, narrativa,
 acessibilidade estrutural, mobile first, metadados sociais, configuração Vercel
 e cabeçalhos de segurança.
 
+A última atualização pública é um contrato persistente em `reportMeta`: instante
+ISO 8601 com o offset UTC vigente, fuso IANA `America/Sao_Paulo` e rótulo
+“horário de Brasília”. A interface usa o rótulo calculado com esse fuso e não
+converte o horário pelo fuso do navegador do visitante. O gate
+`progress:verify` também exige que `reportMeta.updatedAtIso` seja idêntico a
+`synchronizedAt` no manifesto.
+
 ## Publicação e atualização contínua autorizadas
 
 O destino é o repositório público existente `sentinelzap` e o projeto Vercel
@@ -135,15 +142,27 @@ gates locais. O deploy não altera o dashboard operacional.
 ## Atualização do relatório
 
 1. Edite `src/data.js` com uma síntese pública, verificável e sanitizada.
-2. Preserve a fonte canônica em ordem crescente e a ordem documental dentro do
+2. Imediatamente antes dos gates finais, substitua a constante
+   `REPORT_UPDATED_AT` pelo instante real em Brasília, no formato
+   `AAAA-MM-DDTHH:mm:ss±HH:mm`, com o offset UTC vigente para
+   `America/Sao_Paulo`. Não use UTC sem conversão, horário do navegador ou
+   somente a data.
+3. Mantenha `REPORT_TIME_ZONE` como `America/Sao_Paulo` e o rótulo público
+   “horário de Brasília”. Associe `publishedAt: REPORT_UPDATED_AT` ao registro
+   mais recente quando o instante documentar sua publicação; nunca atribua esse
+   horário retroativamente a um evento sem evidência.
+4. Preserve a fonte canônica em ordem crescente e a ordem documental dentro do
    mesmo dia; a interface inverte uma cópia para mostrar o registro mais recente
    primeiro.
-3. Só preencha `time` quando houver evidência documental.
-4. Atualize as métricas apenas quando o estado correspondente tiver sido comprovado.
-5. Depois que o `PROGRESS.md` raiz estiver final, atualize digest, contagem e último
-   cabeçalho em `sync/progress-source.json`.
-6. Registre a mudança em `progress.md` e revise `techinical_referrence.md`.
-7. Execute `npm run check`, envie `main` e confirme o deploy `Ready` e HTTP 200.
+5. Só preencha `time` quando houver evidência documental.
+6. Atualize as métricas apenas quando o estado correspondente tiver sido comprovado.
+7. Depois que o `PROGRESS.md` raiz estiver final, atualize digest, contagem,
+   último cabeçalho e `synchronizedAt` em `sync/progress-source.json`. O valor de
+   `synchronizedAt` deve ser exatamente o mesmo de `reportMeta.updatedAtIso`.
+8. Registre a mudança em `progress.md` e revise `techinical_referrence.md`.
+9. Execute `npm run check`, envie `main` e confirme no conteúdo servido que a
+   data, o horário e o rótulo de Brasília correspondem ao instante publicado,
+   além do deploy `Ready` e HTTP 200.
 
 Se `npm run progress:verify` acusar divergência, a tarefa não está concluída. O
 histórico bruto nunca deve ser copiado para o portal para contornar o gate.

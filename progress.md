@@ -532,3 +532,31 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
 - Fronteira preservada: esta atualização foi exclusivamente documental; não
   iniciou WhatsApp, Chrome ou aplicação e não alterou serviço, sessão,
   configuração, dados ou runtime da VPS operacional.
+
+## 2026-08-30 09:34:04 (horário de Brasília) — Horário explícito na prestação de contas
+
+- Arquivos e trechos: `src/data.js`, contrato `REPORT_UPDATED_AT` e metadados de
+  fuso; `src/main.js` e `index.html`, apresentação semântica no hero e no rodapé;
+  `scripts/verify-progress-sync.mjs`, igualdade com o manifesto;
+  `test/data.test.js` e `test/site.test.js`, regressões do contrato; `README.md`
+  e `techinical_referrence.md`, fluxo editorial e arquitetura.
+- O que foi feito: a prestação passou a registrar o instante da atualização em
+  ISO 8601 com offset `-03:00`, fuso `America/Sao_Paulo` e rótulo público
+  “horário de Brasília”. O mesmo instante fica associado ao registro mais
+  recente quando documenta sua publicação.
+- Motivo e finalidade: garantir que toda atualização mostre data e horário de
+  forma inequívoca, inclusive para visitantes cujo navegador esteja configurado
+  em outro fuso.
+- Contrato de gate: `reportMeta.updatedAtIso` deve ser exatamente igual a
+  `synchronizedAt` em `sync/progress-source.json`; divergência impede a
+  publicação. O offset é confrontado com o horário civil real de
+  `America/Sao_Paulo`, e os três fallbacks HTML devem coincidir exatamente com
+  os metadados, inclusive durante o build remoto. Horários de eventos continuam
+  proibidos sem evidência própria.
+- Validação local: `npm test` aprovou 21/21 testes e `npm run build` concluiu com
+  Vite 8.2.2. A execução intencional de `progress:verify` recusou o timestamp
+  provisório por divergir do manifesto, comprovando o novo bloqueio antes da
+  sincronização final.
+- Estado: a alteração foi consolidada em 79 registros publicados e 78 técnicos,
+  com o instante final de conteúdo sincronizado ao manifesto. Esta publicação é
+  exclusivamente documental e não autoriza nem representa mutação na VPS.

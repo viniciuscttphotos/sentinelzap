@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
+import { reportMeta } from '../src/data.js';
+
 const projectUrl = new URL('../', import.meta.url);
 
 async function read(relativePath) {
@@ -16,7 +18,7 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(html, /78 consolidados/);
+  assert.match(html, /79 consolidados/);
   assert.match(html, /772 testes locais aprovados[^.]{0,160}768 de 768 testes no pacote Linux/i);
   assert.match(html, /cinco contas estão conectadas/i);
   assert.match(html, /fundação logística instalada[^.]{0,120}desativada[^.]{0,100}sem credenciais[^.]{0,100}chamadas\s+ao provedor/i);
@@ -47,6 +49,35 @@ test('HTML oferece SEO, OpenGraph e marcos básicos de acessibilidade', async ()
   assert.match(html, /alt="Zyntra"/);
   assert.doesNotMatch(html, /<script(?![^>]*type="module"[^>]*src=)[^>]*>/i);
   assert.doesNotMatch(html, /(?:src|href)="https?:\/\/(?!sentinelzap\.vercel\.app)/i);
+});
+
+test('renderiza data e horário de Brasília a partir de um contrato persistente', async () => {
+  const html = await read('index.html');
+  const data = await read('src/data.js');
+  const javascript = await read('src/main.js');
+
+  const reportTimes = [
+    ...html.matchAll(/<time\b([^>]*)data-report-updated-at([^>]*)>([^<]+)<\/time>/g),
+  ];
+  assert.equal(reportTimes.length, 3);
+  for (const [, attributesBefore, attributesAfter, text] of reportTimes) {
+    const attributes = `${attributesBefore}${attributesAfter}`;
+    assert.equal(attributes.match(/\bdatetime="([^"]+)"/)?.[1], reportMeta.updatedAtIso);
+    assert.equal(text, `Conteúdo atualizado em ${reportMeta.updatedAtLabel}`);
+  }
+  assert.match(html, /<dt>Última atualização<\/dt>/);
+  assert.match(
+    data,
+    /REPORT_UPDATED_AT = '\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})'/,
+  );
+  assert.match(data, /REPORT_TIME_ZONE = 'America\/Sao_Paulo'/);
+  assert.match(data, /REPORT_TIME_ZONE_LABEL = 'horário de Brasília'/);
+  assert.match(data, /timeZone: REPORT_TIME_ZONE/);
+  assert.match(data, /publishedAt: REPORT_UPDATED_AT/);
+  assert.match(javascript, /querySelectorAll\('\[data-report-updated-at\]'\)/);
+  assert.match(javascript, /time\.dateTime = reportMeta\.updatedAtIso/);
+  assert.match(javascript, /Conteúdo atualizado em \$\{reportMeta\.updatedAtLabel\}/);
+  assert.match(javascript, /record\.publishedAt \?\? record\.date/);
 });
 
 test('impressão sempre inclui o relatório completo e restaura filtros depois', async () => {
@@ -114,16 +145,19 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const verifier = await read('scripts/verify-progress-sync.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 78);
-  assert.equal(manifest.technicalSourceRecords, 77);
+  assert.equal(manifest.entryCount, 79);
+  assert.equal(manifest.technicalSourceRecords, 78);
+  assert.equal(manifest.synchronizedAt, reportMeta.updatedAtIso);
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Força-tarefa de confiabilidade concluída localmente (aguardando push)',
+    'Horário de Brasília tornado obrigatório na prestação de contas',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /heading\.date >= latest\.date/);
   assert.match(verifier, /progressEntries\.at\(-1\)/);
+  assert.match(verifier, /reportMeta\.updatedAtIso !== manifest\.synchronizedAt/);
+  assert.match(verifier, /publishedNewest\.publishedAt !== reportMeta\.updatedAtIso/);
   assert.doesNotMatch(verifier, /writeFile|appendFile/);
 });
 

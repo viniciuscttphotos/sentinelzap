@@ -1,9 +1,39 @@
+const REPORT_TIME_ZONE = 'America/Sao_Paulo';
+const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
+const REPORT_UPDATED_AT = '2026-08-30T09:34:04-03:00';
+
+function formatReportUpdatedAt(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) throw new TypeError('Horário de atualização inválido.');
+
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat('pt-BR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hourCycle: 'h23',
+      timeZone: REPORT_TIME_ZONE,
+    })
+      .formatToParts(date)
+      .filter(({ type }) => type !== 'literal')
+      .map(({ type, value: partValue }) => [type, partValue]),
+  );
+
+  return `${parts.day} de ${parts.month} de ${parts.year} às ${parts.hour}:${parts.minute}:${parts.second} (${REPORT_TIME_ZONE_LABEL})`;
+}
+
 export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
-  updatedAt: '30 de agosto de 2026',
+  updatedAtIso: REPORT_UPDATED_AT,
+  updatedAtLabel: formatReportUpdatedAt(REPORT_UPDATED_AT),
+  timeZone: REPORT_TIME_ZONE,
+  timeZoneLabel: REPORT_TIME_ZONE_LABEL,
   period: '15 a 30 de agosto de 2026',
-  sourceRecords: 77,
-  publishedRecords: 78,
+  sourceRecords: 78,
+  publishedRecords: 79,
   productionReleaseDate: '29 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -1140,6 +1170,21 @@ const records = [
       'Gate integral: 936 testes concluídos, 935 aprovados e um skip esperado, sem falhas. O pacote code-only reproduziu 370 arquivos e 114.395.897 bytes; sua cópia descartável concluiu 931 testes, com 930 aprovados, um skip esperado e zero falhas. Os cinco contratos do empacotador ficaram fora do payload por desenho. A campanha não iniciou WhatsApp, Chrome, aplicação, rede externa nem usou dados pessoais. O candidato permanece local; nenhum push do candidato para a VPS nem mudança no runtime de produção foi realizado.',
     tags: ['confiabilidade', 'IA', 'CRM', 'candidato'],
   },
+  {
+    date: '2026-08-30',
+    publishedAt: REPORT_UPDATED_AT,
+    title: 'Horário de Brasília tornado obrigatório na prestação de contas',
+    context: 'Documentação',
+    kind: 'Governança',
+    state: 'Publicado',
+    summary:
+      'A prestação de contas passou a exibir, em todas as atualizações, a data e o horário exatos do conteúdo no horário de Brasília, sem depender do fuso configurado no navegador do visitante.',
+    result:
+      'Hero, nota executiva e rodapé mostram o mesmo instante com o rótulo explícito “horário de Brasília”; o contrato editorial permanente exige renovar esse valor a cada atualização pública.',
+    validation:
+      'O instante ISO com offset -03:00, o fuso IANA America/Sao_Paulo, o registro mais recente e o manifesto são confrontados pelos gates automatizados. A publicação permaneceu exclusivamente documental, sem alteração nas VPS ou no runtime operacional.',
+    tags: ['prestação de contas', 'horário de Brasília', 'governança', 'Vercel'],
+  },
 ];
 
 export const progressEntries = Object.freeze(
@@ -1148,6 +1193,7 @@ export const progressEntries = Object.freeze(
       id: `registro-${String(index + 1).padStart(2, '0')}`,
       sequence: index + 1,
       time: null,
+      publishedAt: null,
       ...record,
       tags: Object.freeze([...record.tags]),
     }),

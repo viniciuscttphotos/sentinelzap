@@ -8,15 +8,54 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('publica os 78 registros documentais sincronizados', () => {
-  assert.equal(reportMeta.sourceRecords, 77);
-  assert.equal(reportMeta.publishedRecords, 78);
-  assert.equal(progressEntries.length, 78);
+test('publica os 79 registros documentais sincronizados', () => {
+  assert.equal(reportMeta.sourceRecords, 78);
+  assert.equal(reportMeta.publishedRecords, 79);
+  assert.equal(progressEntries.length, 79);
   assert.equal(progressEntries.at(-1).date, '2026-08-30');
   assert.equal(
     progressEntries.at(-1).title,
-    'Força-tarefa de confiabilidade concluída localmente (aguardando push)',
+    'Horário de Brasília tornado obrigatório na prestação de contas',
   );
+});
+
+test('fixa a última atualização em horário de Brasília sem depender do navegador', () => {
+  const match = reportMeta.updatedAtIso.match(
+    /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(?:Z|[+-]\d{2}:\d{2})$/,
+  );
+  assert.ok(match);
+  assert.equal(reportMeta.timeZone, 'America/Sao_Paulo');
+  assert.equal(reportMeta.timeZoneLabel, 'horário de Brasília');
+  assert.match(
+    reportMeta.updatedAtLabel,
+    /^30 de agosto de 2026 às \d{2}:\d{2}:\d{2} \(horário de Brasília\)$/,
+  );
+  assert.ok(reportMeta.updatedAtLabel.includes(reportMeta.updatedAtIso.slice(11, 19)));
+
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat('en-CA', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hourCycle: 'h23',
+      timeZone: reportMeta.timeZone,
+    })
+      .formatToParts(new Date(reportMeta.updatedAtIso))
+      .filter(({ type }) => type !== 'literal')
+      .map(({ type, value }) => [type, value]),
+  );
+  assert.equal(
+    `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}`,
+    match[1],
+  );
+
+  const latestRecord = progressEntries.at(-1);
+  assert.equal(latestRecord.publishedAt, reportMeta.updatedAtIso);
+  assert.equal(latestRecord.date, reportMeta.updatedAtIso.slice(0, 10));
+  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 1);
 });
 
 test('preserva a distribuição documental por data', () => {
@@ -33,7 +72,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-26': 5,
     '2026-08-27': 6,
     '2026-08-29': 5,
-    '2026-08-30': 1,
+    '2026-08-30': 2,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -47,9 +86,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 78 }, (_, index) => index + 1),
+    Array.from({ length: 79 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 78);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 79);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -297,7 +336,9 @@ test('distingue o candidato local, o release vigente e o estado das contas', () 
   assert.match(sandboxReleaseRecord.validation, /backup.*restauração.*TLS.*14 snapshots/i);
   assert.match(sandboxReleaseRecord.validation, /10\/10 focados.*integral.*interrompida.*não constitui gate verde/i);
 
-  const reliabilityCandidateRecord = progressEntries.at(-1);
+  const reliabilityCandidateRecord = progressEntries.find(
+    ({ title }) => title === 'Força-tarefa de confiabilidade concluída localmente (aguardando push)',
+  );
   assert.equal(
     reliabilityCandidateRecord.title,
     'Força-tarefa de confiabilidade concluída localmente (aguardando push)',
@@ -317,6 +358,18 @@ test('distingue o candidato local, o release vigente e o estado das contas', () 
   assert.match(reliabilityCandidateRecord.validation, /cinco contratos do empacotador.*fora do payload/i);
   assert.match(reliabilityCandidateRecord.validation, /não iniciou WhatsApp.*Chrome.*aplicação.*rede externa.*dados pessoais/i);
   assert.match(reliabilityCandidateRecord.validation, /permanece local.*nenhum push do candidato para a VPS.*runtime de produção/i);
+
+  const timestampGovernanceRecord = progressEntries.at(-1);
+  assert.equal(
+    timestampGovernanceRecord.title,
+    'Horário de Brasília tornado obrigatório na prestação de contas',
+  );
+  assert.equal(timestampGovernanceRecord.context, 'Documentação');
+  assert.equal(timestampGovernanceRecord.kind, 'Governança');
+  assert.equal(timestampGovernanceRecord.state, 'Publicado');
+  assert.match(timestampGovernanceRecord.summary, /data.*horário.*Brasília.*fuso.*navegador/i);
+  assert.match(timestampGovernanceRecord.result, /Hero.*nota executiva.*rodapé/i);
+  assert.match(timestampGovernanceRecord.validation, /ISO.*-03:00.*America\/Sao_Paulo.*manifesto/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {

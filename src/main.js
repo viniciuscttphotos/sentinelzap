@@ -102,9 +102,12 @@ function createRecordCard(record) {
 
   const statusLine = createElement('div', 'record-status-line');
   statusLine.append(createBadge(record.state, 'state'));
-  if (record.time) {
-    const time = createElement('time', 'record-time', record.time);
-    time.dateTime = record.date;
+  if (record.publishedAt || record.time) {
+    const timeLabel = record.publishedAt
+      ? `Conteúdo atualizado em ${reportMeta.updatedAtLabel}`
+      : record.time;
+    const time = createElement('time', 'record-time', timeLabel);
+    time.dateTime = record.publishedAt ?? record.date;
     statusLine.append(time);
   }
 
@@ -290,6 +293,10 @@ function updateReadingProgress() {
 }
 
 function initialize() {
+  document.querySelectorAll('[data-report-updated-at]').forEach((time) => {
+    time.dateTime = reportMeta.updatedAtIso;
+    time.textContent = `Conteúdo atualizado em ${reportMeta.updatedAtLabel}`;
+  });
   executiveMetrics.forEach(appendMetric);
   roadmap.forEach(appendRoadmapItem);
   populateSelect(controls.context, filterOptions.contexts);

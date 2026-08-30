@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 78 registros sanitizados
+     └── métricas, roadmap e 79 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -49,11 +49,17 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, seis métricas executivas, sete prioridades do
-  roadmap, os 78 registros e as opções derivadas de filtro;
+  roadmap, os 79 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
   dentro do mesmo dia;
+- mantém o instante da última atualização em ISO 8601 com o offset UTC vigente,
+  o fuso IANA `America/Sao_Paulo` e o rótulo “horário de Brasília”;
+- calcula o texto público a partir desse instante usando o fuso declarado, sem
+  depender do fuso configurado no navegador;
+- associa `publishedAt` do registro documental mais recente ao mesmo instante
+  apenas quando ele representa sua publicação comprovada;
 - usa `time: null` por padrão e inclui horário apenas quando comprovado;
 - não contém dados pessoais nem detalhes de infraestrutura exploráveis.
 
@@ -64,6 +70,9 @@ JavaScript e ativos estáticos.
 - deriva uma cópia imutável e invertida da fonte canônica e renderiza métricas,
   roadmap e linha do tempo agrupada por dia, do registro mais recente ao mais
   antigo;
+- preenche os elementos `<time data-report-updated-at>` do hero e do rodapé com
+  o rótulo persistente e o atributo semântico `datetime`, sem reconverter o
+  instante pelo fuso local do visitante;
 - normaliza acentos para busca textual;
 - filtra por ambiente e tipo e persiste filtros não sensíveis na query string;
 - controla impressão, indicador de leitura e retorno ao topo;
@@ -96,7 +105,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 78 registros, distribuição por data, sequência canônica,
+- verifica contagem de 79 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -120,7 +129,11 @@ O histórico bruto não deve ser copiado para o portal. Cada atualização exige
 - remoção de IPs, telefones, nomes de usuários, identificadores internos, hashes,
   caminhos, credenciais e pormenores exploráveis;
 - distinção explícita entre trabalho local, produção, decisão e validação;
-- horário somente com evidência;
+- atualização obrigatória do instante público com data e horário reais de
+  Brasília, no formato ISO explícito `AAAA-MM-DDTHH:mm:ss±HH:mm` e com o offset
+  UTC vigente para `America/Sao_Paulo`;
+- horário de cada registro somente com evidência, mantendo separado o instante
+  da atualização documental do instante do evento narrado;
 - manutenção da ordem documental crescente na fonte quando registros do mesmo
   dia não possuem horário; a apresentação visual inverte essa sequência sem
   inventar horários;
@@ -146,8 +159,10 @@ pelo Git.
 
 `npm run check` executa primeiro `progress:verify` e depois testes/build. O gate
 de sincronização lê o `PROGRESS.md` raiz, calcula SHA-256 em memória e compara
-digest, contagem e cabeçalho mais recente com `sync/progress-source.json` e com a
-última entrada pública. Ele nunca copia ou imprime o histórico. O build remoto,
+digest, contagem, cabeçalho mais recente e o instante `updatedAtIso` com
+`sync/progress-source.json` e com a última entrada pública. O instante público
+deve ser exatamente igual a `synchronizedAt` no manifesto. O gate nunca copia
+ou imprime o histórico. O build remoto,
 onde a fonte operacional não existe, usa `npm run deploy:check` para executar
 testes e build antes da publicação.
 
@@ -175,8 +190,10 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 30/08/2026, o portal contém 77 registros técnicos da fonte e o registro de sua
-publicação, totalizando 78. O release de produção vigente continua sendo o de
+Em 30/08/2026, o portal contém 78 registros técnicos da fonte e um registro
+documental de publicação, totalizando 79. O registro mais recente torna
+obrigatória a exibição da data e do horário de atualização no horário de
+Brasília. O release de produção vigente continua sendo o de
 29/08, que teve 772 testes aprovados
 locais, sem falhas e com um skip esperado, e em 768/768 testes transportáveis no
 Linux. Uma conta principal e quatro gerenciadas estão conectadas. Backups,
@@ -225,8 +242,9 @@ versão publicada anterior passou por `progress:verify`, pelos 19 testes do port
 pelo build Vite e pela busca de sanitização, e permanece disponível no alias
 canônico com os cabeçalhos de segurança preservados. A atualização documental
 de 30/08 estabilizou a fonte, regenerou o manifesto, aprovou `progress:verify`,
-19/19 testes, build e sanitização e foi enviada ao `main`. A integração Vercel
-ficou `Ready`; o alias canônico respondeu HTTP 200 com os 78 registros, o
-conteúdo novo e os cabeçalhos de segurança previstos. Ela não concede controle
+21/21 testes, build e sanitização e foi enviada ao `main`. A integração Vercel
+ficou `Ready`; o alias canônico respondeu HTTP 200 com os 79 registros, o
+conteúdo novo, o horário explícito de Brasília e os cabeçalhos de segurança
+previstos. Ela não concede controle
 sobre o dashboard e não automatiza as ações humanas pendentes. Os detalhes
 ficam registrados no log cumulativo.
