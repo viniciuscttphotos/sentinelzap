@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 77 registros sanitizados
+     └── métricas, roadmap e 78 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -48,8 +48,8 @@ JavaScript e ativos estáticos.
 ### `src/data.js`
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
-- exporta metadados do relatório, cinco métricas executivas, seis prioridades do
-  roadmap, os 77 registros e as opções derivadas de filtro;
+- exporta metadados do relatório, seis métricas executivas, sete prioridades do
+  roadmap, os 78 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -96,7 +96,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 77 registros, distribuição por data, sequência canônica,
+- verifica contagem de 78 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -175,8 +175,9 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 29/08/2026, o portal contém 76 registros técnicos da fonte e o registro de sua
-publicação, totalizando 77. O release vigente teve 772 testes aprovados
+Em 30/08/2026, o portal contém 77 registros técnicos da fonte e o registro de sua
+publicação, totalizando 78. O release de produção vigente continua sendo o de
+29/08, que teve 772 testes aprovados
 locais, sem falhas e com um skip esperado, e em 768/768 testes transportáveis no
 Linux. Uma conta principal e quatro gerenciadas estão conectadas. Backups,
 restauração isolada e TLS passaram, totalizando 14 snapshots reais.
@@ -195,16 +196,32 @@ desativada e sem credenciais ou chamadas externas. OAuth, configuração Jadlog,
 smoke mutável e API real não foram executados. O portal documental continua sem
 qualquer conexão com o provedor ou com o dashboard operacional.
 
-Dois hardenings posteriores ao release passaram 10/10 testes focados, mas
-continuam locais e não publicados. A suíte integral correspondente foi
-interrompida por solicitação do usuário e não constitui gate verde. O roadmap
-agora exige concluir essa suíte, reconstruir e revalidar o pacote e obter nova
-decisão explícita antes de retomar OAuth, Jadlog ou smoke controlado.
+O registro de 30/08 descreve um candidato local de confiabilidade separado do
+release. Ele reforça Guardião IA, fila durável de recuperação, confirmação
+idempotente de entregas e fluxos humanos do CRM entre cliente, pedido e
+pagamento manual. Seu gate integral concluiu 936 testes: 935 aprovados, um skip
+esperado e zero falhas.
+
+A campanha conversacional desse candidato aprovou 148.000 cenários isolados,
+distribuídos em 37 produtos e 4.000 formulações por produto. Ela incluiu conversa
+entre robôs e comparação humana somente agregada e sanitizada, sem iniciar
+WhatsApp, Chrome, aplicação ou rede externa e sem usar dados pessoais. Etiquetas
+e integração logística real permaneceram fora do escopo. Para as 21 combinações
+de produto e card sem arte exata, o conteúdo público documenta indisponibilidade
+segura e um backlog explícito de criação de artes, sem prometer cobertura
+universal.
+
+O roadmap agora exige pedido explícito de push antes de qualquer implantação do
+candidato e, depois disso, aceite operacional acompanhado. O portal não
+representa a validação local como mudança já aplicada à VPS.
 
 A página pública continua destinada a `https://sentinelzap.vercel.app/`, e a
 landing anterior está preservada na tag `legacy-landing-2026-08-26`. Esta
-sincronização passou por `progress:verify`, pelos 19 testes do portal, pelo build
-Vite e pela busca de sanitização; foi enviada ao `main`, teve deploy de produção
-`Ready` e respondeu HTTP 200 no alias canônico com os cabeçalhos de segurança
-preservados. Ela não concede controle sobre o dashboard e não automatiza as
-ações humanas pendentes. Os detalhes ficam registrados no log cumulativo.
+versão publicada anterior passou por `progress:verify`, pelos 19 testes do portal,
+pelo build Vite e pela busca de sanitização, e permanece disponível no alias
+canônico com os cabeçalhos de segurança preservados. A atualização documental
+de 30/08 já estabilizou a fonte, regenerou o manifesto e aprovou
+`progress:verify`, 19/19 testes, build e sanitização; está pronta para commit,
+push e publicação, ainda não realizados neste ponto do registro. Ela não
+concede controle sobre o dashboard e não automatiza as ações humanas pendentes.
+Os detalhes ficam registrados no log cumulativo.

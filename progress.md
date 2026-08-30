@@ -482,3 +482,31 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   e o build Vite 8.2.2. A atualização foi enviada ao `main`, a integração ficou
   `Ready` e a URL canônica respondeu HTTP 200 com os 77 registros e os
   cabeçalhos de segurança preservados.
+
+## 2026-08-30 — Preparação local da prestação do candidato de confiabilidade
+
+- Arquivos e trechos: `src/data.js`, metadados, métricas, roadmap e novo
+  registro; `index.html`, estado executivo, direção e contadores; `README.md` e
+  `techinical_referrence.md`, escopo público e estado vigente; `test/`, contratos
+  de conteúdo, sequência e sanitização.
+- O que foi feito: a prestação foi preparada para 78 registros publicados e 77
+  registros técnicos de origem, com o novo candidato identificado como local,
+  validado e ainda não implantado. O release de 29/08 permanece apresentado
+  separadamente como a versão que continua em produção.
+- Síntese pública: Guardião IA, fila durável de recuperação, confirmação
+  idempotente de entregas e QA dos fluxos humanos do CRM foram consolidados sem
+  detalhes exploráveis. A campanha sintética registra 148.000 cenários, 37
+  produtos e 4.000 formulações por produto, além de conversa entre robôs e
+  comparação humana exclusivamente agregada e sanitizada.
+- Limites: etiquetas e integração logística real ficaram fora. As 21
+  combinações de produto e card sem arte exata retornam indisponibilidade segura
+  e permanecem como backlog de conteúdo. A campanha não iniciou WhatsApp,
+  Chrome, aplicação ou rede externa e não usou dados pessoais.
+- Evidências: o candidato concluiu 936 testes, com 935 aprovados, um skip
+  esperado e zero falhas. O manifesto foi regenerado após a estabilização da
+  fonte; `progress:verify` comprovou 78 registros documentais e 77 técnicos,
+  `npm run check` aprovou 19/19 testes e o build Vite 8.2.2. A revisão de
+  whitespace e a busca adicional de sanitização também passaram.
+- Estado de publicação: conteúdo e gates estão prontos para commit e push do
+  portal documental. Até este registro não houve deploy Vercel nem alteração
+  na VPS operacional.

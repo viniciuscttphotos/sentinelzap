@@ -1,9 +1,9 @@
 export const reportMeta = Object.freeze({
   title: 'SentinelZap — Prestação de contas',
-  updatedAt: '29 de agosto de 2026',
-  period: '15 a 29 de agosto de 2026',
-  sourceRecords: 76,
-  publishedRecords: 77,
+  updatedAt: '30 de agosto de 2026',
+  period: '15 a 30 de agosto de 2026',
+  sourceRecords: 77,
+  publishedRecords: 78,
   productionReleaseDate: '29 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -12,19 +12,24 @@ export const reportMeta = Object.freeze({
 
 export const executiveMetrics = Object.freeze([
   {
-    value: '5/5',
-    label: 'marcos estruturais concluídos',
-    note: 'Visão, aplicação, CRM, SQLite e produção segura.',
+    value: '935 + 1 skip',
+    label: 'gate integral do candidato local',
+    note: '936 testes concluídos, sem falhas; o único skip esperado depende de ferramenta indisponível no ambiente local.',
   },
   {
-    value: '772 aprovados',
-    label: 'testes no release publicado',
-    note: 'Suíte integral autoritativa do pacote aprovada sem falhas e com um skip esperado.',
+    value: '148.000',
+    label: 'abordagens conversacionais sintéticas',
+    note: 'Campanha isolada de contexto, conversa, entrega de texto e cards, sem rede externa nem dados pessoais.',
   },
   {
-    value: '768/768',
-    label: 'testes no pacote Linux',
-    note: 'Mesmo payload aprovado integralmente no staging Linux e durante o deploy.',
+    value: '37 × 4.000',
+    label: 'cobertura natural por produto',
+    note: 'Trinta e sete produtos receberam quatro mil formulações únicas cada, com comparação humana apenas agregada e sanitizada.',
+  },
+  {
+    value: '772 / 768',
+    label: 'evidências do release vigente',
+    note: 'Produção permanece no release de 29/08: 772 testes locais e 768 no pacote Linux.',
   },
   {
     value: '5/5 contas',
@@ -41,11 +46,27 @@ export const executiveMetrics = Object.freeze([
 export const roadmap = Object.freeze([
   {
     priority: 'Próximo gate',
-    title: 'Concluir os hardenings locais antes de retomar o Sandbox',
+    title: 'Publicar o candidato local somente após pedido explícito de push',
     description:
-      'Finalizar a suíte integral das duas correções posteriores ao release, reconstruir e revalidar o pacote e só então decidir sobre OAuth, Jadlog e smoke controlado.',
-    owner: 'Operação técnica e logística',
-    gate: 'Suíte integral verde, novo pacote aprovado e nova decisão explícita antes de tocar na VPS',
+      'O candidato de confiabilidade está validado localmente. A produção continua no release de 29/08 até uma implantação controlada, com etiquetas e integração logística real mantidas fora do escopo.',
+    owner: 'Operação técnica',
+    gate: 'Pedido explícito de push, pacote aprovado e gates seguros no ambiente de destino',
+  },
+  {
+    priority: 'Conteúdo',
+    title: 'Completar as 21 combinações de produto e card sem arte exata',
+    description:
+      'Produzir e aprovar as artes ausentes antes de prometer cobertura visual universal. Até lá, o robô informa indisponibilidade sem substituir o material por outro produto ou formato.',
+    owner: 'Conteúdo e operação comercial',
+    gate: 'Artes corretas aprovadas e inventário de mídia revalidado',
+  },
+  {
+    priority: 'Após o push',
+    title: 'Comprovar os fluxos corrigidos no runtime acompanhado',
+    description:
+      'Executar recuperação histórica, moderação, conversação e entrega de cards de forma controlada, com resultados agregados e sem expor mensagens, sessões ou identificadores.',
+    owner: 'Usuário autenticado e operação técnica',
+    gate: 'Candidato publicado e aceite operacional sanitizado',
   },
   {
     priority: 'Imediato',
@@ -54,14 +75,6 @@ export const roadmap = Object.freeze([
       'Trocar as credenciais iniciais diretamente no painel, sem registrar valores em documentação ou telemetria.',
     owner: 'Equipe autorizada',
     gate: 'Ação humana no painel',
-  },
-  {
-    priority: 'Imediato',
-    title: 'Concluir as recuperações históricas sob controle humano',
-    description:
-      'Continuar a recuperação histórica uma conta por vez e conferir contagens sanitizadas. As cinco contas estão conectadas, mas a conclusão das recuperações não foi declarada.',
-    owner: 'Usuário autenticado',
-    gate: 'Ação manual no painel e conferência de contagens sanitizadas',
   },
   {
     priority: 'Antes de novas vendas',
@@ -1112,6 +1125,20 @@ const records = [
     validation:
       'Release aprovado em 772 testes locais, sem falhas e com um skip esperado, e 768/768 no Linux; backup, restauração e TLS passaram com 14 snapshots. Os hardenings locais passaram 10/10 focados, mas a suíte integral foi interrompida e não constitui gate verde.',
     tags: ['logística', 'Sandbox', 'deploy', 'continuidade'],
+  },
+  {
+    date: '2026-08-30',
+    title: 'Força-tarefa de confiabilidade concluída localmente (aguardando push)',
+    context: 'Local',
+    kind: 'Implementação',
+    state: 'Validado',
+    summary:
+      'Foram endurecidos o Guardião IA, a fila durável de recuperação de mensagens, a confirmação idempotente de entregas e os fluxos humanos do CRM entre cliente, pedido e pagamento manual.',
+    result:
+      'Uma campanha sintética aprovou 148.000 cenários, com 37 produtos e 4.000 abordagens naturais por produto, incluindo conversa entre robôs e comparação apenas agregada com respostas humanas. Etiquetas e integração logística real ficaram fora. Em 21 combinações de produto e card sem arte exata, o sistema responde indisponibilidade segura e mantém a criação das artes como backlog de conteúdo.',
+    validation:
+      'Gate integral: 936 testes concluídos, 935 aprovados e um skip esperado, sem falhas. A campanha não iniciou WhatsApp, Chrome, aplicação, rede externa nem usou dados pessoais. O candidato permanece local; nenhum push ou mudança no runtime de produção foi realizado.',
+    tags: ['confiabilidade', 'IA', 'CRM', 'candidato'],
   },
 ];
 

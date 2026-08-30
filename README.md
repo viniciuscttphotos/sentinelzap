@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 77 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 78 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,7 +12,7 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 76 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 77 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
@@ -36,11 +36,25 @@ mesmo release publicou os atalhos de pagamento em Pedidos, a identificação do
 cliente em Aprovações e os novos cards CBL, sem automatizar decisões financeiras
 ou comerciais.
 
-Depois do deploy, dois hardenings da integração passaram 10/10 testes focados,
-mas permanecem somente locais e não publicados. A suíte integral correspondente
-foi interrompida por solicitação do usuário; esse resultado parcial não é um
-gate verde. Antes de retomar o Sandbox será necessário concluir a suíte integral,
-reconstruir o pacote e obter uma nova decisão explícita.
+Em 30/08, uma força-tarefa concluiu localmente um novo candidato de
+confiabilidade. O Guardião IA, a fila durável de recuperação de mensagens, a
+confirmação idempotente de entregas e os fluxos humanos do CRM entre cliente,
+pedido e pagamento manual foram reforçados. O gate integral terminou com 936
+testes concluídos, 935 aprovados e um skip esperado, sem falhas.
+
+A validação conversacional isolada aprovou 148.000 cenários: 37 produtos com
+4.000 formulações naturais por produto, conversa entre robôs e confronto apenas
+agregado e sanitizado com respostas humanas. A campanha não iniciou WhatsApp,
+Chrome, aplicação nem rede externa e não usou dados pessoais. Etiquetas e
+integração logística real ficaram fora da entrega. O inventário identificou 21
+combinações de produto e card sem arte exata; nesses casos, o comportamento
+aprovado é informar indisponibilidade sem substituir o material por outro. A
+criação dessas artes permanece como backlog de conteúdo.
+
+Esse candidato continua somente local e aguarda pedido explícito de push. O
+estado de produção permanece sendo o release de 29/08 descrito acima; a
+prestação pública do candidato não representa implantação na VPS nem aceite no
+runtime operacional.
 
 ## Requisitos
 
