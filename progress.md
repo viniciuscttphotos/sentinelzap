@@ -696,3 +696,17 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   `main` e conferir a implantação `Ready`, HTTP 200, cabeçalhos e os três
   horários públicos. O envio documental não implanta, reinicia ou reconecta
   o runtime das VPS; o candidato permanece aguardando push explícito.
+
+## 2026-08-30 19:38:09 (horário de Brasília) — Publicação final comprovada
+
+- O envio documental ao `main` terminou e a implantação integrada da Vercel
+  foi confirmada como `Ready`. A URL canônica e o bundle responderam HTTP 200.
+- Os três horários visíveis coincidem com o instante canônico de conteúdo,
+  `2026-08-30T19:36:19-03:00`, também presente no bundle e no manifesto. Foram
+  conferidos os 80 registros, as duas contagens de testes, o caráter offline e
+  o push operacional pendente.
+- HSTS, CSP, `nosniff`, bloqueio de frames e política de referência mantidos.
+  `techinical_referrence.md` registra o aceite efetivo; esta edição apenas
+  documental não muda a narrativa publicada nem o horário do conteúdo.
+- Resultado: sincronização pública concluída, candidato operacional somente
+  local e nenhuma alteração, reinício ou reconexão das VPS.

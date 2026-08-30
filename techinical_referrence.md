@@ -287,8 +287,13 @@ conteúdo novo, o horário explícito de Brasília e os cabeçalhos de seguranç
 previstos. Esses são aceites históricos da publicação com 79 registros.
 A atualização intermediária de 80 registros também passou por
 `progress:verify`, 22/22 testes, build e revisão de sanitização, com o conteúdo
-marcado `Em validação`. Tais gates não substituem os desta nova edição com a
-suíte e o pacote aprovados localmente: o manifesto permanece intocado e testes,
-build, commit e publicação não foram executados neste passo. O portal não
+marcado `Em validação`. A edição final, com suíte e pacote aprovados localmente,
+renovou o manifesto e repetiu `progress:verify`, 22/22 testes, build e revisão
+de sanitização. O envio ao `main` foi concluído; a implantação integrada ficou
+`Ready`. Às 19:38:09 de Brasília, a URL canônica e o bundle responderam HTTP
+200, os três horários exibiram exatamente `2026-08-30T19:36:19-03:00`, as
+métricas finais e limitações estavam presentes e os cabeçalhos de segurança
+permaneciam ativos. Este complemento registra o aceite, sem alterar o conteúdo
+público ou seu instante canônico. O portal não
 concede controle sobre o dashboard e não automatiza as ações humanas pendentes. Os detalhes
 ficam no log cumulativo.
