@@ -36,16 +36,21 @@ mesmo release publicou os atalhos de pagamento em Pedidos, a identificação do
 cliente em Aprovações e os novos cards CBL, sem automatizar decisões financeiras
 ou comerciais.
 
-Em 30/08, a retomada adversarial encontrou novas falhas de negação, contexto,
-moderação e recuperação no candidato local de confiabilidade. O gate integral
-atual está pendente: a última execução foi interrompida com código 130 e não
-constitui aprovação. Os números do ciclo anterior continuam preservados no
-histórico, mas não substituem a validação das alterações posteriores.
+Em 30/08, a retomada adversarial corrigiu falhas de negação, contexto,
+moderação e recuperação no candidato local de confiabilidade. Às 19:24:06 no
+horário de Brasília, a suíte integral terminou com 1.059 testes concluídos,
+1.058 aprovados, zero falhas e um skip ambiental esperado no macOS. Os 2.147
+arquivos operacionais monitorados permaneceram idênticos antes e depois. Às
+19:32:59, a cópia descartável do pacote também terminou aprovada: 1.054 testes,
+1.053 aprovados, zero falhas e um skip esperado. Os cinco testes do empacotador
+ficam fora do pacote por desenho. O código de origem e da cópia permaneceu
+idêntico antes e depois dos testes.
 
 As evidências atuais são separadas por método:
 
-- matriz combinatória offline: 160.000 casos, distribuídos em 40 produtos com
-  4.000 casos por produto e 20 famílias de cenários;
+- matriz combinatória offline: 160.000 de 160.000 casos aprovados, em 40 produtos com
+  4.000 casos por produto e 20 famílias de cenários; a cópia descartável repetiu
+  o mesmo resultado de 160.000 aprovações;
 - diálogos roteirizados: 240 turnos fixos, sem conversação livre entre IAs;
 - transporte: 240 falhas injetadas, sem entrega no WhatsApp;
 - geração: 30 turnos integrados; 160 chamadas a provedor simulado no total,
@@ -64,10 +69,12 @@ não uma avaliação semântica. IA real, entrega no WhatsApp e aceite operacion
 acompanhado continuam pendentes; etiquetas e Melhor Envio real permanecem fora
 do escopo.
 
-O candidato continua somente local, precisa concluir seus gates e aguarda
-pedido explícito de push. A produção de 29/08 não foi alterada. Esta preparação
-documental tampouco representa publicação: o instante final, o manifesto e os
-gates do portal ainda serão consolidados depois da suíte integral.
+O candidato e seu pacote de 375 arquivos e 114.552.419 bytes estão aprovados
+localmente. A reconstrução após os testes permaneceu idêntica, sem estado
+operacional nem dependências instaladas incluídos. A implantação aguarda pedido explícito de push e os gates seguros
+no Linux de destino. A produção de 29/08 não foi alterada. A publicação
+intermediária anterior não valida esta nova edição: o instante final, o
+manifesto e os gates do portal ainda serão consolidados pela coordenação.
 
 ## Requisitos
 

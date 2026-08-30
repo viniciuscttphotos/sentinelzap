@@ -23,7 +23,10 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.match(html, /aceite comprovou cinco contas conectadas/i);
   assert.match(html, /fundação logística instalada[^.]{0,120}desativada[^.]{0,100}sem credenciais[^.]{0,100}chamadas\s+ao provedor/i);
   assert.match(html, /candidato local de confiabilidade[^.]{0,200}Guardião IA[^.]{0,160}recuperação de mensagens/i);
-  assert.match(html, /gate integral atual está pendente[^.]{0,120}interrompida[^.]{0,80}130[^.]{0,80}não constitui aprovação/i);
+  assert.match(html, /suíte integral local foi aprovada[^.]{0,80}1\.059 testes\s+concluídos, 1\.058 aprovados, zero falhas e um skip ambiental esperado no macOS/i);
+  assert.match(html, /2\.147 arquivos operacionais[^.]{0,120}idênticos antes e depois/i);
+  assert.match(html, /cópia descartável do pacote também foi aprovada: 1\.054 testes, com 1\.053\s+aprovados, zero falhas e um skip esperado/i);
+  assert.match(html, /aceites são locais, não operacionais/i);
   assert.match(html, /160\.000 casos combinatórios offline[^.]{0,100}40 produtos[^.]{0,100}4\.000 casos[^.]{0,100}20 famílias/i);
   assert.match(html, /240 turnos de diálogos fixos[^.]{0,80}240 falhas injetadas[^.]{0,80}30 turnos[^.]{0,80}160 chamadas a provedor simulado[^.]{0,80}casos isolados/i);
   assert.match(html, /não são conversas com LLM real[^.]{0,180}comparação semântica/i);
@@ -34,7 +37,7 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.match(html, /candidato ainda não\s+foi enviado à VPS/i);
   assert.match(html, /carregamento inconsistente de configuração[^.]{0,100}quórum insuficiente/i);
   assert.match(html, /Mídia sem legenda permanece para revisão\s+manual/i);
-  assert.match(html, /próximo ciclo é concluir os gates do candidato[^.]{0,150}pedido explícito/i);
+  assert.match(html, /candidato está aprovado localmente[^.]{0,150}pedido\s+explícito[^.]{0,100}gates seguros no Linux de destino/i);
 });
 
 test('HTML oferece SEO, OpenGraph e marcos básicos de acessibilidade', async () => {

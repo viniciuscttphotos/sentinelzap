@@ -613,3 +613,86 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
 - Encaminhamento documental ao Git principal para atualização pela integração
   Vercel. A conclusão depende de Ready, HTTP 200, cabeçalhos e data/hora visíveis;
   nenhuma implantação operacional está incluída.
+
+## 2026-08-30 19:26:43 (horário de Brasília) — Suíte local aprovada e pacote ainda em validação
+
+- Arquivos e trechos: `src/data.js`, primeira métrica, resultado da campanha,
+  próximo gate e validação do registro 80; `index.html`, resumo, estado e direção;
+  `test/data.test.js` e `test/site.test.js`, contratos dos números confirmados e
+  da pendência do pacote; `README.md` e `techinical_referrence.md`, estado atual
+  e limites da evidência.
+- Evidência recebida da coordenação: a suíte integral terminou às 19:24:06 no
+  horário de Brasília com 1.059 testes, 1.058 aprovações, zero falhas e um skip
+  ambiental esperado no macOS. A decomposição foi 208 de CRM/persistência,
+  831 gerais (830 aprovados e um skip) e 20 legados. Os 2.147 arquivos
+  operacionais monitorados permaneceram idênticos antes e depois.
+- Campanha: 160.000 de 160.000 casos aprovados em 486.397 ms, mantendo 40
+  produtos × 4.000 casos e 20 famílias determinísticas offline. Essa evidência
+  continua separada dos 240 turnos fixos, 240 falhas injetadas e 30 turnos de
+  geração com 160 chamadas simuladas no total; não comprova LLM real, entrega no
+  WhatsApp ou equivalência semântica com respostas humanas.
+- Pacote e finalidade: foram identificados 375 arquivos e 114.552.419 bytes,
+  mas a cópia descartável ainda está em validação, sem aceite confirmado. O
+  registro permanece `Em validação`, enquanto a narrativa passa a reconhecer o
+  gate local verde. A interrupção anterior fica apenas no histórico.
+- Sincronização: os quatro usos atuais de `2026-08-30T19:03:34-03:00` e o
+  manifesto permanecem preservados para renovação conjunta pela coordenação
+  depois do conteúdo final. O registro 79 continua com seu horário original.
+- Validação desta edição: apenas revisão estática; nenhum teste, build,
+  commit ou push foi executado neste passo. Os contratos do portal deverão ser
+  executados depois da sincronização final, sem reutilizar o aceite anterior.
+- Fronteiras: a produção de 29/08 segue preservada e o push operacional
+  continua pendente. Guardião operacional, IA real, WhatsApp e confronto
+  semântico humano não recebem aceite por estes testes; 20 lacunas de artes,
+  etiquetas e Melhor Envio real mantêm os limites já documentados.
+
+## 2026-08-30 19:34:31 (horário de Brasília) — Aceite local da cópia descartável do pacote
+
+- Arquivos e trechos: `src/data.js`, métrica consolidada, próximo gate e estado
+  do registro 80; `index.html`, aceite do pacote e limites operacionais;
+  `test/data.test.js` e `test/site.test.js`, contratos dos dois gates;
+  `README.md` e `techinical_referrence.md`, estado validado localmente.
+- Evidência recebida da coordenação: às 19:32:59 no horário de Brasília, a
+  cópia descartável do pacote encerrou com saída zero, 1.054 testes, 1.053
+  aprovações, zero falhas e um skip esperado. A composição foi 208 testes de
+  CRM/persistência, 826 gerais (825 aprovados e um skip) e 20 legados. A
+  diferença de cinco testes em relação aos 1.059 locais corresponde aos testes
+  do empacotador, excluídos por desenho.
+- Repetição e integridade: a campanha repetiu 160.000 de 160.000 aprovações
+  na cópia em 393.714,849 ms. Os 2.147 arquivos operacionais monitorados e o
+  código de origem e da cópia permaneceram idênticos antes e depois. O pacote
+  validado contém 375 arquivos e 114.552.419 bytes. A reconstrução posterior
+  aos testes foi confirmada idêntica, sem estado operacional nem dependências
+  instaladas incluídos no pacote.
+- Motivo e finalidade: o registro 80 passa a `Validado` somente no contexto
+  `Local`; narrativa e testes separam 1.058 aprovações locais e 1.053 do pacote,
+  com zero falhas e um skip esperado em cada suíte. O roadmap agora aguarda
+  pedido explícito de push e gates seguros no Linux de destino.
+- Limites preservados: nenhuma chamada real a LLM, entrega no WhatsApp ou
+  avaliação semântica humana é inferida da campanha offline. O Guardião ainda
+  depende de configuração consistente e quórum suficiente no runtime; mídia
+  sem legenda exige revisão manual. As 20 lacunas de artes, etiquetas e Melhor
+  Envio real permanecem com as exclusões e pendências documentadas. A produção
+  de 29/08 segue intacta.
+- Sincronização e validação editorial: horário `2026-08-30T19:03:34-03:00`,
+  seus três fallbacks e manifesto preservados para finalização coordenada.
+  Apenas revisão estática foi feita neste passo; testes, build, commit e
+  publicação final ainda dependem dos gates do portal. O aceite operacional
+  não é ampliado pela futura publicação documental.
+
+## 2026-08-30 19:37:05 (horário de Brasília) — Gates finais da sincronização
+
+- `src/data.js`, três fallbacks de `index.html` e
+  `sync/progress-source.json`: instante canônico renovado para
+  `2026-08-30T19:36:19-03:00`, correspondente ao conteúdo final da reauditoria.
+  O manifesto confere os 80 registros totais e 79 técnicos da fonte estabilizada.
+- `techinical_referrence.md`: estado e contrato temporal revisados, preservando
+  a separação entre aceite local e operacional. Revisão independente do diff
+  público não encontrou informações sensíveis ou promessa de execução real.
+- Validação nova concluída: `npm run progress:verify`, `npm run check`, os
+  22/22 testes, build Vite e `git diff --check`, todos com saída zero. A
+  sanitização integra os testes e foi novamente conferida na revisão pública.
+- Próximo passo desta publicação: enviar somente o subprojeto documental ao
+  `main` e conferir a implantação `Ready`, HTTP 200, cabeçalhos e os três
+  horários públicos. O envio documental não implanta, reinicia ou reconecta
+  o runtime das VPS; o candidato permanece aguardando push explícito.

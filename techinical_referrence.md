@@ -197,9 +197,11 @@ fonte e um registro documental de publicação, totalizando 80. O mais recente �
 “Retomada adversarial da confiabilidade e delimitação das evidências”. O
 registro 79 conserva seu instante comprovado de publicação,
 `2026-08-30T09:34:04-03:00`; somente o novo registro acompanha a constante da
-última atualização. O instante provisório desta edição ainda precisa ser
-substituído pelo instante final, sincronizado ao manifesto e aos três fallbacks
-HTML antes dos gates e da publicação.
+última atualização. O instante do conteúdo final é
+`2026-08-30T19:36:19-03:00`, no fuso `America/Sao_Paulo`, e coincide com o
+manifesto e os três fallbacks HTML. A sincronização só é considerada publicada
+após os gates locais, o deploy `Ready` e a conferência do mesmo horário na URL
+canônica.
 
 O release de produção vigente continua sendo o de 29/08. Seu aceite histórico
 registrou 772 testes locais aprovados, sem falhas e com um skip esperado, e
@@ -228,13 +230,29 @@ determinísticas e roteiros fixos, sem LLM real nem comprovação de equivalênc
 semântica humana, e que seu aceite não valida o código atual. O registro 80
 não reutiliza esses aceites para as alterações posteriores: a retomada
 adversarial encontrou novas falhas de negação, troca de contexto, moderação e
-recuperação. A última suíte integral foi interrompida com código 130, portanto
-o gate atual e a reconferência do pacote continuam pendentes.
+recuperação. A repetição da suíte integral terminou às 19:24:06, no horário de
+Brasília, com 1.059 testes concluídos: 1.058 aprovados, zero falhas e um skip
+ambiental esperado no macOS. Foram 208 testes de CRM/persistência, 831 gerais
+(830 aprovados e um skip) e 20 legados. Os 2.147 arquivos operacionais
+monitorados permaneceram idênticos antes e depois da execução.
 
-As seis métricas executivas agora distinguem o gate pendente, a matriz
+A cópia descartável do pacote, com 375 arquivos e 114.552.419 bytes, terminou
+aprovada às 19:32:59 no horário de Brasília: 1.054 testes, 1.053 aprovações,
+zero falhas e um skip esperado. Foram 208 testes de CRM/persistência, 826 gerais
+(825 aprovados e um skip) e 20 legados; os cinco testes do empacotador ficam fora
+do pacote por desenho. Os 2.147 arquivos operacionais monitorados e o código de
+origem e da cópia permaneceram idênticos antes e depois. O registro 80 passa a
+`Validado`, com contexto `Local` e sem aceite operacional implícito.
+A reconstrução final após os testes permaneceu idêntica em conteúdo e
+composição, com 375 arquivos e 114.552.419 bytes, sem estado operacional ou
+dependências instaladas no pacote.
+
+As seis métricas executivas agora distinguem os gates local e do pacote, a matriz
 combinatória offline, os turnos fixos e falhas injetadas, a geração com provedor
 simulado, o inventário do CRM e o aceite histórico da produção. A campanha
-ampliada contém 160.000 casos, com 40 produtos × 4.000 casos em 20 famílias.
+ampliada aprovou 160.000 de 160.000 casos, com 40 produtos × 4.000 casos em 20
+famílias; a execução levou 486.397 ms. A cópia descartável repetiu as 160.000
+aprovações em 393.714,849 ms.
 Separadamente, há 240 turnos de diálogos fixos e 240 falhas injetadas de
 transporte. A geração exercita 30 turnos integrados, com 160 chamadas a provedor
 simulado no total, incluindo os casos isolados. Esses números não representam
@@ -254,9 +272,8 @@ de configuração e quórum insuficiente. Mídia sem legenda exige revisão manu
 As 20 combinações de produto e card sem arte exata permanecem em backlog com
 indisponibilidade segura, sem substituição por arte incorreta. IA real,
 WhatsApp, comparação semântica humana e aceite operacional continuam pendentes.
-O roadmap exige fechar os gates locais e do pacote, obter pedido explícito de
-push e cumprir os gates do destino antes de qualquer implantação. A produção
-de 29/08 permanece intacta.
+O roadmap exige pedido explícito de push e gates seguros no Linux de destino
+antes de qualquer implantação. A produção de 29/08 permanece intacta.
 
 A página pública continua destinada a `https://sentinelzap.vercel.app/`, e a
 landing anterior está preservada na tag `legacy-landing-2026-08-26`. Uma
@@ -267,8 +284,11 @@ de 30/08 estabilizou a fonte, regenerou o manifesto, aprovou `progress:verify`,
 21/21 testes, build e sanitização e foi enviada ao `main`. A integração Vercel
 ficou `Ready`; o alias canônico respondeu HTTP 200 com os 79 registros, o
 conteúdo novo, o horário explícito de Brasília e os cabeçalhos de segurança
-previstos. Esses são aceites históricos da publicação com 79 registros, não
-gates da preparação atual com 80. Nesta edição, o manifesto foi deliberadamente
-preservado até a estabilização da fonte, e testes, build, commit e publicação
-não foram executados. O portal não concede controle sobre o dashboard e não
-automatiza as ações humanas pendentes. Os detalhes ficam no log cumulativo.
+previstos. Esses são aceites históricos da publicação com 79 registros.
+A atualização intermediária de 80 registros também passou por
+`progress:verify`, 22/22 testes, build e revisão de sanitização, com o conteúdo
+marcado `Em validação`. Tais gates não substituem os desta nova edição com a
+suíte e o pacote aprovados localmente: o manifesto permanece intocado e testes,
+build, commit e publicação não foram executados neste passo. O portal não
+concede controle sobre o dashboard e não automatiza as ações humanas pendentes. Os detalhes
+ficam no log cumulativo.

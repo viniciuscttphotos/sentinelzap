@@ -119,13 +119,15 @@ test('ordena horários comprovados dentro de cada data', () => {
 });
 
 test('distingue o candidato local, o release vigente e o estado das contas', () => {
-  const candidateMetric = executiveMetrics.find(({ value }) => value === 'Gate pendente');
+  const candidateMetric = executiveMetrics.find(({ value }) => value === '1.058 / 1.053');
   const campaignMetric = executiveMetrics.find(({ value }) => value === '160.000');
   const releaseMetric = executiveMetrics.find(({ value }) => value === '772 / 768');
   const scriptedMetric = executiveMetrics.find(({ value }) => value === '240 + 240');
   const generationMetric = executiveMetrics.find(({ value }) => value === '30 / 160');
   const crmMetric = executiveMetrics.find(({ value }) => value === '96 + 40');
-  assert.match(candidateMetric.note, /integral.*interrompida.*130.*não é gate verde/i);
+  assert.match(candidateMetric.note, /Suíte local.*1\.059 testes.*1\.058 aprovados/i);
+  assert.match(candidateMetric.note, /Cópia descartável do pacote.*1\.054 testes.*1\.053 aprovados.*Ambas.*zero falhas.*skip ambiental esperado.*macOS/i);
+  assert.match(campaignMetric.note, /160\.000 de 160\.000 casos aprovados/i);
   assert.match(campaignMetric.note, /40 produtos.*4\.000 casos.*20 famílias.*não equivale.*modelo.*real/i);
   assert.match(releaseMetric.note, /produção.*29\/08.*772 testes locais.*768.*Linux/i);
   assert.match(releaseMetric.note, /aceite.*cinco contas.*14 snapshots/i);
@@ -383,7 +385,8 @@ test('reauditoria delimita evidência offline, limites humanos e ausência de no
   const record = progressEntries.at(-1);
   assert.equal(record.context, 'Local');
   assert.equal(record.kind, 'Reauditoria');
-  assert.equal(record.state, 'Em validação');
+  assert.equal(record.state, 'Validado');
+  assert.match(record.summary, /cópia descartável do pacote.*aprovadas em ambiente local e isolado.*sem alterar a produção.*aceite operacional/i);
   assert.match(record.result, /160\.000 casos combinatórios offline.*40 produtos.*4\.000 casos.*20 famílias/i);
   assert.match(record.result, /240 turnos fixos.*240 falhas injetadas.*30 turnos.*160 chamadas.*simulado.*casos isolados/i);
   assert.match(record.result, /96 botões estáticos.*40 templates dinâmicos.*24 formulários.*20.*exercitados.*quatro.*excluídos/i);
@@ -391,10 +394,15 @@ test('reauditoria delimita evidência offline, limites humanos e ausência de no
   assert.match(record.result, /20 combinações.*sem arte exata/i);
   assert.match(record.result, /carregamento inconsistente de configuração.*quórum insuficiente/i);
   assert.match(record.result, /mídia sem legenda.*revisão manual/i);
-  assert.match(record.validation, /integral pendente.*interrompida.*130.*não constitui aprovação/i);
+  assert.match(record.validation, /integral local aprovada.*1\.059 testes concluídos.*1\.058 aprovados.*zero falhas.*skip ambiental esperado.*macOS/i);
+  assert.match(record.validation, /2\.147 arquivos operacionais.*código de origem e da cópia.*idênticos antes e depois/i);
+  assert.match(record.validation, /375 arquivos.*114\.552\.419 bytes.*aprovado em cópia descartável.*1\.054 testes.*1\.053 aprovados.*zero falhas.*skip esperado/i);
+  assert.match(record.validation, /cinco testes do empacotador ficam fora por desenho/i);
+  assert.match(record.validation, /novamente 160\.000 de 160\.000 casos na cópia/i);
   assert.match(record.validation, /não usa LLM real nem WhatsApp/i);
   assert.match(record.validation, /somente agregado.*não uma avaliação semântica/i);
   assert.match(record.validation, /produção de 29\/08 não foi alterada.*push.*pendente/i);
+  assert.match(record.validation, /gates do Linux de destino ainda por executar/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {

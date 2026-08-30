@@ -1,6 +1,6 @@
 const REPORT_TIME_ZONE = 'America/Sao_Paulo';
 const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
-const REPORT_UPDATED_AT = '2026-08-30T19:03:34-03:00';
+const REPORT_UPDATED_AT = '2026-08-30T19:36:19-03:00';
 
 function formatReportUpdatedAt(value) {
   const date = new Date(value);
@@ -42,14 +42,14 @@ export const reportMeta = Object.freeze({
 
 export const executiveMetrics = Object.freeze([
   {
-    value: 'Gate pendente',
-    label: 'reauditoria do candidato local',
-    note: 'A última execução integral foi interrompida com código 130 e não é gate verde. A repetição final ainda precisa terminar.',
+    value: '1.058 / 1.053',
+    label: 'aprovações locais e do pacote',
+    note: 'Suíte local: 1.059 testes, 1.058 aprovados. Cópia descartável do pacote: 1.054 testes, 1.053 aprovados. Ambas terminaram com zero falhas e um skip ambiental esperado no macOS.',
   },
   {
     value: '160.000',
     label: 'matriz combinatória offline',
-    note: '40 produtos × 4.000 casos em 20 famílias de cenários. Essa contagem não equivale a conversas com um modelo de linguagem real.',
+    note: '160.000 de 160.000 casos aprovados: 40 produtos × 4.000 casos em 20 famílias de cenários. Essa contagem não equivale a conversas com um modelo de linguagem real.',
   },
   {
     value: '240 + 240',
@@ -76,11 +76,11 @@ export const executiveMetrics = Object.freeze([
 export const roadmap = Object.freeze([
   {
     priority: 'Próximo gate',
-    title: 'Fechar os gates do candidato local antes de um pedido explícito de push',
+    title: 'Candidato local aprovado: aguardar pedido explícito de push',
     description:
-      'A reauditoria ainda exige conclusão da suíte integral, pacote reproduzível e validação no ambiente de destino. A produção continua no release de 29/08; etiquetas e integração logística real permanecem fora do escopo.',
+      'A suíte integral local e a cópia descartável do pacote passaram. A implantação ainda depende de pedido explícito de push e dos gates seguros no Linux de destino. A produção permanece no release de 29/08; etiquetas e integração logística real ficam fora do escopo.',
     owner: 'Operação técnica',
-    gate: 'Suíte integral verde, pacote aprovado, pedido explícito de push e gates seguros no destino',
+    gate: 'Pedido explícito de push, gates seguros no Linux de destino e aceite operacional',
   },
   {
     priority: 'Conteúdo',
@@ -1191,13 +1191,13 @@ const records = [
     title: 'Retomada adversarial da confiabilidade e delimitação das evidências',
     context: 'Local',
     kind: 'Reauditoria',
-    state: 'Em validação',
+    state: 'Validado',
     summary:
-      'A reauditoria encontrou novas falhas de interpretação de negações, troca de contexto, consenso de moderação e retomada de recuperação. Correções locais e testes do despacho dos controles do CRM em ambiente isolado reforçam o candidato, sem alterar a produção.',
+      'A reauditoria corrigiu falhas de interpretação de negações, troca de contexto, consenso de moderação e retomada de recuperação. A suíte integral e a cópia descartável do pacote foram aprovadas em ambiente local e isolado, sem alterar a produção ou substituir o aceite operacional.',
     result:
-      'A matriz passou a 160.000 casos combinatórios offline: 40 produtos × 4.000 casos e 20 famílias. Há ensaios separados de 240 turnos fixos, 240 falhas injetadas e geração com 30 turnos integrados; as 160 chamadas a provedor simulado incluem também casos isolados. O CRM inventaria 96 botões estáticos, 40 templates dinâmicos e 24 formulários, dos quais 20 foram exercitados em máquina virtual de testes (VM) e quatro logísticos excluídos; isso não é QA em navegador real. Restam 20 combinações de produto e card sem arte exata. O diagnóstico do Guardião identificou carregamento inconsistente de configuração e quórum insuficiente; mídia sem legenda permanece para revisão manual.',
+      'A matriz aprovou todos os 160.000 casos combinatórios offline: 40 produtos × 4.000 casos e 20 famílias. Há ensaios separados de 240 turnos fixos, 240 falhas injetadas e geração com 30 turnos integrados; as 160 chamadas a provedor simulado incluem também casos isolados. O CRM inventaria 96 botões estáticos, 40 templates dinâmicos e 24 formulários, dos quais 20 foram exercitados em máquina virtual de testes (VM) e quatro logísticos excluídos; isso não é QA em navegador real. Restam 20 combinações de produto e card sem arte exata. O diagnóstico do Guardião identificou carregamento inconsistente de configuração e quórum insuficiente; mídia sem legenda permanece para revisão manual.',
     validation:
-      'Gate integral pendente: a última execução foi interrompida com código 130 e não constitui aprovação. Os resultados finais e o pacote ainda precisam ser reconferidos. A campanha é offline, não usa LLM real nem WhatsApp; o confronto humano disponível é somente agregado, não uma avaliação semântica das respostas. IA real, entrega no WhatsApp e aceite operacional continuam pendentes. Etiquetas e Melhor Envio real permanecem fora. A produção de 29/08 não foi alterada e o push do candidato segue pendente.',
+      'Suíte integral local aprovada: 1.059 testes concluídos, 1.058 aprovados, zero falhas e um skip ambiental esperado no macOS. O pacote com 375 arquivos e 114.552.419 bytes foi aprovado em cópia descartável, que concluiu 1.054 testes: 1.053 aprovados, zero falhas e um skip esperado; os cinco testes do empacotador ficam fora por desenho. A campanha aprovou novamente 160.000 de 160.000 casos na cópia. Os 2.147 arquivos operacionais monitorados e o código de origem e da cópia permaneceram idênticos antes e depois. A campanha é offline, não usa LLM real nem WhatsApp; o confronto humano disponível é somente agregado, não uma avaliação semântica das respostas. IA real, entrega no WhatsApp e aceite operacional continuam pendentes. Etiquetas e Melhor Envio real permanecem fora. A produção de 29/08 não foi alterada e o push do candidato segue pendente, com os gates do Linux de destino ainda por executar.',
     tags: ['reauditoria', 'limites da evidência', 'IA', 'CRM', 'candidato'],
   },
 ];
