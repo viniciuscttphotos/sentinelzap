@@ -307,8 +307,8 @@ test('distingue o candidato local, o release vigente e o estado das contas', () 
   assert.equal(reliabilityCandidateRecord.state, 'Validado');
   assert.match(reliabilityCandidateRecord.summary, /Guardião IA.*fila durável.*confirmação idempotente/i);
   assert.match(reliabilityCandidateRecord.summary, /cliente.*pedido.*pagamento manual/i);
-  assert.match(reliabilityCandidateRecord.result, /148\.000.*37 produtos.*4\.000 abordagens/i);
-  assert.match(reliabilityCandidateRecord.result, /conversa entre robôs.*agregada.*respostas humanas/i);
+  assert.match(reliabilityCandidateRecord.result, /148\.000 abordagens de produto.*37 produtos.*4\.000 formulações/i);
+  assert.match(reliabilityCandidateRecord.result, /Separadamente.*robô-a-robô.*111\/111 turnos.*respostas humanas.*agregada.*sanitizada/i);
   assert.match(reliabilityCandidateRecord.result, /Etiquetas.*integração logística real.*fora/i);
   assert.match(reliabilityCandidateRecord.result, /21 combinações.*sem arte exata.*indisponibilidade segura/i);
   assert.match(reliabilityCandidateRecord.validation, /936 testes.*935 aprovados.*um skip esperado.*sem falhas/i);
@@ -316,7 +316,7 @@ test('distingue o candidato local, o release vigente e o estado das contas', () 
   assert.match(reliabilityCandidateRecord.validation, /931 testes.*930 aprovados.*um skip esperado.*zero falhas/i);
   assert.match(reliabilityCandidateRecord.validation, /cinco contratos do empacotador.*fora do payload/i);
   assert.match(reliabilityCandidateRecord.validation, /não iniciou WhatsApp.*Chrome.*aplicação.*rede externa.*dados pessoais/i);
-  assert.match(reliabilityCandidateRecord.validation, /permanece local.*nenhum push.*produção/i);
+  assert.match(reliabilityCandidateRecord.validation, /permanece local.*nenhum push do candidato para a VPS.*runtime de produção/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {

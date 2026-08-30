@@ -46,10 +46,11 @@ bytes. Uma cópia descartável do artefato concluiu 931 testes, com 930 aprovado
 um skip esperado e zero falhas; os cinco contratos do próprio empacotador não
 viajam no payload por desenho.
 
-A validação conversacional isolada aprovou 148.000 cenários: 37 produtos com
-4.000 formulações naturais por produto, conversa entre robôs e confronto apenas
-agregado e sanitizado com respostas humanas. A campanha não iniciou WhatsApp,
-Chrome, aplicação nem rede externa e não usou dados pessoais. Etiquetas e
+A validação conversacional isolada aprovou 148.000 abordagens de produto: 37
+produtos com 4.000 formulações naturais cada. Separadamente, o ensaio
+robô-a-robô aprovou 111/111 turnos e o confronto com respostas humanas permaneceu
+somente agregado e sanitizado. A campanha não iniciou WhatsApp, Chrome,
+aplicação nem rede externa e não usou dados pessoais. Etiquetas e
 integração logística real ficaram fora da entrega. O inventário identificou 21
 combinações de produto e card sem arte exata; nesses casos, o comportamento
 aprovado é informar indisponibilidade sem substituir o material por outro. A

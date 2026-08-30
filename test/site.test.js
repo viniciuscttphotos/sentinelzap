@@ -25,6 +25,7 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.match(html, /370 arquivos[^.]{0,80}114\.395\.897[^.]{0,120}930 de 931 testes/i);
   assert.match(html, /cinco contratos do empacotador[^.]{0,100}fora do payload/i);
   assert.match(html, /148\.000 abordagens[^.]{0,100}37 produtos[^.]{0,100}4\.000 formulações/i);
+  assert.match(html, /ensaio separado[^.]{0,80}111 de 111 turnos robô-a-robô/i);
   assert.match(html, /sem iniciar WhatsApp[^.]{0,100}Chrome[^.]{0,100}rede externa[^.]{0,100}dados pessoais/i);
   assert.match(html, /Etiquetas[^.]{0,120}integração logística real[^.]{0,100}fora/i);
   assert.match(html, /21[^.]{0,100}produto e card[^.]{0,120}indisponibilidade segura/i);

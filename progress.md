@@ -495,9 +495,10 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   separadamente como a versão que continua em produção.
 - Síntese pública: Guardião IA, fila durável de recuperação, confirmação
   idempotente de entregas e QA dos fluxos humanos do CRM foram consolidados sem
-  detalhes exploráveis. A campanha sintética registra 148.000 cenários, 37
-  produtos e 4.000 formulações por produto, além de conversa entre robôs e
-  comparação humana exclusivamente agregada e sanitizada.
+  detalhes exploráveis. A campanha sintética registra 148.000 abordagens de
+  produto, com 37 produtos e 4.000 formulações por produto. Em eixo separado,
+  o ensaio robô-a-robô aprovou 111/111 turnos e a comparação humana permaneceu
+  exclusivamente agregada e sanitizada.
 - Limites: etiquetas e integração logística real ficaram fora. As 21
   combinações de produto e card sem arte exata retornam indisponibilidade segura
   e permanecem como backlog de conteúdo. A campanha não iniciou WhatsApp,
@@ -510,6 +511,7 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   estabilização da fonte; `progress:verify` comprovou 78 registros documentais
   e 77 técnicos, `npm run check` aprovou 19/19 testes e o build Vite 8.2.2. A
   revisão de whitespace e a busca adicional de sanitização também passaram.
-- Estado de publicação: conteúdo e gates estão prontos para commit e push do
-  portal documental. Até este registro não houve deploy Vercel nem alteração
-  na VPS operacional.
+- Estado de publicação: o conteúdo foi enviado ao `main`, a integração Vercel
+  ficou `Ready` e o alias canônico respondeu HTTP 200 com os 78 registros e os
+  cabeçalhos de segurança esperados. A publicação foi somente documental; não
+  houve alteração na VPS operacional.

@@ -205,10 +205,11 @@ O pacote code-only candidato reproduziu 370 arquivos e 114.395.897 bytes. Sua
 cópia descartável concluiu 931 testes: 930 aprovados, um skip esperado e zero
 falhas; os cinco contratos do empacotador são excluídos do payload por desenho.
 
-A campanha conversacional desse candidato aprovou 148.000 cenários isolados,
-distribuídos em 37 produtos e 4.000 formulações por produto. Ela incluiu conversa
-entre robôs e comparação humana somente agregada e sanitizada, sem iniciar
-WhatsApp, Chrome, aplicação ou rede externa e sem usar dados pessoais. Etiquetas
+A campanha conversacional desse candidato aprovou 148.000 abordagens de produto
+isoladas, distribuídas em 37 produtos e 4.000 formulações por produto. Em eixo
+separado, o ensaio robô-a-robô aprovou 111/111 turnos e a comparação humana
+permaneceu somente agregada e sanitizada. A campanha não iniciou WhatsApp,
+Chrome, aplicação ou rede externa e não usou dados pessoais. Etiquetas
 e integração logística real permaneceram fora do escopo. Para as 21 combinações
 de produto e card sem arte exata, o conteúdo público documenta indisponibilidade
 segura e um backlog explícito de criação de artes, sem prometer cobertura
@@ -223,8 +224,9 @@ landing anterior está preservada na tag `legacy-landing-2026-08-26`. Esta
 versão publicada anterior passou por `progress:verify`, pelos 19 testes do portal,
 pelo build Vite e pela busca de sanitização, e permanece disponível no alias
 canônico com os cabeçalhos de segurança preservados. A atualização documental
-de 30/08 já estabilizou a fonte, regenerou o manifesto e aprovou
-`progress:verify`, 19/19 testes, build e sanitização; está pronta para commit,
-push e publicação, ainda não realizados neste ponto do registro. Ela não
-concede controle sobre o dashboard e não automatiza as ações humanas pendentes.
-Os detalhes ficam registrados no log cumulativo.
+de 30/08 estabilizou a fonte, regenerou o manifesto, aprovou `progress:verify`,
+19/19 testes, build e sanitização e foi enviada ao `main`. A integração Vercel
+ficou `Ready`; o alias canônico respondeu HTTP 200 com os 78 registros, o
+conteúdo novo e os cabeçalhos de segurança previstos. Ela não concede controle
+sobre o dashboard e não automatiza as ações humanas pendentes. Os detalhes
+ficam registrados no log cumulativo.
