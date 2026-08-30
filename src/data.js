@@ -1137,7 +1137,7 @@ const records = [
     result:
       'Uma campanha sintética aprovou 148.000 cenários, com 37 produtos e 4.000 abordagens naturais por produto, incluindo conversa entre robôs e comparação apenas agregada com respostas humanas. Etiquetas e integração logística real ficaram fora. Em 21 combinações de produto e card sem arte exata, o sistema responde indisponibilidade segura e mantém a criação das artes como backlog de conteúdo.',
     validation:
-      'Gate integral: 936 testes concluídos, 935 aprovados e um skip esperado, sem falhas. A campanha não iniciou WhatsApp, Chrome, aplicação, rede externa nem usou dados pessoais. O candidato permanece local; nenhum push ou mudança no runtime de produção foi realizado.',
+      'Gate integral: 936 testes concluídos, 935 aprovados e um skip esperado, sem falhas. O pacote code-only reproduziu 370 arquivos e 114.395.897 bytes; sua cópia descartável concluiu 931 testes, com 930 aprovados, um skip esperado e zero falhas. Os cinco contratos do empacotador ficaram fora do payload por desenho. A campanha não iniciou WhatsApp, Chrome, aplicação, rede externa nem usou dados pessoais. O candidato permanece local; nenhum push ou mudança no runtime de produção foi realizado.',
     tags: ['confiabilidade', 'IA', 'CRM', 'candidato'],
   },
 ];

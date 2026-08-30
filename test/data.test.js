@@ -312,6 +312,9 @@ test('distingue o candidato local, o release vigente e o estado das contas', () 
   assert.match(reliabilityCandidateRecord.result, /Etiquetas.*integração logística real.*fora/i);
   assert.match(reliabilityCandidateRecord.result, /21 combinações.*sem arte exata.*indisponibilidade segura/i);
   assert.match(reliabilityCandidateRecord.validation, /936 testes.*935 aprovados.*um skip esperado.*sem falhas/i);
+  assert.match(reliabilityCandidateRecord.validation, /370 arquivos.*114\.395\.897 bytes/i);
+  assert.match(reliabilityCandidateRecord.validation, /931 testes.*930 aprovados.*um skip esperado.*zero falhas/i);
+  assert.match(reliabilityCandidateRecord.validation, /cinco contratos do empacotador.*fora do payload/i);
   assert.match(reliabilityCandidateRecord.validation, /não iniciou WhatsApp.*Chrome.*aplicação.*rede externa.*dados pessoais/i);
   assert.match(reliabilityCandidateRecord.validation, /permanece local.*nenhum push.*produção/i);
 });

@@ -41,6 +41,10 @@ confiabilidade. O Guardião IA, a fila durável de recuperação de mensagens, a
 confirmação idempotente de entregas e os fluxos humanos do CRM entre cliente,
 pedido e pagamento manual foram reforçados. O gate integral terminou com 936
 testes concluídos, 935 aprovados e um skip esperado, sem falhas.
+O pacote code-only candidato foi reproduzido com 370 arquivos e 114.395.897
+bytes. Uma cópia descartável do artefato concluiu 931 testes, com 930 aprovados,
+um skip esperado e zero falhas; os cinco contratos do próprio empacotador não
+viajam no payload por desenho.
 
 A validação conversacional isolada aprovou 148.000 cenários: 37 produtos com
 4.000 formulações naturais por produto, conversa entre robôs e confronto apenas

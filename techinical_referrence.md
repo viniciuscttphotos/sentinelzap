@@ -201,6 +201,9 @@ release. Ele reforça Guardião IA, fila durável de recuperação, confirmaçã
 idempotente de entregas e fluxos humanos do CRM entre cliente, pedido e
 pagamento manual. Seu gate integral concluiu 936 testes: 935 aprovados, um skip
 esperado e zero falhas.
+O pacote code-only candidato reproduziu 370 arquivos e 114.395.897 bytes. Sua
+cópia descartável concluiu 931 testes: 930 aprovados, um skip esperado e zero
+falhas; os cinco contratos do empacotador são excluídos do payload por desenho.
 
 A campanha conversacional desse candidato aprovou 148.000 cenários isolados,
 distribuídos em 37 produtos e 4.000 formulações por produto. Ela incluiu conversa

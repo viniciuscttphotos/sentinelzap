@@ -503,10 +503,13 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   e permanecem como backlog de conteúdo. A campanha não iniciou WhatsApp,
   Chrome, aplicação ou rede externa e não usou dados pessoais.
 - Evidências: o candidato concluiu 936 testes, com 935 aprovados, um skip
-  esperado e zero falhas. O manifesto foi regenerado após a estabilização da
-  fonte; `progress:verify` comprovou 78 registros documentais e 77 técnicos,
-  `npm run check` aprovou 19/19 testes e o build Vite 8.2.2. A revisão de
-  whitespace e a busca adicional de sanitização também passaram.
+  esperado e zero falhas. O pacote code-only reproduziu 370 arquivos e
+  114.395.897 bytes; a cópia descartável concluiu 931 testes, com 930 aprovados,
+  um skip esperado e zero falhas, enquanto os cinco contratos do empacotador
+  ficaram fora do payload por desenho. O manifesto foi regenerado após a
+  estabilização da fonte; `progress:verify` comprovou 78 registros documentais
+  e 77 técnicos, `npm run check` aprovou 19/19 testes e o build Vite 8.2.2. A
+  revisão de whitespace e a busca adicional de sanitização também passaram.
 - Estado de publicação: conteúdo e gates estão prontos para commit e push do
   portal documental. Até este registro não houve deploy Vercel nem alteração
   na VPS operacional.
