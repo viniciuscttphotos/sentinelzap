@@ -515,3 +515,20 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   ficou `Ready` e o alias canônico respondeu HTTP 200 com os 78 registros e os
   cabeçalhos de segurança esperados. A publicação foi somente documental; não
   houve alteração na VPS operacional.
+
+## 2026-08-30 — Aceite final da publicação do candidato de confiabilidade
+
+- Fechamento editorial: a redação final separa explicitamente as 148.000
+  abordagens de produto dos 111/111 turnos robô-a-robô e distingue o push
+  documental do candidato operacional, que continua local e não foi enviado à
+  VPS.
+- Gate final: `progress:verify` comprovou 78 registros documentais e 77
+  técnicos; `npm run check` aprovou 19/19 testes e o build Vite 8.2.2. A revisão
+  de whitespace e a varredura adicional de sanitização passaram sem achados.
+- Publicação: a atualização foi enviada ao `main` e a integração Vercel ficou
+  `Ready`. O alias canônico respondeu HTTP 200 com a contagem, a formulação
+  aritmética corrigida, o candidato ainda aguardando push e os cabeçalhos HSTS,
+  CSP, `nosniff`, bloqueio de frames e políticas de origem esperados.
+- Fronteira preservada: esta atualização foi exclusivamente documental; não
+  iniciou WhatsApp, Chrome ou aplicação e não alterou serviço, sessão,
+  configuração, dados ou runtime da VPS operacional.
