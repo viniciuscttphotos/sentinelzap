@@ -1,6 +1,6 @@
 const REPORT_TIME_ZONE = 'America/Sao_Paulo';
 const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
-const REPORT_UPDATED_AT = '2026-08-30T19:36:19-03:00';
+const REPORT_UPDATED_AT = '2026-08-31T03:19:54-03:00';
 
 function formatReportUpdatedAt(value) {
   const date = new Date(value);
@@ -31,10 +31,10 @@ export const reportMeta = Object.freeze({
   updatedAtLabel: formatReportUpdatedAt(REPORT_UPDATED_AT),
   timeZone: REPORT_TIME_ZONE,
   timeZoneLabel: REPORT_TIME_ZONE_LABEL,
-  period: '15 a 30 de agosto de 2026',
-  sourceRecords: 79,
-  publishedRecords: 80,
-  productionReleaseDate: '29 de agosto de 2026',
+  period: '15 a 31 de agosto de 2026',
+  sourceRecords: 80,
+  publishedRecords: 81,
+  productionReleaseDate: '31 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
     'A linha do tempo mostra primeiro o registro documental mais recente. A fonte canônica permanece crescente; quando não há horário comprovado, nenhum horário é inventado.',
@@ -42,14 +42,24 @@ export const reportMeta = Object.freeze({
 
 export const executiveMetrics = Object.freeze([
   {
-    value: '1.058 / 1.053',
-    label: 'aprovações locais e do pacote',
-    note: 'Suíte local: 1.059 testes, 1.058 aprovados. Cópia descartável do pacote: 1.054 testes, 1.053 aprovados. Ambas terminaram com zero falhas e um skip ambiental esperado no macOS.',
+    value: '13 + 8',
+    label: 'seções documentais confrontadas',
+    note: '13 seções acrescentadas ao Markdown de protocolos e oito seções faltantes à compilação, além do complemento da seção existente de GHK-Cu. A transcrição segue os cards; não é validação clínica. Três cards com divergências mantêm quatro seções técnicas bloqueadas.',
+  },
+  {
+    value: '18 / 90',
+    label: 'fontes lidas e imagens preservadas',
+    note: '18 fontes visuais lidas individualmente, com as 90 imagens do inventário preservadas. São 22 indisponibilidades: 20 anteriores, incluindo NAD nasal não reconciliado, e dois técnicos existentes bloqueados nesta revisão. Nenhuma arte foi fabricada ou substituída.',
+  },
+  {
+    value: '1.157 / 1.152',
+    label: 'gates integrais da versão instalada',
+    note: 'Versão instalada: 1.157 testes locais, com 1.156 aprovações, zero falhas e um skip esperado, concluídos em 31/08 às 02:37:42 de Brasília; Linux: 1.152 de 1.152 aprovados às 02:33:41. Os gates dos cards de 1.126 testes locais e 1.121 no Linux antecedem o reparo da conta principal. Seu primeiro pacote falhou em um contrato de telemetria nas duas suítes integrais. Sete eventos foram restaurados; o focal passou 214 de 214 testes, com 31 regressões da conta principal. Os novos integrais foram aprovados e o pacote foi instalado em 31/08 às 02:52:31 de Brasília. O runtime foi aceito com cinco contas conectadas em duas checagens, com backup posterior e restauração isolada confirmados. A checagem final às 03:16:04,129 de Brasília aprovou cinco contas conectadas, nenhuma varredura ou job ativo e zero reinícios automáticos.',
   },
   {
     value: '160.000',
     label: 'matriz combinatória offline',
-    note: '160.000 de 160.000 casos aprovados: 40 produtos × 4.000 casos em 20 famílias de cenários. Essa contagem não equivale a conversas com um modelo de linguagem real.',
+    note: 'O candidato corrigido repetiu 160.000 de 160.000 casos aprovados tanto localmente quanto no Linux, com 40 produtos × 4.000 casos em 20 famílias de cenários. A nova execução levou 444,109 segundos no ambiente local e 63,956 segundos no Linux. Essa contagem não equivale a conversas com um modelo de linguagem real.',
   },
   {
     value: '240 + 240',
@@ -68,33 +78,33 @@ export const executiveMetrics = Object.freeze([
   },
   {
     value: '772 / 768',
-    label: 'aceites históricos da versão em produção',
-    note: 'Produção permanece no release de 29/08: 772 testes locais e 768 no pacote Linux; o aceite registrou cinco contas e 14 snapshots.',
+    label: 'aceites históricos da versão anterior',
+    note: 'Release anterior de 29/08: 772 testes locais e 768 no pacote Linux; seu aceite registrou cinco contas e 14 snapshots. O runtime e a continuidade da versão instalada em 31/08 foram aceitos, com 16 snapshots e restauração posterior aprovada.',
   },
 ]);
 
 export const roadmap = Object.freeze([
   {
-    priority: 'Próximo gate',
-    title: 'Candidato local aprovado: aguardar pedido explícito de push',
+    priority: 'Concluído',
+    title: 'Push instalado e validado',
     description:
-      'A suíte integral local e a cópia descartável do pacote passaram. A implantação ainda depende de pedido explícito de push e dos gates seguros no Linux de destino. A produção permanece no release de 29/08; etiquetas e integração logística real ficam fora do escopo.',
+      'O push foi explicitamente autorizado após o confronto dos cards. O candidato dos cards passou os gates local e Linux, mas o reinício do backup pré-publicação revelou falha na conexão principal. O primeiro pacote do reparo falhou em um contrato de telemetria nas duas integrais. Sete eventos foram restaurados, com 214 testes focais aprovados e congelamento formal às 02:26:08 de Brasília após revisão independente. Os novos integrais foram aprovados: 1.157 testes locais, com 1.156 aprovações e um skip esperado, e 1.152 de 1.152 no Linux, sem falhas. A reconstrução confirmou o pacote idêntico, instalado em 31/08 às 02:52:31 de Brasília. Cinco de cinco contas conectadas foram comprovadas às 03:02:41 e 03:03:57 de Brasília, sem scans ou jobs e com zero reinícios automáticos; o runtime foi aceito antes do backup. O monitor TLS manual passou às 02:55:51. O backup posterior concluiu às 03:06:03,807 de Brasília; a consulta às 03:07:22,516 confirmou 16 snapshots e zero locks. A restauração isolada passou às 03:09:47,807, sem falhas. A checagem final às 03:16:04,129 de Brasília aprovou cinco contas conectadas, cinco perfis de navegador, nenhuma varredura ou job ativo, zero reinícios automáticos e controles de API, SQLite, autenticação e arquivos protegidos. Implantação, runtime e continuidade foram aceitos. IA real e aceite funcional acompanhado permanecem em etapas próprias; etiquetas e integração logística real ficam fora do escopo.',
     owner: 'Operação técnica',
-    gate: 'Pedido explícito de push, gates seguros no Linux de destino e aceite operacional',
+    gate: 'Concluído: implantação, runtime e continuidade aceitos em 31/08',
   },
   {
     priority: 'Conteúdo',
-    title: 'Completar as 20 combinações de produto e card sem arte exata',
+    title: 'Reconciliar as 22 indisponibilidades de cards',
     description:
-      'Produzir e aprovar as artes ausentes antes de prometer cobertura visual universal. Até lá, o robô informa indisponibilidade sem substituir o material por outro produto ou formato.',
+      'São 20 indisponibilidades anteriores, incluindo NAD nasal não reconciliado, e dois técnicos existentes bloqueados por divergência na fonte: Retatrutida 20 mg e Somatropina 240 UI. As apresentações desses dois produtos, os preços e os originais permanecem preservados. Não fabricar ou substituir imagens para declarar cobertura universal; a liberação depende de confirmação da fonte, sem adaptar números ou vias.',
     owner: 'Conteúdo e operação comercial',
     gate: 'Artes corretas aprovadas e inventário de mídia revalidado',
   },
   {
-    priority: 'Após o push',
+    priority: 'Próxima validação funcional',
     title: 'Comprovar IA real, moderação e fluxos no runtime acompanhado',
     description:
-      'Executar recuperação histórica, moderação, conversação e entrega de cards de forma controlada. Corrigir o carregamento inconsistente de configuração e o quórum insuficiente do Guardião; validar IA real e comparação semântica humana. Mídia sem legenda exige revisão manual.',
+      'Executar recuperação histórica, moderação, conversação e entrega de cards de forma controlada. A leitura do Guardião em 31/08 às 01:17:48, horário de Brasília, encontrou três slots, uma origem de provedor e três grupos monitorados: o quórum de duas origens independentes não foi atingido. Comprovar a segunda origem e votos reais antes do aceite de moderação; validar IA real e comparação semântica humana. Mídia sem legenda exige revisão manual.',
     owner: 'Usuário autenticado e operação técnica',
     gate: 'Candidato publicado, configuração íntegra, quórum suficiente e aceite operacional sanitizado',
   },
@@ -1187,7 +1197,7 @@ const records = [
   },
   {
     date: '2026-08-30',
-    publishedAt: REPORT_UPDATED_AT,
+    publishedAt: '2026-08-30T19:36:19-03:00',
     title: 'Retomada adversarial da confiabilidade e delimitação das evidências',
     context: 'Local',
     kind: 'Reauditoria',
@@ -1199,6 +1209,21 @@ const records = [
     validation:
       'Suíte integral local aprovada: 1.059 testes concluídos, 1.058 aprovados, zero falhas e um skip ambiental esperado no macOS. O pacote com 375 arquivos e 114.552.419 bytes foi aprovado em cópia descartável, que concluiu 1.054 testes: 1.053 aprovados, zero falhas e um skip esperado; os cinco testes do empacotador ficam fora por desenho. A campanha aprovou novamente 160.000 de 160.000 casos na cópia. Os 2.147 arquivos operacionais monitorados e o código de origem e da cópia permaneceram idênticos antes e depois. A campanha é offline, não usa LLM real nem WhatsApp; o confronto humano disponível é somente agregado, não uma avaliação semântica das respostas. IA real, entrega no WhatsApp e aceite operacional continuam pendentes. Etiquetas e Melhor Envio real permanecem fora. A produção de 29/08 não foi alterada e o push do candidato segue pendente, com os gates do Linux de destino ainda por executar.',
     tags: ['reauditoria', 'limites da evidência', 'IA', 'CRM', 'candidato'],
+  },
+  {
+    date: '2026-08-31',
+    publishedAt: REPORT_UPDATED_AT,
+    title: 'Confronto dos cards, Markdown faltante e push autorizado',
+    context: 'Produção',
+    kind: 'Implementação',
+    state: 'Publicado',
+    summary:
+      'Os cards existentes foram confrontados individualmente com a documentação. Foram acrescentadas 13 seções ao Markdown de protocolos e oito seções faltantes à compilação, além do complemento da seção existente de GHK-Cu, a partir de 18 fontes visuais; as 90 imagens do inventário foram preservadas. O push foi explicitamente autorizado e os novos testes integrais foram aprovados após o reparo de conexão. O pacote foi instalado em 31/08 às 02:52:31 de Brasília. O runtime e a continuidade foram aceitos, com cinco contas conectadas, 16 snapshots e restauração isolada aprovada; a checagem final às 03:16:04,129 de Brasília encontrou nenhuma varredura ou job ativo. A segunda checagem às 03:17:24,238 confirmou a mesma estabilidade, sem novo reinício.',
+    result:
+      'A seleção textual passou a respeitar produto, apresentação e via exatos, sem reaproveitar protocolos de outra variante. Três cards apresentam divergências e mantêm quatro seções bloqueadas para orientação técnica automática. O envio automático dos técnicos Retatrutida 20 mg e Somatropina 240 UI também foi bloqueado por divergência na fonte, inclusive em planos repetidos ou pedidos mistos; suas apresentações, preços e imagens originais foram preservados. São 22 indisponibilidades: 20 anteriores, incluindo NAD nasal não reconciliado, mais esses dois bloqueios. Ressalvas profissionais e condições de conversão nasal permanecem junto à transcrição. Isso não é validação clínica nem autorização para dose individual; nenhuma imagem foi fabricada.',
+    validation:
+      'Gates do candidato dos cards em 31/08: local concluído às 01:36:02, horário de Brasília, com 1.126 testes, 1.125 aprovações, zero falhas e um skip esperado; Linux concluído às 01:29:45, com 1.121 de 1.121 aprovados. Ambos aprovaram 160.000 casos offline. O backup pré-publicação concluiu o 15º snapshot e reiniciou o serviço; esse reinício revelou a falha da conta principal. Na leitura de 31/08 às 01:57:33, horário de Brasília, quatro contas gerenciadas estavam prontas, a principal estava em erro e não havia jobs ou scans ativos; é um diagnóstico datado, não aceite de conexão. O primeiro reparo local passou 206 de 206 testes focais, mas seu pacote falhou em um contrato de telemetria nas duas suítes integrais, local e Linux. Os sete eventos operacionais anteriores foram restaurados e testados pelo comportamento real do registrador. O novo focal passou 214 de 214 testes, com 31 regressões da conta principal. Após revisão independente, o congelamento formal ocorreu às 02:26:08, horário de Brasília. Os novos integrais foram aprovados em 31/08: local concluído às 02:37:42, horário de Brasília, com 1.157 testes, 1.156 aprovações, zero falhas e um skip esperado; Linux concluído às 02:33:41, com 1.152 de 1.152 aprovados, sem skips ou cancelamentos. A campanha repetiu 160.000 de 160.000 aprovações, em 444,109 segundos localmente e 63,956 segundos no Linux. A reconstrução às 02:37:58 de Brasília confirmou o mesmo pacote de 378 arquivos e 114.678.851 bytes. Os gates dos cards não validam esse reparo posterior, e os integrais reprovados não foram tratados como aceite. A implantação concluiu em 31/08 às 02:52:31, horário de Brasília: 76 arquivos alterados, 32 acrescentados e nenhum removido; o estado protegido permaneceu igual antes da partida. O serviço iniciou ativo, com zero reinícios automáticos, e o staging é separado. A produção agora usa o release de 31/08. A primeira checagem às 02:53:04 de Brasília aprovou API, SQLite, autenticação, arquivos protegidos e logs, mas as contas ainda estavam inicializando. Nas checagens de 03:02:41 e 03:03:57 de Brasília, cinco de cinco contas estavam conectadas, sem scans ou jobs e com zero reinícios automáticos; API, SQLite, autenticação, arquivos protegidos e logs passaram. A principal reautenticou sem novo QR, erro de conexão ou falha de observador; o runtime foi aceito antes do backup. O monitor TLS manual passou às 02:55:51 de Brasília, com cadeia, identidade do certificado, renovação automática e comparação local verificadas. HTTPS externo respondeu 200, com TLS válido, cabeçalhos seguros e redirecionamento HTTP 308. A infraestrutura secundária permaneceu protegida, sem reinício ou alteração, com bot desativado e serviço de backup autenticado, restrito internamente e somente de acréscimo. O backup posterior foi solicitado às 03:03:57,795 de Brasília e concluiu às 03:06:03,807. A consulta às 03:07:22,516 confirmou 16 snapshots e zero locks. O reinício normal ocorreu às 03:04:44, com zero reinícios automáticos. Na checagem de 03:07:30,158, cinco contas estavam conectadas com cinco perfis de navegador, API, SQLite, arquivos protegidos e logs aprovados, mas havia uma varredura ativa e nenhum job. A restauração isolada iniciou às 03:07:41,059 e passou às 03:09:47,807 de Brasília, sem falhas, com confirmação operacional entregue e execução não ignorada. A checagem final às 03:16:04,129 de Brasília aprovou cinco contas conectadas e cinco perfis de navegador, nenhuma varredura ou job ativo e zero reinícios automáticos. As verificações rápida, de integridade e de relações do SQLite passaram; a API respondeu com os códigos esperados de acesso e autenticação, restrita ao loopback. As mesmas contas e perfis foram preservados, a configuração protegida permaneceu inalterada, a integração logística continuou desativada e os sete contadores de alerta de logs ficaram em zero. Implantação, runtime e continuidade foram aceitos. Os timers recorrentes de TLS, backup e restauração permanecem desabilitados e inativos; a renovação automática de certificados continua habilitada e ativa. Diagnóstico somente leitura do Guardião em 31/08 às 01:17:48, horário de Brasília: três slots completos, uma origem de provedor e três grupos monitorados; o quórum de duas origens independentes não foi atingido. Configuração não equivale a votos reais: nenhum provedor foi chamado e nenhuma moderação foi executada nesse diagnóstico. IA real, entrega comercial no WhatsApp, recuperação histórica acompanhada e comparação semântica humana continuam sem aceite funcional; a conexão aprovada não substitui esses testes. A sincronização final do portal permanece uma publicação documental independente. Etiquetas e integração logística real permanecem fora do escopo.',
+    tags: ['cards', 'Markdown', 'rastreabilidade', 'testes', 'push autorizado'],
   },
 ];
 

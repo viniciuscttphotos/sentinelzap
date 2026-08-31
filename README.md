@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 80 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 81 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,13 +12,93 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 79 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 80 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
 
-O release vigente de 29/08 possui validações complementares e explicitamente
-separadas:
+Em 31/08, o portal está preparado localmente com o registro “Confronto dos
+cards, Markdown faltante e push autorizado”, em contexto `Produção` e estado
+`Publicado`. O push operacional foi autorizado e instalado às 02:52:31 de
+Brasília. O runtime foi aceito antes do backup posterior, com cinco contas
+conectadas em duas checagens; a continuidade e a checagem final posterior
+também foram aprovadas.
+O candidato dos cards concluiu 1.126 testes locais
+(1.125 aprovados, zero falhas e um skip esperado) e 1.121/1.121 no Linux;
+ambos repetiram as 160.000 aprovações da campanha offline. Esses gates antecedem
+o novo reparo da conta principal e não o validam. O primeiro reparo passou
+206/206 testes focais, mas seu pacote falhou em um contrato de telemetria nas
+duas suítes integrais, local e Linux. Os sete eventos operacionais anteriores
+foram restaurados, com teste comportamental do registrador. O novo focal passou
+214/214 testes, com 31 regressões da conta principal. Após revisão independente,
+o congelamento formal ocorreu às 02:26:08, horário de Brasília. Os novos
+integrais foram aprovados em 31/08: local às 02:37:42 de Brasília, com 1.157
+testes, 1.156 aprovações, zero falhas e um skip esperado; Linux às 02:33:41,
+com 1.152/1.152 aprovados, sem skips ou cancelamentos. Ambos repetiram
+160.000/160.000 casos offline, em 444,109 segundos localmente e 63,956 segundos
+no Linux. A reconstrução às 02:37:58 de Brasília confirmou o pacote idêntico,
+com 378 arquivos e 114.678.851 bytes, em staging separado. As execuções
+reprovadas não são tratadas como aceite nem apagadas do histórico. A implantação
+foi concluída, o runtime aceito e o backup posterior e a restauração isolada
+confirmados; a checagem final sem atividade passou às 03:16:04,129 de Brasília.
+
+O backup pré-publicação concluiu o 15º snapshot e reiniciou o serviço,
+revelando a falha de conexão da conta principal. Na leitura de 31/08 às
+01:57:33, horário de Brasília, quatro contas gerenciadas estavam prontas, a
+principal estava em erro e não havia jobs ou scans ativos. Essa observação
+datada não é aceite de conexão. Após a implantação às 02:52:31, a produção
+passou ao release de 31/08: 76 arquivos alterados, 32 acrescentados e nenhum
+removido; o estado protegido ficou igual antes da partida. O serviço iniciou
+ativo e sem reinícios automáticos. Na primeira checagem às 02:53:04 de Brasília,
+API, SQLite, autenticação, arquivos protegidos e logs foram aprovados, mas as
+contas ainda estavam inicializando. Nas checagens de 03:02:41 e 03:03:57 de
+Brasília, cinco de cinco contas estavam conectadas, sem scans ou jobs e com
+zero reinícios automáticos; API, SQLite, autenticação, arquivos protegidos e
+logs passaram. A principal reautenticou sem novo QR, erro de conexão ou falha
+de observador; o runtime foi aceito antes do backup.
+
+O monitor TLS manual passou às 02:55:51 de Brasília, com cadeia, identidade
+do certificado, renovação automática e comparação local verificadas. HTTPS
+externo respondeu 200, com TLS válido, cabeçalhos seguros e redirecionamento
+HTTP 308. A infraestrutura secundária permaneceu protegida, sem reinício ou
+alteração; seu bot segue desativado, e o backup autenticado, restrito internamente
+e somente de acréscimo. O backup posterior foi solicitado às 03:03:57,795 de
+Brasília e concluiu às 03:06:03,807. A consulta às 03:07:22,516 confirmou 16
+snapshots e zero locks. O reinício normal ocorreu às 03:04:44, com zero reinícios
+automáticos; às 03:07:30,158, cinco contas estavam conectadas com cinco perfis de
+navegador e API, SQLite, arquivos protegidos e logs aprovados, mas havia uma
+varredura ativa e nenhum job. A restauração isolada iniciou às 03:07:41,059 e
+passou às 03:09:47,807 de Brasília, sem falhas, com confirmação operacional
+entregue. A checagem final às 03:16:04,129 de Brasília aprovou cinco contas
+conectadas e cinco perfis de navegador, nenhuma varredura ou job ativo e zero
+reinícios automáticos. Verificações rápida, de integridade e de relações do
+SQLite, API e autenticação passaram, com API restrita ao loopback, mesmas
+contas e perfis, configuração protegida inalterada, integração logística
+desativada e sete contadores de alerta de logs em zero. Implantação, runtime
+e continuidade foram aceitos. Os timers
+recorrentes de TLS, backup e restauração continuam desabilitados e inativos;
+a renovação automática de certificados permanece habilitada e ativa.
+
+O confronto documental acrescentou 13 seções ao Markdown de protocolos e oito
+seções faltantes à compilação, além do complemento da seção existente de GHK-Cu.
+Foram lidas 18 fontes visuais
+individualmente, mantendo as 90 imagens do inventário sem alteração. Três cards
+com divergências resultaram em quatro seções técnicas bloqueadas. A seleção
+textual exige produto, apresentação e via exatos; não adapta números nem troca
+via para preencher lacunas. A transcrição não representa validação clínica nem
+prescrição individual. O envio automático dos técnicos Retatrutida 20 mg e
+Somatropina 240 UI foi bloqueado também por IDs diretos, planos repetidos e
+pedidos mistos, preservando apresentações, preços e originais. São 22
+indisponibilidades: 20 anteriores, incluindo NAD nasal não reconciliado, e
+esses dois bloqueios técnicos novos. Isso não significa 20 arquivos ausentes;
+nenhuma imagem foi fabricada.
+
+O horário desta preparação é `2026-08-31T00:53:13-03:00`, explicitamente em
+Brasília. A coordenação renovará o instante e o manifesto depois dos resultados
+finais. Esta preparação ainda não foi publicada.
+
+O aceite histórico do release de 29/08 registrou validações complementares e
+explicitamente separadas; não descreve a conexão após o reinício de 31/08:
 
 - validação local: 772 testes aprovados na versão publicada, zero falhas e um skip
   esperado;
@@ -46,7 +126,8 @@ arquivos operacionais monitorados permaneceram idênticos antes e depois. Às
 ficam fora do pacote por desenho. O código de origem e da cópia permaneceu
 idêntico antes e depois dos testes.
 
-As evidências atuais são separadas por método:
+As evidências do baseline de 30/08 são separadas por método e não validam as
+alterações posteriores:
 
 - matriz combinatória offline: 160.000 de 160.000 casos aprovados, em 40 produtos com
   4.000 casos por produto e 20 famílias de cenários; a cópia descartável repetiu
@@ -59,22 +140,30 @@ As evidências atuais são separadas por método:
   formulários, com 20 exercitados e quatro logísticos excluídos. O despacho dos
   controles foi executado em uma máquina virtual de testes (VM), não em
   navegador real;
-- conteúdo: 20 combinações de produto e card ainda sem arte exata; o robô deve
-  informar indisponibilidade sem substituir o material por outro.
+- conteúdo: naquele baseline havia 20 indisponibilidades de produto e tipo de
+  card, incluindo NAD nasal não reconciliado; o robô deve informar
+  indisponibilidade sem substituir o material por outro. O rascunho atual
+  acrescenta os dois bloqueios técnicos e totaliza 22.
 
-O diagnóstico público do Guardião é limitado a carregamento inconsistente de
-configuração e quórum insuficiente. Mídia sem legenda permanece para revisão
-manual. O confronto com respostas humanas é somente agregado e sanitizado,
+O diagnóstico somente leitura do Guardião de 31/08 às 01:17:48, horário de
+Brasília, encontrou três slots completos, uma origem de provedor e três grupos
+monitorados. O quórum de duas origens independentes não foi atingido.
+Configuração não equivale a votos reais: nenhum provedor foi chamado e nenhuma
+moderação foi executada nesse diagnóstico. Mídia sem legenda permanece para
+revisão manual. O confronto com respostas humanas é somente agregado e sanitizado,
 não uma avaliação semântica. IA real, entrega no WhatsApp e aceite operacional
 acompanhado continuam pendentes; etiquetas e Melhor Envio real permanecem fora
 do escopo.
 
-O candidato e seu pacote de 375 arquivos e 114.552.419 bytes estão aprovados
-localmente. A reconstrução após os testes permaneceu idêntica, sem estado
-operacional nem dependências instaladas incluídos. A implantação aguarda pedido explícito de push e os gates seguros
-no Linux de destino. A produção de 29/08 não foi alterada. A publicação
-intermediária anterior não valida esta nova edição: o instante final, o
-manifesto e os gates do portal ainda serão consolidados pela coordenação.
+O candidato anterior e seu pacote de 375 arquivos e 114.552.419 bytes foram
+aprovados localmente em 30/08. A reconstrução daquele pacote permaneceu
+idêntica, sem estado operacional nem dependências instaladas incluídos. A nova
+versão, agora com o reparo de conexão, passou novos integrais local e Linux,
+teve o pacote reproduzido e foi instalada em 31/08 às 02:52:31 de Brasília.
+A conexão do runtime, a continuidade posterior e a checagem final foram aceitas.
+O instante final,
+o manifesto e os gates do portal ainda serão
+consolidados pela coordenação; o aceite anterior não é reaproveitado.
 
 ## Requisitos
 
@@ -167,7 +256,8 @@ gates locais. O deploy não altera o dashboard operacional.
    mais recente quando o instante documentar sua publicação; nunca atribua esse
    horário retroativamente a um evento sem evidência. Ao acrescentar um registro,
    preserve o `publishedAt` anterior como literal comprovado, sem vinculá-lo à
-   constante renovada. O registro 79 mantém `2026-08-30T09:34:04-03:00`.
+   constante renovada. O registro 79 mantém `2026-08-30T09:34:04-03:00` e o
+   registro 80 conserva `2026-08-30T19:36:19-03:00`.
 4. Preserve a fonte canônica em ordem crescente e a ordem documental dentro do
    mesmo dia; a interface inverte uma cópia para mostrar o registro mais recente
    primeiro.

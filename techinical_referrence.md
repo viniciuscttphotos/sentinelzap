@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 80 registros sanitizados
+     └── métricas, roadmap e 81 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -48,8 +48,8 @@ JavaScript e ativos estáticos.
 ### `src/data.js`
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
-- exporta metadados do relatório, seis métricas executivas, sete prioridades do
-  roadmap, os 80 registros e as opções derivadas de filtro;
+- exporta metadados do relatório, oito métricas executivas, sete prioridades do
+  roadmap, os 81 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -107,7 +107,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 80 registros, distribuição por data, sequência canônica,
+- verifica contagem de 81 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -192,18 +192,108 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 30/08/2026, a preparação local do portal contém 79 registros técnicos da
-fonte e um registro documental de publicação, totalizando 80. O mais recente é
-“Retomada adversarial da confiabilidade e delimitação das evidências”. O
-registro 79 conserva seu instante comprovado de publicação,
-`2026-08-30T09:34:04-03:00`; somente o novo registro acompanha a constante da
-última atualização. O instante do conteúdo final é
-`2026-08-30T19:36:19-03:00`, no fuso `America/Sao_Paulo`, e coincide com o
-manifesto e os três fallbacks HTML. A sincronização só é considerada publicada
-após os gates locais, o deploy `Ready` e a conferência do mesmo horário na URL
-canônica.
+Em 31/08/2026, a preparação local contém 80 registros técnicos da fonte e um
+registro documental de publicação, totalizando 81. O mais recente é “Confronto
+dos cards, Markdown faltante e push autorizado”, em estado `Publicado` e
+contexto `Produção`. Os registros 79 e 80 conservam, respectivamente, os instantes
+comprovados `2026-08-30T09:34:04-03:00` e `2026-08-30T19:36:19-03:00`;
+somente o novo registro acompanha a constante renovada.
 
-O release de produção vigente continua sendo o de 29/08. Seu aceite histórico
+O instante da preparação é `2026-08-31T00:53:13-03:00`, no fuso
+`America/Sao_Paulo`, presente nos três fallbacks HTML. O manifesto ainda deve
+ser renovado pela coordenação depois da estabilização da fonte. Não houve
+publicação desta edição: os gates locais, o deploy `Ready`, HTTP 200 e o mesmo
+horário na URL canônica precisam ser comprovados no fechamento.
+
+O novo conteúdo registra 13 seções acrescentadas ao Markdown de protocolos e
+oito seções faltantes à compilação, além do complemento da seção existente de
+GHK-Cu, a partir de 18 fontes
+visuais lidas individualmente. As 90 imagens do inventário foram preservadas.
+Três cards apresentam divergências e mantêm quatro seções técnicas bloqueadas,
+sem fallback para outra apresentação ou via. Ressalvas clínicas/profissionais
+e condições de conversão nasal acompanham a reprodução documental. Isso não
+constitui validação clínica nem prescrição individual. O envio automático dos
+técnicos Retatrutida 20 mg e Somatropina 240 UI foi bloqueado também por IDs
+diretos, planos repetidos e pedidos mistos; apresentações, preços e originais
+foram preservados. As 22 indisponibilidades resultantes são as 20 anteriores,
+incluindo NAD nasal não reconciliado, mais esses dois bloqueios técnicos — não
+20 arquivos ausentes. Nenhuma imagem foi criada ou substituída.
+
+O push foi explicitamente autorizado. O candidato dos cards concluiu os gates
+em 31/08: local às 01:36:02, horário de Brasília, com 1.126 testes, 1.125
+aprovações, zero falhas e um skip esperado; Linux às 01:29:45, com 1.121/1.121
+aprovados. Ambos repetiram as 160.000 aprovações offline. Esses aceites não
+validam o reparo posterior da conta principal. O primeiro reparo passou 206/206
+testes focais, incluindo 30 regressões novas, e revisão independente, com
+congelamento às 02:10:38 de Brasília. Seu pacote, porém, falhou em um contrato
+de telemetria nas duas suítes integrais, local e Linux. A primeira aprovação
+focal não substituiu nem sobrepôs esses resultados reprovados.
+
+Os sete eventos operacionais anteriores foram restaurados com seus níveis e
+campos seguros. O registrador foi exercitado comportamentalmente, incluindo
+estados de transporte, parada, desconexão, erros e ausência de dados sensíveis.
+O novo focal passou 214/214 testes, com 31 regressões da conta principal. Após
+revisão independente, o congelamento formal ocorreu às 02:26:08, horário de
+Brasília. Os novos integrais foram aprovados em 31/08: local às 02:37:42 de
+Brasília, com 1.157 testes, 1.156 aprovações, zero falhas e um skip esperado
+(209 de CRM/persistência, 928 gerais com 927 aprovações, e 20 legados); Linux
+às 02:33:41, com 1.152/1.152 aprovados (209 + 923 + 20), sem skips ou
+cancelamentos. Ambos repetiram 160.000/160.000 casos offline, em 444,109 segundos
+localmente e 63,956 segundos no Linux. A reconstrução às 02:37:58 de Brasília
+confirmou o pacote idêntico de 378 arquivos e 114.678.851 bytes. Pacote e staging
+continuam separados. A implantação concluiu em 31/08 às 02:52:31 de Brasília,
+com 76 arquivos alterados, 32 acrescentados e nenhum removido. O estado
+protegido permaneceu igual antes da partida; o serviço iniciou ativo, com zero
+reinícios automáticos. O runtime foi aceito antes do backup posterior; a
+continuidade e a checagem final posterior também foram aprovadas.
+
+O backup pré-publicação concluiu o 15º snapshot e reiniciou o serviço. Esse
+reinício revelou uma falha de conexão da conta principal. Na leitura de 31/08
+às 01:57:33, horário de Brasília, quatro contas gerenciadas estavam prontas,
+a principal estava em erro e não havia jobs ou scans ativos. É uma observação
+datada, não aceite de conexão. A produção passou ao release de 31/08 após a
+implantação. A primeira checagem às 02:53:04 de Brasília aprovou API, SQLite,
+autenticação, arquivos protegidos e logs, mas as contas ainda estavam
+inicializando. Nas checagens de 03:02:41 e 03:03:57 de Brasília, cinco de cinco
+contas estavam conectadas, sem scans ou jobs e com zero reinícios automáticos;
+API, SQLite, autenticação, arquivos protegidos e logs passaram. A principal
+reautenticou sem novo QR, erro de conexão ou falha de observador. Esse aceite
+do runtime antecede o backup posterior, já confirmado.
+
+O monitor TLS manual passou às 02:55:51 de Brasília: cadeia, identidade do
+certificado, renovação automática e comparação local foram verificadas. HTTPS
+externo respondeu 200, com TLS válido, cabeçalhos seguros e redirecionamento
+HTTP 308. A infraestrutura secundária permaneceu protegida, sem reinício ou
+alteração, com o bot desativado e backup autenticado, restrito internamente
+e somente de acréscimo. O backup posterior foi solicitado às 03:03:57,795 de
+Brasília e concluiu às 03:06:03,807. A consulta às 03:07:22,516 confirmou 16
+snapshots e zero locks. O reinício normal ocorreu às 03:04:44, com zero
+reinícios automáticos. Às 03:07:30,158, cinco contas estavam conectadas com
+cinco perfis de navegador, API, SQLite, arquivos protegidos e logs aprovados,
+mas havia uma varredura ativa e nenhum job. A restauração isolada iniciou às
+03:07:41,059 e passou às 03:09:47,807 de Brasília, sem falhas, com confirmação
+operacional entregue e execução não ignorada. A checagem final às 03:16:04,129
+de Brasília aprovou cinco contas conectadas e cinco perfis de navegador,
+nenhuma varredura ou job ativo e zero reinícios automáticos. SQLite passou
+verificação rápida, integridade e relações; API/auth retornaram os códigos
+esperados (200/303/401/401), mantendo loopback, contas e perfis idênticos,
+configuração protegida inalterada, integração logística desativada e os sete
+contadores de alerta de logs em zero. Implantação, runtime e continuidade
+foram aceitos. A segunda checagem às 03:17:24,238 confirmou a mesma estabilidade,
+sem novo reinício; a conferência do pacote já instalado não exigiu reaplicação.
+Os timers recorrentes de TLS, backup e restauração
+permanecem desabilitados e inativos; Certbot permanece habilitado e ativo.
+Os 15 snapshots permanecem como a contagem anterior ao backup.
+O reparo instalado impede tentativas sobrepostas, preserva sessões, usa a prontidão
+legítima da biblioteca, limita a limpeza ao próprio navegador e descarta efeitos
+tardios de gerações encerradas. Entrega parcial permanece bloqueada contra
+repetição automática. A conexão real foi aceita em duas checagens; isso não
+equivale a validar IA real, moderação, recuperação ou entrega comercial.
+
+Os aceites históricos descritos abaixo documentam o baseline de 30/08, anterior
+às alterações atuais.
+
+O release anterior, de 29/08, não é mais o vigente. Seu aceite histórico
 registrou 772 testes locais aprovados, sem falhas e com um skip esperado, e
 768/768 testes transportáveis no Linux, uma conta principal e quatro gerenciadas
 conectadas. Backups, restauração isolada e TLS passaram, totalizando 14 snapshots
@@ -247,9 +337,13 @@ A reconstrução final após os testes permaneceu idêntica em conteúdo e
 composição, com 375 arquivos e 114.552.419 bytes, sem estado operacional ou
 dependências instaladas no pacote.
 
-As seis métricas executivas agora distinguem os gates local e do pacote, a matriz
+As seis métricas executivas de contexto distinguem os novos gates integrais de
+1.157 testes locais e 1.152 no Linux, mantendo os gates anteriores dos cards de
+1.126 testes locais e 1.121 no Linux e a reprovação intermediária no histórico, a matriz
 combinatória offline, os turnos fixos e falhas injetadas, a geração com provedor
-simulado, o inventário do CRM e o aceite histórico da produção. A campanha
+simulado, o inventário do CRM e o aceite histórico da produção. Duas métricas
+novas apresentam as seções documentais, fontes visuais, imagens preservadas e
+limites da transcrição. A campanha anterior
 ampliada aprovou 160.000 de 160.000 casos, com 40 produtos × 4.000 casos em 20
 famílias; a execução levou 486.397 ms. A cópia descartável repetiu as 160.000
 aprovações em 393.714,849 ms.
@@ -267,13 +361,22 @@ virtual de testes (VM), sem navegador real, portanto não atesta layout,
 interação visual ou comportamento nativo completo do navegador. Etiquetas e
 integração logística real não foram acionadas.
 
-O diagnóstico público do Guardião informa somente carregamento inconsistente
-de configuração e quórum insuficiente. Mídia sem legenda exige revisão manual.
-As 20 combinações de produto e card sem arte exata permanecem em backlog com
-indisponibilidade segura, sem substituição por arte incorreta. IA real,
+O diagnóstico somente leitura do Guardião em 31/08 às 01:17:48, horário de
+Brasília, encontrou três slots completos, uma origem de provedor e três grupos
+monitorados. O quórum de duas origens independentes não foi atingido.
+Configuração não equivale a votos reais: nenhum provedor foi chamado e nenhuma
+moderação foi executada nesse diagnóstico. Identificadores e detalhes de
+configuração permanecem fora do conteúdo público. Mídia sem legenda exige
+revisão manual. As 22 indisponibilidades (20 anteriores e dois bloqueios
+técnicos novos) permanecem em backlog com indisponibilidade segura, sem
+substituição por arte incorreta. IA real,
 WhatsApp, comparação semântica humana e aceite operacional continuam pendentes.
-O roadmap exige pedido explícito de push e gates seguros no Linux de destino
-antes de qualquer implantação. A produção de 29/08 permanece intacta.
+O roadmap registra o pedido explícito de push recebido, os novos integrais local
+e Linux aprovados, a reconstrução idêntica do pacote e a implantação concluída
+às 02:52:31 de Brasília. A produção usa o release de 31/08, com conexões
+reconfirmadas, TLS aprovado, backup posterior, restauração isolada e checagem
+final sem atividade confirmados. Esse item está concluído; o reinício do backup e o incidente
+permanecem no histórico.
 
 A página pública continua destinada a `https://sentinelzap.vercel.app/`, e a
 landing anterior está preservada na tag `legacy-landing-2026-08-26`. Uma

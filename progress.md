@@ -710,3 +710,348 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   documental não muda a narrativa publicada nem o horário do conteúdo.
 - Resultado: sincronização pública concluída, candidato operacional somente
   local e nenhuma alteração, reinício ou reconexão das VPS.
+
+## 2026-08-31 00:53:13 (horário de Brasília) — Preparação do confronto de cards
+
+- Arquivos: `src/data.js`, registro 81, metadados, métricas e roadmap;
+  `index.html`, resumo executivo, direção e três horários; `test/data.test.js`
+  e `test/site.test.js`, contratos editoriais; `README.md` e
+  `techinical_referrence.md`, estado e limites documentais.
+- Conteúdo: preparado o registro “Confronto dos cards, Markdown faltante e push
+  autorizado”, em `Em validação`, mantendo os 80 registros anteriores. O
+  conjunto passa a 81 registros totais e 80 técnicos, com horário de preparação
+  `2026-08-31T00:53:13-03:00`. Os horários comprovados dos registros 79 e 80
+  foram preservados como literais, sem reescrever o histórico.
+- Escopo: 13 seções no Markdown de protocolos e oito na compilação, incluindo
+  complemento de GHK-Cu, com 18 fontes visuais lidas e 90 imagens preservadas.
+  Três cards com divergências mantêm quatro seções técnicas bloqueadas.
+  Transcrição não é validação clínica, e as 20 lacunas de arte exata não são
+  ocultadas nem preenchidas com imagens fabricadas.
+- Motivo e finalidade: registrar a autorização explícita de push sem tratá-la
+  como implantação concluída. A nova suíte está em andamento, os resultados
+  anteriores foram identificados como baseline e o staging separado não altera
+  o runtime vigente nesta etapa.
+- Estado: preparação documental local. Nenhum commit, push Git, publicação
+  Vercel ou acesso operacional foi realizado nesta subtarefa. Manifesto,
+  horário final e gates de sincronização dependem da coordenação após os
+  resultados confirmados.
+- Validação parcial concluída: `npm test -- test/data.test.js`, 12/12 testes,
+  zero falhas e saída zero. Esse gate cobre registros, horários, distinção dos
+  aceites, limites da transcrição e sanitização. A suíte completa do portal
+  continua dependente da atualização coordenada do manifesto; não foi
+  declarada aprovada nem substituída pelo gate focal.
+
+## 2026-08-31 01:25:14 (horário de Brasília) — Rascunho dos bloqueios técnicos e diagnóstico atual
+
+- Arquivos: `src/data.js`, métricas, roadmap e registro 81; `index.html`, estado
+  executivo e direção; `test/data.test.js` e `test/site.test.js`, contratos de
+  conteúdo; `README.md` e `techinical_referrence.md`, estado documental atual.
+- Mudança: a cobertura agora distingue 22 indisponibilidades, compostas pelas
+  20 anteriores (incluindo NAD nasal não reconciliado) e pelos dois técnicos
+  existentes bloqueados, Retatrutida 20 mg e Somatropina 240 UI. Não são 20
+  arquivos ausentes. Apresentações, preços e originais continuam preservados.
+  Mantidos 13 acréscimos no Markdown, oito seções faltantes na compilação mais
+  complemento da seção já existente de GHK-Cu, 18 fontes visuais e 90 imagens sem alteração; transcrição não é
+  validação clínica. O histórico dos 80 registros anteriores foi preservado.
+- Motivo: impedir que a disponibilidade física de uma imagem conflitante seja
+  confundida com autorização de envio automático, e registrar o diagnóstico
+  real mais recente sem divulgar detalhes operacionais.
+- Guardião: a leitura de 31/08 às 01:17:48, horário de Brasília, encontrou três
+  slots completos, uma origem e três grupos monitorados. O quórum de duas
+  origens independentes não foi atingido. Não houve chamadas ao provedor,
+  votos reais ou moderação executada nesse diagnóstico.
+- Gates: o baseline intermediário de 1.117 testes antecede o último bloqueio.
+  Nova suíte integral local e testes Linux seguem em andamento. Nenhum push,
+  aceite operacional ou publicação documental foi antecipado. A produção
+  permanece na versão de 29/08; a preparação usa staging separado.
+- Estado: somente rascunho local do portal. O instante provisório
+  `2026-08-31T00:53:13-03:00` permanece até a coordenação fornecer o horário
+  final. O manifesto não foi alterado; sua sincronização continua sendo gate
+  obrigatório.
+- Revisão independente: conteúdo sanitizado, ausência de push antecipado e
+  diagnóstico configuracional sem votos reais confirmados. Retificada a redação
+  anterior: são oito seções faltantes na compilação, além do complemento de
+  GHK-Cu já existente, não sete seções mais GHK-Cu.
+- Validação focal inicial: `npm test -- test/data.test.js test/site.test.js`,
+  23/24 aprovados; a única falha foi a contagem antiga do manifesto (80 em vez
+  de 81), intencionalmente fora do escopo desta edição. Nenhum teste foi
+  excluído ou relaxado. A revisão de espaços terminou sem diferenças inválidas.
+  Às 01:27:33 de Brasília, a revisão final da redação foi consolidada com o
+  mesmo resultado focal: 23/24 aprovados, única falha no manifesto antigo,
+  saída 1 em 4,367 segundos. A revisão de espaços novamente terminou com
+  saída zero. Publicação, build e sincronização não foram executados; a
+  preparação aguarda o instante final e o manifesto coordenados pela raiz.
+
+## 2026-08-31 02:13:47 (horário de Brasília) — Gates dos cards e reparo de conexão separados
+
+- Arquivos: `src/data.js`, métricas, roadmap e registro 81; `index.html`,
+  narrativa executiva e resumo operacional; `test/data.test.js` e
+  `test/site.test.js`, contratos de evidência; `README.md` e
+  `techinical_referrence.md`, estado vigente e limites.
+- Mudança: registrados os gates concluídos do candidato dos cards, com 1.126
+  testes locais (1.125 aprovados, zero falhas e um skip esperado) e 1.121/1.121
+  no Linux. Ambos aprovaram os 160.000 casos combinatórios offline. Esses
+  resultados antecedem o reparo posterior da conta principal e não o validam.
+- Incidente: o backup pré-publicação concluiu o 15º snapshot e reiniciou o
+  serviço. O reinício revelou a falha da conta principal. A leitura de 31/08
+  às 01:57:33 de Brasília registrou quatro contas gerenciadas prontas, principal
+  em erro e nenhum job ou scan ativo; observação datada, não aceite de conexão.
+  O código em produção segue o de 29/08, mas não se afirma ausência de reinício.
+- Reparo: 206/206 testes focais, incluindo 30 regressões novas, e revisão
+  independente concluída. A nova suíte integral local e os testes Linux estão
+  em andamento; novo pacote, implantação e aceite operacional ficam pendentes.
+- Preservação: mantidos os 80 registros históricos, as 22 indisponibilidades,
+  13 seções do Markdown e oito da compilação mais complemento de GHK-Cu,
+  18 fontes visuais e 90 imagens inalteradas. O diagnóstico do Guardião segue
+  datado: três slots, uma origem, três grupos e quórum independente insuficiente.
+- Finalidade: impedir reaproveitamento de aceite anterior e retratar o incidente
+  real sem expor dados pessoais ou detalhes operacionais exploráveis.
+- Estado: rascunho documental local; nenhuma publicação ou operação nas VPS
+  nesta subtarefa. O horário público provisório permanece
+  `2026-08-31T00:53:13-03:00`; a coordenação renovará os três horários e o
+  manifesto após o aceite final. O gate de sincronização não foi relaxado.
+- Validação focal às 02:14:26 de Brasília: `npm test -- test/data.test.js
+  test/site.test.js`, 24/25 aprovados, saída 1 e única falha no manifesto
+  anterior (80 em vez de 81 registros). A rodada inicial detectou também uma
+  diferença de redação, corrigida sem afrouxar a expectativa. O contrato de
+  sincronização permanece obrigatório e sem alterações. `git diff --check`
+  terminou com saída zero; nenhum build ou deploy foi executado.
+- Revisão independente concluída: narrativa e sanitização sem achados
+  remanescentes. A coordenação confirmou que os novos integrais local e Linux
+  estão efetivamente em execução; o texto não antecipa seus resultados nem
+  o aceite operacional. Horário final e manifesto seguem pendentes.
+
+## 2026-08-31 02:29:18 (horário de Brasília) — Reprovação integral e correção da telemetria registradas
+
+- Arquivos: `src/data.js`, métricas, roadmap e registro 81; `index.html`,
+  síntese do reparo; `test/data.test.js` e `test/site.test.js`, contratos
+  editoriais; `README.md` e `techinical_referrence.md`, sequência de validação.
+- Mudança: o primeiro pacote com o novo ciclo da conta principal falhou em
+  um contrato de telemetria nas duas suítes integrais, local e Linux. O focal
+  anterior de 206/206 permanece como etapa histórica, não como aceite integral.
+- Correção documentada: sete eventos operacionais anteriores restaurados,
+  mantendo níveis e campos seguros, com teste comportamental do registrador.
+  O novo focal passou 214/214 testes, com 31 regressões da conta principal;
+  revisão independente concluída, seguida do congelamento formal às 02:26:08
+  de Brasília.
+- Finalidade: registrar a falha e a correção sem omitir reprovações ou aproveitar
+  o aceite dos cards para um reparo posterior. As novas suítes integrais estão
+  em andamento e ainda não existe aceite operacional ou push concluído.
+- Preservação: os 80 registros anteriores, os dados dos cards, o diagnóstico
+  datado do incidente e os limites do Guardião permanecem inalterados. Só os
+  sete arquivos documentais do portal foram editados nesta etapa; código da
+  aplicação, manifesto, horários públicos provisórios e produção não foram
+  alterados por esta subtarefa. Publicação continua sob controle da coordenação.
+- Validação às 02:30:21 de Brasília: `npm test -- test/data.test.js
+  test/site.test.js`, 24/25 aprovados; única falha no manifesto antigo
+  (80 em vez de 81 registros), sem relaxar o gate. Saída 1 em 2,326 segundos.
+  `git diff --check` terminou com saída zero; não houve build ou publicação.
+- Revisão independente do delta: conteúdo coerente e sanitizado. Ajustada a
+  precisão editorial para atribuir 02:26:08 ao congelamento formal, ocorrido
+  após a revisão, sem inventar o instante exato de encerramento dessa revisão.
+- Revalidação às 02:32:00 de Brasília após o ajuste editorial: o mesmo focal
+  terminou com 24/25 aprovações, saída 1 em 2,708 segundos, sem skips ou
+  cancelamentos. A única falha continua sendo a divergência conhecida do
+  manifesto antigo; `git diff --check` permaneceu limpo. O rascunho fica
+  congelado aguardando os resultados finais, a renovação do horário e a
+  sincronização pela coordenação, sem publicação antecipada.
+
+## 2026-08-31 02:40:19 (horário de Brasília) — Novos gates integrais aprovados, implantação pendente
+
+- Arquivos: `src/data.js`, métricas, roadmap e validação do registro 81;
+  `index.html`, síntese e próxima etapa; `test/data.test.js` e
+  `test/site.test.js`, contratos editoriais; `README.md` e
+  `techinical_referrence.md`, sequência e composição dos gates.
+- Mudança: registrados os resultados confirmados do candidato corrigido. O
+  integral local encerrou às 02:37:42 de Brasília com 1.157 testes, 1.156
+  aprovações, zero falhas e um skip esperado; o Linux encerrou às 02:33:41 com
+  1.152/1.152 aprovações. Ambos repetiram 160.000/160.000 casos offline, em
+  444,109 segundos localmente e 63,956 segundos no Linux. A reconstrução às
+  02:37:58 confirmou o pacote idêntico de 378 arquivos e 114.678.851 bytes.
+- Finalidade: avançar a evidência dos testes sem declarar implantação ou aceite
+  operacional antes da confirmação. A reprovação intermediária de um contrato
+  de telemetria nas duas integrais e os gates históricos dos cards foram
+  preservados; a métrica principal passa a representar o candidato corrigido.
+- Estado: nenhuma aplicação em produção havia sido confirmada pela coordenação.
+  Os fatos do backup e do diagnóstico continuam datados; os três horários
+  públicos e o manifesto permanecem provisórios e não foram alterados. Não
+  houve edição na aplicação, dados operacionais, manifesto ou documentos raiz.
+- Validação às 02:40:50 de Brasília: `npm test -- test/data.test.js
+  test/site.test.js` terminou com 24/25 aprovações, saída 1 em 1,515 segundos,
+  sem skips ou cancelamentos. A única falha continua no manifesto antigo
+  (80 em vez de 81 registros); o gate foi preservado. `git diff --check`
+  terminou com saída zero. Revisão independente do delta aprovada, sem achados
+  de conteúdo ou sanitização. Sincronização final, build e publicação continuam
+  com a coordenação; o rascunho permanece congelado até os fatos operacionais.
+
+## 2026-08-31 02:55:45 (horário de Brasília) — Implantação concluída, aceite operacional em curso
+
+- Arquivos: `src/data.js`, release vigente, métricas, roadmap e registro 81;
+  `index.html`, síntese e status; `test/data.test.js` e `test/site.test.js`,
+  contratos editoriais; `README.md` e `techinical_referrence.md`, sequência de
+  implantação e limites da primeira checagem.
+- Mudança: registrado o apply real confirmado pela coordenação às 02:52:31 de
+  Brasília, com o pacote de 378 arquivos, 76 alterados, 32 acrescentados e
+  nenhum removido. O estado protegido ficou igual antes da partida, e o serviço
+  iniciou ativo com zero reinícios automáticos. O release vigente passa a
+  31/08; o anterior de 29/08 permanece histórico.
+- Evidência datada: a primeira checagem às 02:53:04 de Brasília aprovou API,
+  SQLite, autenticação, arquivos protegidos e logs, mas as contas ainda estavam
+  inicializando. Cinco contas prontas, backup posterior, restauração ensaiada
+  e TLS ainda não foram confirmados; implantação não equivale a aceite.
+- Finalidade: refletir a mudança real de estado sem antecipar a prontidão das
+  conexões ou a conclusão da continuidade. O registro 81 passa ao contexto
+  `Produção`, mantendo `Em validação`; a falha intermediária de telemetria,
+  os gates integrais e os limites da evidência permanecem preservados.
+- Escopo: apenas os sete arquivos atribuídos do portal. Nenhum código da
+  aplicação, documento raiz, manifesto, horário público provisório ou dado
+  operacional foi alterado nesta subtarefa. Publicação e consolidação final
+  permanecem com a coordenação.
+- Validação às 02:56:10 de Brasília: o focal `npm test -- test/data.test.js
+  test/site.test.js` terminou com 24/25 aprovações, saída 1 em 0,983 segundos,
+  sem skips ou cancelamentos. A única falha é o manifesto antigo (80 em vez
+  de 81 registros), sem relaxar o gate. Revisão independente do delta
+  concluída, sem achados de semântica ou sanitização; `git diff --check`
+  terminou com saída zero. Nenhum build ou deploy do portal foi iniciado.
+
+## 2026-08-31 03:06:33 (horário de Brasília) — Cinco conexões aceitas e TLS aprovado antes do backup posterior
+
+- Arquivos: `src/data.js`, métricas, roadmap e registro 81; `index.html`,
+  status, síntese e próxima etapa; `test/data.test.js` e `test/site.test.js`,
+  contratos editoriais; `README.md` e `techinical_referrence.md`, sequência de
+  aceite do runtime e limites da continuidade posterior.
+- Mudança: cinco de cinco contas conectadas foram confirmadas repetidamente
+  às 03:02:41 e 03:03:57 de Brasília, sem scans ou jobs e com zero reinícios
+  automáticos. API, SQLite, autenticação, arquivos protegidos e logs passaram.
+  A principal reautenticou sem novo QR, erro de conexão ou falha de observador.
+- Continuidade: o monitor TLS manual passou às 02:55:51, com cadeia, identidade
+  do certificado, renovação automática e comparação local verificadas. HTTPS
+  externo respondeu 200, com TLS válido, cabeçalhos seguros e redirect HTTP
+  308. A infraestrutura secundária permaneceu protegida, sem reinício ou
+  alteração, com bot desativado e backup autenticado, restrito internamente
+  e somente de acréscimo.
+- Limite: esse aceite do runtime antecede o backup posterior, solicitado às
+  03:03:57,795 de Brasília e ainda em curso. Não há confirmação de 16º snapshot,
+  restauração ensaiada ou saúde final após esse backup. A conexão aprovada não
+  equivale à validação de IA real, moderação ou entrega comercial.
+- Finalidade: incorporar apenas fatos confirmados, preservando o diagnóstico
+  inicial, a reprovação intermediária de telemetria e os limites funcionais.
+  O registro permanece em validação até concluir a continuidade posterior.
+- Escopo: sete arquivos do portal; nenhum código da aplicação, documento raiz,
+  manifesto, horário público provisório ou dado operacional alterado.
+- Validação: o primeiro focal teve 23/25 aprovações: além do manifesto antigo,
+  um verificador editorial atravessou frases e confundiu o estado da produção
+  com a infraestrutura secundária. O teste agora limita a alegação à mesma
+  frase e conserva controles que rejeitam produção intacta, sem alteração ou
+  sem reinício; também prova a distinção da infraestrutura secundária.
+- Revalidação às 03:07:19 de Brasília: `npm test -- test/data.test.js
+  test/site.test.js`, 24/25 aprovações, saída 1 em 0,922 segundos, sem skips ou
+  cancelamentos. A única falha remanescente é o manifesto antigo (80 em vez
+  de 81 registros), sem relaxar esse gate. Revisão independente do conteúdo
+  aprovada sem achados; `git diff --check` limpo. Nenhum build ou publicação
+  iniciados; aguarda-se confirmação da continuidade posterior.
+
+## 2026-08-31 03:09:34 (horário de Brasília) — Backup posterior confirmado com 16 snapshots
+
+- Arquivos: `src/data.js`, métrica, roadmap e validação do registro 81;
+  `index.html`, síntese, continuidade e próximos gates; `test/data.test.js`
+  e `test/site.test.js`, contratos editoriais; `README.md` e
+  `techinical_referrence.md`, estado datado pós-backup.
+- Mudança: o backup posterior terminou às 03:06:03,807 de Brasília, e a consulta
+  às 03:07:22,516 confirmou 16 snapshots e zero locks. O reinício normal ocorreu
+  às 03:04:44, com zero reinícios automáticos.
+- Evidência: a checagem às 03:07:30,158 encontrou cinco contas conectadas e cinco
+  perfis de navegador, com API, SQLite, arquivos protegidos e logs aprovados;
+  havia uma varredura ativa e nenhum job. Isso não foi descrito como repouso.
+- Limite: a restauração isolada iniciou às 03:07:41,059; seu resultado e a
+  checagem final sem atividade continuam pendentes. O aceite pré-backup não
+  substitui a verificação posterior ao reinício.
+- Finalidade e escopo: atualizar somente os fatos confirmados nos sete arquivos
+  do portal. Fonte da aplicação, dados operacionais, documentos raiz,
+  manifesto e horários públicos provisórios permanecem intocados.
+- Validação às 03:09:57 de Brasília: focal `npm test -- test/data.test.js
+  test/site.test.js`, 24/25 aprovações, saída 1 em 0,938 segundos, sem skips ou
+  cancelamentos. A única falha permanece no manifesto antigo (80 em vez de 81
+  registros), com gate preservado. Revisão independente do delta aprovada sem
+  achados; `git diff --check` limpo. Nenhum build ou publicação iniciados.
+
+## 2026-08-31 03:12:06 (horário de Brasília) — Restauração isolada aprovada e contrato editorial delimitado
+
+- Arquivos: `src/data.js`, métrica, roadmap e registro 81; `index.html`,
+  síntese e continuidade; `test/data.test.js` e `test/site.test.js`, contratos
+  editoriais; `README.md` e `techinical_referrence.md`, restauração e timers.
+- Mudança: a restauração isolada passou às 03:09:47,807 de Brasília, sem falhas,
+  com confirmação operacional entregue e execução não ignorada. Os timers
+  recorrentes de TLS, backup e restauração continuam desabilitados e inativos;
+  a renovação automática de certificados permanece habilitada e ativa.
+- Limite: a checagem final sem atividade ainda não foi confirmada, preservando
+  a observação pós-backup que encontrou uma varredura ativa. Não se antecipa
+  conclusão integral da continuidade nem publicação do portal.
+- Correção do teste editorial: o verificador de alegação de produção intacta
+  no HTML agora se limita à mesma frase, incluindo quebras de linha, e possui
+  controles positivos e negativo com infraestrutura secundária distinta.
+  O veto independente ao texto de staging incorreto e os gates de sanitização
+  foram preservados; nenhum contrato foi removido.
+- Escopo: sete arquivos do portal, sem alterar fonte da aplicação, dados,
+  documentos raiz, manifesto ou horário público provisório.
+- Validação às 03:12:29 de Brasília: focal `npm test -- test/data.test.js
+  test/site.test.js`, 24/25 aprovações, saída 1 em 0,965 segundos, sem skips ou
+  cancelamentos. A única falha continua no manifesto antigo (80 em vez de 81
+  registros), sem relaxar esse gate; `git diff --check` limpo. A coordenação
+  confirmou revisão independente do ajuste editorial aprovada, sem achados.
+  O rascunho permanece congelado com checagem final sem atividade pendente;
+  nenhum build ou publicação iniciados.
+
+## 2026-08-31 03:19:23 (horário de Brasília) — Aceite final da implantação e continuidade consolidado
+
+- Arquivos: `src/data.js`, métricas, roadmap e registro 81; `index.html`,
+  síntese e status; `test/data.test.js` e `test/site.test.js`, contratos
+  editoriais; `README.md` e `techinical_referrence.md`, estado final e limites.
+- Mudança: o aceite real às 03:16:04,129 de Brasília confirmou cinco contas
+  conectadas e cinco perfis de navegador, nenhuma varredura ou job ativo,
+  zero reinícios automáticos e controles de SQLite, API, autenticação,
+  loopback, configuração protegida e logs aprovados. As contas e perfis
+  permaneceram os mesmos, a integração logística seguiu desativada e os sete
+  contadores de alerta de logs ficaram em zero.
+- Estabilidade: a segunda checagem às 03:17:24,238 confirmou o mesmo estado,
+  sem novo reinício. O pacote já instalado não exigiu reaplicação. Backup
+  posterior, 16 snapshots, zero locks, restauração isolada e TLS aprovados
+  permanecem explicitamente registrados.
+- Finalidade: fechar implantação, runtime e continuidade sem confundir esse
+  aceite com IA real, moderação, entrega comercial, recuperação acompanhada
+  ou equivalência semântica humana. Guardião sem duas origens e as 22
+  indisponibilidades de cards continuam pendentes. O registro 81 fica
+  `Publicado`, em contexto `Produção`; o primeiro item do roadmap passa a
+  `Concluído`, sem manter um gate operacional já executado.
+- Preservação: a reprovação intermediária de telemetria nas duas integrais e
+  todos os registros anteriores foram mantidos. Somente os sete arquivos do
+  portal foram editados; fonte da aplicação, dados, documentos raiz,
+  manifesto e horário público provisório permanecem intocados nesta subtarefa.
+- Validação às 03:19:23 de Brasília: `npm test -- test/data.test.js
+  test/site.test.js`, 24/25 aprovações, saída 1 em 1,046 segundos, sem skips ou
+  cancelamentos. A única falha é o manifesto antigo (80 em vez de 81 registros),
+  reservado à consolidação final da coordenação; o gate não foi relaxado.
+  `git diff --check` limpo. Revisão independente final de conteúdo e
+  sanitização concluída, sem achados. Os sete
+  arquivos ficam congelados para a coordenação assumir horário, manifesto,
+  gates completos e publicação; nenhum build ou deploy do portal foi iniciado.
+
+## 2026-08-31 03:20 (horário de Brasília) — Sincronização final e gates completos
+
+- Arquivos: `src/data.js`, os três elementos de horário em `index.html` e
+  `sync/progress-source.json`. O instante canônico do conteúdo foi renovado
+  para **31/08/2026 às 03:19:54, horário de Brasília**, com offset explícito
+  e igualdade exata entre dados, HTML e manifesto.
+- Fonte final: 81 registros documentais e 80 registros técnicos, incluindo
+  o push autorizado, dois aceites finais de conexão, backup e restore
+  comprovados, sem converter os testes simulados em aceite de IA real.
+- Validação: `npm run progress:verify` e `npm run check` concluíram com
+  saída zero; **25/25 testes**, zero falhas, skips ou cancelamentos, build
+  aprovado e `git diff --check` limpo. O manifesto anterior deixou de ser
+  provisório; nenhuma validação foi flexibilizada. As revisões independentes
+  do conteúdo, sanitização, oito documentos do projeto e contrato de horário
+  foram aprovadas.
+- Estado: conteúdo pronto para envio ao repositório documental e integração
+  Vercel. A publicação pública será comprovada depois do envio; esta entrada
+  não antecipa `Ready` ou HTTP 200. O runtime operacional já foi implantado
+  e aceito, sem necessidade de outro push para a VPS.
