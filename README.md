@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 81 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 82 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,14 +12,43 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 80 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 81 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
 
-Em 31/08, o portal está preparado localmente com o registro “Confronto dos
-cards, Markdown faltante e push autorizado”, em contexto `Produção` e estado
-`Publicado`. O push operacional foi autorizado e instalado às 02:52:31 de
+O registro mais recente é “Consenso do Guardião por agentes, preservando os
+modelos atuais”, em contexto `Local` e estado `Validado localmente`. A decisão usa
+três agentes de evidência, contexto e contestação, exigindo pelo menos dois
+votos concordantes de agentes distintos sobre a mensagem corrente e na mesma
+rodada. Cada agente recebe uma avaliação separada, sem ver os outros votos;
+tentativas repetidas não acrescentam votos. Os modelos atuais são preservados;
+usar o mesmo modelo ou provedor é permitido e não garante independência
+estatística. Evidência literal, categorias permitidas e revalidação da política
+antes dos efeitos continuam obrigatórias. Mídia sem legenda exige revisão manual.
+
+A implementação anterior foi interrompida por limite de uso, com focal
+reprovado por volta de 06:12 de Brasília. O núcleo, os limites de espera e o
+fallback foram corrigidos. O focal ampliado de 12 arquivos passou 161/161 em
+31/08 às 07:08:39 de Brasília, sem falhas, skips ou cancelamentos. São 42
+regressões novas: 33 no núcleo e nove no agendamento; seus focais passaram
+73/73 e 12/12. A suíte integral iniciou às 07:09:06 e terminou às 07:31:57
+de Brasília, com saída zero: **1.200 testes, 1.199 aprovações, zero falhas ou
+cancelamentos e um skip esperado no macOS**. Foram 209/209 testes de
+CRM/persistência, 971 gerais com 970 aprovações e um skip, e 20/20 legados.
+A campanha aprovou 160.000/160.000 casos offline em 1.177,965 segundos.
+O código congelado e o estado protegido permaneceram idênticos antes e depois,
+em conteúdo e metadados monitorados.
+A produção permanece na versão instalada em 31/08 e conserva o contrato
+anterior de duas origens. Não houve novo push para a VPS nem mudança de
+modelos, configurações, credenciais operacionais ou sessões. A publicação
+deste portal é documental e não implanta o candidato; o novo push requer
+pedido explícito, com pacote e novos testes Linux na janela autorizada.
+IA real e WhatsApp real continuam sem aceite.
+
+Os 81 registros anteriores foram preservados. O registro “Confronto dos
+cards, Markdown faltante e push autorizado” continua em contexto `Produção`
+e estado `Publicado`. O push operacional foi autorizado e instalado às 02:52:31 de
 Brasília. O runtime foi aceito antes do backup posterior, com cinco contas
 conectadas em duas checagens; a continuidade e a checagem final posterior
 também foram aprovadas.
@@ -93,9 +122,12 @@ indisponibilidades: 20 anteriores, incluindo NAD nasal não reconciliado, e
 esses dois bloqueios técnicos novos. Isso não significa 20 arquivos ausentes;
 nenhuma imagem foi fabricada.
 
-O horário desta preparação é `2026-08-31T00:53:13-03:00`, explicitamente em
-Brasília. A coordenação renovará o instante e o manifesto depois dos resultados
-finais. Esta preparação ainda não foi publicada.
+A publicação anterior do portal foi comprovada às 03:21:50 de Brasília,
+com 81 registros e conteúdo datado de `2026-08-31T03:19:54-03:00` nos três
+horários visíveis. A edição de 82 registros exige seu próprio instante final,
+idêntico entre os dados, os três horários visíveis e o manifesto, após a
+estabilização da fonte e dos resultados. Os gates e a comprovação de publicação
+de cada edição ficam registrados no log interno deste portal.
 
 O aceite histórico do release de 29/08 registrou validações complementares e
 explicitamente separadas; não descreve a conexão após o reinício de 31/08:
@@ -142,12 +174,15 @@ alterações posteriores:
   navegador real;
 - conteúdo: naquele baseline havia 20 indisponibilidades de produto e tipo de
   card, incluindo NAD nasal não reconciliado; o robô deve informar
-  indisponibilidade sem substituir o material por outro. O rascunho atual
-  acrescenta os dois bloqueios técnicos e totaliza 22.
+  indisponibilidade sem substituir o material por outro. A versão instalada
+  em 31/08 acrescentou os dois bloqueios técnicos e totaliza 22.
 
-O diagnóstico somente leitura do Guardião de 31/08 às 01:17:48, horário de
+O diagnóstico histórico somente leitura do Guardião de 31/08 às 01:17:48, horário de
 Brasília, encontrou três slots completos, uma origem de provedor e três grupos
-monitorados. O quórum de duas origens independentes não foi atingido.
+monitorados. O quórum de duas origens independentes não foi atingido nesse
+contrato, que ainda é o da versão instalada. A nova decisão local por três
+agentes substitui a exigência de origens distintas somente no candidato em
+validação; adicionar uma segunda origem não é requisito do novo plano.
 Configuração não equivale a votos reais: nenhum provedor foi chamado e nenhuma
 moderação foi executada nesse diagnóstico. Mídia sem legenda permanece para
 revisão manual. O confronto com respostas humanas é somente agregado e sanitizado,
@@ -161,9 +196,9 @@ idêntica, sem estado operacional nem dependências instaladas incluídos. A nov
 versão, agora com o reparo de conexão, passou novos integrais local e Linux,
 teve o pacote reproduzido e foi instalada em 31/08 às 02:52:31 de Brasília.
 A conexão do runtime, a continuidade posterior e a checagem final foram aceitas.
-O instante final,
-o manifesto e os gates do portal ainda serão
-consolidados pela coordenação; o aceite anterior não é reaproveitado.
+O aceite daquela publicação não valida o candidato posterior do Guardião nem
+a nova edição do portal. Cada edição possui seu próprio instante final,
+manifesto, gates e evidência de publicação no log interno.
 
 ## Requisitos
 
@@ -257,7 +292,8 @@ gates locais. O deploy não altera o dashboard operacional.
    horário retroativamente a um evento sem evidência. Ao acrescentar um registro,
    preserve o `publishedAt` anterior como literal comprovado, sem vinculá-lo à
    constante renovada. O registro 79 mantém `2026-08-30T09:34:04-03:00` e o
-   registro 80 conserva `2026-08-30T19:36:19-03:00`.
+   registro 80 conserva `2026-08-30T19:36:19-03:00` e o registro 81 conserva
+   `2026-08-31T03:19:54-03:00`.
 4. Preserve a fonte canônica em ordem crescente e a ordem documental dentro do
    mesmo dia; a interface inverte uma cópia para mostrar o registro mais recente
    primeiro.

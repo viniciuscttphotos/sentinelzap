@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 81 registros sanitizados
+     └── métricas, roadmap e 82 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -49,7 +49,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, oito métricas executivas, sete prioridades do
-  roadmap, os 81 registros e as opções derivadas de filtro;
+  roadmap, os 82 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -107,7 +107,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 81 registros, distribuição por data, sequência canônica,
+- verifica contagem de 82 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -192,20 +192,53 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 31/08/2026, a preparação local contém 80 registros técnicos da fonte e um
-registro documental de publicação, totalizando 81. O mais recente é “Confronto
-dos cards, Markdown faltante e push autorizado”, em estado `Publicado` e
-contexto `Produção`. Os registros 79 e 80 conservam, respectivamente, os instantes
-comprovados `2026-08-30T09:34:04-03:00` e `2026-08-30T19:36:19-03:00`;
-somente o novo registro acompanha a constante renovada.
+Em 31/08/2026, a preparação local contém 81 registros técnicos da fonte e um
+registro documental de publicação, totalizando 82. O mais recente é “Consenso
+do Guardião por agentes, preservando os modelos atuais”, em estado
+`Validado localmente` e contexto `Local`. Os 81 registros anteriores foram mantidos.
+Os registros 79, 80 e 81 conservam os instantes comprovados
+`2026-08-30T09:34:04-03:00`, `2026-08-30T19:36:19-03:00` e
+`2026-08-31T03:19:54-03:00`, respectivamente; somente o registro 82 acompanha
+a constante a renovar no fechamento.
 
-O instante da preparação é `2026-08-31T00:53:13-03:00`, no fuso
-`America/Sao_Paulo`, presente nos três fallbacks HTML. O manifesto ainda deve
-ser renovado pela coordenação depois da estabilização da fonte. Não houve
-publicação desta edição: os gates locais, o deploy `Ready`, HTTP 200 e o mesmo
-horário na URL canônica precisam ser comprovados no fechamento.
+O novo contrato local preserva os modelos atuais e usa três agentes com papéis
+fixos de evidência, contexto e contestação. Exige pelo menos dois votos
+concordantes de agentes distintos, ancorados na mensagem corrente e na mesma
+rodada. Cada agente avalia separadamente, sem acesso aos votos dos demais;
+tentativas repetidas do mesmo agente não contam como novos votos. O uso do
+mesmo modelo ou provedor é permitido e não garante independência estatística.
+Evidência literal, categorias permitidas e revalidação da política antes de
+qualquer efeito continuam obrigatórias; mídia sem legenda segue para revisão manual.
 
-O novo conteúdo registra 13 seções acrescentadas ao Markdown de protocolos e
+A fase anterior foi interrompida por limite de uso, com focal reprovado por
+volta de 06:12 de Brasília. O rascunho preserva essa reprovação e não toma
+os gates da versão instalada como aceite do novo candidato. A contagem, o
+vínculo dos votos à rodada, os prazos de espera e o fallback foram corrigidos.
+O focal ampliado de 12 arquivos passou 161/161 em 31/08 às 07:08:39 de
+Brasília, sem falhas, skips ou cancelamentos. Foram acrescentadas 42
+regressões: 33 no núcleo e nove no agendamento, cujos focais passaram 73/73 e
+12/12. A suíte integral iniciou às 07:09:06 e terminou às 07:31:57 de
+Brasília, com saída zero: **1.200 testes, 1.199 aprovações, zero falhas ou
+cancelamentos e um skip esperado no macOS**. Foram 209/209 testes de
+CRM/persistência, 971 gerais com 970 aprovações e um skip, e 20/20 legados.
+A campanha aprovou 160.000/160.000 casos offline em 1.177,965 segundos.
+O código congelado e o estado protegido permaneceram idênticos antes e depois,
+em conteúdo e metadados monitorados. O candidato possui aceite local;
+produção conserva o contrato anterior de duas
+origens da versão instalada em 31/08. Não houve novo push para a VPS nem
+alteração de modelos, configurações, credenciais operacionais ou sessões;
+o novo candidato requer um pedido explícito de push após os gates. Pacote
+e novos testes Linux ficam para essa janela autorizada, sem novo aceite
+Linux, IA real ou WhatsApp real nesta preparação.
+
+A publicação anterior de 81 registros foi confirmada às 03:21:50 de Brasília,
+com o conteúdo de `2026-08-31T03:19:54-03:00` nos três horários visíveis,
+`Ready` e HTTP 200. A edição de 82 registros exige um novo instante final
+comum aos dados, três horários visíveis e manifesto, definido após estabilizar
+a fonte. Os gates e a comprovação de publicação de cada edição possuem
+registro próprio no log interno; o aceite anterior não é reaproveitado.
+
+O registro anterior de produção documenta 13 seções acrescentadas ao Markdown de protocolos e
 oito seções faltantes à compilação, além do complemento da seção existente de
 GHK-Cu, a partir de 18 fontes
 visuais lidas individualmente. As 90 imagens do inventário foram preservadas.
@@ -337,7 +370,13 @@ A reconstrução final após os testes permaneceu idêntica em conteúdo e
 composição, com 375 arquivos e 114.552.419 bytes, sem estado operacional ou
 dependências instaladas no pacote.
 
-As seis métricas executivas de contexto distinguem os novos gates integrais de
+Uma nova métrica apresenta os três agentes e dois votos do candidato local,
+separando decisão, falha histórica e aceite local. Outra métrica registra os
+1.200 testes integrais, os 161 testes focais aprovados e as 42 regressões novas.
+A métrica da campanha informa os 160.000 casos aprovados no novo candidato
+local em 1.177,965 segundos, distinguindo os resultados históricos da versão
+instalada. As seis métricas
+executivas de contexto distinguem os gates integrais da versão instalada de
 1.157 testes locais e 1.152 no Linux, mantendo os gates anteriores dos cards de
 1.126 testes locais e 1.121 no Linux e a reprovação intermediária no histórico, a matriz
 combinatória offline, os turnos fixos e falhas injetadas, a geração com provedor
@@ -361,9 +400,11 @@ virtual de testes (VM), sem navegador real, portanto não atesta layout,
 interação visual ou comportamento nativo completo do navegador. Etiquetas e
 integração logística real não foram acionadas.
 
-O diagnóstico somente leitura do Guardião em 31/08 às 01:17:48, horário de
+O diagnóstico histórico somente leitura do Guardião em 31/08 às 01:17:48, horário de
 Brasília, encontrou três slots completos, uma origem de provedor e três grupos
-monitorados. O quórum de duas origens independentes não foi atingido.
+monitorados. O quórum de duas origens independentes não foi atingido na versão
+que continua instalada. A nova decisão por agentes substitui esse requisito
+somente no candidato local; não requer adicionar uma segunda origem.
 Configuração não equivale a votos reais: nenhum provedor foi chamado e nenhuma
 moderação foi executada nesse diagnóstico. Identificadores e detalhes de
 configuração permanecem fora do conteúdo público. Mídia sem legenda exige
@@ -371,7 +412,10 @@ revisão manual. As 22 indisponibilidades (20 anteriores e dois bloqueios
 técnicos novos) permanecem em backlog com indisponibilidade segura, sem
 substituição por arte incorreta. IA real,
 WhatsApp, comparação semântica humana e aceite operacional continuam pendentes.
-O roadmap registra o pedido explícito de push recebido, os novos integrais local
+O roadmap apresenta o consenso por três agentes como validado localmente e
+prioriza obter o pedido explícito de novo push, seguido do pacote conferido
+e dos novos testes Linux na janela autorizada, sem antecipar implantação.
+O item histórico concluído registra o pedido explícito de push recebido, os integrais local
 e Linux aprovados, a reconstrução idêntica do pacote e a implantação concluída
 às 02:52:31 de Brasília. A produção usa o release de 31/08, com conexões
 reconfirmadas, TLS aprovado, backup posterior, restauração isolada e checagem

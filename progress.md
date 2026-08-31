@@ -1075,3 +1075,103 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   altera o instante do conteúdo, o manifesto, a fonte canônica ou a aplicação
   operacional. O envio deste registro documental não requer nova implantação
   nem reinício do SentinelZap na VPS.
+
+## 2026-08-31 06:55 (horário de Brasília) — Rascunho do consenso local do Guardião por agentes
+
+- Arquivos: `src/data.js`, metadados, nova métrica, roadmap e registro 82;
+  `index.html`, síntese inicial, estado e contagem; `test/data.test.js` e
+  `test/site.test.js`, contratos editoriais; `README.md` e
+  `techinical_referrence.md`, estado e limites. Este log registra a edição
+  documental sem alterar a fonte canônica da aplicação.
+- Mudança e finalidade: a decisão local por três agentes e dois votos passou
+  a constar em contexto `Local`, estado `Em validação`, preservando os modelos
+  atuais e exigindo votos de agentes distintos sobre a mensagem corrente e
+  na mesma rodada. Avaliações separadas não garantem independência estatística;
+  tentativas repetidas não acrescentam votos. O roadmap deixou de exigir uma
+  segunda origem como solução do novo contrato, sem reescrever o requisito
+  que ainda vigora na versão instalada.
+- Evidência preservada: os 81 registros anteriores continuam intactos, com
+  o horário comprovado do registro 81 convertido em literal. A interrupção
+  anterior por limite de uso e o focal reprovado permanecem explícitos. Os
+  gates da versão instalada não aprovam o candidato local; novos resultados
+  serão incorporados somente após comprovação. Nenhum aceite de IA real,
+  WhatsApp real ou implantação do novo Guardião foi antecipado.
+- Validação: `npm test`, **26/27 aprovações**, saída **1**, zero skips ou
+  cancelamentos. A única reprovação é a contagem antiga do manifesto,
+  ainda com 81 registros em vez de 82; o gate foi preservado. Os contratos
+  de conteúdo, histórico, sanitização, horário e acessibilidade passaram.
+  `git diff --check` limpo. Referência técnica revisada; a arquitetura
+  estática do portal permanece igual.
+- Estado: rascunho sem commit, push documental, build ou publicação. O
+  instante definitivo, o manifesto e os gates finais ficam reservados à
+  coordenação depois de estabilizar a fonte e receber os resultados do
+  núcleo. Não houve acesso nem mutação na VPS, início da aplicação,
+  navegador, WhatsApp ou alteração de dados operacionais nesta subtarefa.
+
+## 2026-08-31 07:25 (horário de Brasília) — Focais aprovados incorporados sem antecipar a integral
+
+- Arquivos: `src/data.js`, métrica focal, roadmap e registro 82;
+  `index.html`, síntese local e direção; `README.md` e
+  `techinical_referrence.md`, evidências e próximos gates; `test/data.test.js`
+  e `test/site.test.js`, contratos dos resultados documentados.
+- Evidência incorporada: focal ampliado de 12 arquivos concluído às 07:08:39
+  de Brasília, **161/161**, zero falhas, skips ou cancelamentos. A etapa
+  acrescentou **42 regressões**, 33 no núcleo e nove no agendamento; os
+  focais correspondentes passaram **73/73** e **12/12**. A suíte integral
+  iniciada às 07:09:06 permanece em andamento, sem resultado final publicado.
+- Finalidade: substituir as pendências focais já resolvidas por resultados
+  comprovados, mantendo o registro `Local` e `Em validação` até a integral e
+  a revisão final. O focal reprovado anterior e a interrupção permanecem no
+  histórico. As métricas da campanha e do Linux foram explicitamente
+  vinculadas à versão instalada; não validam o novo Guardião.
+- Próximo gate: após aceite local, exigir pedido explícito de novo push;
+  pacote e novos testes Linux pertencem à janela autorizada de implantação.
+  Nenhum aceite Linux novo, IA real ou WhatsApp real foi declarado.
+- Validação: `npm test`, **26/27 aprovações**, saída **1**, zero skips ou
+  cancelamentos; única falha no manifesto anterior com 81 em vez de 82
+  registros. `git diff --check` limpo; referência técnica revisada, sem
+  alteração da arquitetura estática. Nenhum build, commit, push, publicação
+  ou acesso à VPS. Horário definitivo e manifesto continuam intocados.
+
+## 2026-08-31 07:36 (horário de Brasília) — Aceite local integral do Guardião consolidado
+
+- Arquivos: `src/data.js`, métricas, roadmap e registro 82; `index.html`,
+  estado executivo e resultados; `README.md` e `techinical_referrence.md`,
+  estado final e limites; `test/data.test.js` e `test/site.test.js`,
+  contratos editoriais correspondentes. Os 81 registros anteriores foram
+  preservados, assim como o instante histórico do registro 81.
+- Resultado comprovado: a integral terminou às **07:31:57 de Brasília**, com
+  saída zero: **1.200 testes, 1.199 aprovações, zero falhas ou cancelamentos
+  e um skip esperado no macOS**. Foram 209/209 de CRM/persistência, 971
+  gerais com 970 aprovações e um skip, e 20/20 legados. A campanha aprovou
+  **160.000/160.000 casos offline em 1.177,965 segundos**. Os 161/161
+  focais e as 42 regressões novas continuam discriminados.
+- Preservação: a coordenação confirmou a comparação final do código
+  congelado e do estado protegido, sem acréscimos, remoções ou mudanças de
+  conteúdo e metadados monitorados. A síntese pública não expõe caminhos,
+  identificadores, hashes ou detalhes privados desses inventários.
+- Estado: registro 82 em contexto **Local**, estado **Validado localmente**.
+  O roadmap exige pedido explícito de novo push e reserva pacote e novos
+  testes Linux à janela autorizada. A produção continua no contrato anterior
+  de duas origens; nenhum novo aceite Linux, IA real, WhatsApp real ou
+  implantação foi antecipado. O focal reprovado e a interrupção anteriores
+  permanecem registrados como histórico.
+- Validação editorial: `git diff --check` limpo. Os contratos de testes foram
+  alinhados aos resultados finais; por orientação da coordenação, não houve
+  repetição de `npm test` com o manifesto antigo conhecido. O resultado
+  editorial anterior permanece **26/27, saída 1**, exclusivamente pela
+  contagem antiga do manifesto. A coordenação executará os gates completos
+  depois de renovar horário e manifesto; nenhum gate foi flexibilizado.
+- Entrega: os sete arquivos ficam estáveis para consolidação e publicação
+  documental. Horário definitivo e manifesto não foram editados nesta
+  subtarefa; não houve build, commit, push, deploy ou acesso à VPS. A
+  arquitetura estática do portal foi revisada e permanece inalterada.
+
+## 2026-08-31 07:40:06 (horário de Brasília) — Gates finais da síntese do Guardião
+
+- Fonte canônica fechada e sincronizada: 82 registros totais/81 técnicos. O instante do conteúdo é **2026-08-31T07:38:02-03:00**, igual em `src/data.js`, nos três horários visíveis de `index.html` e em `sync/progress-source.json`.
+- Revisão independente de sanitização concluída. A métrica de 1.200 testes foi identificada como suíte do candidato local, e a direção distingue explicitamente o push anterior da versão instalada dos gates ainda pendentes do novo Guardião. Os 81 registros anteriores foram preservados.
+- `test/site.test.js` foi alinhado a essa distinção explícita. O primeiro `check` final teve 26/27, saída 1, por esperar a redação antiga do push; o registro permanece histórico reprovado, sem publicação nessa condição. Após a correção, **`npm run progress:verify` e `npm run check` passaram**, com **27/27 testes**, zero falhas/skips/cancelamentos e build Vite concluído. `git diff --check` limpo.
+- Arquivos consolidados: `src/data.js`, `index.html`, `sync/progress-source.json`, `test/data.test.js`, `test/site.test.js`, `README.md`, `techinical_referrence.md` e este log interno. Referência técnica revisada; os ajustes editoriais finais não modificaram a arquitetura estática.
+- O candidato operacional foi validado exclusivamente no ambiente local: 1.200 testes, 1.199 aprovados, zero falhas e um skip ambiental esperado; campanha 160.000/160.000, fonte e estado protegido preservados. Não houve novo pacote/Linux, IA/WhatsApp real ou push para a VPS.
+- Próximo passo desta publicação: enviar o repositório documental a `main`, confirmar Ready no deployment correspondente e conferir HTTPS 200, cabeçalhos, bytes do build e horário público. Esta entrada registra os gates locais, sem antecipar a evidência externa.

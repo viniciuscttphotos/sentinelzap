@@ -18,7 +18,7 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(html, /81 consolidados/);
+  assert.match(html, /82 consolidados/);
   assert.match(html, /push de 31\/08 foi instalado e validado, com cinco contas conectadas/i);
   assert.match(html, /release de 31 de agosto foi instalado às 02:52:31 de Brasília/i);
   assert.match(html, /13 seções ao Markdown.*?oito seções\s+faltantes à compilação.*?complemento da seção existente de GHK-Cu/s);
@@ -79,8 +79,25 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.match(html, /quórum de duas origens independentes não foi atingido/i);
   assert.match(html, /Configuração não equivale\s+a votos reais: nenhum provedor foi chamado e nenhuma moderação foi executada/is);
   assert.match(html, /Mídia sem legenda permanece para revisão\s+manual/i);
-  assert.match(html, /push foi explicitamente autorizado e instalado às 02:52:31 de Brasília/i);
-  assert.match(html, /integrais local e Linux foram aprovados.*?reconstrução confirmou o pacote idêntico.*?cinco conexões, o backup posterior, a restauração isolada e a checagem final\s+sem atividade foram aprovados/is);
+  assert.match(html, /push anterior da versão já instalada em 31\/08 foi explicitamente autorizado e\s+concluído às 02:52:31 de Brasília/i);
+  assert.match(html, /integrais local e Linux daquele pacote foram\s+aprovados.*?reconstrução confirmou o pacote idêntico.*?cinco conexões, o backup posterior, a restauração isolada e a checagem final\s+sem atividade foram aprovados/is);
+});
+
+test('hero informa o Guardião local sem antecipar implantação ou substituir evidência histórica', async () => {
+  const html = await read('index.html');
+  assert.match(html, /Guardião foi validado localmente.*três agentes e dois votos/i);
+  assert.match(html, /modelos atuais foram preservados.*Evidência, contexto e contestação.*avaliados\s+separadamente/is);
+  assert.match(html, /mesmo modelo ou provedor\s+pode ser utilizado.*não garante independência estatística/is);
+  assert.match(html, /Dois agentes distintos\s+precisam concordar sobre a mensagem corrente, na mesma rodada/i);
+  assert.match(html, /tentativa repetida\s+do mesmo agente não cria outro voto/i);
+  assert.match(html, /focal reprovado por volta de 06:12 de Brasília/i);
+  assert.match(html, /07:08:39 de Brasília.*161 de 161 testes aprovados.*zero falhas, skips ou cancelamentos.*42 regressões.*33 no núcleo e nove no agendamento/is);
+  assert.match(html, /07:31:57 de Brasília.*1\.200 testes.*1\.199 aprovações, zero falhas ou cancelamentos e um skip esperado no macOS/is);
+  assert.match(html, /campanha local aprovou 160\.000 de 160\.000 casos offline em 1\.177,965 segundos/i);
+  assert.match(html, /código congelado e o estado protegido permaneceram idênticos antes e depois,\s+em conteúdo e metadados monitorados/i);
+  assert.match(html, /Não houve novo push para a VPS.*produção mantém o contrato anterior de duas origens/is);
+  assert.match(html, /decisão local por três agentes substitui esse requisito somente no novo candidato/i);
+  assert.match(html, /candidato só poderá ser\s+implantado após pedido explícito de novo push/i);
 });
 
 test('HTML oferece SEO, OpenGraph e marcos básicos de acessibilidade', async () => {
@@ -193,13 +210,13 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const verifier = await read('scripts/verify-progress-sync.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 81);
-  assert.equal(manifest.technicalSourceRecords, 80);
+  assert.equal(manifest.entryCount, 82);
+  assert.equal(manifest.technicalSourceRecords, 81);
   assert.equal(manifest.synchronizedAt, reportMeta.updatedAtIso);
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Confronto dos cards, Markdown faltante e push autorizado',
+    'Consenso do Guardião por agentes, preservando os modelos atuais',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /heading\.date >= latest\.date/);

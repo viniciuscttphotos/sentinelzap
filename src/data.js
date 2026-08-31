@@ -1,6 +1,6 @@
 const REPORT_TIME_ZONE = 'America/Sao_Paulo';
 const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
-const REPORT_UPDATED_AT = '2026-08-31T03:19:54-03:00';
+const REPORT_UPDATED_AT = '2026-08-31T07:38:02-03:00';
 
 function formatReportUpdatedAt(value) {
   const date = new Date(value);
@@ -32,8 +32,8 @@ export const reportMeta = Object.freeze({
   timeZone: REPORT_TIME_ZONE,
   timeZoneLabel: REPORT_TIME_ZONE_LABEL,
   period: '15 a 31 de agosto de 2026',
-  sourceRecords: 80,
-  publishedRecords: 81,
+  sourceRecords: 81,
+  publishedRecords: 82,
   productionReleaseDate: '31 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -41,6 +41,16 @@ export const reportMeta = Object.freeze({
 });
 
 export const executiveMetrics = Object.freeze([
+  {
+    value: '3 / 2',
+    label: 'agentes e votos no candidato local',
+    note: 'Candidato validado localmente: os três modelos atuais foram preservados e evidência, contexto e contestação são avaliados separadamente, exigindo dois votos concordantes de agentes distintos sobre a mensagem corrente. Usar o mesmo modelo ou provedor é permitido e não garante independência estatística. O focal reprovado da etapa interrompida foi preservado no histórico; o núcleo corrigido passou nos novos focais e na suíte integral. A produção mantém o contrato anterior de duas origens, sem novo push nesta etapa.',
+  },
+  {
+    value: '1.200',
+    label: 'testes integrais do candidato local',
+    note: 'Suíte integral local concluída em 31/08 às 07:31:57 de Brasília, com 1.200 testes, 1.199 aprovações, zero falhas ou cancelamentos e um skip esperado no macOS. O focal ampliado de 12 arquivos passou 161 de 161 às 07:08:39, sem falhas, skips ou cancelamentos. Foram acrescentadas 42 regressões: 33 no núcleo e nove no agendamento; seus focais passaram 73 de 73 e 12 de 12. O código congelado e o estado protegido permaneceram idênticos antes e depois. Não houve novos testes Linux, chamada a IA real ou novo push para a VPS nesta etapa.',
+  },
   {
     value: '13 + 8',
     label: 'seções documentais confrontadas',
@@ -59,7 +69,7 @@ export const executiveMetrics = Object.freeze([
   {
     value: '160.000',
     label: 'matriz combinatória offline',
-    note: 'O candidato corrigido repetiu 160.000 de 160.000 casos aprovados tanto localmente quanto no Linux, com 40 produtos × 4.000 casos em 20 famílias de cenários. A nova execução levou 444,109 segundos no ambiente local e 63,956 segundos no Linux. Essa contagem não equivale a conversas com um modelo de linguagem real.',
+    note: 'O novo candidato local do Guardião aprovou 160.000 de 160.000 casos offline em 1.177,965 segundos, com 40 produtos × 4.000 casos em 20 famílias de cenários. A versão já instalada teve resultados anteriores de 444,109 segundos localmente e 63,956 segundos no Linux; esses gates históricos não validam o novo candidato. Essa contagem não equivale a conversas com um modelo de linguagem real. Não houve nova execução Linux nesta etapa.',
   },
   {
     value: '240 + 240',
@@ -85,6 +95,14 @@ export const executiveMetrics = Object.freeze([
 
 export const roadmap = Object.freeze([
   {
+    priority: 'Próximo gate',
+    title: 'Autorizar o push do Guardião validado localmente',
+    description:
+      'O Guardião por três agentes foi validado localmente com 161 testes focais aprovados e uma suíte integral de 1.200 testes, com 1.199 aprovações, zero falhas ou cancelamentos e um skip esperado. Modelos atuais, mensagem corrente, votos da mesma rodada e revalidação da política foram preservados. O focal anterior reprovado continua no histórico. O uso do mesmo modelo ou provedor é permitido, sem garantia de independência estatística. O próximo passo depende de pedido explícito de novo push; pacote e novos testes Linux serão executados na janela autorizada. Até lá, a produção mantém o contrato anterior de duas origens.',
+    owner: 'Desenvolvimento local e revisão técnica',
+    gate: 'Pedido explícito de novo push, pacote conferido e novos testes Linux na janela autorizada',
+  },
+  {
     priority: 'Concluído',
     title: 'Push instalado e validado',
     description:
@@ -104,7 +122,7 @@ export const roadmap = Object.freeze([
     priority: 'Próxima validação funcional',
     title: 'Comprovar IA real, moderação e fluxos no runtime acompanhado',
     description:
-      'Executar recuperação histórica, moderação, conversação e entrega de cards de forma controlada. A leitura do Guardião em 31/08 às 01:17:48, horário de Brasília, encontrou três slots, uma origem de provedor e três grupos monitorados: o quórum de duas origens independentes não foi atingido. Comprovar a segunda origem e votos reais antes do aceite de moderação; validar IA real e comparação semântica humana. Mídia sem legenda exige revisão manual.',
+      'Executar recuperação histórica, moderação, conversação e entrega de cards de forma controlada, após os gates correspondentes e autorização. A produção mantém o contrato de duas origens da versão instalada; o diagnóstico anterior não atingiu esse quórum. A decisão local substitui esse requisito por três agentes e dois votos, preservando os modelos atuais. Depois de validar e autorizar a implantação desse candidato, comprovar votos reais, IA real e comparação semântica humana. Mídia sem legenda exige revisão manual.',
     owner: 'Usuário autenticado e operação técnica',
     gate: 'Candidato publicado, configuração íntegra, quórum suficiente e aceite operacional sanitizado',
   },
@@ -1212,7 +1230,7 @@ const records = [
   },
   {
     date: '2026-08-31',
-    publishedAt: REPORT_UPDATED_AT,
+    publishedAt: '2026-08-31T03:19:54-03:00',
     title: 'Confronto dos cards, Markdown faltante e push autorizado',
     context: 'Produção',
     kind: 'Implementação',
@@ -1224,6 +1242,21 @@ const records = [
     validation:
       'Gates do candidato dos cards em 31/08: local concluído às 01:36:02, horário de Brasília, com 1.126 testes, 1.125 aprovações, zero falhas e um skip esperado; Linux concluído às 01:29:45, com 1.121 de 1.121 aprovados. Ambos aprovaram 160.000 casos offline. O backup pré-publicação concluiu o 15º snapshot e reiniciou o serviço; esse reinício revelou a falha da conta principal. Na leitura de 31/08 às 01:57:33, horário de Brasília, quatro contas gerenciadas estavam prontas, a principal estava em erro e não havia jobs ou scans ativos; é um diagnóstico datado, não aceite de conexão. O primeiro reparo local passou 206 de 206 testes focais, mas seu pacote falhou em um contrato de telemetria nas duas suítes integrais, local e Linux. Os sete eventos operacionais anteriores foram restaurados e testados pelo comportamento real do registrador. O novo focal passou 214 de 214 testes, com 31 regressões da conta principal. Após revisão independente, o congelamento formal ocorreu às 02:26:08, horário de Brasília. Os novos integrais foram aprovados em 31/08: local concluído às 02:37:42, horário de Brasília, com 1.157 testes, 1.156 aprovações, zero falhas e um skip esperado; Linux concluído às 02:33:41, com 1.152 de 1.152 aprovados, sem skips ou cancelamentos. A campanha repetiu 160.000 de 160.000 aprovações, em 444,109 segundos localmente e 63,956 segundos no Linux. A reconstrução às 02:37:58 de Brasília confirmou o mesmo pacote de 378 arquivos e 114.678.851 bytes. Os gates dos cards não validam esse reparo posterior, e os integrais reprovados não foram tratados como aceite. A implantação concluiu em 31/08 às 02:52:31, horário de Brasília: 76 arquivos alterados, 32 acrescentados e nenhum removido; o estado protegido permaneceu igual antes da partida. O serviço iniciou ativo, com zero reinícios automáticos, e o staging é separado. A produção agora usa o release de 31/08. A primeira checagem às 02:53:04 de Brasília aprovou API, SQLite, autenticação, arquivos protegidos e logs, mas as contas ainda estavam inicializando. Nas checagens de 03:02:41 e 03:03:57 de Brasília, cinco de cinco contas estavam conectadas, sem scans ou jobs e com zero reinícios automáticos; API, SQLite, autenticação, arquivos protegidos e logs passaram. A principal reautenticou sem novo QR, erro de conexão ou falha de observador; o runtime foi aceito antes do backup. O monitor TLS manual passou às 02:55:51 de Brasília, com cadeia, identidade do certificado, renovação automática e comparação local verificadas. HTTPS externo respondeu 200, com TLS válido, cabeçalhos seguros e redirecionamento HTTP 308. A infraestrutura secundária permaneceu protegida, sem reinício ou alteração, com bot desativado e serviço de backup autenticado, restrito internamente e somente de acréscimo. O backup posterior foi solicitado às 03:03:57,795 de Brasília e concluiu às 03:06:03,807. A consulta às 03:07:22,516 confirmou 16 snapshots e zero locks. O reinício normal ocorreu às 03:04:44, com zero reinícios automáticos. Na checagem de 03:07:30,158, cinco contas estavam conectadas com cinco perfis de navegador, API, SQLite, arquivos protegidos e logs aprovados, mas havia uma varredura ativa e nenhum job. A restauração isolada iniciou às 03:07:41,059 e passou às 03:09:47,807 de Brasília, sem falhas, com confirmação operacional entregue e execução não ignorada. A checagem final às 03:16:04,129 de Brasília aprovou cinco contas conectadas e cinco perfis de navegador, nenhuma varredura ou job ativo e zero reinícios automáticos. As verificações rápida, de integridade e de relações do SQLite passaram; a API respondeu com os códigos esperados de acesso e autenticação, restrita ao loopback. As mesmas contas e perfis foram preservados, a configuração protegida permaneceu inalterada, a integração logística continuou desativada e os sete contadores de alerta de logs ficaram em zero. Implantação, runtime e continuidade foram aceitos. Os timers recorrentes de TLS, backup e restauração permanecem desabilitados e inativos; a renovação automática de certificados continua habilitada e ativa. Diagnóstico somente leitura do Guardião em 31/08 às 01:17:48, horário de Brasília: três slots completos, uma origem de provedor e três grupos monitorados; o quórum de duas origens independentes não foi atingido. Configuração não equivale a votos reais: nenhum provedor foi chamado e nenhuma moderação foi executada nesse diagnóstico. IA real, entrega comercial no WhatsApp, recuperação histórica acompanhada e comparação semântica humana continuam sem aceite funcional; a conexão aprovada não substitui esses testes. A sincronização final do portal permanece uma publicação documental independente. Etiquetas e integração logística real permanecem fora do escopo.',
     tags: ['cards', 'Markdown', 'rastreabilidade', 'testes', 'push autorizado'],
+  },
+  {
+    date: '2026-08-31',
+    publishedAt: REPORT_UPDATED_AT,
+    title: 'Consenso do Guardião por agentes, preservando os modelos atuais',
+    context: 'Local',
+    kind: 'Implementação',
+    state: 'Validado localmente',
+    summary:
+      'O consenso do Guardião por três agentes foi concluído e validado localmente, preservando os modelos atuais e os papéis fixos de evidência, contexto e contestação. São necessários pelo menos dois votos concordantes de agentes distintos, ancorados na mensagem corrente e na mesma rodada. A produção mantém o contrato anterior de duas origens da versão instalada em 31/08; não houve novo push operacional.',
+    result:
+      'Cada agente avalia separadamente, sem ver os votos dos demais; uma nova tentativa do mesmo agente não cria outro voto. O mesmo modelo ou provedor pode ser utilizado, sem garantia de independência estatística. Evidência literal, categorias permitidas e revalidação da política antes de qualquer efeito continuam obrigatórias. Foram corrigidas a contagem dos votos, a separação entre rodadas, os prazos de espera e a alternativa segura quando uma rota falha, com 42 regressões novas. Mídia sem legenda permanece em revisão manual.',
+    validation:
+      'A etapa anterior foi interrompida por limite de uso, com teste focal reprovado em 31/08 por volta de 06:12, horário de Brasília. Esse resultado foi preservado e não é um aceite; os gates verdes da versão instalada não validam o novo candidato. O novo focal ampliado de 12 arquivos terminou em 31/08 às 07:08:39 de Brasília, com 161 de 161 testes aprovados, zero falhas, skips ou cancelamentos. Foram acrescentadas 42 regressões: 33 no núcleo e nove no agendamento, com focais de 73 de 73 e 12 de 12 aprovados. A suíte integral começou às 07:09:06 e terminou às 07:31:57 de Brasília com saída zero: 1.200 testes, 1.199 aprovados, zero falhas ou cancelamentos e um skip esperado no macOS. A composição foi de 209 testes de CRM/persistência aprovados, 971 gerais com 970 aprovações e um skip, e 20 legados aprovados. A campanha repetiu 160.000 de 160.000 casos offline em 1.177,965 segundos. O código congelado e o estado protegido permaneceram idênticos antes e depois, em conteúdo e metadados monitorados. Não houve novo push para a VPS, alteração de modelos, configurações, credenciais operacionais ou sessões, nem aceite de IA real ou WhatsApp real. Pacote e novos testes Linux ficam para a janela autorizada de implantação. A publicação desta síntese é documental e não implanta o Guardião.',
+    tags: ['Guardião', 'consenso por agentes', 'validação local', 'limites da evidência'],
   },
 ];
 
