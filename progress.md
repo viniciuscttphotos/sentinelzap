@@ -1055,3 +1055,23 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
   Vercel. A publicação pública será comprovada depois do envio; esta entrada
   não antecipa `Ready` ou HTTP 200. O runtime operacional já foi implantado
   e aceito, sem necessidade de outro push para a VPS.
+
+## 2026-08-31 03:21:50 (horário de Brasília) — Publicação pública comprovada
+
+- O envio para `main` terminou e a integração Git da Vercel confirmou
+  **Ready**, em produção, com o domínio canônico
+  `https://sentinelzap.vercel.app/` associado à versão publicada.
+- A conferência pública de **03:21:50 de Brasília** recebeu **HTTP 200**.
+  HTML, JavaScript e CSS foram comparados byte a byte com o build local
+  aprovado e permaneceram idênticos; a página contém os 81 registros
+  consolidados e os **três horários visíveis iguais a 31/08/2026 às
+  03:19:54, horário de Brasília**, conforme o manifesto e a fonte.
+- Os oito cabeçalhos de segurança corresponderam à configuração. HTML usa
+  revalidação; os assets versionados usam cache imutável. A primeira checagem
+  ad hoc aplicou indevidamente ao HTML a regra exclusiva dos assets e recusou
+  esse item; a verificação foi corrigida para respeitar as rotas existentes,
+  sem mudar a configuração ou o conteúdo publicado, e terminou com saída zero.
+- Esta entrada registra somente a evidência posterior de publicação. Não
+  altera o instante do conteúdo, o manifesto, a fonte canônica ou a aplicação
+  operacional. O envio deste registro documental não requer nova implantação
+  nem reinício do SentinelZap na VPS.
