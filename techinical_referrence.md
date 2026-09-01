@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 82 registros sanitizados
+     └── métricas, roadmap e 83 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -48,8 +48,8 @@ JavaScript e ativos estáticos.
 ### `src/data.js`
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
-- exporta metadados do relatório, oito métricas executivas, sete prioridades do
-  roadmap, os 82 registros e as opções derivadas de filtro;
+- exporta metadados do relatório, dez métricas executivas, oito prioridades do
+  roadmap, os 83 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -107,7 +107,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 82 registros, distribuição por data, sequência canônica,
+- verifica contagem de 83 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -192,14 +192,30 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 31/08/2026, a preparação local contém 81 registros técnicos da fonte e um
-registro documental de publicação, totalizando 82. O mais recente é “Consenso
-do Guardião por agentes, preservando os modelos atuais”, em estado
-`Validado localmente` e contexto `Local`. Os 81 registros anteriores foram mantidos.
-Os registros 79, 80 e 81 conservam os instantes comprovados
+Em 01/09/2026, a preparação local contém 82 registros técnicos da fonte e um
+registro documental de publicação, totalizando 83. O mais recente é “Correção
+local do ciclo de QR/logout e diagnóstico da lentidão (aguardando push)”, em
+estado `Validado localmente` e contexto `Local`. Os 82 registros anteriores
+foram mantidos. Os registros 79, 80, 81 e 82 conservam os instantes comprovados
 `2026-08-30T09:34:04-03:00`, `2026-08-30T19:36:19-03:00` e
-`2026-08-31T03:19:54-03:00`, respectivamente; somente o registro 82 acompanha
-a constante a renovar no fechamento.
+`2026-08-31T03:19:54-03:00` e `2026-08-31T07:38:02-03:00`, respectivamente;
+somente o registro 83 acompanha a constante renovada no fechamento.
+
+O registro 83 sintetiza três resultados sem transportar o histórico bruto. O
+corretivo do ciclo de conexão aprovou 182/182 testes focais. A suíte integral
+local concluiu 1.240 testes, com 1.239 aprovações, zero falhas ou cancelamentos
+e um skip ambiental esperado; a campanha offline aprovou 160.000/160.000 casos.
+O corretivo permanece apenas local e não altera a versão instalada de 31/08.
+O diagnóstico de desempenho atribui a lentidão à amplificação algorítmica de
+escrita por reprocessamento de coleções crescentes e orienta normalização,
+operações incrementais, índices, paginação, benchmark e corte controlado.
+
+A direção de aprendizado supervisionado exige governança, finalidade e opt-out,
+conjunto versionado e isolado por conta, redação forte, observação sem envio com
+memória e retenção próprias, avaliação humana, copiloto de rascunhos e canário
+de baixo risco antes de qualquer ajuste offline opcional. Os 594 pares de estilo
+não são tratados como equivalência semântica. Decisões financeiras e clínicas
+continuam humanas.
 
 O novo contrato local preserva os modelos atuais e usa três agentes com papéis
 fixos de evidência, contexto e contestação. Exige pelo menos dois votos
@@ -231,12 +247,12 @@ o novo candidato requer um pedido explícito de push após os gates. Pacote
 e novos testes Linux ficam para essa janela autorizada, sem novo aceite
 Linux, IA real ou WhatsApp real nesta preparação.
 
-A publicação anterior de 81 registros foi confirmada às 03:21:50 de Brasília,
-com o conteúdo de `2026-08-31T03:19:54-03:00` nos três horários visíveis,
-`Ready` e HTTP 200. A edição de 82 registros exige um novo instante final
-comum aos dados, três horários visíveis e manifesto, definido após estabilizar
-a fonte. Os gates e a comprovação de publicação de cada edição possuem
-registro próprio no log interno; o aceite anterior não é reaproveitado.
+A publicação de 82 registros foi confirmada em 31/08 com o conteúdo de
+`2026-08-31T07:38:02-03:00` nos três horários visíveis, `Ready` e HTTP 200. A
+edição de 83 registros usa o instante comum `2026-09-01T13:02:26-03:00` nos
+dados, três horários visíveis e manifesto. Os gates e a comprovação pública de
+cada edição possuem registro próprio no log interno; o aceite anterior não é
+reaproveitado.
 
 O registro anterior de produção documenta 13 seções acrescentadas ao Markdown de protocolos e
 oito seções faltantes à compilação, além do complemento da seção existente de
@@ -412,9 +428,12 @@ revisão manual. As 22 indisponibilidades (20 anteriores e dois bloqueios
 técnicos novos) permanecem em backlog com indisponibilidade segura, sem
 substituição por arte incorreta. IA real,
 WhatsApp, comparação semântica humana e aceite operacional continuam pendentes.
-O roadmap apresenta o consenso por três agentes como validado localmente e
-prioriza obter o pedido explícito de novo push, seguido do pacote conferido
-e dos novos testes Linux na janela autorizada, sem antecipar implantação.
+O roadmap apresenta o corretivo de conexão e o consenso por três agentes como
+validados localmente e prioriza obter o pedido explícito de push, seguido do
+pacote conferido e dos novos testes Linux na janela autorizada, sem antecipar
+implantação. A fase funcional seguinte é aprendizado supervisionado sob
+governança, isolamento por conta e avaliação humana, sem automatizar decisões
+financeiras ou clínicas.
 O item histórico concluído registra o pedido explícito de push recebido, os integrais local
 e Linux aprovados, a reconstrução idêntica do pacote e a implantação concluída
 às 02:52:31 de Brasília. A produção usa o release de 31/08, com conexões

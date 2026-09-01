@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 82 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 83 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,13 +12,37 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 81 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 82 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
 
-O registro mais recente é “Consenso do Guardião por agentes, preservando os
-modelos atuais”, em contexto `Local` e estado `Validado localmente`. A decisão usa
+O registro mais recente é “Correção local do ciclo de QR/logout e diagnóstico da
+lentidão (aguardando push)”, em contexto `Local` e estado `Validado localmente`.
+O corretivo do ciclo de conexão passou 182/182 testes focais, sem falhas,
+cancelamentos ou skips. A suíte integral local terminou em 01/09 às 12:56:19 de
+Brasília com 1.240 testes, 1.239 aprovações, zero falhas ou cancelamentos e um
+skip ambiental esperado; a campanha offline aprovou 160.000/160.000 casos. O
+estado protegido monitorado permaneceu inalterado e nenhum runtime local foi
+iniciado. O corretivo ainda não foi implantado e a versão instalada permanece
+a de 31/08.
+
+O diagnóstico de desempenho aponta amplificação de escrita causada pelo
+reprocessamento e pela regravação integral de coleções crescentes no processo da
+aplicação, apesar de haver capacidade de máquina disponível. A direção técnica é
+normalizar o armazenamento, adotar operações incrementais, índices e paginação,
+e só então executar benchmark e corte controlado com recuperação preparada.
+
+A direção de aprendizado supervisionado começa por governança, finalidade e
+opt-out; conjunto versionado, fortemente redigido e isolado por conta; observação
+com memória própria, retenção limitada e avaliação humana sem envio; copiloto de
+rascunhos; canário restrito a baixo risco; e ajuste offline opcional por último.
+Os 594 pares existentes são referência de estilo e não comprovam equivalência
+semântica. Venda, pagamento, crédito, reembolso e decisões clínicas permanecem
+obrigatoriamente humanos.
+
+O registro anterior, “Consenso do Guardião por agentes, preservando os modelos
+atuais”, permanece em contexto `Local` e estado `Validado localmente`. A decisão usa
 três agentes de evidência, contexto e contestação, exigindo pelo menos dois
 votos concordantes de agentes distintos sobre a mensagem corrente e na mesma
 rodada. Cada agente recebe uma avaliação separada, sem ver os outros votos;
@@ -46,7 +70,7 @@ deste portal é documental e não implanta o candidato; o novo push requer
 pedido explícito, com pacote e novos testes Linux na janela autorizada.
 IA real e WhatsApp real continuam sem aceite.
 
-Os 81 registros anteriores foram preservados. O registro “Confronto dos
+Os 82 registros anteriores foram preservados. O registro “Confronto dos
 cards, Markdown faltante e push autorizado” continua em contexto `Produção`
 e estado `Publicado`. O push operacional foi autorizado e instalado às 02:52:31 de
 Brasília. O runtime foi aceito antes do backup posterior, com cinco contas
@@ -122,12 +146,12 @@ indisponibilidades: 20 anteriores, incluindo NAD nasal não reconciliado, e
 esses dois bloqueios técnicos novos. Isso não significa 20 arquivos ausentes;
 nenhuma imagem foi fabricada.
 
-A publicação anterior do portal foi comprovada às 03:21:50 de Brasília,
-com 81 registros e conteúdo datado de `2026-08-31T03:19:54-03:00` nos três
-horários visíveis. A edição de 82 registros exige seu próprio instante final,
-idêntico entre os dados, os três horários visíveis e o manifesto, após a
-estabilização da fonte e dos resultados. Os gates e a comprovação de publicação
-de cada edição ficam registrados no log interno deste portal.
+A publicação de 82 registros foi comprovada em 31/08, com conteúdo datado de
+`2026-08-31T07:38:02-03:00` nos três horários visíveis, deploy `Ready` e HTTP
+200. A edição de 83 registros usa um novo instante final, idêntico entre os
+dados, os três horários visíveis e o manifesto. Os gates e a comprovação de
+publicação de cada edição ficam registrados no log interno deste portal; o
+aceite anterior não é reaproveitado.
 
 O aceite histórico do release de 29/08 registrou validações complementares e
 explicitamente separadas; não descreve a conexão após o reinício de 31/08:
@@ -292,8 +316,9 @@ gates locais. O deploy não altera o dashboard operacional.
    horário retroativamente a um evento sem evidência. Ao acrescentar um registro,
    preserve o `publishedAt` anterior como literal comprovado, sem vinculá-lo à
    constante renovada. O registro 79 mantém `2026-08-30T09:34:04-03:00` e o
-   registro 80 conserva `2026-08-30T19:36:19-03:00` e o registro 81 conserva
-   `2026-08-31T03:19:54-03:00`.
+   registro 80 conserva `2026-08-30T19:36:19-03:00`, o registro 81 conserva
+   `2026-08-31T03:19:54-03:00` e o registro 82 conserva
+   `2026-08-31T07:38:02-03:00`.
 4. Preserve a fonte canônica em ordem crescente e a ordem documental dentro do
    mesmo dia; a interface inverte uma cópia para mostrar o registro mais recente
    primeiro.

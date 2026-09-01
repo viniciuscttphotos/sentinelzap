@@ -8,15 +8,15 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('prepara 82 registros separando Guardião local e publicação operacional comprovada', () => {
-  assert.equal(reportMeta.sourceRecords, 81);
-  assert.equal(reportMeta.publishedRecords, 82);
-  assert.equal(progressEntries.length, 82);
-  assert.equal(progressEntries.at(-1).date, '2026-08-31');
+test('prepara 83 registros separando o corretivo local da publicação operacional comprovada', () => {
+  assert.equal(reportMeta.sourceRecords, 82);
+  assert.equal(reportMeta.publishedRecords, 83);
+  assert.equal(progressEntries.length, 83);
+  assert.equal(progressEntries.at(-1).date, '2026-09-01');
   assert.equal(reportMeta.productionReleaseDate, '31 de agosto de 2026');
   assert.equal(
     progressEntries.at(-1).title,
-    'Consenso do Guardião por agentes, preservando os modelos atuais',
+    'Correção local do ciclo de QR/logout e diagnóstico da lentidão (aguardando push)',
   );
 });
 
@@ -29,7 +29,7 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   assert.equal(reportMeta.timeZoneLabel, 'horário de Brasília');
   assert.match(
     reportMeta.updatedAtLabel,
-    /^31 de agosto de 2026 às \d{2}:\d{2}:\d{2} \(horário de Brasília\)$/,
+    /^01 de setembro de 2026 às \d{2}:\d{2}:\d{2} \(horário de Brasília\)$/,
   );
   assert.ok(reportMeta.updatedAtLabel.includes(reportMeta.updatedAtIso.slice(11, 19)));
 
@@ -56,12 +56,13 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   const latestRecord = progressEntries.at(-1);
   assert.equal(latestRecord.publishedAt, reportMeta.updatedAtIso);
   assert.equal(latestRecord.date, reportMeta.updatedAtIso.slice(0, 10));
-  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 4);
+  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 5);
   const priorPublication = progressEntries.find(({ sequence }) => sequence === 79);
   assert.equal(priorPublication.publishedAt, '2026-08-30T09:34:04-03:00');
   assert.notEqual(priorPublication.publishedAt, reportMeta.updatedAtIso);
   assert.equal(progressEntries.find(({ sequence }) => sequence === 80).publishedAt, '2026-08-30T19:36:19-03:00');
   assert.equal(progressEntries.find(({ sequence }) => sequence === 81).publishedAt, '2026-08-31T03:19:54-03:00');
+  assert.equal(progressEntries.find(({ sequence }) => sequence === 82).publishedAt, '2026-08-31T07:38:02-03:00');
 });
 
 test('preserva a distribuição documental por data', () => {
@@ -80,6 +81,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-29': 5,
     '2026-08-30': 3,
     '2026-08-31': 2,
+    '2026-09-01': 1,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -93,9 +95,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 82 }, (_, index) => index + 1),
+    Array.from({ length: 83 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 82);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 83);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -488,7 +490,7 @@ test('diagnóstico histórico do Guardião preserva o requisito da versão insta
 });
 
 test('novo Guardião separa decisão local, evidência por agente e limites do aceite', () => {
-  const record = progressEntries.at(-1);
+  const record = progressEntries.find(({ sequence }) => sequence === 82);
   assert.equal(record.context, 'Local');
   assert.equal(record.state, 'Validado localmente');
   assert.match(record.summary, /três agentes.*validado localmente.*preservando os modelos atuais.*evidência, contexto e contestação/i);
@@ -503,14 +505,6 @@ test('novo Guardião separa decisão local, evidência por agente e limites do a
   assert.match(record.validation, /12 arquivos.*07:08:39 de Brasília.*161 de 161 testes aprovados, zero falhas, skips ou cancelamentos/i);
   assert.match(record.validation, /42 regressões.*33 no núcleo e nove no agendamento.*73 de 73 e 12 de 12 aprovados/i);
   assert.match(record.validation, /Não houve novo push para a VPS.*modelos, configurações, credenciais operacionais ou sessões.*nem aceite de IA real ou WhatsApp real/i);
-  const metric = executiveMetrics.find(({ value }) => value === '3 / 2');
-  assert.match(metric.label, /candidato local/i);
-  assert.match(metric.note, /dois votos concordantes de agentes distintos.*mensagem corrente/i);
-  assert.match(metric.note, /não garante independência estatística.*focal reprovado.*produção mantém o contrato anterior de duas origens/i);
-  const localMetric = executiveMetrics.find(({ value }) => value === '1.200');
-  assert.match(localMetric.note, /31\/08 às 07:31:57 de Brasília.*1\.200 testes, 1\.199 aprovações, zero falhas ou cancelamentos e um skip esperado no macOS/i);
-  assert.match(localMetric.note, /12 arquivos.*161 de 161 às 07:08:39.*sem falhas, skips ou cancelamentos/i);
-  assert.match(localMetric.note, /42 regressões.*33 no núcleo e nove no agendamento/i);
   assert.match(record.validation, /07:31:57 de Brasília com saída zero.*1\.200 testes, 1\.199 aprovados, zero falhas ou cancelamentos e um skip esperado no macOS/i);
   assert.match(record.validation, /209 testes de CRM\/persistência aprovados.*971 gerais com 970 aprovações e um skip.*20 legados aprovados/i);
   assert.match(record.validation, /160\.000 de 160\.000 casos offline em 1\.177,965 segundos/i);
@@ -518,10 +512,35 @@ test('novo Guardião separa decisão local, evidência por agente e limites do a
   assert.match(record.validation, /Pacote e novos testes Linux ficam para a janela autorizada/i);
 });
 
+test('corretivo local publica somente evidência sanitizada e direção supervisionada', () => {
+  const record = progressEntries.at(-1);
+  assert.equal(record.sequence, 83);
+  assert.equal(record.context, 'Local');
+  assert.equal(record.kind, 'Correção');
+  assert.equal(record.state, 'Validado localmente');
+  assert.match(record.summary, /ciclo de conexão, logout e acompanhamento.*operações ativas.*estados terminais/i);
+  assert.match(record.summary, /referência expira.*área Contas.*orientação acionável/i);
+  assert.match(record.summary, /ainda não foi implantado.*versão instalada permanece a de 31\/08/i);
+  assert.match(record.result, /182 de 182 testes.*sem falhas, cancelamentos ou skips/i);
+  assert.match(record.result, /1\.240 testes.*1\.239 aprovações.*zero falhas ou cancelamentos.*skip ambiental esperado/i);
+  assert.match(record.result, /amplificação de escrita.*clonagem, validação, serialização e regravação integral.*capacidade de máquina disponível/i);
+  assert.match(record.result, /normalizar o armazenamento.*operações incrementais.*índices.*paginação.*benchmark.*corte controlado/i);
+  assert.match(record.validation, /governança, finalidade e opt-out.*versionado.*isolado por conta/i);
+  assert.match(record.validation, /observação com memória própria.*retenção limitada.*avaliação humana sem envio.*copiloto de rascunhos.*canário.*baixo risco.*ajuste offline opcional por último/i);
+  assert.match(record.validation, /594 pares.*referência de estilo.*não comprovam equivalência semântica/i);
+  assert.match(record.validation, /Venda, pagamento, crédito, reembolso.*decisão clínica.*obrigatoriamente humanos/i);
+  assert.match(record.validation, /Não houve implantação, novos testes Linux nem aceite de IA real ou atendimento real/i);
+
+  const focalMetric = executiveMetrics.find(({ value }) => value === '182 / 182');
+  const integralMetric = executiveMetrics.find(({ value }) => value === '1.240');
+  assert.match(focalMetric.note, /corretivo local.*182 de 182.*não foi implantado/i);
+  assert.match(integralMetric.note, /01\/09 às 12:56:19 de Brasília.*1\.239 aprovações.*skip ambiental esperado.*Não houve novos testes Linux.*implantação/i);
+});
+
 test('cada registro traz prestação de contas completa', () => {
   const allowedContexts = new Set(['Local', 'Produção', 'Documentação']);
   for (const record of progressEntries) {
-    assert.match(record.date, /^2026-08-\d{2}$/);
+    assert.match(record.date, /^2026-(?:08|09)-\d{2}$/);
     assert.ok(record.title.length >= 12);
     assert.ok(record.summary.length >= 70);
     assert.ok(record.result.length >= 45);
@@ -551,8 +570,8 @@ test('conteúdo público não contém indicadores sensíveis ou exploráveis', (
 test('roadmap preserva os gates humanos, logísticos e externos vigentes', () => {
   assert.equal(roadmap.length, 8);
   assert.equal(roadmap[0].priority, 'Próximo gate');
-  assert.equal(roadmap[0].title, 'Autorizar o push do Guardião validado localmente');
-  assert.match(roadmap[0].gate, /Pedido explícito de novo push, pacote conferido e novos testes Linux na janela autorizada/i);
+  assert.equal(roadmap[0].title, 'Autorizar o push dos candidatos validados localmente');
+  assert.match(roadmap[0].gate, /Pedido explícito de push, pacote conferido e novos testes Linux na janela autorizada/i);
   assert.equal(roadmap[1].priority, 'Concluído');
   assert.equal(roadmap[1].title, 'Push instalado e validado');
   const roadmapText = roadmap.map((item) => Object.values(item).join(' ')).join(' ');
@@ -566,7 +585,7 @@ test('roadmap preserva os gates humanos, logísticos e externos vigentes', () =>
   assert.match(roadmapText, /backup posterior concluiu às 03:06:03,807 de Brasília.*16 snapshots e zero locks.*restauração isolada passou às 03:09:47,807.*checagem final às 03:16:04,129 de Brasília.*nenhuma varredura ou job ativo.*Implantação, runtime e continuidade foram aceitos/i);
   assert.match(roadmapText, /etiquetas.*integração logística real.*fora do escopo/i);
   assert.match(roadmapText, /22 indisponibilidades.*20 indisponibilidades anteriores.*NAD.*dois técnicos existentes bloqueados/i);
-  assert.match(roadmapText, /recuperação histórica.*moderação.*conversação.*cards/i);
-  assert.match(roadmapText, /produção mantém o contrato de duas origens.*decisão local substitui esse requisito por três agentes e dois votos.*preservando os modelos atuais.*votos reais.*IA real.*comparação semântica humana/i);
+  assert.match(roadmapText, /aprendizado supervisionado.*governança.*opt-out.*isolado por conta.*observação.*avaliação humana sem envio.*copiloto.*canário.*baixo risco.*ajuste offline/i);
+  assert.match(roadmapText, /594 pares de estilo.*não comprovam equivalência semântica.*Venda, pagamento, crédito, reembolso.*decisão clínica.*humanos/i);
   assert.doesNotMatch(roadmapText, /comprovar a segunda origem|exigir.*segunda origem/i);
 });

@@ -1,6 +1,6 @@
 const REPORT_TIME_ZONE = 'America/Sao_Paulo';
 const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
-const REPORT_UPDATED_AT = '2026-08-31T07:38:02-03:00';
+const REPORT_UPDATED_AT = '2026-09-01T13:02:26-03:00';
 
 function formatReportUpdatedAt(value) {
   const date = new Date(value);
@@ -31,9 +31,9 @@ export const reportMeta = Object.freeze({
   updatedAtLabel: formatReportUpdatedAt(REPORT_UPDATED_AT),
   timeZone: REPORT_TIME_ZONE,
   timeZoneLabel: REPORT_TIME_ZONE_LABEL,
-  period: '15 a 31 de agosto de 2026',
-  sourceRecords: 81,
-  publishedRecords: 82,
+  period: '15 de agosto a 1º de setembro de 2026',
+  sourceRecords: 82,
+  publishedRecords: 83,
   productionReleaseDate: '31 de agosto de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -42,14 +42,14 @@ export const reportMeta = Object.freeze({
 
 export const executiveMetrics = Object.freeze([
   {
-    value: '3 / 2',
-    label: 'agentes e votos no candidato local',
-    note: 'Candidato validado localmente: os três modelos atuais foram preservados e evidência, contexto e contestação são avaliados separadamente, exigindo dois votos concordantes de agentes distintos sobre a mensagem corrente. Usar o mesmo modelo ou provedor é permitido e não garante independência estatística. O focal reprovado da etapa interrompida foi preservado no histórico; o núcleo corrigido passou nos novos focais e na suíte integral. A produção mantém o contrato anterior de duas origens, sem novo push nesta etapa.',
+    value: '182 / 182',
+    label: 'focais do ciclo de conexão',
+    note: 'O corretivo local do ciclo de conexão, logout, estados terminais, concorrência e interface única de Contas aprovou 182 de 182 testes focais, sem falhas, cancelamentos ou skips. Pedidos repetidos durante um ciclo ativo são reaproveitados e referências expiradas ou estados terminais encerram o acompanhamento com orientação acionável. O corretivo ainda não foi implantado.',
   },
   {
-    value: '1.200',
+    value: '1.240',
     label: 'testes integrais do candidato local',
-    note: 'Suíte integral local concluída em 31/08 às 07:31:57 de Brasília, com 1.200 testes, 1.199 aprovações, zero falhas ou cancelamentos e um skip esperado no macOS. O focal ampliado de 12 arquivos passou 161 de 161 às 07:08:39, sem falhas, skips ou cancelamentos. Foram acrescentadas 42 regressões: 33 no núcleo e nove no agendamento; seus focais passaram 73 de 73 e 12 de 12. O código congelado e o estado protegido permaneceram idênticos antes e depois. Não houve novos testes Linux, chamada a IA real ou novo push para a VPS nesta etapa.',
+    note: 'Suíte integral local concluída em 01/09 às 12:56:19 de Brasília, com 1.240 testes, 1.239 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado no macOS. A campanha aprovou 160.000 de 160.000 casos offline. O estado protegido monitorado permaneceu inalterado e a validação usou somente a suíte isolada. Não houve novos testes Linux, chamada a IA real nem implantação do corretivo.',
   },
   {
     value: '13 + 8',
@@ -96,11 +96,11 @@ export const executiveMetrics = Object.freeze([
 export const roadmap = Object.freeze([
   {
     priority: 'Próximo gate',
-    title: 'Autorizar o push do Guardião validado localmente',
+    title: 'Autorizar o push dos candidatos validados localmente',
     description:
-      'O Guardião por três agentes foi validado localmente com 161 testes focais aprovados e uma suíte integral de 1.200 testes, com 1.199 aprovações, zero falhas ou cancelamentos e um skip esperado. Modelos atuais, mensagem corrente, votos da mesma rodada e revalidação da política foram preservados. O focal anterior reprovado continua no histórico. O uso do mesmo modelo ou provedor é permitido, sem garantia de independência estatística. O próximo passo depende de pedido explícito de novo push; pacote e novos testes Linux serão executados na janela autorizada. Até lá, a produção mantém o contrato anterior de duas origens.',
+      'O corretivo do ciclo de conexão e o Guardião por três agentes estão validados somente no ambiente local. O corretivo passou 182 testes focais e a suíte integral atual passou com 1.239 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado. O diagnóstico de desempenho aponta amplificação algorítmica de escrita, cuja correção deve migrar o armazenamento para operações incrementais antes de um corte controlado. O próximo passo depende de pedido explícito de push; pacote e novos testes Linux serão executados na janela autorizada. Até lá, a versão instalada permanece a de 31/08.',
     owner: 'Desenvolvimento local e revisão técnica',
-    gate: 'Pedido explícito de novo push, pacote conferido e novos testes Linux na janela autorizada',
+    gate: 'Pedido explícito de push, pacote conferido e novos testes Linux na janela autorizada',
   },
   {
     priority: 'Concluído',
@@ -120,11 +120,11 @@ export const roadmap = Object.freeze([
   },
   {
     priority: 'Próxima validação funcional',
-    title: 'Comprovar IA real, moderação e fluxos no runtime acompanhado',
+    title: 'Evoluir o aprendizado supervisionado com revisão humana',
     description:
-      'Executar recuperação histórica, moderação, conversação e entrega de cards de forma controlada, após os gates correspondentes e autorização. A produção mantém o contrato de duas origens da versão instalada; o diagnóstico anterior não atingiu esse quórum. A decisão local substitui esse requisito por três agentes e dois votos, preservando os modelos atuais. Depois de validar e autorizar a implantação desse candidato, comprovar votos reais, IA real e comparação semântica humana. Mídia sem legenda exige revisão manual.',
+      'Começar por governança, finalidade, opt-out e um conjunto versionado, fortemente redigido e isolado por conta. O modo de observação deve ter memória própria, retenção limitada e avaliação humana sem envio; depois vêm o copiloto de rascunhos, um canário restrito a intenções de baixo risco e, somente por último, eventual ajuste offline. Os 594 pares de estilo existentes não comprovam equivalência semântica. Venda, pagamento, crédito, reembolso e qualquer decisão clínica continuam obrigatoriamente humanos. IA real, moderação e entrega acompanhada exigem aceites próprios.',
     owner: 'Usuário autenticado e operação técnica',
-    gate: 'Candidato publicado, configuração íntegra, quórum suficiente e aceite operacional sanitizado',
+    gate: 'Governança aprovada, isolamento por conta, avaliação humana e aceite operacional sanitizado',
   },
   {
     priority: 'Imediato',
@@ -1245,7 +1245,7 @@ const records = [
   },
   {
     date: '2026-08-31',
-    publishedAt: REPORT_UPDATED_AT,
+    publishedAt: '2026-08-31T07:38:02-03:00',
     title: 'Consenso do Guardião por agentes, preservando os modelos atuais',
     context: 'Local',
     kind: 'Implementação',
@@ -1257,6 +1257,21 @@ const records = [
     validation:
       'A etapa anterior foi interrompida por limite de uso, com teste focal reprovado em 31/08 por volta de 06:12, horário de Brasília. Esse resultado foi preservado e não é um aceite; os gates verdes da versão instalada não validam o novo candidato. O novo focal ampliado de 12 arquivos terminou em 31/08 às 07:08:39 de Brasília, com 161 de 161 testes aprovados, zero falhas, skips ou cancelamentos. Foram acrescentadas 42 regressões: 33 no núcleo e nove no agendamento, com focais de 73 de 73 e 12 de 12 aprovados. A suíte integral começou às 07:09:06 e terminou às 07:31:57 de Brasília com saída zero: 1.200 testes, 1.199 aprovados, zero falhas ou cancelamentos e um skip esperado no macOS. A composição foi de 209 testes de CRM/persistência aprovados, 971 gerais com 970 aprovações e um skip, e 20 legados aprovados. A campanha repetiu 160.000 de 160.000 casos offline em 1.177,965 segundos. O código congelado e o estado protegido permaneceram idênticos antes e depois, em conteúdo e metadados monitorados. Não houve novo push para a VPS, alteração de modelos, configurações, credenciais operacionais ou sessões, nem aceite de IA real ou WhatsApp real. Pacote e novos testes Linux ficam para a janela autorizada de implantação. A publicação desta síntese é documental e não implanta o Guardião.',
     tags: ['Guardião', 'consenso por agentes', 'validação local', 'limites da evidência'],
+  },
+  {
+    date: '2026-09-01',
+    publishedAt: REPORT_UPDATED_AT,
+    title: 'Correção local do ciclo de QR/logout e diagnóstico da lentidão (aguardando push)',
+    context: 'Local',
+    kind: 'Correção',
+    state: 'Validado localmente',
+    summary:
+      'O ciclo de conexão, logout e acompanhamento no painel foi corrigido localmente para distinguir operações ativas de estados terminais, reaproveitar pedidos concorrentes e interromper consultas quando a referência expira. A área Contas passa a concentrar a experiência de conexão e oferece orientação acionável sem expor dados sensíveis. O corretivo ainda não foi implantado; a versão instalada permanece a de 31/08.',
+    result:
+      'O focal combinado aprovou 182 de 182 testes, sem falhas, cancelamentos ou skips. A suíte integral local concluiu 1.240 testes, com 1.239 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado; a campanha offline aprovou 160.000 de 160.000 casos. O diagnóstico de desempenho encontrou amplificação de escrita no processo da aplicação causada pela clonagem, validação, serialização e regravação integral de coleções crescentes, apesar de haver capacidade de máquina disponível. A direção técnica é normalizar o armazenamento e adotar operações incrementais, índices, paginação, importador e verificador offline, benchmark e corte controlado com recuperação preparada.',
+    validation:
+      'A validação terminou em 01/09 às 12:56:19 de Brasília usando somente a suíte isolada; o estado protegido monitorado permaneceu inalterado e nenhum runtime local foi iniciado. Para aprendizado supervisionado, a sequência segura começa por governança, finalidade e opt-out; conjunto versionado, fortemente redigido e isolado por conta; observação com memória própria, retenção limitada e avaliação humana sem envio; copiloto de rascunhos; canário apenas para intenções de baixo risco; e ajuste offline opcional por último. Os 594 pares existentes são referência de estilo e não comprovam equivalência semântica. Venda, pagamento, crédito, reembolso e qualquer decisão clínica permanecem obrigatoriamente humanos. Não houve implantação, novos testes Linux nem aceite de IA real ou atendimento real nesta etapa; esta publicação é somente documental.',
+    tags: ['conexões', 'desempenho', 'aprendizado supervisionado', 'validação local'],
   },
 ];
 

@@ -1,9 +1,9 @@
 {
   "source": "../PROGRESS.md",
-  "sha256": "04b4d6580647a63f757b0dbea280d0474dd5e904552678fdffe4bf51db7132db",
-  "entryCount": 82,
-  "technicalSourceRecords": 81,
-  "newestDate": "2026-08-31",
-  "newestHeading": "Consenso do Guardião por agentes, preservando os modelos atuais",
-  "synchronizedAt": "2026-08-31T07:38:02-03:00"
+  "sha256": "3e8f5a614c700a5ef709f5163632aa5e120580601225a3327acd48d955bcb002",
+  "entryCount": 83,
+  "technicalSourceRecords": 82,
+  "newestDate": "2026-09-01",
+  "newestHeading": "Correção local do ciclo de QR/logout e diagnóstico da lentidão (aguardando push)",
+  "synchronizedAt": "2026-09-01T13:02:26-03:00"
 }
