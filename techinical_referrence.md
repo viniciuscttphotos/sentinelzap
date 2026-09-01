@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 83 registros sanitizados
+     └── métricas, roadmap e 84 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -49,7 +49,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, dez métricas executivas, oito prioridades do
-  roadmap, os 83 registros e as opções derivadas de filtro;
+  roadmap, os 84 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -107,7 +107,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 83 registros, distribuição por data, sequência canônica,
+- verifica contagem de 84 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -192,30 +192,45 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 01/09/2026, a preparação local contém 82 registros técnicos da fonte e um
-registro documental de publicação, totalizando 83. O mais recente é “Correção
-local do ciclo de QR/logout e diagnóstico da lentidão (aguardando push)”, em
-estado `Validado localmente` e contexto `Local`. Os 82 registros anteriores
-foram mantidos. Os registros 79, 80, 81 e 82 conservam os instantes comprovados
-`2026-08-30T09:34:04-03:00`, `2026-08-30T19:36:19-03:00` e
-`2026-08-31T03:19:54-03:00` e `2026-08-31T07:38:02-03:00`, respectivamente;
-somente o registro 83 acompanha a constante renovada no fechamento.
+Em 01/09/2026, a edição contém 83 registros técnicos da fonte e um registro
+documental de publicação, totalizando 84. O mais recente é “Push seletivo de
+QR/conexões, saúde aprovada em repouso e gargalo estrutural”, em estado
+`Publicado` e contexto `Produção`. Os 83 registros anteriores foram mantidos.
+Os registros 79, 80, 81, 82 e 83 conservam, respectivamente, os instantes
+comprovados `2026-08-30T09:34:04-03:00`, `2026-08-30T19:36:19-03:00`,
+`2026-08-31T03:19:54-03:00`, `2026-08-31T07:38:02-03:00` e
+`2026-09-01T13:02:26-03:00`; somente o registro 84 acompanha a constante
+renovada no fechamento.
 
-O registro 83 sintetiza três resultados sem transportar o histórico bruto. O
-corretivo do ciclo de conexão aprovou 182/182 testes focais. A suíte integral
-local concluiu 1.240 testes, com 1.239 aprovações, zero falhas ou cancelamentos
-e um skip ambiental esperado; a campanha offline aprovou 160.000/160.000 casos.
-O corretivo permanece apenas local e não altera a versão instalada de 31/08.
-O diagnóstico de desempenho atribui a lentidão à amplificação algorítmica de
-escrita por reprocessamento de coleções crescentes e orienta normalização,
-operações incrementais, índices, paginação, benchmark e corte controlado.
+O registro 84 sintetiza a release seletiva sem transportar histórico bruto ou
+detalhes exploráveis. O pacote alterou 17 arquivos, sem adições ou remoções. O
+gate local concluiu 1.192 testes, com 1.191 aprovações e um skip ambiental
+esperado; o clone Linux aprovou 1.192/1.192. A conta moderadora principal ficou
+em `qrready`, pronta para abertura e leitura posterior do QR pelo usuário, e as
+quatro contas gerenciadas permaneceram conectadas. A saúde final foi aprovada
+em repouso, com zero varreduras ou jobs ativos, HTTPS e TLS aprovados.
+
+Depois do fim da fila, latência e consumo voltaram ao patamar normal. A causa
+estrutural permanece pendente: o auto-scan sequencial não possui deadline global
+e compartilha o processo da aplicação, podendo voltar a degradar respostas
+depois de um reinício. A próxima release deve usar job durável em lotes,
+checkpoint, orçamento total, cancelamento real, retomada idempotente e métricas.
+O backup pré-push foi aprovado; backup pós-push e restauração isolada não foram
+executados nesta janela para evitar novo reinício e repetição dos auto-scans.
+
+O registro 83 preserva como histórico a validação local anterior do corretivo,
+os 182/182 testes focais, a suíte integral de 1.240 testes com 1.239 aprovações
+e um skip ambiental esperado, a campanha offline de 160.000/160.000 e o
+diagnóstico preliminar de desempenho. Seu instante comprovado não acompanha a
+nova constante de atualização.
 
 A direção de aprendizado supervisionado exige governança, finalidade e opt-out,
 conjunto versionado e isolado por conta, redação forte, observação sem envio com
 memória e retenção próprias, avaliação humana, copiloto de rascunhos e canário
 de baixo risco antes de qualquer ajuste offline opcional. Os 594 pares de estilo
 não são tratados como equivalência semântica. Decisões financeiras e clínicas
-continuam humanas.
+continuam humanas. Essa frente é planejamento: nenhuma IA real, etapa de
+aprendizado contínuo, copiloto, shadow, canário ou ajuste offline foi implantado.
 
 O novo contrato local preserva os modelos atuais e usa três agentes com papéis
 fixos de evidência, contexto e contestação. Exige pelo menos dois votos
@@ -239,17 +254,15 @@ cancelamentos e um skip esperado no macOS**. Foram 209/209 testes de
 CRM/persistência, 971 gerais com 970 aprovações e um skip, e 20/20 legados.
 A campanha aprovou 160.000/160.000 casos offline em 1.177,965 segundos.
 O código congelado e o estado protegido permaneceram idênticos antes e depois,
-em conteúdo e metadados monitorados. O candidato possui aceite local;
-produção conserva o contrato anterior de duas
-origens da versão instalada em 31/08. Não houve novo push para a VPS nem
-alteração de modelos, configurações, credenciais operacionais ou sessões;
-o novo candidato requer um pedido explícito de push após os gates. Pacote
-e novos testes Linux ficam para essa janela autorizada, sem novo aceite
-Linux, IA real ou WhatsApp real nesta preparação.
+em conteúdo e metadados monitorados. O candidato possui aceite local. A
+produção recebeu somente o recorte de QR/conexões e conserva o contrato
+anterior de duas origens; o Guardião não integrou o pacote. O novo candidato
+requer release, pacote e gates próprios, sem aceite de Linux, IA real ou
+WhatsApp real para o Guardião nesta preparação.
 
-A publicação de 82 registros foi confirmada em 31/08 com o conteúdo de
-`2026-08-31T07:38:02-03:00` nos três horários visíveis, `Ready` e HTTP 200. A
-edição de 83 registros usa o instante comum `2026-09-01T13:02:26-03:00` nos
+A publicação de 83 registros foi confirmada em 01/09 com o conteúdo de
+`2026-09-01T13:02:26-03:00` nos três horários visíveis, `Ready` e HTTP 200. A
+edição de 84 registros usa o instante comum `2026-09-01T20:34:50-03:00` nos
 dados, três horários visíveis e manifesto. Os gates e a comprovação pública de
 cada edição possuem registro próprio no log interno; o aceite anterior não é
 reaproveitado.

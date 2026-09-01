@@ -1,6 +1,6 @@
 const REPORT_TIME_ZONE = 'America/Sao_Paulo';
 const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
-const REPORT_UPDATED_AT = '2026-09-01T13:02:26-03:00';
+const REPORT_UPDATED_AT = '2026-09-01T20:34:50-03:00';
 
 function formatReportUpdatedAt(value) {
   const date = new Date(value);
@@ -32,9 +32,9 @@ export const reportMeta = Object.freeze({
   timeZone: REPORT_TIME_ZONE,
   timeZoneLabel: REPORT_TIME_ZONE_LABEL,
   period: '15 de agosto a 1º de setembro de 2026',
-  sourceRecords: 82,
-  publishedRecords: 83,
-  productionReleaseDate: '31 de agosto de 2026',
+  sourceRecords: 83,
+  publishedRecords: 84,
+  productionReleaseDate: '1º de setembro de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
     'A linha do tempo mostra primeiro o registro documental mais recente. A fonte canônica permanece crescente; quando não há horário comprovado, nenhum horário é inventado.',
@@ -42,14 +42,14 @@ export const reportMeta = Object.freeze({
 
 export const executiveMetrics = Object.freeze([
   {
-    value: '182 / 182',
-    label: 'focais do ciclo de conexão',
-    note: 'O corretivo local do ciclo de conexão, logout, estados terminais, concorrência e interface única de Contas aprovou 182 de 182 testes focais, sem falhas, cancelamentos ou skips. Pedidos repetidos durante um ciclo ativo são reaproveitados e referências expiradas ou estados terminais encerram o acompanhamento com orientação acionável. O corretivo ainda não foi implantado.',
+    value: '17',
+    label: 'arquivos do push seletivo',
+    note: 'A implantação de QR e conexões alterou 17 arquivos, sem adições ou remoções, preservando dependências e estado operacional. A conta moderadora principal está pronta para o usuário abrir e ler o QR depois; as quatro contas gerenciadas permanecem conectadas. O Guardião por três agentes não integrou este pacote.',
   },
   {
-    value: '1.240',
-    label: 'testes integrais do candidato local',
-    note: 'Suíte integral local concluída em 01/09 às 12:56:19 de Brasília, com 1.240 testes, 1.239 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado no macOS. A campanha aprovou 160.000 de 160.000 casos offline. O estado protegido monitorado permaneceu inalterado e a validação usou somente a suíte isolada. Não houve novos testes Linux, chamada a IA real nem implantação do corretivo.',
+    value: '1.192 / 1.192',
+    label: 'gates local e Linux do recorte',
+    note: 'O recorte aprovado concluiu 1.192 testes locais, com 1.191 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado, além de 1.192 de 1.192 testes no Linux, sem falhas, cancelamentos ou skips. A saúde final passou em repouso; isso não constitui aceite do Guardião, de IA real ou de atendimento automatizado real.',
   },
   {
     value: '13 + 8',
@@ -96,19 +96,19 @@ export const executiveMetrics = Object.freeze([
 export const roadmap = Object.freeze([
   {
     priority: 'Próximo gate',
-    title: 'Autorizar o push dos candidatos validados localmente',
+    title: 'Corrigir a varredura automática em uma release própria',
     description:
-      'O corretivo do ciclo de conexão e o Guardião por três agentes estão validados somente no ambiente local. O corretivo passou 182 testes focais e a suíte integral atual passou com 1.239 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado. O diagnóstico de desempenho aponta amplificação algorítmica de escrita, cuja correção deve migrar o armazenamento para operações incrementais antes de um corte controlado. O próximo passo depende de pedido explícito de push; pacote e novos testes Linux serão executados na janela autorizada. Até lá, a versão instalada permanece a de 31/08.',
+      'A saúde atual foi aprovada em repouso, mas a varredura automática ainda é sequencial, não possui deadline global e ocupa o mesmo processo da aplicação. Depois de um reinício, a fila pode se repetir. A correção estrutural deve usar job durável em lotes, checkpoint, orçamento total, cancelamento real, retomada idempotente e métricas, sem desligar silenciosamente a varredura. O Guardião por três agentes continua validado somente no ambiente local e exige pacote e aceite próprios.',
     owner: 'Desenvolvimento local e revisão técnica',
-    gate: 'Pedido explícito de push, pacote conferido e novos testes Linux na janela autorizada',
+    gate: 'Release separada, testes de carga e recuperação, pacote conferido e novos gates Linux',
   },
   {
     priority: 'Concluído',
     title: 'Push instalado e validado',
     description:
-      'O push foi explicitamente autorizado após o confronto dos cards. O candidato dos cards passou os gates local e Linux, mas o reinício do backup pré-publicação revelou falha na conexão principal. O primeiro pacote do reparo falhou em um contrato de telemetria nas duas integrais. Sete eventos foram restaurados, com 214 testes focais aprovados e congelamento formal às 02:26:08 de Brasília após revisão independente. Os novos integrais foram aprovados: 1.157 testes locais, com 1.156 aprovações e um skip esperado, e 1.152 de 1.152 no Linux, sem falhas. A reconstrução confirmou o pacote idêntico, instalado em 31/08 às 02:52:31 de Brasília. Cinco de cinco contas conectadas foram comprovadas às 03:02:41 e 03:03:57 de Brasília, sem scans ou jobs e com zero reinícios automáticos; o runtime foi aceito antes do backup. O monitor TLS manual passou às 02:55:51. O backup posterior concluiu às 03:06:03,807 de Brasília; a consulta às 03:07:22,516 confirmou 16 snapshots e zero locks. A restauração isolada passou às 03:09:47,807, sem falhas. A checagem final às 03:16:04,129 de Brasília aprovou cinco contas conectadas, cinco perfis de navegador, nenhuma varredura ou job ativo, zero reinícios automáticos e controles de API, SQLite, autenticação e arquivos protegidos. Implantação, runtime e continuidade foram aceitos. IA real e aceite funcional acompanhado permanecem em etapas próprias; etiquetas e integração logística real ficam fora do escopo.',
+      'O push seletivo de 01/09 foi explicitamente autorizado e alterou 17 arquivos, sem adições ou remoções. O gate local concluiu 1.192 testes, com 1.191 aprovações e um skip ambiental esperado; o pacote Linux aprovou 1.192 de 1.192. A conta moderadora principal ficou pronta para o usuário abrir e ler o QR posteriormente, enquanto as quatro contas gerenciadas permaneceram conectadas. A checagem final encontrou zero varreduras e jobs ativos, e HTTPS e TLS passaram. O backup pré-push foi aprovado; backup pós-push e restauração isolada não foram executados nesta janela para evitar novo reinício e repetição dos auto-scans. O Guardião por três agentes, IA real e a direção de aprendizado supervisionado não foram implantados.',
     owner: 'Operação técnica',
-    gate: 'Concluído: implantação, runtime e continuidade aceitos em 31/08',
+    gate: 'Concluído: implantação seletiva e saúde em repouso aceitas em 01/09',
   },
   {
     priority: 'Conteúdo',
@@ -1260,7 +1260,7 @@ const records = [
   },
   {
     date: '2026-09-01',
-    publishedAt: REPORT_UPDATED_AT,
+    publishedAt: '2026-09-01T13:02:26-03:00',
     title: 'Correção local do ciclo de QR/logout e diagnóstico da lentidão (aguardando push)',
     context: 'Local',
     kind: 'Correção',
@@ -1272,6 +1272,21 @@ const records = [
     validation:
       'A validação terminou em 01/09 às 12:56:19 de Brasília usando somente a suíte isolada; o estado protegido monitorado permaneceu inalterado e nenhum runtime local foi iniciado. Para aprendizado supervisionado, a sequência segura começa por governança, finalidade e opt-out; conjunto versionado, fortemente redigido e isolado por conta; observação com memória própria, retenção limitada e avaliação humana sem envio; copiloto de rascunhos; canário apenas para intenções de baixo risco; e ajuste offline opcional por último. Os 594 pares existentes são referência de estilo e não comprovam equivalência semântica. Venda, pagamento, crédito, reembolso e qualquer decisão clínica permanecem obrigatoriamente humanos. Não houve implantação, novos testes Linux nem aceite de IA real ou atendimento real nesta etapa; esta publicação é somente documental.',
     tags: ['conexões', 'desempenho', 'aprendizado supervisionado', 'validação local'],
+  },
+  {
+    date: '2026-09-01',
+    publishedAt: REPORT_UPDATED_AT,
+    title: 'Push seletivo de QR/conexões, saúde aprovada em repouso e gargalo estrutural',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'O corretivo de QR e conexões foi implantado em um pacote seletivo que alterou 17 arquivos, sem adições ou remoções e com preservação do estado operacional. A conta moderadora principal está em qrready, pronta para o usuário abrir o painel Contas e ler o QR quando puder; as quatro contas gerenciadas permanecem conectadas. O Guardião por três agentes não integrou esta release e continua validado somente no ambiente local.',
+    result:
+      'A saúde final foi aprovada em repouso, com zero varreduras ou jobs ativos, HTTPS público e monitor TLS aprovados. Depois que a fila terminou, a latência e o consumo voltaram ao patamar normal. Sob varredura, porém, o trabalho sequencial sem deadline global no mesmo processo degradou as respostas; essa causa estrutural não foi corrigida e pode reaparecer após reinício. A próxima release deve executar lotes duráveis com checkpoint, orçamento total, cancelamento real e retomada idempotente.',
+    validation:
+      'O gate local concluiu 1.192 testes, com 1.191 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado; o clone Linux aprovou 1.192 de 1.192, sem falhas, cancelamentos ou skips. O backup pré-push foi aprovado. Backup pós-push e restauração isolada não foram executados nesta janela para evitar novo reinício e repetição dos auto-scans. Nenhuma IA real foi chamada: aprendizado supervisionado, copiloto, shadow, canário e eventual ajuste offline permanecem planejamento, e decisões financeiras ou clínicas continuam humanas.',
+    tags: ['QR', 'conexões', 'produção', 'desempenho'],
   },
 ];
 

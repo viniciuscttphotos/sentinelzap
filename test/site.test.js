@@ -18,11 +18,17 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(html, /83 consolidados/);
-  assert.match(html, /corretivo do ciclo de conexão foi validado localmente e ainda não foi implantado/i);
-  assert.match(html, /182 de 182 testes.*sem falhas,\s+cancelamentos ou skips/i);
-  assert.match(html, /1\.240 testes.*1\.239 aprovações, zero falhas ou\s+cancelamentos e um skip ambiental esperado no macOS/i);
-  assert.match(html, /amplificação de escrita.*coleções crescentes.*clonadas, validadas, serializadas e regravadas integralmente/is);
+  assert.match(html, /84 consolidados/);
+  assert.match(html, /push seletivo de QR e conexões foi implantado.*saúde atual foi aprovada em repouso/i);
+  assert.match(html, /17 arquivos.*sem adições ou remoções/i);
+  assert.match(html, /conta\s+moderadora principal.*qrready.*área Contas.*ler o QR quando puder/is);
+  assert.match(html, /quatro contas gerenciadas permanecem\s+conectadas/i);
+  assert.match(html, /1\.192 testes locais.*1\.191\s+aprovações, zero falhas ou cancelamentos e um skip ambiental esperado.*1\.192 de 1\.192 testes no Linux/is);
+  assert.match(html, /zero\s+varreduras ou jobs ativos.*HTTPS público e monitor TLS também passaram/is);
+  assert.match(html, /backup\s+pré-push foi aprovado.*Não houve backup pós-push nem restauração isolada nesta janela/is);
+  assert.match(html, /fila terminou.*latência e consumo voltaram ao patamar normal/i);
+  assert.match(html, /auto-scan é\s+sequencial.*não possui deadline global.*mesmo processo.*voltar a degradar.*após um reinício/is);
+  assert.match(html, /job durável em lotes.*checkpoint.*orçamento total.*cancelamento real.*retomada\s+idempotente/is);
   assert.match(html, /aprendizado supervisionado.*governança, finalidade e opt-out.*isolado\s+por conta.*observação sem envio.*avaliação humana/is);
   assert.match(html, /594 pares atuais.*estilo.*não comprovam equivalência semântica.*decisão clínica permanecem humanos/is);
   assert.match(html, /push de 31\/08 foi instalado e validado, com cinco contas conectadas/i);
@@ -101,19 +107,20 @@ test('hero informa o Guardião local sem antecipar implantação ou substituir e
   assert.match(html, /07:31:57 de Brasília.*1\.200 testes.*1\.199 aprovações, zero falhas ou cancelamentos e um skip esperado no macOS/is);
   assert.match(html, /campanha local aprovou 160\.000 de 160\.000 casos offline em 1\.177,965 segundos/i);
   assert.match(html, /código congelado e o estado protegido permaneceram idênticos antes e depois,\s+em conteúdo e metadados monitorados/i);
-  assert.match(html, /Não houve novo push para a VPS.*produção mantém o contrato anterior de duas origens/is);
+  assert.match(html, /Guardião não integrou o push seletivo de QR e conexões.*produção\s+mantém o contrato anterior de duas origens.*release própria/is);
   assert.match(html, /decisão local por três agentes substitui esse requisito somente no novo candidato/i);
-  assert.match(html, /corretivo do ciclo de conexão e o Guardião.*validados\s+localmente.*só poderão ser implantados após pedido explícito de push/is);
+  assert.match(html, /Guardião.*validado localmente.*não integrou o push seletivo/is);
 });
 
-test('hero distingue o corretivo local da versão instalada e preserva decisões humanas', async () => {
+test('hero distingue a release seletiva da pendência estrutural e preserva decisões humanas', async () => {
   const html = await read('index.html');
-  assert.match(html, /corretivo do ciclo de conexão.*validado localmente.*ainda não foi implantado/i);
-  assert.match(html, /área Contas.*reaproveitar ciclos ativos.*referências\s+expiradas ou estados terminais.*orientação acionável/is);
-  assert.match(html, /versão instalada permanece\s+a de 31\/08 até uma implantação controlada e explicitamente autorizada/is);
-  assert.match(html, /normalizar o\s+armazenamento.*operações incrementais.*índices.*paginação.*benchmark.*corte controlado/is);
+  assert.match(html, /release seletiva de 01\/09 instalada/i);
+  assert.match(html, /Conexões · principal pronta para QR/i);
+  assert.match(html, /causa\s+estrutural da lentidão.*continua pendente/is);
+  assert.match(html, /auto-scan.*sequencial.*deadline global.*próxima release.*lotes.*checkpoint/is);
   assert.match(html, /copiloto de rascunhos.*canário de baixo risco.*Ajuste offline fica por último/is);
   assert.match(html, /venda,\s+pagamento, crédito, reembolso e qualquer decisão clínica permanecem humanos/is);
+  assert.match(html, /direção é planejamento.*nenhuma IA real ou etapa de aprendizado foi implantada/i);
 });
 
 test('HTML oferece SEO, OpenGraph e marcos básicos de acessibilidade', async () => {
@@ -226,13 +233,13 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const verifier = await read('scripts/verify-progress-sync.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 83);
-  assert.equal(manifest.technicalSourceRecords, 82);
+  assert.equal(manifest.entryCount, 84);
+  assert.equal(manifest.technicalSourceRecords, 83);
   assert.equal(manifest.synchronizedAt, reportMeta.updatedAtIso);
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Correção local do ciclo de QR/logout e diagnóstico da lentidão (aguardando push)',
+    'Push seletivo de QR/conexões, saúde aprovada em repouso e gargalo estrutural',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /heading\.date >= latest\.date/);

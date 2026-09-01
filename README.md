@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 83 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 84 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,26 +12,29 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 82 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 83 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
 
-O registro mais recente é “Correção local do ciclo de QR/logout e diagnóstico da
-lentidão (aguardando push)”, em contexto `Local` e estado `Validado localmente`.
-O corretivo do ciclo de conexão passou 182/182 testes focais, sem falhas,
-cancelamentos ou skips. A suíte integral local terminou em 01/09 às 12:56:19 de
-Brasília com 1.240 testes, 1.239 aprovações, zero falhas ou cancelamentos e um
-skip ambiental esperado; a campanha offline aprovou 160.000/160.000 casos. O
-estado protegido monitorado permaneceu inalterado e nenhum runtime local foi
-iniciado. O corretivo ainda não foi implantado e a versão instalada permanece
-a de 31/08.
+O registro mais recente é “Push seletivo de QR/conexões, saúde aprovada em
+repouso e gargalo estrutural”, em contexto `Produção` e estado `Publicado`. O
+pacote seletivo alterou 17 arquivos, sem adições ou remoções. O gate local
+concluiu 1.192 testes, com 1.191 aprovações, zero falhas ou cancelamentos e um
+skip ambiental esperado; o clone Linux aprovou 1.192/1.192, sem falhas,
+cancelamentos ou skips. A conta moderadora principal está em `qrready`, pronta
+para o usuário abrir a área Contas e ler o QR quando puder; as quatro contas
+gerenciadas permanecem conectadas.
 
-O diagnóstico de desempenho aponta amplificação de escrita causada pelo
-reprocessamento e pela regravação integral de coleções crescentes no processo da
-aplicação, apesar de haver capacidade de máquina disponível. A direção técnica é
-normalizar o armazenamento, adotar operações incrementais, índices e paginação,
-e só então executar benchmark e corte controlado com recuperação preparada.
+A saúde final foi aprovada em repouso, sem varreduras ou jobs ativos, e HTTPS
+público e monitor TLS passaram. Depois do fim da fila, latência e consumo
+voltaram ao patamar normal. A causa estrutural continua pendente: o auto-scan é
+sequencial, não possui deadline global e disputa o mesmo processo da aplicação,
+podendo voltar a degradar respostas após reinício. A correção deve usar job
+durável em lotes, checkpoint, orçamento total, cancelamento real e retomada
+idempotente. O backup pré-push foi aprovado; backup pós-push e restauração
+isolada não foram executados nesta janela para evitar reinício e repetição dos
+auto-scans.
 
 A direção de aprendizado supervisionado começa por governança, finalidade e
 opt-out; conjunto versionado, fortemente redigido e isolado por conta; observação
@@ -39,7 +42,8 @@ com memória própria, retenção limitada e avaliação humana sem envio; copil
 rascunhos; canário restrito a baixo risco; e ajuste offline opcional por último.
 Os 594 pares existentes são referência de estilo e não comprovam equivalência
 semântica. Venda, pagamento, crédito, reembolso e decisões clínicas permanecem
-obrigatoriamente humanos.
+obrigatoriamente humanos. Essa direção permanece planejamento: nenhuma IA real,
+copiloto, shadow, canário ou etapa de aprendizado foi implantada.
 
 O registro anterior, “Consenso do Guardião por agentes, preservando os modelos
 atuais”, permanece em contexto `Local` e estado `Validado localmente`. A decisão usa
@@ -63,14 +67,15 @@ CRM/persistência, 971 gerais com 970 aprovações e um skip, e 20/20 legados.
 A campanha aprovou 160.000/160.000 casos offline em 1.177,965 segundos.
 O código congelado e o estado protegido permaneceram idênticos antes e depois,
 em conteúdo e metadados monitorados.
-A produção permanece na versão instalada em 31/08 e conserva o contrato
-anterior de duas origens. Não houve novo push para a VPS nem mudança de
-modelos, configurações, credenciais operacionais ou sessões. A publicação
-deste portal é documental e não implanta o candidato; o novo push requer
-pedido explícito, com pacote e novos testes Linux na janela autorizada.
-IA real e WhatsApp real continuam sem aceite.
+A produção recebeu somente o recorte de QR e conexões e conserva o contrato
+anterior de duas origens. O Guardião por três agentes não integrou o pacote e
+continua validado apenas localmente; uma implantação futura requer release,
+pacote e aceites próprios. Não houve mudança de modelos ou chamada a IA real.
 
-Os 82 registros anteriores foram preservados. O registro “Confronto dos
+Os 83 registros anteriores foram preservados. O registro “Correção local do
+ciclo de QR/logout e diagnóstico da lentidão (aguardando push)” conserva a
+validação local como histórico, com seu instante de publicação anterior. O
+registro “Confronto dos
 cards, Markdown faltante e push autorizado” continua em contexto `Produção`
 e estado `Publicado`. O push operacional foi autorizado e instalado às 02:52:31 de
 Brasília. O runtime foi aceito antes do backup posterior, com cinco contas
@@ -146,12 +151,12 @@ indisponibilidades: 20 anteriores, incluindo NAD nasal não reconciliado, e
 esses dois bloqueios técnicos novos. Isso não significa 20 arquivos ausentes;
 nenhuma imagem foi fabricada.
 
-A publicação de 82 registros foi comprovada em 31/08, com conteúdo datado de
-`2026-08-31T07:38:02-03:00` nos três horários visíveis, deploy `Ready` e HTTP
-200. A edição de 83 registros usa um novo instante final, idêntico entre os
-dados, os três horários visíveis e o manifesto. Os gates e a comprovação de
-publicação de cada edição ficam registrados no log interno deste portal; o
-aceite anterior não é reaproveitado.
+A publicação de 83 registros foi comprovada em 01/09, com conteúdo datado de
+`2026-09-01T13:02:26-03:00` nos três horários visíveis, deploy `Ready` e HTTP
+200. A edição de 84 registros usa o instante `2026-09-01T20:34:50-03:00`,
+idêntico entre os dados, os três horários visíveis e o manifesto. Os gates e a
+comprovação pública de cada edição ficam registrados no log interno deste
+portal; o aceite anterior não é reaproveitado.
 
 O aceite histórico do release de 29/08 registrou validações complementares e
 explicitamente separadas; não descreve a conexão após o reinício de 31/08:
@@ -318,7 +323,8 @@ gates locais. O deploy não altera o dashboard operacional.
    constante renovada. O registro 79 mantém `2026-08-30T09:34:04-03:00` e o
    registro 80 conserva `2026-08-30T19:36:19-03:00`, o registro 81 conserva
    `2026-08-31T03:19:54-03:00` e o registro 82 conserva
-   `2026-08-31T07:38:02-03:00`.
+   `2026-08-31T07:38:02-03:00`; o registro 83 conserva
+   `2026-09-01T13:02:26-03:00`.
 4. Preserve a fonte canônica em ordem crescente e a ordem documental dentro do
    mesmo dia; a interface inverte uma cópia para mostrar o registro mais recente
    primeiro.

@@ -68,27 +68,30 @@
               validada e continuidade ensaiada.
             </p>
             <p class="hero-detail">
-              <strong>O corretivo do ciclo de conexão foi validado localmente e ainda não foi implantado.</strong>
-              O focal combinado aprovou <strong>182 de 182 testes</strong>, sem falhas,
-              cancelamentos ou skips. A suíte integral terminou em 01/09 às 12:56:19 de
-              Brasília com <strong>1.240 testes</strong>, 1.239 aprovações, zero falhas ou
-              cancelamentos e um skip ambiental esperado no macOS. A campanha offline aprovou
-              160.000 de 160.000 casos. O painel passa a concentrar a experiência de conexão na
-              área Contas, reaproveitar ciclos ativos e encerrar o acompanhamento de referências
-              expiradas ou estados terminais com orientação acionável. A versão instalada permanece
-              a de 31/08 até uma implantação controlada e explicitamente autorizada.
+              <strong>O push seletivo de QR e conexões foi implantado e a saúde atual foi aprovada em repouso.</strong>
+              O pacote alterou <strong>17 arquivos</strong>, sem adições ou remoções. A conta
+              moderadora principal está em <strong>qrready</strong>, pronta para o usuário abrir
+              a área Contas e ler o QR quando puder; as quatro contas gerenciadas permanecem
+              conectadas. O recorte concluiu <strong>1.192 testes locais</strong>, com 1.191
+              aprovações, zero falhas ou cancelamentos e um skip ambiental esperado, além de
+              <strong>1.192 de 1.192 testes no Linux</strong>. A checagem final encontrou zero
+              varreduras ou jobs ativos; HTTPS público e monitor TLS também passaram. O backup
+              pré-push foi aprovado. Não houve backup pós-push nem restauração isolada nesta janela,
+              evitando um novo reinício e a repetição dos auto-scans.
             </p>
             <p class="hero-detail">
-              O diagnóstico de desempenho encontrou amplificação de escrita no processo da aplicação:
-              coleções crescentes eram clonadas, validadas, serializadas e regravadas integralmente,
-              apesar de haver capacidade de máquina disponível. A direção técnica é normalizar o
-              armazenamento e adotar operações incrementais, índices, paginação, importador e
-              verificador offline, benchmark e corte controlado. Para aprendizado supervisionado,
+              Depois que a fila terminou, latência e consumo voltaram ao patamar normal. A causa
+              estrutural da lentidão, porém, <strong>continua pendente</strong>: o auto-scan é
+              sequencial, não possui deadline global e disputa o mesmo processo da aplicação, por
+              isso pode voltar a degradar as respostas após um reinício. A próxima release deve usar
+              job durável em lotes, checkpoint, orçamento total, cancelamento real e retomada
+              idempotente, sem desligar silenciosamente o auto-scan. Para aprendizado supervisionado,
               a sequência começa por governança, finalidade e opt-out, conjunto versionado e isolado
               por conta, redação forte, observação sem envio com retenção limitada e avaliação humana,
               seguida por copiloto de rascunhos e canário de baixo risco. Ajuste offline fica por último.
               Os 594 pares atuais descrevem estilo e não comprovam equivalência semântica; venda,
-              pagamento, crédito, reembolso e qualquer decisão clínica permanecem humanos.
+              pagamento, crédito, reembolso e qualquer decisão clínica permanecem humanos. Essa
+              direção é planejamento: nenhuma IA real ou etapa de aprendizado foi implantada.
             </p>
             <p class="hero-detail">
               <strong>O Guardião foi validado localmente para decidir com três agentes e dois votos.</strong>
@@ -106,8 +109,8 @@
               A campanha local aprovou 160.000 de 160.000 casos offline em 1.177,965 segundos.
               O código congelado e o estado protegido permaneceram idênticos antes e depois,
               em conteúdo e metadados monitorados. Esses testes não constituem aceite de IA real
-              ou WhatsApp real; pacote e novos testes Linux ficam para a janela autorizada.
-              Não houve novo push para a VPS. A produção mantém o contrato anterior de duas origens.
+              ou WhatsApp real. O Guardião não integrou o push seletivo de QR e conexões; a produção
+              mantém o contrato anterior de duas origens e o novo candidato requer release própria.
             </p>
             <p class="hero-detail">
               <strong>O push de 31/08 foi instalado e validado, com cinco contas conectadas.</strong>
@@ -197,10 +200,10 @@
               manual. IA real, envio no WhatsApp e avaliação semântica humana seguem pendentes.
             </p>
             <div class="status-row" aria-label="Estado executivo">
-              <span class="status-pill status-pill--live"><i aria-hidden="true"></i>Produção · release de 31/08 instalado</span>
-              <span class="status-pill">Conexões · validado localmente</span>
+              <span class="status-pill status-pill--live"><i aria-hidden="true"></i>Produção · release seletiva de 01/09 instalada</span>
+              <span class="status-pill">Conexões · principal pronta para QR</span>
               <span class="status-pill">Guardião · validado localmente</span>
-              <time class="status-pill" datetime="2026-09-01T13:02:26-03:00" data-report-updated-at>Conteúdo atualizado em 01 de setembro de 2026 às 13:02:26 (horário de Brasília)</time>
+              <time class="status-pill" datetime="2026-09-01T20:34:50-03:00" data-report-updated-at>Conteúdo atualizado em 01 de setembro de 2026 às 20:34:50 (horário de Brasília)</time>
             </div>
           </div>
           <aside class="hero-note" aria-label="Nota de escopo">
@@ -211,8 +214,8 @@
             </p>
             <dl>
               <div><dt>Período</dt><dd>15 ago–1º set 2026</dd></div>
-              <div><dt>Registros</dt><dd>83 consolidados</dd></div>
-              <div><dt>Última atualização</dt><dd><time datetime="2026-09-01T13:02:26-03:00" data-report-updated-at>Conteúdo atualizado em 01 de setembro de 2026 às 13:02:26 (horário de Brasília)</time></dd></div>
+              <div><dt>Registros</dt><dd>84 consolidados</dd></div>
+              <div><dt>Última atualização</dt><dd><time datetime="2026-09-01T20:34:50-03:00" data-report-updated-at>Conteúdo atualizado em 01 de setembro de 2026 às 20:34:50 (horário de Brasília)</time></dd></div>
               <div><dt>Fonte</dt><dd>Histórico técnico verificado</dd></div>
             </dl>
           </aside>
@@ -369,8 +372,8 @@
           <p>SentinelZap · prestação de contas documental</p>
         </div>
         <div class="footer-meta">
-          <p><time datetime="2026-09-01T13:02:26-03:00" data-report-updated-at>Conteúdo atualizado em 01 de setembro de 2026 às 13:02:26 (horário de Brasília)</time></p>
-          <p>Conteúdo público sanitizado · 83 registros</p>
+          <p><time datetime="2026-09-01T20:34:50-03:00" data-report-updated-at>Conteúdo atualizado em 01 de setembro de 2026 às 20:34:50 (horário de Brasília)</time></p>
+          <p>Conteúdo público sanitizado · 84 registros</p>
         </div>
       </div>
     </footer>

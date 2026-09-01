@@ -8,15 +8,15 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('prepara 83 registros separando o corretivo local da publicação operacional comprovada', () => {
-  assert.equal(reportMeta.sourceRecords, 82);
-  assert.equal(reportMeta.publishedRecords, 83);
-  assert.equal(progressEntries.length, 83);
+test('prepara 84 registros separando o histórico local da publicação operacional comprovada', () => {
+  assert.equal(reportMeta.sourceRecords, 83);
+  assert.equal(reportMeta.publishedRecords, 84);
+  assert.equal(progressEntries.length, 84);
   assert.equal(progressEntries.at(-1).date, '2026-09-01');
-  assert.equal(reportMeta.productionReleaseDate, '31 de agosto de 2026');
+  assert.equal(reportMeta.productionReleaseDate, '1º de setembro de 2026');
   assert.equal(
     progressEntries.at(-1).title,
-    'Correção local do ciclo de QR/logout e diagnóstico da lentidão (aguardando push)',
+    'Push seletivo de QR/conexões, saúde aprovada em repouso e gargalo estrutural',
   );
 });
 
@@ -56,13 +56,15 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   const latestRecord = progressEntries.at(-1);
   assert.equal(latestRecord.publishedAt, reportMeta.updatedAtIso);
   assert.equal(latestRecord.date, reportMeta.updatedAtIso.slice(0, 10));
-  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 5);
+  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 6);
   const priorPublication = progressEntries.find(({ sequence }) => sequence === 79);
   assert.equal(priorPublication.publishedAt, '2026-08-30T09:34:04-03:00');
   assert.notEqual(priorPublication.publishedAt, reportMeta.updatedAtIso);
   assert.equal(progressEntries.find(({ sequence }) => sequence === 80).publishedAt, '2026-08-30T19:36:19-03:00');
   assert.equal(progressEntries.find(({ sequence }) => sequence === 81).publishedAt, '2026-08-31T03:19:54-03:00');
   assert.equal(progressEntries.find(({ sequence }) => sequence === 82).publishedAt, '2026-08-31T07:38:02-03:00');
+  assert.equal(progressEntries.find(({ sequence }) => sequence === 83).publishedAt, '2026-09-01T13:02:26-03:00');
+  assert.notEqual(progressEntries.find(({ sequence }) => sequence === 83).publishedAt, reportMeta.updatedAtIso);
 });
 
 test('preserva a distribuição documental por data', () => {
@@ -81,7 +83,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-29': 5,
     '2026-08-30': 3,
     '2026-08-31': 2,
-    '2026-09-01': 1,
+    '2026-09-01': 2,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -95,9 +97,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 83 }, (_, index) => index + 1),
+    Array.from({ length: 84 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 83);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 84);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -512,8 +514,8 @@ test('novo Guardião separa decisão local, evidência por agente e limites do a
   assert.match(record.validation, /Pacote e novos testes Linux ficam para a janela autorizada/i);
 });
 
-test('corretivo local publica somente evidência sanitizada e direção supervisionada', () => {
-  const record = progressEntries.at(-1);
+test('corretivo local preserva sua evidência sanitizada como registro histórico', () => {
+  const record = progressEntries.find(({ sequence }) => sequence === 83);
   assert.equal(record.sequence, 83);
   assert.equal(record.context, 'Local');
   assert.equal(record.kind, 'Correção');
@@ -531,10 +533,33 @@ test('corretivo local publica somente evidência sanitizada e direção supervis
   assert.match(record.validation, /Venda, pagamento, crédito, reembolso.*decisão clínica.*obrigatoriamente humanos/i);
   assert.match(record.validation, /Não houve implantação, novos testes Linux nem aceite de IA real ou atendimento real/i);
 
-  const focalMetric = executiveMetrics.find(({ value }) => value === '182 / 182');
-  const integralMetric = executiveMetrics.find(({ value }) => value === '1.240');
-  assert.match(focalMetric.note, /corretivo local.*182 de 182.*não foi implantado/i);
-  assert.match(integralMetric.note, /01\/09 às 12:56:19 de Brasília.*1\.239 aprovações.*skip ambiental esperado.*Não houve novos testes Linux.*implantação/i);
+});
+
+test('push seletivo publica o estado atual sem antecipar a correção estrutural ou a IA', () => {
+  const record = progressEntries.at(-1);
+  assert.equal(record.sequence, 84);
+  assert.equal(record.context, 'Produção');
+  assert.equal(record.kind, 'Implantação');
+  assert.equal(record.state, 'Publicado');
+  assert.match(record.summary, /QR e conexões.*17 arquivos.*sem adições ou remoções.*preservação do estado operacional/i);
+  assert.match(record.summary, /conta moderadora principal.*qrready.*painel Contas.*ler o QR quando puder/i);
+  assert.match(record.summary, /quatro contas gerenciadas.*conectadas/i);
+  assert.match(record.summary, /Guardião por três agentes.*não integrou.*validado somente no ambiente local/i);
+  assert.match(record.result, /saúde final.*aprovada em repouso.*zero varreduras ou jobs ativos.*HTTPS público.*TLS aprovados/i);
+  assert.match(record.result, /fila terminou.*latência e o consumo.*patamar normal/i);
+  assert.match(record.result, /varredura.*sequencial sem deadline global.*causa estrutural não foi corrigida.*reaparecer após reinício/i);
+  assert.match(record.result, /lotes duráveis.*checkpoint.*orçamento total.*cancelamento real.*retomada idempotente/i);
+  assert.match(record.validation, /1\.192 testes.*1\.191 aprovações.*skip ambiental esperado.*1\.192 de 1\.192/i);
+  assert.match(record.validation, /backup pré-push.*aprovado/i);
+  assert.match(record.validation, /Backup pós-push e restauração isolada não foram executados.*evitar novo reinício.*auto-scans/i);
+  assert.match(record.validation, /Nenhuma IA real.*aprendizado supervisionado.*planejamento.*decisões financeiras ou clínicas.*humanas/i);
+
+  const releaseMetric = executiveMetrics.find(({ value }) => value === '17');
+  const gateMetric = executiveMetrics.find(({ value }) => value === '1.192 / 1.192');
+  assert.match(releaseMetric.note, /17 arquivos.*sem adições ou remoções.*principal.*ler o QR depois.*quatro contas gerenciadas.*conectadas/i);
+  assert.match(releaseMetric.note, /Guardião por três agentes não integrou/i);
+  assert.match(gateMetric.note, /1\.192 testes locais.*1\.191 aprovações.*skip ambiental esperado.*1\.192 de 1\.192 testes no Linux/i);
+  assert.match(gateMetric.note, /saúde final.*repouso.*não constitui aceite.*IA real/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {
@@ -570,8 +595,8 @@ test('conteúdo público não contém indicadores sensíveis ou exploráveis', (
 test('roadmap preserva os gates humanos, logísticos e externos vigentes', () => {
   assert.equal(roadmap.length, 8);
   assert.equal(roadmap[0].priority, 'Próximo gate');
-  assert.equal(roadmap[0].title, 'Autorizar o push dos candidatos validados localmente');
-  assert.match(roadmap[0].gate, /Pedido explícito de push, pacote conferido e novos testes Linux na janela autorizada/i);
+  assert.equal(roadmap[0].title, 'Corrigir a varredura automática em uma release própria');
+  assert.match(roadmap[0].gate, /Release separada.*testes de carga e recuperação.*novos gates Linux/i);
   assert.equal(roadmap[1].priority, 'Concluído');
   assert.equal(roadmap[1].title, 'Push instalado e validado');
   const roadmapText = roadmap.map((item) => Object.values(item).join(' ')).join(' ');
@@ -580,10 +605,11 @@ test('roadmap preserva os gates humanos, logísticos e externos vigentes', () =>
   assert.match(roadmapText, /alerta externo/i);
   assert.match(roadmapText, /usuário autenticado/i);
   assert.match(roadmapText, /prestação de contas sincronizada/i);
-  assert.match(roadmapText, /push instalado.*push foi explicitamente autorizado.*novos integrais foram aprovados.*1\.157 testes locais.*1\.152 de 1\.152 no Linux.*pacote idêntico, instalado em 31\/08 às 02:52:31 de Brasília/i);
-  assert.match(roadmapText, /cinco de cinco contas conectadas foram comprovadas às 03:02:41 e 03:03:57 de Brasília.*runtime foi aceito antes do backup.*TLS manual passou às 02:55:51/i);
-  assert.match(roadmapText, /backup posterior concluiu às 03:06:03,807 de Brasília.*16 snapshots e zero locks.*restauração isolada passou às 03:09:47,807.*checagem final às 03:16:04,129 de Brasília.*nenhuma varredura ou job ativo.*Implantação, runtime e continuidade foram aceitos/i);
-  assert.match(roadmapText, /etiquetas.*integração logística real.*fora do escopo/i);
+  assert.match(roadmapText, /push instalado.*push seletivo de 01\/09.*17 arquivos.*sem adições ou remoções.*1\.192 testes.*1\.191 aprovações.*1\.192 de 1\.192/i);
+  assert.match(roadmapText, /conta moderadora principal.*ler o QR posteriormente.*quatro contas gerenciadas.*conectadas.*zero varreduras e jobs ativos.*HTTPS e TLS passaram/i);
+  assert.match(roadmapText, /backup pré-push.*backup pós-push e restauração isolada não foram executados.*evitar novo reinício.*auto-scans/i);
+  assert.match(roadmapText, /Guardião por três agentes.*não foram implantados/i);
+  assert.match(roadmapText, /varredura automática.*sequencial.*deadline global.*job durável em lotes.*checkpoint.*cancelamento real.*retomada idempotente/i);
   assert.match(roadmapText, /22 indisponibilidades.*20 indisponibilidades anteriores.*NAD.*dois técnicos existentes bloqueados/i);
   assert.match(roadmapText, /aprendizado supervisionado.*governança.*opt-out.*isolado por conta.*observação.*avaliação humana sem envio.*copiloto.*canário.*baixo risco.*ajuste offline/i);
   assert.match(roadmapText, /594 pares de estilo.*não comprovam equivalência semântica.*Venda, pagamento, crédito, reembolso.*decisão clínica.*humanos/i);
