@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 84 registros sanitizados
+     └── métricas, roadmap e 86 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -48,8 +48,8 @@ JavaScript e ativos estáticos.
 ### `src/data.js`
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
-- exporta metadados do relatório, dez métricas executivas, oito prioridades do
-  roadmap, os 84 registros e as opções derivadas de filtro;
+- exporta metadados do relatório, onze métricas executivas, oito prioridades do
+  roadmap, os 86 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -107,7 +107,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 84 registros, distribuição por data, sequência canônica,
+- verifica contagem de 86 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -192,17 +192,38 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 01/09/2026, a edição contém 83 registros técnicos da fonte e um registro
-documental de publicação, totalizando 84. O mais recente é “Push seletivo de
-QR/conexões, saúde aprovada em repouso e gargalo estrutural”, em estado
-`Publicado` e contexto `Produção`. Os 83 registros anteriores foram mantidos.
-Os registros 79, 80, 81, 82 e 83 conservam, respectivamente, os instantes
-comprovados `2026-08-30T09:34:04-03:00`, `2026-08-30T19:36:19-03:00`,
-`2026-08-31T03:19:54-03:00`, `2026-08-31T07:38:02-03:00` e
-`2026-09-01T13:02:26-03:00`; somente o registro 84 acompanha a constante
+Em 01/09/2026, a edição contém 85 registros técnicos da fonte e um registro
+documental de publicação, totalizando 86. O mais recente é “Backup local
+temporário instalado, restore aprovado e VPS antiga desativada”, em estado
+`Publicado` e contexto `Produção`. Os 85 registros anteriores foram mantidos.
+Os registros 79, 80, 81, 82, 83, 84 e 85 conservam, respectivamente, os instantes
+documentais `2026-08-30T09:34:04-03:00`, `2026-08-30T19:36:19-03:00`,
+`2026-08-31T03:19:54-03:00`, `2026-08-31T07:38:02-03:00`,
+`2026-09-01T13:02:26-03:00`, `2026-09-01T20:34:50-03:00` e
+`2026-09-01T21:49:28-03:00`; somente o registro 86 acompanha a constante
 renovada no fechamento.
 
-O registro 84 sintetiza a release seletiva sem transportar histórico bruto ou
+O registro 86 sintetiza o backup cifrado colocalizado sem transportar caminhos,
+credenciais ou detalhes exploráveis. Ele está instalado na infraestrutura
+principal, permanece estritamente manual e não possui timer. Novos backups ficam
+bloqueados **a partir de 31/10/2026 às 20:00 de Brasília, inclusive**. O primeiro
+snapshot e sua verificação foram aprovados; quatro varreduras pós-reinício foram
+persistidas sem falhas, a saúde final passou em repouso e o restore drill isolado
+foi aprovado sem reiniciar o serviço.
+
+A infraestrutura antiga de backup foi desativada somente depois desses gates. O
+acervo histórico permanece preservado offline, mas ficará indisponível se o host
+antigo for cancelado. A cópia na mesma infraestrutura não constitui recuperação
+de desastre; um novo destino externo continua obrigatório antes do corte.
+
+O registro 85 preserva o candidato anterior em contexto `Local` e estado
+`Validado localmente`. Naquele corte, o gate focal aprovou 22/22 testes e a suíte
+integral autoritativa concluiu 1.243 testes, com 1.242 aprovações, zero falhas ou
+cancelamentos e um skip ambiental esperado, além de 160.000/160.000 casos
+offline. Nenhuma infraestrutura havia sido alterada, e a antiga ainda não estava
+liberada. O histórico não é reescrito retroativamente como implantação.
+
+O registro 84 preserva a release seletiva sem transportar histórico bruto ou
 detalhes exploráveis. O pacote alterou 17 arquivos, sem adições ou remoções. O
 gate local concluiu 1.192 testes, com 1.191 aprovações e um skip ambiental
 esperado; o clone Linux aprovou 1.192/1.192. A conta moderadora principal ficou
@@ -215,8 +236,10 @@ estrutural permanece pendente: o auto-scan sequencial não possui deadline globa
 e compartilha o processo da aplicação, podendo voltar a degradar respostas
 depois de um reinício. A próxima release deve usar job durável em lotes,
 checkpoint, orçamento total, cancelamento real, retomada idempotente e métricas.
-O backup pré-push foi aprovado; backup pós-push e restauração isolada não foram
-executados nesta janela para evitar novo reinício e repetição dos auto-scans.
+O backup pré-push foi aprovado. O backup pós-push não foi executado porque
+exigiria novo reinício e poderia repetir os auto-scans. A restauração isolada
+também não foi repetida nessa janela; ela não chama `systemctl` nem reinicia o
+SentinelZap.
 
 O registro 83 preserva como histórico a validação local anterior do corretivo,
 os 182/182 testes focais, a suíte integral de 1.240 testes com 1.239 aprovações
@@ -262,8 +285,11 @@ WhatsApp real para o Guardião nesta preparação.
 
 A publicação de 83 registros foi confirmada em 01/09 com o conteúdo de
 `2026-09-01T13:02:26-03:00` nos três horários visíveis, `Ready` e HTTP 200. A
-edição de 84 registros usa o instante comum `2026-09-01T20:34:50-03:00` nos
-dados, três horários visíveis e manifesto. Os gates e a comprovação pública de
+publicação de 84 registros preserva o instante comprovado
+`2026-09-01T20:34:50-03:00`. A preparação documental de 85 registros conserva
+`2026-09-01T21:49:28-03:00`; a edição final de 86 registros usa o instante comum
+`2026-09-01T23:56:17-03:00` nos dados, três horários visíveis e manifesto. Os
+gates e a comprovação pública de
 cada edição possuem registro próprio no log interno; o aceite anterior não é
 reaproveitado.
 

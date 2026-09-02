@@ -18,14 +18,20 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(html, /84 consolidados/);
+  assert.match(html, /86 consolidados/);
+  assert.match(html, /backup local temporário foi instalado e os gates reais passaram/i);
+  assert.match(html, /acionamento\s+estritamente manual e sem timer.*a partir de 31\/10\/2026 às 20:00 de Brasília, inclusive/is);
+  assert.match(html, /primeiro\s+snapshot e sua verificação, quatro varreduras persistidas, a saúde em repouso e\s+o restore drill isolado foram aprovados.*drill não reinicia o serviço/is);
+  assert.match(html, /infraestrutura antiga de backup foi desativada somente depois desses gates/is);
+  assert.match(html, /acervo histórico permanece preservado offline.*indisponível se o host\s+antigo for cancelado/is);
+  assert.match(html, /cópia colocalizada não é recuperação de desastre.*novo\s+destino externo continua obrigatório/is);
   assert.match(html, /push seletivo de QR e conexões foi implantado.*saúde atual foi aprovada em repouso/i);
   assert.match(html, /17 arquivos.*sem adições ou remoções/i);
   assert.match(html, /conta\s+moderadora principal.*qrready.*área Contas.*ler o QR quando puder/is);
   assert.match(html, /quatro contas gerenciadas permanecem\s+conectadas/i);
   assert.match(html, /1\.192 testes locais.*1\.191\s+aprovações, zero falhas ou cancelamentos e um skip ambiental esperado.*1\.192 de 1\.192 testes no Linux/is);
   assert.match(html, /zero\s+varreduras ou jobs ativos.*HTTPS público e monitor TLS também passaram/is);
-  assert.match(html, /backup\s+pré-push foi aprovado.*Não houve backup pós-push nem restauração isolada nesta janela/is);
+  assert.match(html, /backup\s+pré-push foi aprovado.*backup pós-push não foi executado porque exigiria novo\s+reinício.*restauração isolada não reinicia o\s+serviço.*não foi repetida/is);
   assert.match(html, /fila terminou.*latência e consumo voltaram ao patamar normal/i);
   assert.match(html, /auto-scan é\s+sequencial.*não possui deadline global.*mesmo processo.*voltar a degradar.*após um reinício/is);
   assert.match(html, /job durável em lotes.*checkpoint.*orçamento total.*cancelamento real.*retomada\s+idempotente/is);
@@ -233,13 +239,13 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const verifier = await read('scripts/verify-progress-sync.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 84);
-  assert.equal(manifest.technicalSourceRecords, 83);
+  assert.equal(manifest.entryCount, 86);
+  assert.equal(manifest.technicalSourceRecords, 85);
   assert.equal(manifest.synchronizedAt, reportMeta.updatedAtIso);
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Push seletivo de QR/conexões, saúde aprovada em repouso e gargalo estrutural',
+    'Backup local temporário instalado, restore aprovado e VPS antiga desativada',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /heading\.date >= latest\.date/);

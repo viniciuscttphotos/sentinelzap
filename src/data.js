@@ -1,6 +1,6 @@
 const REPORT_TIME_ZONE = 'America/Sao_Paulo';
 const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
-const REPORT_UPDATED_AT = '2026-09-01T20:34:50-03:00';
+const REPORT_UPDATED_AT = '2026-09-01T23:56:17-03:00';
 
 function formatReportUpdatedAt(value) {
   const date = new Date(value);
@@ -9,7 +9,7 @@ function formatReportUpdatedAt(value) {
   const parts = Object.fromEntries(
     new Intl.DateTimeFormat('pt-BR', {
       day: '2-digit',
-      month: 'long',
+      month: '2-digit',
       year: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
@@ -22,7 +22,7 @@ function formatReportUpdatedAt(value) {
       .map(({ type, value: partValue }) => [type, partValue]),
   );
 
-  return `${parts.day} de ${parts.month} de ${parts.year} às ${parts.hour}:${parts.minute}:${parts.second} (${REPORT_TIME_ZONE_LABEL})`;
+  return `${parts.day}/${parts.month}/${parts.year} às ${parts.hour}:${parts.minute}:${parts.second}, ${REPORT_TIME_ZONE_LABEL}`;
 }
 
 export const reportMeta = Object.freeze({
@@ -32,8 +32,8 @@ export const reportMeta = Object.freeze({
   timeZone: REPORT_TIME_ZONE,
   timeZoneLabel: REPORT_TIME_ZONE_LABEL,
   period: '15 de agosto a 1º de setembro de 2026',
-  sourceRecords: 83,
-  publishedRecords: 84,
+  sourceRecords: 85,
+  publishedRecords: 86,
   productionReleaseDate: '1º de setembro de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -41,6 +41,11 @@ export const reportMeta = Object.freeze({
 });
 
 export const executiveMetrics = Object.freeze([
+  {
+    value: '31/10',
+    label: 'corte do backup local temporário',
+    note: 'A contingência cifrada foi instalada na mesma infraestrutura da produção, com acionamento estritamente manual e sem timer. Novos backups ficam bloqueados a partir de 31/10/2026 às 20:00 de Brasília, inclusive. O primeiro snapshot e sua verificação, a saúde em repouso e a restauração isolada passaram. A infraestrutura antiga de backup foi desativada depois desses gates. A cópia colocalizada não é recuperação de desastre e não substitui um novo destino externo.',
+  },
   {
     value: '17',
     label: 'arquivos do push seletivo',
@@ -106,7 +111,7 @@ export const roadmap = Object.freeze([
     priority: 'Concluído',
     title: 'Push instalado e validado',
     description:
-      'O push seletivo de 01/09 foi explicitamente autorizado e alterou 17 arquivos, sem adições ou remoções. O gate local concluiu 1.192 testes, com 1.191 aprovações e um skip ambiental esperado; o pacote Linux aprovou 1.192 de 1.192. A conta moderadora principal ficou pronta para o usuário abrir e ler o QR posteriormente, enquanto as quatro contas gerenciadas permaneceram conectadas. A checagem final encontrou zero varreduras e jobs ativos, e HTTPS e TLS passaram. O backup pré-push foi aprovado; backup pós-push e restauração isolada não foram executados nesta janela para evitar novo reinício e repetição dos auto-scans. O Guardião por três agentes, IA real e a direção de aprendizado supervisionado não foram implantados.',
+      'O push seletivo de 01/09 foi explicitamente autorizado e alterou 17 arquivos, sem adições ou remoções. O gate local concluiu 1.192 testes, com 1.191 aprovações e um skip ambiental esperado; o pacote Linux aprovou 1.192 de 1.192. A conta moderadora principal ficou pronta para o usuário abrir e ler o QR posteriormente, enquanto as quatro contas gerenciadas permaneceram conectadas. A checagem final encontrou zero varreduras e jobs ativos, e HTTPS e TLS passaram. O backup pré-push foi aprovado. O backup pós-push não foi executado porque exigiria novo reinício e poderia repetir os auto-scans; a restauração isolada não reinicia o serviço e também não foi repetida nessa janela. O Guardião por três agentes, IA real e a direção de aprendizado supervisionado não foram implantados.',
     owner: 'Operação técnica',
     gate: 'Concluído: implantação seletiva e saúde em repouso aceitas em 01/09',
   },
@@ -144,11 +149,11 @@ export const roadmap = Object.freeze([
   },
   {
     priority: 'Continuidade',
-    title: 'Configurar e comprovar um alerta externo às duas infraestruturas',
+    title: 'Substituir a contingência colocalizada por novo destino externo',
     description:
-      'Somente depois da comprovação externa habilitar as rotinas recorrentes de monitoramento, backup e restauração ensaiada.',
+      'A contingência cifrada colocalizada está instalada, permanece estritamente manual e não possui timer. Novos backups ficam bloqueados a partir de 31/10/2026 às 20:00 de Brasília, inclusive. O primeiro snapshot e sua verificação, quatro varreduras persistidas, a saúde em repouso e a restauração isolada passaram. A infraestrutura antiga de backup foi desativada depois dos gates, com o acervo histórico preservado offline; se o host antigo for cancelado, esse acervo ficará indisponível. Como o modo local compartilha o domínio de falha da produção, um novo destino externo continua obrigatório.',
     owner: 'Operação técnica',
-    gate: 'Monitor independente comprovado',
+    gate: 'Novo destino externo comprovado antes do corte inclusivo',
   },
   {
     priority: 'Contínuo',
@@ -1275,7 +1280,7 @@ const records = [
   },
   {
     date: '2026-09-01',
-    publishedAt: REPORT_UPDATED_AT,
+    publishedAt: '2026-09-01T20:34:50-03:00',
     title: 'Push seletivo de QR/conexões, saúde aprovada em repouso e gargalo estrutural',
     context: 'Produção',
     kind: 'Implantação',
@@ -1285,8 +1290,38 @@ const records = [
     result:
       'A saúde final foi aprovada em repouso, com zero varreduras ou jobs ativos, HTTPS público e monitor TLS aprovados. Depois que a fila terminou, a latência e o consumo voltaram ao patamar normal. Sob varredura, porém, o trabalho sequencial sem deadline global no mesmo processo degradou as respostas; essa causa estrutural não foi corrigida e pode reaparecer após reinício. A próxima release deve executar lotes duráveis com checkpoint, orçamento total, cancelamento real e retomada idempotente.',
     validation:
-      'O gate local concluiu 1.192 testes, com 1.191 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado; o clone Linux aprovou 1.192 de 1.192, sem falhas, cancelamentos ou skips. O backup pré-push foi aprovado. Backup pós-push e restauração isolada não foram executados nesta janela para evitar novo reinício e repetição dos auto-scans. Nenhuma IA real foi chamada: aprendizado supervisionado, copiloto, shadow, canário e eventual ajuste offline permanecem planejamento, e decisões financeiras ou clínicas continuam humanas.',
+      'O gate local concluiu 1.192 testes, com 1.191 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado; o clone Linux aprovou 1.192 de 1.192, sem falhas, cancelamentos ou skips. O backup pré-push foi aprovado. O backup pós-push não foi executado porque exigiria novo reinício e poderia repetir os auto-scans; a restauração isolada não reinicia o serviço e também não foi repetida nessa janela. Nenhuma IA real foi chamada: aprendizado supervisionado, copiloto, shadow, canário e eventual ajuste offline permanecem planejamento, e decisões financeiras ou clínicas continuam humanas.',
     tags: ['QR', 'conexões', 'produção', 'desempenho'],
+  },
+  {
+    date: '2026-09-01',
+    publishedAt: '2026-09-01T21:49:28-03:00',
+    title: 'Backup local temporário manual validado; implantação e liberação da VPS antiga pendentes',
+    context: 'Local',
+    kind: 'Continuidade',
+    state: 'Validado localmente',
+    summary:
+      'Foi validado no workspace um modo manual de backup cifrado na mesma infraestrutura da produção, sem timer e com novos backups bloqueados a partir de 31/10/2026 às 20:00 de Brasília, inclusive. Nenhum artefato foi instalado ou executado na infraestrutura, e o destino externo antigo ainda não foi liberado.',
+    result:
+      'A contingência mantém os snapshots existentes disponíveis mesmo quando novos backups estiverem bloqueados, exige reserva de espaço, captura consistente do banco e das sessões, verificação do repositório e restauração em área isolada. Por compartilhar host, disco e provedor com a produção, ela não protege contra perda total da infraestrutura e deve ser substituída por um novo destino externo dentro da janela.',
+    validation:
+      'A revisão independente encerrou sem achados críticos ou altos. O gate focal aprovou 22 de 22 testes; a suíte integral autoritativa concluiu 1.243 testes, com 1.242 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado, além de 160.000 de 160.000 casos offline. Duas execuções anteriores interrompidas não foram tratadas como aceite. Antes de liberar a infraestrutura antiga ainda são obrigatórios um push explícito, o primeiro backup e verificação reais, a saúde após o reinício provocado pelo backup, a restauração isolada — que não chama systemctl nem reinicia o serviço — e uma decisão registrada sobre os 17 snapshots históricos.',
+    tags: ['backup', 'continuidade', 'validação local', 'prazo temporário'],
+  },
+  {
+    date: '2026-09-01',
+    publishedAt: REPORT_UPDATED_AT,
+    title: 'Backup local temporário instalado, restore aprovado e VPS antiga desativada',
+    context: 'Produção',
+    kind: 'Continuidade',
+    state: 'Publicado',
+    summary:
+      'O backup cifrado colocalizado foi instalado na infraestrutura principal e permanece estritamente manual, sem timer. Novos backups ficam bloqueados a partir de 31/10/2026 às 20:00 de Brasília, inclusive. O primeiro snapshot e sua verificação foram aprovados.',
+    result:
+      'As quatro varreduras iniciadas após o reinício foram persistidas sem falhas, a saúde final passou em repouso e o restore drill isolado foi aprovado sem reiniciar o serviço. A infraestrutura antiga de backup foi desativada somente depois desses gates; o acervo histórico foi preservado offline, mas ficará indisponível se o host antigo for cancelado.',
+    validation:
+      'A instalação não incluiu outras mudanças pendentes. Snapshot, verificação, zero locks, saúde quiet, restauração em sandbox e ausência de timer foram comprovados. A cópia na mesma infraestrutura não é recuperação de desastre e um novo destino externo continua obrigatório antes do corte.',
+    tags: ['backup', 'continuidade', 'produção', 'restore'],
   },
 ];
 

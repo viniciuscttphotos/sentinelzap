@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 84 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 86 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,13 +12,35 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 83 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 85 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
 
-O registro mais recente é “Push seletivo de QR/conexões, saúde aprovada em
-repouso e gargalo estrutural”, em contexto `Produção` e estado `Publicado`. O
+O registro mais recente é “Backup local temporário instalado, restore aprovado e
+VPS antiga desativada”, em contexto `Produção` e estado `Publicado`. A cópia
+cifrada colocalizada foi instalada na infraestrutura principal e permanece
+estritamente manual, sem timer. Novos backups ficam bloqueados **a partir de
+31/10/2026 às 20:00 de Brasília, inclusive**. O primeiro snapshot e sua
+verificação foram aprovados; quatro varreduras pós-reinício foram persistidas sem
+falhas, a saúde final passou em repouso e o restore drill isolado foi aprovado sem
+reiniciar o serviço.
+
+A infraestrutura antiga de backup foi desativada somente depois desses gates. O
+acervo histórico permanece preservado offline, mas ficará indisponível se o host
+antigo for cancelado. A cópia na mesma infraestrutura não é recuperação de
+desastre e um novo destino externo continua obrigatório antes do corte.
+
+O registro 85 preserva o estágio anterior, “Backup local temporário manual
+validado; implantação e liberação da VPS antiga pendentes”, em contexto `Local`
+e estado `Validado localmente`. Naquele corte, o gate focal aprovou 22/22 testes,
+a suíte integral autoritativa concluiu 1.243 testes, com 1.242 aprovações, zero
+falhas ou cancelamentos e um skip ambiental esperado, e a campanha aprovou
+160.000/160.000 casos offline. A infraestrutura ainda não havia sido alterada;
+esse registro não é reescrito retroativamente como implantação.
+
+O registro 84, “Push seletivo de QR/conexões, saúde aprovada em repouso e
+gargalo estrutural”, permanece em contexto `Produção` e estado `Publicado`. O
 pacote seletivo alterou 17 arquivos, sem adições ou remoções. O gate local
 concluiu 1.192 testes, com 1.191 aprovações, zero falhas ou cancelamentos e um
 skip ambiental esperado; o clone Linux aprovou 1.192/1.192, sem falhas,
@@ -32,9 +54,10 @@ voltaram ao patamar normal. A causa estrutural continua pendente: o auto-scan é
 sequencial, não possui deadline global e disputa o mesmo processo da aplicação,
 podendo voltar a degradar respostas após reinício. A correção deve usar job
 durável em lotes, checkpoint, orçamento total, cancelamento real e retomada
-idempotente. O backup pré-push foi aprovado; backup pós-push e restauração
-isolada não foram executados nesta janela para evitar reinício e repetição dos
-auto-scans.
+idempotente. O backup pré-push foi aprovado. O backup pós-push não foi executado
+porque exigiria novo reinício e poderia repetir os auto-scans. A restauração
+isolada também não foi repetida nessa janela, mas não chama `systemctl` nem
+reinicia o SentinelZap.
 
 A direção de aprendizado supervisionado começa por governança, finalidade e
 opt-out; conjunto versionado, fortemente redigido e isolado por conta; observação
@@ -72,7 +95,7 @@ anterior de duas origens. O Guardião por três agentes não integrou o pacote e
 continua validado apenas localmente; uma implantação futura requer release,
 pacote e aceites próprios. Não houve mudança de modelos ou chamada a IA real.
 
-Os 83 registros anteriores foram preservados. O registro “Correção local do
+Os 85 registros anteriores foram preservados. O registro “Correção local do
 ciclo de QR/logout e diagnóstico da lentidão (aguardando push)” conserva a
 validação local como histórico, com seu instante de publicação anterior. O
 registro “Confronto dos
@@ -154,7 +177,10 @@ nenhuma imagem foi fabricada.
 A publicação de 83 registros foi comprovada em 01/09, com conteúdo datado de
 `2026-09-01T13:02:26-03:00` nos três horários visíveis, deploy `Ready` e HTTP
 200. A edição de 84 registros usa o instante `2026-09-01T20:34:50-03:00`,
-idêntico entre os dados, os três horários visíveis e o manifesto. Os gates e a
+preservado como evidência histórica. A preparação documental de 85 registros
+conserva `2026-09-01T21:49:28-03:00`; a edição final de 86 registros usa
+`2026-09-01T23:56:17-03:00`, idêntico entre os dados, os três horários visíveis
+e o manifesto. Os gates e a
 comprovação pública de cada edição ficam registrados no log interno deste
 portal; o aceite anterior não é reaproveitado.
 
@@ -324,7 +350,9 @@ gates locais. O deploy não altera o dashboard operacional.
    registro 80 conserva `2026-08-30T19:36:19-03:00`, o registro 81 conserva
    `2026-08-31T03:19:54-03:00` e o registro 82 conserva
    `2026-08-31T07:38:02-03:00`; o registro 83 conserva
-   `2026-09-01T13:02:26-03:00`.
+   `2026-09-01T13:02:26-03:00`, o registro 84 conserva
+   `2026-09-01T20:34:50-03:00` e o registro 85 conserva
+   `2026-09-01T21:49:28-03:00`.
 4. Preserve a fonte canônica em ordem crescente e a ordem documental dentro do
    mesmo dia; a interface inverte uma cópia para mostrar o registro mais recente
    primeiro.

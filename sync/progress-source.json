@@ -1,9 +1,9 @@
 {
   "source": "../PROGRESS.md",
-  "sha256": "1ae9426d2600c6b9f7c3be2591f6d4a75545ea999043890c00ba89e6b8716e98",
-  "entryCount": 84,
-  "technicalSourceRecords": 83,
+  "sha256": "313cdc4052fe45777da5a0a51aadea5e6ba1e9ec11305562fabdc27680e98059",
+  "entryCount": 86,
+  "technicalSourceRecords": 85,
   "newestDate": "2026-09-01",
-  "newestHeading": "Push seletivo de QR/conexões, saúde aprovada em repouso e gargalo estrutural",
-  "synchronizedAt": "2026-09-01T20:34:50-03:00"
+  "newestHeading": "Backup local temporário instalado, restore aprovado e VPS antiga desativada",
+  "synchronizedAt": "2026-09-01T23:56:17-03:00"
 }

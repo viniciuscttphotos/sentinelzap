@@ -68,6 +68,18 @@
               validada e continuidade ensaiada.
             </p>
             <p class="hero-detail">
+              <strong>O backup local temporário foi instalado e os gates reais passaram.</strong>
+              A cópia cifrada está na mesma infraestrutura da produção, com acionamento
+              estritamente manual e sem timer. Novos backups ficam bloqueados
+              <strong>a partir de 31/10/2026 às 20:00 de Brasília, inclusive</strong>. O primeiro
+              snapshot e sua verificação, quatro varreduras persistidas, a saúde em repouso e
+              o restore drill isolado foram aprovados; o drill não reinicia o serviço. A
+              infraestrutura antiga de backup foi desativada somente depois desses gates. Seu
+              acervo histórico permanece preservado offline, mas ficará indisponível se o host
+              antigo for cancelado. A cópia colocalizada não é recuperação de desastre e um
+              novo destino externo continua obrigatório.
+            </p>
+            <p class="hero-detail">
               <strong>O push seletivo de QR e conexões foi implantado e a saúde atual foi aprovada em repouso.</strong>
               O pacote alterou <strong>17 arquivos</strong>, sem adições ou remoções. A conta
               moderadora principal está em <strong>qrready</strong>, pronta para o usuário abrir
@@ -76,8 +88,9 @@
               aprovações, zero falhas ou cancelamentos e um skip ambiental esperado, além de
               <strong>1.192 de 1.192 testes no Linux</strong>. A checagem final encontrou zero
               varreduras ou jobs ativos; HTTPS público e monitor TLS também passaram. O backup
-              pré-push foi aprovado. Não houve backup pós-push nem restauração isolada nesta janela,
-              evitando um novo reinício e a repetição dos auto-scans.
+              pré-push foi aprovado. O backup pós-push não foi executado porque exigiria novo
+              reinício e poderia repetir os auto-scans; a restauração isolada não reinicia o
+              serviço e também não foi repetida nessa janela.
             </p>
             <p class="hero-detail">
               Depois que a fila terminou, latência e consumo voltaram ao patamar normal. A causa
@@ -202,8 +215,10 @@
             <div class="status-row" aria-label="Estado executivo">
               <span class="status-pill status-pill--live"><i aria-hidden="true"></i>Produção · release seletiva de 01/09 instalada</span>
               <span class="status-pill">Conexões · principal pronta para QR</span>
+              <span class="status-pill">Backup local · instalado e manual</span>
+              <span class="status-pill">Backup antigo · infraestrutura desativada</span>
               <span class="status-pill">Guardião · validado localmente</span>
-              <time class="status-pill" datetime="2026-09-01T20:34:50-03:00" data-report-updated-at>Conteúdo atualizado em 01 de setembro de 2026 às 20:34:50 (horário de Brasília)</time>
+              <time class="status-pill" datetime="2026-09-01T23:56:17-03:00" data-report-updated-at>Conteúdo atualizado em 01/09/2026 às 23:56:17, horário de Brasília</time>
             </div>
           </div>
           <aside class="hero-note" aria-label="Nota de escopo">
@@ -214,8 +229,8 @@
             </p>
             <dl>
               <div><dt>Período</dt><dd>15 ago–1º set 2026</dd></div>
-              <div><dt>Registros</dt><dd>84 consolidados</dd></div>
-              <div><dt>Última atualização</dt><dd><time datetime="2026-09-01T20:34:50-03:00" data-report-updated-at>Conteúdo atualizado em 01 de setembro de 2026 às 20:34:50 (horário de Brasília)</time></dd></div>
+              <div><dt>Registros</dt><dd>86 consolidados</dd></div>
+              <div><dt>Última atualização</dt><dd><time datetime="2026-09-01T23:56:17-03:00" data-report-updated-at>Conteúdo atualizado em 01/09/2026 às 23:56:17, horário de Brasília</time></dd></div>
               <div><dt>Fonte</dt><dd>Histórico técnico verificado</dd></div>
             </dl>
           </aside>
@@ -372,8 +387,8 @@
           <p>SentinelZap · prestação de contas documental</p>
         </div>
         <div class="footer-meta">
-          <p><time datetime="2026-09-01T20:34:50-03:00" data-report-updated-at>Conteúdo atualizado em 01 de setembro de 2026 às 20:34:50 (horário de Brasília)</time></p>
-          <p>Conteúdo público sanitizado · 84 registros</p>
+          <p><time datetime="2026-09-01T23:56:17-03:00" data-report-updated-at>Conteúdo atualizado em 01/09/2026 às 23:56:17, horário de Brasília</time></p>
+          <p>Conteúdo público sanitizado · 86 registros</p>
         </div>
       </div>
     </footer>

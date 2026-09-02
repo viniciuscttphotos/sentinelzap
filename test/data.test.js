@@ -8,15 +8,15 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('prepara 84 registros separando o histórico local da publicação operacional comprovada', () => {
-  assert.equal(reportMeta.sourceRecords, 83);
-  assert.equal(reportMeta.publishedRecords, 84);
-  assert.equal(progressEntries.length, 84);
+test('prepara 86 registros separando validação local, produção e publicação documental', () => {
+  assert.equal(reportMeta.sourceRecords, 85);
+  assert.equal(reportMeta.publishedRecords, 86);
+  assert.equal(progressEntries.length, 86);
   assert.equal(progressEntries.at(-1).date, '2026-09-01');
   assert.equal(reportMeta.productionReleaseDate, '1º de setembro de 2026');
   assert.equal(
     progressEntries.at(-1).title,
-    'Push seletivo de QR/conexões, saúde aprovada em repouso e gargalo estrutural',
+    'Backup local temporário instalado, restore aprovado e VPS antiga desativada',
   );
 });
 
@@ -29,7 +29,7 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   assert.equal(reportMeta.timeZoneLabel, 'horário de Brasília');
   assert.match(
     reportMeta.updatedAtLabel,
-    /^01 de setembro de 2026 às \d{2}:\d{2}:\d{2} \(horário de Brasília\)$/,
+    /^01\/09\/2026 às \d{2}:\d{2}:\d{2}, horário de Brasília$/,
   );
   assert.ok(reportMeta.updatedAtLabel.includes(reportMeta.updatedAtIso.slice(11, 19)));
 
@@ -56,7 +56,7 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   const latestRecord = progressEntries.at(-1);
   assert.equal(latestRecord.publishedAt, reportMeta.updatedAtIso);
   assert.equal(latestRecord.date, reportMeta.updatedAtIso.slice(0, 10));
-  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 6);
+  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 8);
   const priorPublication = progressEntries.find(({ sequence }) => sequence === 79);
   assert.equal(priorPublication.publishedAt, '2026-08-30T09:34:04-03:00');
   assert.notEqual(priorPublication.publishedAt, reportMeta.updatedAtIso);
@@ -65,6 +65,10 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   assert.equal(progressEntries.find(({ sequence }) => sequence === 82).publishedAt, '2026-08-31T07:38:02-03:00');
   assert.equal(progressEntries.find(({ sequence }) => sequence === 83).publishedAt, '2026-09-01T13:02:26-03:00');
   assert.notEqual(progressEntries.find(({ sequence }) => sequence === 83).publishedAt, reportMeta.updatedAtIso);
+  assert.equal(progressEntries.find(({ sequence }) => sequence === 84).publishedAt, '2026-09-01T20:34:50-03:00');
+  assert.notEqual(progressEntries.find(({ sequence }) => sequence === 84).publishedAt, reportMeta.updatedAtIso);
+  assert.equal(progressEntries.find(({ sequence }) => sequence === 85).publishedAt, '2026-09-01T21:49:28-03:00');
+  assert.notEqual(progressEntries.find(({ sequence }) => sequence === 85).publishedAt, reportMeta.updatedAtIso);
 });
 
 test('preserva a distribuição documental por data', () => {
@@ -83,7 +87,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-29': 5,
     '2026-08-30': 3,
     '2026-08-31': 2,
-    '2026-09-01': 2,
+    '2026-09-01': 4,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -97,9 +101,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 84 }, (_, index) => index + 1),
+    Array.from({ length: 86 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 84);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 86);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -536,7 +540,7 @@ test('corretivo local preserva sua evidência sanitizada como registro históric
 });
 
 test('push seletivo publica o estado atual sem antecipar a correção estrutural ou a IA', () => {
-  const record = progressEntries.at(-1);
+  const record = progressEntries.find(({ sequence }) => sequence === 84);
   assert.equal(record.sequence, 84);
   assert.equal(record.context, 'Produção');
   assert.equal(record.kind, 'Implantação');
@@ -551,7 +555,7 @@ test('push seletivo publica o estado atual sem antecipar a correção estrutural
   assert.match(record.result, /lotes duráveis.*checkpoint.*orçamento total.*cancelamento real.*retomada idempotente/i);
   assert.match(record.validation, /1\.192 testes.*1\.191 aprovações.*skip ambiental esperado.*1\.192 de 1\.192/i);
   assert.match(record.validation, /backup pré-push.*aprovado/i);
-  assert.match(record.validation, /Backup pós-push e restauração isolada não foram executados.*evitar novo reinício.*auto-scans/i);
+  assert.match(record.validation, /backup pós-push não foi executado porque exigiria novo reinício.*auto-scans.*restauração isolada não reinicia o serviço.*não foi repetida/i);
   assert.match(record.validation, /Nenhuma IA real.*aprendizado supervisionado.*planejamento.*decisões financeiras ou clínicas.*humanas/i);
 
   const releaseMetric = executiveMetrics.find(({ value }) => value === '17');
@@ -560,6 +564,45 @@ test('push seletivo publica o estado atual sem antecipar a correção estrutural
   assert.match(releaseMetric.note, /Guardião por três agentes não integrou/i);
   assert.match(gateMetric.note, /1\.192 testes locais.*1\.191 aprovações.*skip ambiental esperado.*1\.192 de 1\.192 testes no Linux/i);
   assert.match(gateMetric.note, /saúde final.*repouso.*não constitui aceite.*IA real/i);
+});
+
+test('backup local temporário permanece candidato manual, local e com liberação condicionada', () => {
+  const record = progressEntries.find(({ sequence }) => sequence === 85);
+  assert.equal(record.sequence, 85);
+  assert.equal(record.title, 'Backup local temporário manual validado; implantação e liberação da VPS antiga pendentes');
+  assert.equal(record.context, 'Local');
+  assert.equal(record.kind, 'Continuidade');
+  assert.equal(record.state, 'Validado localmente');
+  assert.match(record.summary, /modo manual de backup cifrado.*mesma infraestrutura.*sem timer/i);
+  assert.match(record.summary, /bloqueados a partir de 31\/10\/2026 às 20:00 de Brasília, inclusive/i);
+  assert.match(record.summary, /Nenhum artefato foi instalado ou executado.*destino externo antigo ainda não foi liberado/i);
+  assert.match(record.result, /snapshots existentes disponíveis.*novos backups estiverem bloqueados.*reserva de espaço.*captura consistente.*verificação do repositório.*restauração em área isolada/i);
+  assert.match(record.result, /compartilhar host, disco e provedor.*não protege contra perda total.*novo destino externo/i);
+  assert.match(record.validation, /22 de 22 testes.*1\.243 testes.*1\.242 aprovações.*zero falhas ou cancelamentos.*skip ambiental esperado.*160\.000 de 160\.000/i);
+  assert.match(record.validation, /push explícito.*primeiro backup e verificação reais.*saúde após o reinício provocado pelo backup.*restauração isolada.*não chama systemctl nem reinicia o serviço.*17 snapshots históricos/i);
+
+});
+
+test('backup local instalado fecha os gates e mantém explícito o risco colocalizado', () => {
+  const record = progressEntries.at(-1);
+  assert.equal(record.sequence, 86);
+  assert.equal(record.title, 'Backup local temporário instalado, restore aprovado e VPS antiga desativada');
+  assert.equal(record.context, 'Produção');
+  assert.equal(record.kind, 'Continuidade');
+  assert.equal(record.state, 'Publicado');
+  assert.match(record.summary, /backup cifrado colocalizado.*infraestrutura principal.*estritamente manual.*sem timer/i);
+  assert.match(record.summary, /a partir de 31\/10\/2026 às 20:00 de Brasília, inclusive/i);
+  assert.match(record.summary, /primeiro snapshot.*verificação.*aprovados/i);
+  assert.match(record.result, /quatro varreduras.*persistidas sem falhas.*saúde final.*repouso.*restore drill isolado.*sem reiniciar o serviço/i);
+  assert.match(record.result, /infraestrutura antiga de backup.*desativada somente depois.*acervo histórico.*preservado offline.*indisponível.*host antigo.*cancelado/i);
+  assert.match(record.validation, /não incluiu outras mudanças pendentes.*Snapshot, verificação, zero locks, saúde quiet, restauração em sandbox e ausência de timer.*comprovados/i);
+  assert.match(record.validation, /mesma infraestrutura não é recuperação de desastre.*novo destino externo.*obrigatório/i);
+
+  const cutoffMetric = executiveMetrics.find(({ value }) => value === '31/10');
+  assert.match(cutoffMetric.note, /instalada na mesma infraestrutura.*estritamente manual.*sem timer/i);
+  assert.match(cutoffMetric.note, /a partir de 31\/10\/2026 às 20:00 de Brasília, inclusive/i);
+  assert.match(cutoffMetric.note, /primeiro snapshot.*verificação.*saúde em repouso.*restauração isolada.*passaram/i);
+  assert.match(cutoffMetric.note, /infraestrutura antiga de backup.*desativada.*não é recuperação de desastre.*novo destino externo/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {
@@ -602,16 +645,20 @@ test('roadmap preserva os gates humanos, logísticos e externos vigentes', () =>
   const roadmapText = roadmap.map((item) => Object.values(item).join(' ')).join(' ');
   assert.match(roadmapText, /credenciais iniciais/i);
   assert.match(roadmapText, /vendedora real/i);
-  assert.match(roadmapText, /alerta externo/i);
+  assert.match(roadmapText, /novo destino externo/i);
   assert.match(roadmapText, /usuário autenticado/i);
   assert.match(roadmapText, /prestação de contas sincronizada/i);
   assert.match(roadmapText, /push instalado.*push seletivo de 01\/09.*17 arquivos.*sem adições ou remoções.*1\.192 testes.*1\.191 aprovações.*1\.192 de 1\.192/i);
   assert.match(roadmapText, /conta moderadora principal.*ler o QR posteriormente.*quatro contas gerenciadas.*conectadas.*zero varreduras e jobs ativos.*HTTPS e TLS passaram/i);
-  assert.match(roadmapText, /backup pré-push.*backup pós-push e restauração isolada não foram executados.*evitar novo reinício.*auto-scans/i);
+  assert.match(roadmapText, /backup pré-push.*backup pós-push não foi executado porque exigiria novo reinício.*auto-scans.*restauração isolada não reinicia o serviço.*não foi repetida/i);
   assert.match(roadmapText, /Guardião por três agentes.*não foram implantados/i);
   assert.match(roadmapText, /varredura automática.*sequencial.*deadline global.*job durável em lotes.*checkpoint.*cancelamento real.*retomada idempotente/i);
   assert.match(roadmapText, /22 indisponibilidades.*20 indisponibilidades anteriores.*NAD.*dois técnicos existentes bloqueados/i);
   assert.match(roadmapText, /aprendizado supervisionado.*governança.*opt-out.*isolado por conta.*observação.*avaliação humana sem envio.*copiloto.*canário.*baixo risco.*ajuste offline/i);
   assert.match(roadmapText, /594 pares de estilo.*não comprovam equivalência semântica.*Venda, pagamento, crédito, reembolso.*decisão clínica.*humanos/i);
+  assert.match(roadmapText, /contingência colocalizada.*está instalada.*estritamente manual.*não possui timer.*a partir de 31\/10\/2026 às 20:00 de Brasília, inclusive/i);
+  assert.match(roadmapText, /primeiro snapshot.*verificação.*quatro varreduras persistidas.*saúde em repouso.*restauração isolada.*passaram/i);
+  assert.match(roadmapText, /infraestrutura antiga de backup.*desativada.*acervo histórico preservado offline.*host antigo.*cancelado.*indisponível/i);
+  assert.match(roadmapText, /compartilha o domínio de falha.*novo destino externo.*obrigatório/i);
   assert.doesNotMatch(roadmapText, /comprovar a segunda origem|exigir.*segunda origem/i);
 });
