@@ -8,15 +8,15 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('prepara 87 registros separando validação local, produção e publicação documental', () => {
-  assert.equal(reportMeta.sourceRecords, 86);
-  assert.equal(reportMeta.publishedRecords, 87);
-  assert.equal(progressEntries.length, 87);
+test('prepara 88 registros separando validação local, produção e publicação documental', () => {
+  assert.equal(reportMeta.sourceRecords, 87);
+  assert.equal(reportMeta.publishedRecords, 88);
+  assert.equal(progressEntries.length, 88);
   assert.equal(progressEntries.at(-1).date, '2026-09-02');
   assert.equal(reportMeta.productionReleaseDate, '1º de setembro de 2026');
   assert.equal(
     progressEntries.at(-1).title,
-    'Início da implementação local de machine learning',
+    'Diagnóstico de CPU, candidatos locais de outbox e auto-scan e auditoria TLS',
   );
 });
 
@@ -56,7 +56,7 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   const latestRecord = progressEntries.at(-1);
   assert.equal(latestRecord.publishedAt, reportMeta.updatedAtIso);
   assert.equal(latestRecord.date, reportMeta.updatedAtIso.slice(0, 10));
-  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 9);
+  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 10);
   const priorPublication = progressEntries.find(({ sequence }) => sequence === 79);
   assert.equal(priorPublication.publishedAt, '2026-08-30T09:34:04-03:00');
   assert.notEqual(priorPublication.publishedAt, reportMeta.updatedAtIso);
@@ -71,6 +71,8 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   assert.notEqual(progressEntries.find(({ sequence }) => sequence === 85).publishedAt, reportMeta.updatedAtIso);
   assert.equal(progressEntries.find(({ sequence }) => sequence === 86).publishedAt, '2026-09-01T23:56:17-03:00');
   assert.notEqual(progressEntries.find(({ sequence }) => sequence === 86).publishedAt, reportMeta.updatedAtIso);
+  assert.equal(progressEntries.find(({ sequence }) => sequence === 87).publishedAt, '2026-09-02T09:20:43-03:00');
+  assert.equal(progressEntries.find(({ sequence }) => sequence === 88).publishedAt, reportMeta.updatedAtIso);
 });
 
 test('preserva a distribuição documental por data', () => {
@@ -90,7 +92,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-30': 3,
     '2026-08-31': 2,
     '2026-09-01': 4,
-    '2026-09-02': 1,
+    '2026-09-02': 2,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -104,9 +106,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 87 }, (_, index) => index + 1),
+    Array.from({ length: 88 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 87);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 88);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -609,7 +611,7 @@ test('backup local instalado fecha os gates e mantém explícito o risco colocal
 });
 
 test('ML-0 fecha validado localmente sem antecipar dados reais ou operação', () => {
-  const record = progressEntries.at(-1);
+  const record = progressEntries.find(({ sequence }) => sequence === 87);
   assert.equal(record.sequence, 87);
   assert.equal(record.title, 'Início da implementação local de machine learning');
   assert.equal(record.context, 'Local');
@@ -623,6 +625,32 @@ test('ML-0 fecha validado localmente sem antecipar dados reais ou operação', (
   assert.match(record.validation, /Regex ou prefixo não comprovam anonimização.*âncora persistida, CAS, armazenamento isolado, tombstone, ledger e deleção durável ainda não existem/i);
   assert.match(record.validation, /não houve coleta real.*treino.*embeddings.*fine-tuning.*inferência.*aplicativo.*WhatsApp.*SQLite.*provedor.*push.*produção ou VPS/i);
   assert.match(record.validation, /próximo gate.*governança.*armazenamento isolado.*CAS.*deleção real.*shadow separado sem envio.*copiloto ou canário/i);
+});
+
+test('registro 88 delimita os candidatos locais e a auditoria TLS sem antecipar implantação', () => {
+  const record = progressEntries.at(-1);
+  assert.equal(record.sequence, 88);
+  assert.equal(
+    record.title,
+    'Diagnóstico de CPU, candidatos locais de outbox e auto-scan e auditoria TLS',
+  );
+  assert.equal(record.context, 'Local');
+  assert.equal(record.kind, 'Correção');
+  assert.equal(record.state, 'Validado localmente');
+  assert.match(record.summary, /diagnóstico ao vivo.*somente leitura.*claim periódico.*outbox vazia.*causa dominante/is);
+  assert.match(record.summary, /dois corretivos.*apenas no workspace.*produção continua na release anterior.*nenhuma implantação/is);
+  assert.match(record.result, /um chat.*25 mensagens.*job persistido.*checkpoint.*lease.*deadline.*cancelamento cooperativo/is);
+  assert.match(record.result, /watermark.*próprio.*separado da recuperação manual/is);
+  assert.match(record.result, /legacy_baseline.*sem certificação.*verified_v1.*barreira agregada/is);
+  assert.match(record.result, /snapshot final limitado no navegador.*ponto de linearização/is);
+  assert.match(record.validation, /TLS.*renovação automática.*comprovados.*sem mudança operacional/is);
+  assert.match(record.validation, /não oferece atomicidade.*navegador.*SQLite.*worker thread.*preempção física/is);
+  assert.match(record.validation, /1\.309 testes.*1\.308 aprovações.*zero falhas ou cancelamentos.*um skip ambiental esperado/is);
+  assert.match(record.validation, /218\/218.*CRM.*persistência.*1\.071 gerais.*1\.070 aprovações.*um skip.*20\/20 legados/is);
+  assert.match(record.validation, /160\.000\/160\.000.*655,568493104 segundos/is);
+  assert.doesNotMatch(record.validation, /FINAL_INTEGRAL_PUBLIC/);
+  assert.match(record.validation, /pacote.*gates Linux.*pedido explícito de push/is);
+  assert.doesNotMatch(`${record.summary} ${record.result} ${record.validation}`, /\bQR\b|sess(?:ão|ões)/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {
@@ -657,30 +685,36 @@ test('conteúdo público não contém indicadores sensíveis ou exploráveis', (
 
 test('roadmap preserva os gates humanos, logísticos e externos vigentes', () => {
   assert.equal(roadmap.length, 8);
-  assert.equal(roadmap[0].priority, 'Próximo gate');
-  assert.equal(roadmap[0].title, 'Corrigir a varredura automática em uma release própria');
-  assert.match(roadmap[0].gate, /Release separada.*testes de carga e recuperação.*novos gates Linux/i);
+  assert.equal(roadmap[0].priority, 'Candidato local');
+  assert.equal(roadmap[0].title, 'Preparar a release de desempenho');
+  assert.match(roadmap[0].description, /outbox vazia.*claim pesado.*auto-scan.*job durável.*1 chat\/25 mensagens.*checkpoint.*lease.*deadline.*cancelamento cooperativo/i);
+  assert.match(roadmap[0].gate, /integral local aprovada.*faltam pacote.*Linux.*push explícito/i);
   assert.equal(roadmap[1].priority, 'Concluído');
-  assert.equal(roadmap[1].title, 'Push instalado e validado');
+  assert.equal(roadmap[1].title, 'Manter release e TLS');
   const roadmapText = roadmap.map((item) => Object.values(item).join(' ')).join(' ');
   assert.match(roadmapText, /credenciais iniciais/i);
   assert.match(roadmapText, /vendedora real/i);
-  assert.match(roadmapText, /novo destino externo/i);
+  assert.match(roadmapText, /destino externo/i);
   assert.match(roadmapText, /usuário autenticado/i);
   assert.match(roadmapText, /prestação de contas sincronizada/i);
-  assert.match(roadmapText, /push instalado.*push seletivo de 01\/09.*17 arquivos.*sem adições ou remoções.*1\.192 testes.*1\.191 aprovações.*1\.192 de 1\.192/i);
-  assert.match(roadmapText, /conta moderadora principal.*ler o QR posteriormente.*quatro contas gerenciadas.*conectadas.*zero varreduras e jobs ativos.*HTTPS e TLS passaram/i);
-  assert.match(roadmapText, /backup pré-push.*backup pós-push não foi executado porque exigiria novo reinício.*auto-scans.*restauração isolada não reinicia o serviço.*não foi repetida/i);
-  assert.match(roadmapText, /Guardião por três agentes.*não foram implantados/i);
-  assert.match(roadmapText, /varredura automática.*sequencial.*deadline global.*job durável em lotes.*checkpoint.*cancelamento real.*retomada idempotente/i);
-  assert.match(roadmapText, /22 indisponibilidades.*20 indisponibilidades anteriores.*NAD.*dois técnicos existentes bloqueados/i);
-  assert.match(roadmapText, /fundação ML-0.*concluída.*validada somente localmente.*fixture exclusivamente sintética.*conversa privada.*risco baixo/i);
-  assert.match(roadmapText, /próximo gate.*governança.*armazenamento isolado.*deleção durável.*shadow separado.*sem envio.*copiloto.*canário.*baixo risco/i);
-  assert.match(roadmapText, /Regex ou prefixo não comprovam anonimização/i);
-  assert.match(roadmapText, /594 pares de estilo.*não comprovam equivalência semântica.*Venda, pagamento, crédito, reembolso.*decisão clínica.*humanos/i);
-  assert.match(roadmapText, /contingência colocalizada.*está instalada.*estritamente manual.*não possui timer.*a partir de 31\/10\/2026 às 20:00 de Brasília, inclusive/i);
-  assert.match(roadmapText, /primeiro snapshot.*verificação.*quatro varreduras persistidas.*saúde em repouso.*restauração isolada.*passaram/i);
-  assert.match(roadmapText, /infraestrutura antiga de backup.*desativada.*acervo histórico preservado offline.*host antigo.*cancelado.*indisponível/i);
-  assert.match(roadmapText, /compartilha o domínio de falha.*novo destino externo.*obrigatório/i);
+  assert.match(roadmapText, /Release de 01\/09 permanece.*TLS.*renovação automática.*sem implantar candidatos/i);
+  assert.match(roadmapText, /22 casos bloqueados.*sem fabricar imagens.*adaptar números/i);
+  assert.match(roadmapText, /governança.*isolamento.*CAS.*deleção durável.*shadow.*copiloto.*canário.*baixo risco/i);
+  assert.match(roadmapText, /domínio de falha.*destino externo.*31\/10\/2026 às 20:00/i);
+  assert.match(roadmapText, /síntese sanitizada.*cada push.*detalhes operacionais fora do portal/i);
   assert.doesNotMatch(roadmapText, /comprovar a segunda origem|exigir.*segunda origem/i);
+
+  const detailedEvidence = [...executiveMetrics, ...progressEntries]
+    .flatMap((item) => Object.values(item))
+    .flat()
+    .join(' ');
+  assert.match(detailedEvidence, /17 arquivos.*sem adições ou remoções.*1\.192 testes locais.*1\.191 aprovações.*1\.192 de 1\.192/i);
+  assert.match(detailedEvidence, /zero varreduras (?:ou|e) jobs ativos.*HTTPS (?:público )?e (?:o )?(?:monitor )?TLS.*(?:passaram|aprovados)/i);
+  assert.match(detailedEvidence, /backup pós-push não foi executado.*novo reinício.*auto-scans.*restauração isolada.*não foi repetida/i);
+  assert.match(detailedEvidence, /22 indisponibilidades.*20 anteriores.*NAD nasal.*dois técnicos existentes bloqueados/i);
+  assert.match(detailedEvidence, /ML-0.*(?:aceita exclusivamente )?fixture (?:exclusivamente )?sintética.*conversa privada.*risco baixo/i);
+  assert.match(detailedEvidence, /Regex ou prefixo não comprovam anonimização/i);
+  assert.match(detailedEvidence, /594 pares.*não comprovam equivalência semântica/i);
+  assert.match(detailedEvidence, /contingência cifrada.*estritamente manual.*sem timer.*31\/10\/2026 às 20:00 de Brasília, inclusive/i);
+  assert.match(detailedEvidence, /infraestrutura antiga de backup.*desativada.*acervo histórico.*offline/i);
 });

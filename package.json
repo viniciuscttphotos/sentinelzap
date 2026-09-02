@@ -9,9 +9,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "node --test",
-    "check": "npm run progress:verify && npm test && npm run build",
-    "deploy:check": "npm test && npm run build",
+    "check": "npm run progress:verify && npm run summary:verify && npm test && npm run build",
+    "deploy:check": "npm run summary:verify && npm test && npm run build",
     "progress:verify": "node scripts/verify-progress-sync.mjs",
+    "summary:verify": "node scripts/verify-public-summary-limit.mjs",
     "vercel:whoami": "vercel whoami",
     "vercel:login": "vercel login",
     "vercel:link": "vercel link --yes --scope viniciuscttphotos-projects --project sentinelzap",
@@ -24,5 +25,8 @@
   },
   "devDependencies": {
     "vite": "^8.2.2"
+  },
+  "dependencies": {
+    "parse5": "8.0.1"
   }
 }

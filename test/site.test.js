@@ -2,7 +2,25 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-import { reportMeta } from '../src/data.js';
+import {
+  executiveMetrics,
+  progressEntries,
+  reportMeta,
+  roadmap,
+  roadmapPresentation,
+} from '../src/data.js';
+import {
+  assertWithinWordLimit,
+  countWords,
+  extractUniqueSectionMarkup,
+  htmlToVisibleText,
+  measurePublicSummary,
+  renderRoadmapVisibleText,
+  SUMMARY_CONTRACT,
+  SUMMARY_SECTION_IDS,
+  SUMMARY_WORD_LIMIT,
+  verifyPublicSummary,
+} from '../scripts/verify-public-summary-limit.mjs';
 
 const projectUrl = new URL('../', import.meta.url);
 
@@ -10,130 +28,208 @@ async function read(relativePath) {
   return readFile(new URL(relativePath, projectUrl), 'utf8');
 }
 
-test('a narrativa começa no estado atual, segue para a direção e termina no progresso', async () => {
-  const html = await read('index.html');
-  const nowIndex = html.indexOf('Onde estamos agora');
-  const directionIndex = html.indexOf('Para onde vamos');
-  const progressIndex = html.indexOf('Progresso do mais recente ao mais antigo');
+test('a narrativa começa no estado atual, segue para a direção e preserva a evidência detalhada', async () => {
+  const pageHtml = await read('index.html');
+  const detailedEvidence = [...executiveMetrics, ...progressEntries]
+    .flatMap((item) => Object.values(item))
+    .flat()
+    .join(' ');
+  const nowIndex = pageHtml.indexOf('Onde estamos agora');
+  const directionIndex = pageHtml.indexOf('Para onde vamos');
+  const progressIndex = pageHtml.indexOf('Progresso do mais recente ao mais antigo');
+
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(html, /87 consolidados/);
-  assert.match(html, /backup local temporário foi instalado e os gates reais passaram/i);
-  assert.match(html, /acionamento\s+estritamente manual e sem timer.*a partir de 31\/10\/2026 às 20:00 de Brasília, inclusive/is);
-  assert.match(html, /primeiro\s+snapshot e sua verificação, quatro varreduras persistidas, a saúde em repouso e\s+o restore drill isolado foram aprovados.*drill não reinicia o serviço/is);
-  assert.match(html, /infraestrutura antiga de backup foi desativada somente depois desses gates/is);
-  assert.match(html, /acervo histórico permanece preservado offline.*indisponível se o host\s+antigo for cancelado/is);
-  assert.match(html, /cópia colocalizada não é recuperação de desastre.*novo\s+destino externo continua obrigatório/is);
-  assert.match(html, /push seletivo de QR e conexões foi implantado.*saúde atual foi aprovada em repouso/i);
-  assert.match(html, /17 arquivos.*sem adições ou remoções/i);
-  assert.match(html, /conta\s+moderadora principal.*qrready.*área Contas.*ler o QR quando puder/is);
-  assert.match(html, /quatro contas gerenciadas permanecem\s+conectadas/i);
-  assert.match(html, /1\.192 testes locais.*1\.191\s+aprovações, zero falhas ou cancelamentos e um skip ambiental esperado.*1\.192 de 1\.192 testes no Linux/is);
-  assert.match(html, /zero\s+varreduras ou jobs ativos.*HTTPS público e monitor TLS também passaram/is);
-  assert.match(html, /backup\s+pré-push foi aprovado.*backup pós-push não foi executado porque exigiria novo\s+reinício.*restauração isolada não reinicia o\s+serviço.*não foi repetida/is);
-  assert.match(html, /fila terminou.*latência e consumo voltaram ao patamar normal/i);
-  assert.match(html, /auto-scan é\s+sequencial.*não possui deadline global.*mesmo processo.*voltar a degradar.*após um reinício/is);
-  assert.match(html, /job durável em lotes.*checkpoint.*orçamento total.*cancelamento real.*retomada\s+idempotente/is);
-  assert.match(html, /fase ML-0 foi concluída e validada somente localmente.*estilo e estratégia de respostas.*fixture\s+sintética.*conversa privada e risco baixo/is);
-  assert.match(html, /HMAC do envelope.*retenção de 1 a 30\s+dias.*revisão humana recente.*âncora e revisão.*remoção de sujeito somente em\s+memória/is);
-  assert.match(html, /focal ML passou 24\/24.*pacote 5\/5.*combinado 29\/29.*1\.267 testes.*1\.266 aprovações.*zero falhas ou cancelamentos.*um skip\s+ambiental.*160\.000\/160\.000.*936,683243611 segundos/is);
-  assert.match(html, /estado\s+operacional monitorado permaneceu idêntico.*duas revisões finais não encontraram P1\/P2/is);
-  assert.match(html, /594 pares atuais.*não demonstram\s+equivalência semântica.*decisões financeiras ou clínicas permanecem humanas/is);
-  assert.match(html, /push de 31\/08 foi instalado e validado, com cinco contas conectadas/i);
-  assert.match(html, /release de 31 de agosto foi instalado às 02:52:31 de Brasília/i);
-  assert.match(html, /13 seções ao Markdown.*?oito seções\s+faltantes à compilação.*?complemento da seção existente de GHK-Cu/s);
-  assert.match(html, /18 fontes\s+visuais.*90 imagens/s);
-  assert.match(html, /Três cards com divergências\s+mantêm quatro seções técnicas bloqueadas/i);
-  assert.match(html, /não é validação\s+clínica nem autorização para dose individual/i);
-  assert.match(html, /772 testes locais aprovados[^.]{0,160}768 de 768 testes no pacote Linux/i);
-  assert.match(html, /aceite comprovou cinco contas conectadas/i);
-  assert.match(html, /fundação logística instalada[^.]{0,120}desativada[^.]{0,100}sem credenciais[^.]{0,100}chamadas\s+ao provedor/i);
-  assert.match(html, /candidato local de confiabilidade[^.]{0,200}Guardião IA[^.]{0,160}recuperação de mensagens/i);
-  assert.match(html, /1\.126 testes locais.*?1\.125 aprovações, zero falhas e um skip esperado.*?1\.121 de 1\.121 no Linux/is);
-  assert.match(html, /gates não validam o reparo posterior da conta principal/i);
-  assert.match(html, /candidato corrigido concluiu.*?1\.157 testes locais.*?1\.156 aprovações, zero falhas e um skip esperado.*?31\/08 às 02:37:42 de Brasília.*?1\.152 de 1\.152 no Linux.*?às 02:33:41/is);
-  assert.match(html, /aceites anteriores.*?histórico; são testes isolados, não aceites operacionais/is);
-  assert.match(html, /backup pré-publicação concluiu o <strong>15º snapshot<\/strong> e reiniciou o serviço/i);
-  assert.match(html, /reinício revelou uma falha de conexão da conta principal/i);
-  assert.match(html, /31\/08 às\s+01:57:33, horário de Brasília, quatro contas gerenciadas estavam prontas, a principal\s+estava em erro e não havia jobs ou scans ativos/i);
-  assert.match(html, /diagnóstico datado, não um aceite\s+de conexão/i);
-  assert.match(html, /primeiro pacote do reparo falhou em um contrato de telemetria nas duas\s+suítes integrais, local e Linux/i);
-  assert.match(html, /sete eventos operacionais anteriores foram restaurados/i);
-  assert.match(html, /214 de 214 testes focais.*?31 regressões da conta\s+principal.*?Após revisão independente, o congelamento formal ocorreu às 02:26:08,\s+horário de Brasília/is);
-  assert.match(html, /novos testes\s+integrais foram aprovados e a reconstrução confirmou o pacote idêntico/i);
-  assert.match(html, /implantação foi concluída às 02:52:31 de Brasília.*?serviço iniciou ativo e sem\s+reinícios automáticos/is);
-  assert.match(html, /primeira checagem às 02:53:04 aprovou API, SQLite,\s+autenticação, arquivos protegidos e logs, mas as contas ainda estavam inicializando/i);
-  assert.match(html, /checagens de 03:02:41 e 03:03:57 de Brasília, cinco de cinco contas estavam\s+conectadas, sem scans ou jobs e com zero reinícios automáticos/i);
-  assert.match(html, /principal reautenticou sem\s+novo QR, erro de conexão ou falha de observador; o runtime foi aceito antes do backup/i);
-  assert.match(html, /monitor TLS manual passou às 02:55:51; HTTPS externo respondeu 200, com TLS\s+válido, cabeçalhos seguros e redirecionamento HTTP 308/i);
-  assert.match(html, /backup posterior,\s+solicitado às 03:03:57,795, concluiu às 03:06:03,807 de Brasília.*?03:07:22,516 confirmou 16 snapshots e zero locks/is);
-  assert.match(html, /checagem de 03:07:30,158 manteve cinco contas conectadas, cinco perfis de navegador.*?uma varredura ativa e nenhum job/is);
-  assert.match(html, /restauração isolada iniciou às 03:07:41,059 e passou às 03:09:47,807 de Brasília,\s+sem falhas, com confirmação operacional entregue/i);
-  assert.match(html, /checagem final às 03:16:04,129\s+de Brasília aprovou cinco contas conectadas e cinco perfis de navegador, nenhuma\s+varredura ou job ativo e zero reinícios automáticos/i);
-  assert.match(html, /Implantação, runtime e continuidade foram aceitos.*?segunda checagem às 03:17:24,238 de Brasília confirmou a mesma estabilidade,\s+sem novo reinício.*?rotinas recorrentes de TLS, backup e restauração\s+permanecem desabilitadas.*?renovação automática de certificados continua ativa/is);
-  assert.match(html, /160\.000 casos combinatórios offline[^.]{0,100}40 produtos[^.]{0,100}4\.000 casos[^.]{0,100}20 famílias/i);
-  assert.match(html, /240 turnos de diálogos fixos[^.]{0,80}240 falhas injetadas[^.]{0,80}30 turnos[^.]{0,80}160 chamadas a provedor simulado[^.]{0,80}casos isolados/i);
-  assert.match(html, /não são conversas com LLM real[^.]{0,180}comparação semântica/i);
-  assert.match(html, /96 botões estáticos[^.]{0,80}40 templates dinâmicos[^.]{0,80}24 formulários[^.]{0,80}20 foram[^.]{0,80}quatro logísticos[^.]{0,80}sem\s+navegador real/i);
-  assert.match(html, /despacho foi testado em VM, sem\s+navegador real/i);
-  assert.match(html, /Etiquetas[^.]{0,120}integração logística real[^.]{0,100}fora/i);
-  assert.match(html, /22\s+indisponibilidades de cards: 20 anteriores, incluindo NAD nasal não reconciliado/i);
-  assert.match(html, /dois técnicos existentes bloqueados.*?Retatrutida 20 mg\s+e Somatropina 240 UI/is);
-  assert.match(html, /preserva as apresentações, os preços\s+e as imagens originais.*?indisponibilidade segura/is);
-  assert.match(html, /implantação do novo pacote\s+preservou o estado protegido antes da partida/i);
-  assert.match(html, /staging é separado/i);
-  assert.doesNotMatch(html, /staging é separado e não altera o runtime ativo/i);
-  const unchangedProductionClaim = /produção[^.!?]*(?:intacta|sem alteração nesta etapa|sem reinício)/i;
-  assert.doesNotMatch(html, unchangedProductionClaim);
-  for (const claim of [
-    'A produção permanece intacta.',
-    'A produção ficou sem alteração nesta etapa.',
-    'A produção segue sem reinício.',
-    'A produção\nsegue sem reinício.',
-  ]) assert.match(claim, unchangedProductionClaim);
-  assert.doesNotMatch(
-    'A produção usa o release novo. A infraestrutura secundária ficou sem reinício.',
-    unchangedProductionClaim,
+  assert.match(pageHtml, /88 consolidados/);
+  assert.match(pageHtml, /release operacional anterior/i);
+  assert.match(pageHtml, /claim da outbox vazia.*persistência\s+completa/is);
+  assert.match(pageHtml, /dois candidatos foram validados apenas localmente/i);
+  assert.match(pageHtml, /TLS e renovação automática foram comprovados/i);
+  assert.match(pageHtml, /evidências e limites completos permanecem na linha do tempo/i);
+  assert.match(pageHtml, /implantar os candidatos ainda exige pacote, gates Linux\s+e push explícito/is);
+
+  assert.match(detailedEvidence, /17 arquivos.*sem adições ou remoções/i);
+  assert.match(detailedEvidence, /1\.192 testes locais.*1\.191 aprovações.*1\.192 de 1\.192 testes no Linux/i);
+  assert.match(detailedEvidence, /zero varreduras ou jobs ativos.*HTTPS público e monitor TLS aprovados/i);
+  assert.match(detailedEvidence, /backup pós-push não foi executado.*novo reinício.*auto-scans/is);
+  assert.match(detailedEvidence, /1\.267 testes.*1\.266 aprovações.*160\.000(?:\/| de )160\.000/i);
+  assert.match(detailedEvidence, /22 indisponibilidades.*NAD nasal.*Retatrutida 20 mg.*Somatropina 240 UI/i);
+  assert.match(detailedEvidence, /decisões financeiras ou clínicas continuam humanas/i);
+});
+test('síntese mantém candidatos locais e o histórico conserva os gates do Guardião', async () => {
+  const pageHtml = await read('index.html');
+  const detailedEvidence = progressEntries
+    .flatMap((item) => Object.values(item))
+    .flat()
+    .join(' ');
+
+  assert.match(pageHtml, /Candidatos · somente locais/i);
+  assert.match(detailedEvidence, /Guardião por três agentes.*validado localmente/i);
+  assert.match(detailedEvidence, /pelo menos dois votos concordantes de agentes distintos/i);
+  assert.match(detailedEvidence, /mesmo modelo ou provedor.*sem garantia de independência estatística/i);
+  assert.match(detailedEvidence, /161 de 161 testes aprovados.*42 regressões/is);
+  assert.match(detailedEvidence, /1\.200 testes, 1\.199 aprovados.*um skip esperado no macOS/is);
+  assert.match(detailedEvidence, /produção mantém o contrato anterior de duas origens.*não houve novo push operacional/i);
+});
+test('síntese distingue a release vigente dos candidatos locais e dos gates humanos', async () => {
+  const pageHtml = await read('index.html');
+  const detailedEvidence = progressEntries
+    .flatMap((item) => Object.values(item))
+    .flat()
+    .join(' ');
+
+  assert.match(pageHtml, /Produção · release vigente/i);
+  assert.match(pageHtml, /Causa · claim vazio da outbox/i);
+  assert.match(pageHtml, /auto-scan usa job durável e limitado/is);
+  assert.match(detailedEvidence, /trabalho sequencial sem deadline global.*causa estrutural não foi corrigida/is);
+  assert.match(detailedEvidence, /lotes duráveis com checkpoint, orçamento total, cancelamento real e retomada idempotente/i);
+  assert.match(detailedEvidence, /ML-0.*validada somente localmente/is);
+  assert.match(detailedEvidence, /Regex ou prefixo não comprovam anonimização.*CAS.*deleção durável/is);
+  assert.match(detailedEvidence, /decisões financeiras ou clínicas continuam humanas/i);
+  assert.match(detailedEvidence, /Não houve coleta real, treino, embeddings, fine-tuning, inferência/is);
+});
+test('contrato pt-BR-unicode-v1 normaliza NFC e trata compostos como uma palavra', () => {
+  const sample = "ação ação pós-venda d'água 31/10/2026 20:00 1.177,965 24/24 31º";
+  assert.equal(countWords(sample), 9);
+  assert.equal(countWords('ação'), countWords('ação'));
+  assert.equal(countWords('lote–seguro'), 2);
+  assert.equal(SUMMARY_CONTRACT, 'pt-BR-unicode-v1');
+});
+
+test('limite é inclusivo: 500 palavras passam e 501 falham', () => {
+  assert.doesNotThrow(() => assertWithinWordLimit(500));
+  assert.throws(() => assertWithinWordLimit(501), /501\/500 palavras/);
+  assert.equal(countWords(Array.from({ length: 500 }, () => 'item').join(' ')), 500);
+  assert.equal(countWords(Array.from({ length: 501 }, () => 'item').join(' ')), 501);
+});
+
+test('extração exige uma única seção por ID e conta apenas texto estático visível', () => {
+  const html = `
+    <!-- <section id="inicio">comentada</section> -->
+    <section class="alvo" data-id="inicio" id = "inicio" data-oculto="atributo não conta">
+      Visível <!-- comentário não conta --> <strong>também visível</strong>
+      <script>conteúdo não visível</script>
+    </section>
+    <section id="direcao">Direção &amp; gate</section>
+  `;
+  const startMarkup = extractUniqueSectionMarkup(html, 'inicio');
+  assert.equal(htmlToVisibleText(startMarkup), 'Visível também visível');
+  assert.throws(
+    () => extractUniqueSectionMarkup(`${html}<div id="inicio">duplicado</div>`, 'inicio'),
+    /exatamente uma vez/,
   );
-  assert.match(html, /31\/08 às 01:17:48, horário de Brasília.*?três slots completos, uma origem de provedor e três grupos monitorados/is);
-  assert.match(html, /quórum de duas origens independentes não foi atingido/i);
-  assert.match(html, /Configuração não equivale\s+a votos reais: nenhum provedor foi chamado e nenhuma moderação foi executada/is);
-  assert.match(html, /Mídia sem legenda permanece para revisão\s+manual/i);
-  assert.match(html, /push anterior da versão já instalada em 31\/08 foi explicitamente autorizado e\s+concluído às 02:52:31 de Brasília/i);
-  assert.match(html, /integrais local e Linux daquele pacote foram\s+aprovados.*?reconstrução confirmou o pacote idêntico.*?cinco conexões, o backup posterior, a restauração isolada e a checagem final\s+sem atividade foram aprovados/is);
+  assert.throws(
+    () => extractUniqueSectionMarkup('<div id="inicio">inválida</div>', 'inicio'),
+    /elemento <section>/,
+  );
 });
 
-test('hero informa o Guardião local sem antecipar implantação ou substituir evidência histórica', async () => {
-  const html = await read('index.html');
-  assert.match(html, /Guardião foi validado localmente.*três agentes e dois votos/i);
-  assert.match(html, /modelos atuais foram preservados.*Evidência, contexto e contestação.*avaliados\s+separadamente/is);
-  assert.match(html, /mesmo modelo ou provedor\s+pode ser utilizado.*não garante independência estatística/is);
-  assert.match(html, /Dois agentes distintos\s+precisam concordar sobre a mensagem corrente, na mesma rodada/i);
-  assert.match(html, /tentativa repetida\s+do mesmo agente não cria outro voto/i);
-  assert.match(html, /focal reprovado por volta de 06:12 de Brasília/i);
-  assert.match(html, /07:08:39 de Brasília.*161 de 161 testes aprovados.*zero falhas, skips ou cancelamentos.*42 regressões.*33 no núcleo e nove no agendamento/is);
-  assert.match(html, /07:31:57 de Brasília.*1\.200 testes.*1\.199 aprovações, zero falhas ou cancelamentos e um skip esperado no macOS/is);
-  assert.match(html, /campanha local aprovou 160\.000 de 160\.000 casos offline em 1\.177,965 segundos/i);
-  assert.match(html, /código congelado e o estado protegido permaneceram idênticos antes e depois,\s+em conteúdo e metadados monitorados/i);
-  assert.match(html, /Guardião não integrou o push seletivo de QR e conexões.*produção\s+mantém o contrato anterior de duas origens.*release própria/is);
-  assert.match(html, /decisão local por três agentes substitui esse requisito somente no novo candidato/i);
-  assert.match(html, /Guardião.*validado localmente.*não integrou o push seletivo/is);
+test('unicidade bloqueia ID duplicado sem aspas e entidade numérica sem ponto e vírgula', () => {
+  const unquotedDuplicate = `
+    <section id="inicio">Resumo</section>
+    <div id=inicio>Duplicata sem aspas</div>
+  `;
+  assert.throws(
+    () => extractUniqueSectionMarkup(unquotedDuplicate, 'inicio'),
+    /exatamente uma vez; encontrado: 2/,
+  );
+
+  const entityDuplicate = `
+    <section id=inicio>Resumo</section>
+    <div id="in&#105cio">Duplicata codificada sem ponto e vírgula</div>
+  `;
+  assert.throws(
+    () => extractUniqueSectionMarkup(entityDuplicate, 'inicio'),
+    /exatamente uma vez; encontrado: 2/,
+  );
 });
 
-test('hero distingue a release seletiva da pendência estrutural e preserva decisões humanas', async () => {
+test('comentário HTML5 encerrado por --!> não cria nem oculta duplicata real', () => {
+  const fakeInsideComment = `
+    <section id=inicio>Resumo válido</section>
+    <!-- <div id=inicio>Falso dentro do comentário</div> --!>
+  `;
+  assert.equal(
+    htmlToVisibleText(extractUniqueSectionMarkup(fakeInsideComment, 'inicio')),
+    'Resumo válido',
+  );
+
+  const realAfterComment = `
+    <section id=inicio>Resumo</section>
+    <!-- comentário recuperável --!><div id=inicio>Duplicata real</div>
+  `;
+  assert.throws(
+    () => extractUniqueSectionMarkup(realAfterComment, 'inicio'),
+    /exatamente uma vez; encontrado: 2/,
+  );
+});
+
+test('fechamento textual em atributo não encerra a seção', () => {
+  const html = `
+    <section id=inicio>
+      <div title="marcador </section> textual">Antes</div>
+      <p>Depois do atributo</p>
+    </section>
+  `;
+  const visible = htmlToVisibleText(extractUniqueSectionMarkup(html, 'inicio'));
+  assert.match(visible, /Antes/);
+  assert.match(visible, /Depois do atributo/);
+});
+
+test('raw-text recuperável não encerra a seção e script/style/template não contam', () => {
+  for (const scriptEndTag of ['</script data-recuperado>', '</script/>']) {
+    const html = `
+      <section id=inicio>
+        <script>window.exemplo = "</section>";${scriptEndTag}
+        <style>.segredo::after { content: "não conta"; }</style>
+        <template><p>Também não conta</p></template>
+        <p>Depois do script</p>
+      </section>
+    `;
+    const visible = htmlToVisibleText(extractUniqueSectionMarkup(html, 'inicio'));
+    assert.equal(visible, 'Depois do script');
+  }
+});
+
+test('roadmap contado reproduz integralmente a ordem e os rótulos renderizados', () => {
+  const text = renderRoadmapVisibleText(roadmap, roadmapPresentation);
+  roadmap.forEach((item, index) => {
+    assert.match(text, new RegExp(String(index + 1).padStart(2, '0')));
+    for (const field of ['priority', 'title', 'description', 'owner', 'gate']) {
+      assert.ok(text.includes(item[field]), `roadmap ${index + 1} sem ${field}`);
+    }
+  });
+  assert.equal(text.match(/Responsável/gu)?.length, roadmap.length);
+  assert.equal(text.match(/\bGate\b/gu)?.length, roadmap.length);
+  assert.throws(
+    () => renderRoadmapVisibleText([{ ...roadmap[0], gate: '' }], roadmapPresentation),
+    /campo gate ausente ou vazio/,
+  );
+});
+
+test('resumo executivo combinado respeita o manifesto e a margem editorial', async () => {
   const html = await read('index.html');
-  assert.match(html, /release seletiva de 01\/09 instalada/i);
-  assert.match(html, /Conexões · principal pronta para QR/i);
-  assert.match(html, /causa\s+estrutural da lentidão.*continua pendente/is);
-  assert.match(html, /auto-scan.*sequencial.*deadline global.*próxima release.*lotes.*checkpoint/is);
-  assert.match(html, /Copiloto de rascunhos e canário\s+limitado a baixo risco ficam para fases posteriores/is);
-  assert.match(html, /decisões financeiras ou clínicas permanecem humanas/is);
-  assert.match(html, /fundação ML-0 está\s+concluída e validada somente localmente.*sem aceitar dados reais/is);
-  assert.match(html, /Regex ou prefixo não\s+comprovam anonimização.*âncora persistida, CAS, armazenamento isolado, tombstone, ledger e\s+deleção durável ainda não existem/is);
-  assert.match(html, /próximo gate é governança com armazenamento isolado,\s+CAS e deleção real.*shadow separado sem envio.*Copiloto de rascunhos e canário/is);
-  assert.match(html, /Não houve coleta real, treino,\s+embeddings, fine-tuning, inferência, integração com aplicativo, WhatsApp, SQLite ou\s+provedor, push nem mudança de produção ou VPS/is);
-  assert.match(html, /ML-0 · validado localmente/i);
+  const manifest = JSON.parse(await read('sync/progress-source.json'));
+  const measurement = verifyPublicSummary({ html, manifest });
+
+  assert.deepEqual(measurement.sectionIds, [...SUMMARY_SECTION_IDS]);
+  assert.equal(measurement.contract, SUMMARY_CONTRACT);
+  assert.equal(measurement.limit, SUMMARY_WORD_LIMIT);
+  assert.equal(measurement.wordCount, 444);
+  assert.ok(measurement.wordCount >= 350 && measurement.wordCount <= 450);
+  assert.equal(measurement.wordCount, measurePublicSummary({ html }).wordCount);
+
+  for (const [field, value] of [
+    ['contract', 'outro-contrato'],
+    ['limit', 499],
+    ['sectionIds', ['direcao', 'inicio']],
+    ['wordCount', measurement.wordCount + 1],
+  ]) {
+    const divergent = structuredClone(manifest);
+    divergent.publicSummary[field] = value;
+    assert.throws(() => verifyPublicSummary({ html, manifest: divergent }), /divergente/i);
+  }
 });
 
 test('HTML oferece SEO, OpenGraph e marcos básicos de acessibilidade', async () => {
@@ -228,12 +324,19 @@ test('Vercel aplica cabeçalhos de segurança e fallback estático', async () =>
 
 test('scripts npm usam Vite, node:test e a CLI Vercel persistente no projeto autorizado', async () => {
   const packageJson = JSON.parse(await read('package.json'));
+  const packageLock = JSON.parse(await read('package-lock.json'));
   assert.equal(packageJson.scripts.test, 'node --test');
   assert.equal(packageJson.scripts.build, 'vite build');
   assert.equal(packageJson.scripts['vercel:whoami'], 'vercel whoami');
   assert.match(packageJson.scripts['vercel:link'], /--project sentinelzap\b/);
   assert.match(packageJson.scripts['vercel:link'], /--scope viniciuscttphotos-projects\b/);
   assert.equal(packageJson.scripts['progress:verify'], 'node scripts/verify-progress-sync.mjs');
+  assert.equal(packageJson.scripts['summary:verify'], 'node scripts/verify-public-summary-limit.mjs');
+  assert.match(packageJson.scripts.check, /summary:verify/);
+  assert.match(packageJson.scripts['deploy:check'], /summary:verify/);
+  assert.equal(packageJson.dependencies.parse5, '8.0.1');
+  assert.equal(packageLock.packages[''].dependencies.parse5, '8.0.1');
+  assert.equal(packageLock.packages['node_modules/parse5'].version, '8.0.1');
   assert.match(packageJson.scripts['vercel:prod'], /^vercel deploy --prod --yes /);
   for (const [name, command] of Object.entries(packageJson.scripts)) {
     if (name.startsWith('vercel:')) assert.doesNotMatch(command, /npx|@latest/);
@@ -244,22 +347,35 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const packageJson = JSON.parse(await read('package.json'));
   const manifest = JSON.parse(await read('sync/progress-source.json'));
   const verifier = await read('scripts/verify-progress-sync.mjs');
+  const summaryVerifier = await read('scripts/verify-public-summary-limit.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 87);
-  assert.equal(manifest.technicalSourceRecords, 86);
+  assert.equal(manifest.entryCount, 88);
+  assert.equal(manifest.technicalSourceRecords, 87);
   assert.equal(manifest.synchronizedAt, reportMeta.updatedAtIso);
+  assert.deepEqual(manifest.publicSummary, {
+    contract: SUMMARY_CONTRACT,
+    limit: SUMMARY_WORD_LIMIT,
+    sectionIds: [...SUMMARY_SECTION_IDS],
+    wordCount: 444,
+  });
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Início da implementação local de machine learning',
+    'Diagnóstico de CPU, candidatos locais de outbox e auto-scan e auditoria TLS',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /heading\.date >= latest\.date/);
   assert.match(verifier, /progressEntries\.at\(-1\)/);
   assert.match(verifier, /reportMeta\.updatedAtIso !== manifest\.synchronizedAt/);
   assert.match(verifier, /publishedNewest\.publishedAt !== reportMeta\.updatedAtIso/);
+  assert.match(verifier, /pendingPublicMarkers/);
+  assert.match(verifier, /marcador público pendente/);
   assert.doesNotMatch(verifier, /writeFile|appendFile/);
+  assert.match(summaryVerifier, /from 'parse5'/);
+  assert.match(summaryVerifier, /parse\(String\(html\)\)/);
+  assert.match(summaryVerifier, /EXCLUDED_VISIBLE_TEXT_ELEMENTS.*script.*style.*template/);
+  assert.doesNotMatch(summaryVerifier, /scanHtmlTags|parseHtmlAttributes/);
 });
 
 test('a página pública não se apresenta como dashboard operacional', async () => {

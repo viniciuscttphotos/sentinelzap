@@ -20,6 +20,7 @@ const newest = headings.reduce(
 );
 const publishedNewest = progressEntries.at(-1);
 const errors = [];
+const pendingPublicMarkers = ['FINAL_INTEGRAL_PUBLIC'];
 const updateMatch = reportMeta.updatedAtIso.match(
   /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(?:Z|[+-]\d{2}:\d{2})$/,
 );
@@ -46,6 +47,11 @@ const zonedCivilTime = zonedParts
   : null;
 
 if (sha256 !== manifest.sha256) errors.push('o digest do PROGRESS.md mudou');
+for (const marker of pendingPublicMarkers) {
+  if (JSON.stringify({ progressEntries, reportMeta }).includes(marker)) {
+    errors.push(`o marcador público pendente ${marker} ainda não foi resolvido`);
+  }
+}
 if (headings.length !== manifest.entryCount) errors.push('a contagem de registros da fonte mudou');
 if (reportMeta.sourceRecords !== manifest.technicalSourceRecords) {
   errors.push('a contagem de registros técnicos públicos diverge do manifesto');

@@ -63,177 +63,38 @@
             <p class="eyebrow">Relatório executivo · prestação de contas</p>
             <h1 id="hero-title">Onde estamos agora</h1>
             <p class="hero-lead">
-              O SentinelZap está em produção como uma plataforma modular de atendimento,
-              CRM e operação comercial, com entrada HTTPS autenticada, persistência SQLite
-              validada e continuidade ensaiada.
+              O SentinelZap segue na release operacional anterior. Análise ao vivo e somente
+              leitura isolou a causa dominante: o claim da outbox vazia acionava persistência
+              completa.
             </p>
             <p class="hero-detail">
-              <strong>O backup local temporário foi instalado e os gates reais passaram.</strong>
-              A cópia cifrada está na mesma infraestrutura da produção, com acionamento
-              estritamente manual e sem timer. Novos backups ficam bloqueados
-              <strong>a partir de 31/10/2026 às 20:00 de Brasília, inclusive</strong>. O primeiro
-              snapshot e sua verificação, quatro varreduras persistidas, a saúde em repouso e
-              o restore drill isolado foram aprovados; o drill não reinicia o serviço. A
-              infraestrutura antiga de backup foi desativada somente depois desses gates. Seu
-              acervo histórico permanece preservado offline, mas ficará indisponível se o host
-              antigo for cancelado. A cópia colocalizada não é recuperação de desastre e um
-              novo destino externo continua obrigatório.
+              <strong>Dois candidatos foram validados apenas localmente.</strong> A outbox evita
+              a transação pesada sem item elegível; o auto-scan usa job durável e limitado. Nada
+              foi implantado.
             </p>
             <p class="hero-detail">
-              <strong>O push seletivo de QR e conexões foi implantado e a saúde atual foi aprovada em repouso.</strong>
-              O pacote alterou <strong>17 arquivos</strong>, sem adições ou remoções. A conta
-              moderadora principal está em <strong>qrready</strong>, pronta para o usuário abrir
-              a área Contas e ler o QR quando puder; as quatro contas gerenciadas permanecem
-              conectadas. O recorte concluiu <strong>1.192 testes locais</strong>, com 1.191
-              aprovações, zero falhas ou cancelamentos e um skip ambiental esperado, além de
-              <strong>1.192 de 1.192 testes no Linux</strong>. A checagem final encontrou zero
-              varreduras ou jobs ativos; HTTPS público e monitor TLS também passaram. O backup
-              pré-push foi aprovado. O backup pós-push não foi executado porque exigiria novo
-              reinício e poderia repetir os auto-scans; a restauração isolada não reinicia o
-              serviço e também não foi repetida nessa janela.
-            </p>
-            <p class="hero-detail">
-              Depois que a fila terminou, latência e consumo voltaram ao patamar normal. A causa
-              estrutural da lentidão, porém, <strong>continua pendente</strong>: o auto-scan é
-              sequencial, não possui deadline global e disputa o mesmo processo da aplicação, por
-              isso pode voltar a degradar as respostas após um reinício. A próxima release deve usar
-              job durável em lotes, checkpoint, orçamento total, cancelamento real e retomada
-              idempotente, sem desligar silenciosamente o auto-scan.
-              <strong>A fase ML-0 foi concluída e validada somente localmente</strong> para organizar
-              estilo e estratégia de respostas. O contrato local puro aceita exclusivamente fixture
-              sintética, conversa privada e risco baixo; valida HMAC do envelope, retenção de 1 a 30
-              dias, revisão humana recente, âncora e revisão encadeadas e remoção de sujeito somente em
-              memória. O focal ML passou 24/24, o pacote 5/5 e o combinado 29/29. A suíte integral
-              concluiu 1.267 testes, com 1.266 aprovações, zero falhas ou cancelamentos e um skip
-              ambiental; a campanha aprovou 160.000/160.000 em 936,683243611 segundos. O estado
-              operacional monitorado permaneceu idêntico e duas revisões finais não encontraram P1/P2.
-            </p>
-            <p class="hero-detail">
-              <strong>O Guardião foi validado localmente para decidir com três agentes e dois votos.</strong>
-              Os modelos atuais foram preservados. Evidência, contexto e contestação são avaliados
-              separadamente, sem acesso aos votos dos demais agentes. O mesmo modelo ou provedor
-              pode ser utilizado; isso não garante independência estatística. Dois agentes distintos
-              precisam concordar sobre a mensagem corrente, na mesma rodada; uma tentativa repetida
-              do mesmo agente não cria outro voto. A implementação anterior foi interrompida por
-              limite de uso, com teste focal reprovado por volta de 06:12 de Brasília. O novo focal
-              ampliado terminou às 07:08:39 de Brasília com <strong>161 de 161 testes aprovados</strong>,
-              zero falhas, skips ou cancelamentos. Foram acrescentadas <strong>42 regressões</strong>:
-              33 no núcleo e nove no agendamento, com focais de 73 de 73 e 12 de 12 aprovados.
-              A suíte integral terminou às 07:31:57 de Brasília com <strong>1.200 testes</strong>,
-              1.199 aprovações, zero falhas ou cancelamentos e um skip esperado no macOS.
-              A campanha local aprovou 160.000 de 160.000 casos offline em 1.177,965 segundos.
-              O código congelado e o estado protegido permaneceram idênticos antes e depois,
-              em conteúdo e metadados monitorados. Esses testes não constituem aceite de IA real
-              ou WhatsApp real. O Guardião não integrou o push seletivo de QR e conexões; a produção
-              mantém o contrato anterior de duas origens e o novo candidato requer release própria.
-            </p>
-            <p class="hero-detail">
-              <strong>O push de 31/08 foi instalado e validado, com cinco contas conectadas.</strong>
-              O confronto dos cards acrescentou 13 seções ao Markdown de protocolos e oito seções
-              faltantes à compilação, além do complemento da seção existente de GHK-Cu. Foram lidas individualmente 18 fontes
-              visuais, preservando as 90 imagens do inventário. Três cards com divergências
-              mantêm quatro seções técnicas bloqueadas. Transcrever o material não é validação
-              clínica nem autorização para dose individual; números conflitantes não são adaptados.
-            </p>
-            <p class="hero-detail">
-              O release de 31 de agosto foi instalado às 02:52:31 de Brasília. O release anterior,
-              de 29 de agosto, teve um aceite histórico que registrou
-              <strong>772 testes locais aprovados</strong>, sem falhas e com um skip esperado,
-              e 768 de 768 testes no pacote Linux. O aceite comprovou cinco contas conectadas e a
-              fundação logística instalada permanece desativada, sem credenciais ou chamadas
-              ao provedor. O candidato local de confiabilidade concluiu a reauditoria local do
-              Guardião IA, da recuperação de mensagens, da entrega de cards e dos fluxos humanos
-              do CRM em 30/08. O candidato dos cards passou <strong>1.126 testes locais</strong>,
-              com 1.125 aprovações, zero falhas e um skip esperado, e <strong>1.121 de 1.121 no Linux</strong>.
-              Esses gates não validam o reparo posterior da conta principal. O candidato corrigido concluiu
-              <strong>1.157 testes locais</strong>, com 1.156 aprovações, zero falhas e um skip esperado,
-              em 31/08 às 02:37:42 de Brasília, e <strong>1.152 de 1.152 no Linux</strong>, às 02:33:41.
-              Os aceites anteriores permanecem registrados no
-              histórico; são testes isolados, não aceites operacionais. A implantação do novo pacote
-              preservou o estado protegido antes da partida; o staging é separado.
-            </p>
-            <p class="hero-detail">
-              O backup pré-publicação concluiu o <strong>15º snapshot</strong> e reiniciou o serviço.
-              Esse reinício revelou uma falha de conexão da conta principal. Na leitura de 31/08 às
-              01:57:33, horário de Brasília, quatro contas gerenciadas estavam prontas, a principal
-              estava em erro e não havia jobs ou scans ativos. É um diagnóstico datado, não um aceite
-              de conexão. O primeiro pacote do reparo falhou em um contrato de telemetria nas duas
-              suítes integrais, local e Linux. Os sete eventos operacionais anteriores foram restaurados;
-              o novo focal passou <strong>214 de 214 testes focais</strong>, com 31 regressões da conta
-              principal. Após revisão independente, o congelamento formal ocorreu às 02:26:08,
-              horário de Brasília.
-              O reparo impede tentativas sobrepostas,
-              preserva sessões e bloqueia efeitos tardios de conexões encerradas. Os novos testes
-              integrais foram aprovados e a reconstrução confirmou o pacote idêntico.
-              A implantação foi concluída às 02:52:31 de Brasília. O serviço iniciou ativo e sem
-              reinícios automáticos. A primeira checagem às 02:53:04 aprovou API, SQLite,
-              autenticação, arquivos protegidos e logs, mas as contas ainda estavam inicializando.
-              Nas checagens de 03:02:41 e 03:03:57 de Brasília, cinco de cinco contas estavam
-              conectadas, sem scans ou jobs e com zero reinícios automáticos. API, SQLite,
-              autenticação, arquivos protegidos e logs passaram. A principal reautenticou sem
-              novo QR, erro de conexão ou falha de observador; o runtime foi aceito antes do backup.
-              O monitor TLS manual passou às 02:55:51; HTTPS externo respondeu 200, com TLS
-              válido, cabeçalhos seguros e redirecionamento HTTP 308. O backup posterior,
-              solicitado às 03:03:57,795, concluiu às 03:06:03,807 de Brasília; a consulta às
-              03:07:22,516 confirmou 16 snapshots e zero locks. Após o reinício normal do backup,
-              a checagem de 03:07:30,158 manteve cinco contas conectadas, cinco perfis de navegador
-              e os demais controles aprovados, mas havia uma varredura ativa e nenhum job.
-              A restauração isolada iniciou às 03:07:41,059 e passou às 03:09:47,807 de Brasília,
-              sem falhas, com confirmação operacional entregue. A checagem final às 03:16:04,129
-              de Brasília aprovou cinco contas conectadas e cinco perfis de navegador, nenhuma
-              varredura ou job ativo e zero reinícios automáticos. API, SQLite, autenticação,
-              arquivos protegidos e logs passaram. Implantação, runtime e continuidade foram aceitos.
-              A segunda checagem às 03:17:24,238 de Brasília confirmou a mesma estabilidade,
-              sem novo reinício.
-              As rotinas recorrentes de TLS, backup e restauração
-              permanecem desabilitadas; a renovação automática de certificados continua ativa.
-            </p>
-            <p class="hero-detail">
-              A versão instalada em 31/08 repetiu, localmente e no Linux, todos os 160.000 casos combinatórios offline, com 40 produtos,
-              4.000 casos por produto e 20 famílias de cenários. Ensaios separados incluem
-              240 turnos de diálogos fixos, 240 falhas injetadas e geração com 30 turnos integrados;
-              160 chamadas a provedor simulado no total, incluindo casos isolados. Esses números
-              não são conversas com LLM real,
-              nem comprovam entrega no WhatsApp ou comparação semântica com atendentes humanos.
-              O CRM tem 96 botões estáticos, 40 templates dinâmicos e 24 formulários: 20 foram
-              exercitados e quatro logísticos foram excluídos; o despacho foi testado em VM, sem
-              navegador real. Etiquetas e integração logística real ficaram fora. São 22
-              indisponibilidades de cards: 20 anteriores, incluindo NAD nasal não reconciliado,
-              e dois técnicos existentes bloqueados por divergência na fonte, Retatrutida 20 mg
-              e Somatropina 240 UI. O bloqueio automático preserva as apresentações, os preços
-              e as imagens originais desses produtos, com indisponibilidade segura e sem substituição.
-            </p>
-            <p class="hero-detail">
-              A leitura histórica do Guardião em 31/08 às 01:17:48, horário de Brasília, encontrou
-              três slots completos, uma origem de provedor e três grupos monitorados.
-              Na versão ainda instalada, o quórum de duas origens independentes não foi atingido.
-              A decisão local por três agentes substitui esse requisito somente no novo candidato.
-              Configuração não equivale
-              a votos reais: nenhum provedor foi chamado e nenhuma moderação foi executada nesse
-              diagnóstico somente leitura. A moderação automática ainda não possui aceite operacional.
-              Mídia sem legenda permanece para revisão
-              manual. IA real, envio no WhatsApp e avaliação semântica humana seguem pendentes.
+              <strong>TLS e renovação automática foram comprovados.</strong> Serviço, certificado
+              e agendador estão saudáveis; implantar os candidatos ainda exige pacote, gates Linux
+              e push explícito. Os limites técnicos e a separação entre local e produção permanecem
+              explícitos.
             </p>
             <div class="status-row" aria-label="Estado executivo">
-              <span class="status-pill status-pill--live"><i aria-hidden="true"></i>Produção · release seletiva de 01/09 instalada</span>
-              <span class="status-pill">Conexões · principal pronta para QR</span>
-              <span class="status-pill">Backup local · instalado e manual</span>
-              <span class="status-pill">Backup antigo · infraestrutura desativada</span>
-              <span class="status-pill">Guardião · validado localmente</span>
-              <span class="status-pill">ML-0 · validado localmente</span>
-              <time class="status-pill" datetime="2026-09-02T09:20:43-03:00" data-report-updated-at>Conteúdo atualizado em 02/09/2026 às 09:20:43, horário de Brasília</time>
+              <span class="status-pill status-pill--live"><i aria-hidden="true"></i>Produção · release vigente</span>
+              <span class="status-pill">Causa · claim vazio da outbox</span>
+              <span class="status-pill">Candidatos · somente locais</span>
+              <span class="status-pill">TLS · renovação comprovada</span>
+              <time class="status-pill" datetime="2026-09-02T15:45:58-03:00" data-report-updated-at>Conteúdo atualizado em 02/09/2026 às 15:45:58, horário de Brasília</time>
             </div>
           </div>
           <aside class="hero-note" aria-label="Nota de escopo">
             <p class="hero-note__label">Leitura do contratante</p>
             <p>
-              Este documento registra entregas, validações, decisões e próximos gates. Dados
-              pessoais e detalhes operacionais exploráveis foram removidos deliberadamente.
+              Síntese sanitizada; evidências e limites completos permanecem na linha do tempo.
             </p>
             <dl>
               <div><dt>Período</dt><dd>15 ago–2 set 2026</dd></div>
-              <div><dt>Registros</dt><dd>87 consolidados</dd></div>
-              <div><dt>Última atualização</dt><dd><time datetime="2026-09-02T09:20:43-03:00" data-report-updated-at>Conteúdo atualizado em 02/09/2026 às 09:20:43, horário de Brasília</time></dd></div>
+              <div><dt>Registros</dt><dd>88 consolidados</dd></div>
+              <div><dt>Última atualização</dt><dd><time datetime="2026-09-02T15:45:58-03:00" data-report-updated-at>Conteúdo atualizado em 02/09/2026 às 15:45:58, horário de Brasília</time></dd></div>
               <div><dt>Fonte</dt><dd>Histórico técnico verificado</dd></div>
             </dl>
           </aside>
@@ -260,13 +121,13 @@
             </div>
             <div>
               <span class="brief-index">02</span>
-              <h3>Conexões reconfirmadas</h3>
-              <p>Checagem final em 31/08 às 03:16:04,129 de Brasília: cinco contas conectadas, nenhuma varredura ou job ativo e zero reinícios automáticos.</p>
+              <h3>Causa dominante isolada</h3>
+              <p>O claim periódico da outbox vazia acionava persistência completa mesmo sem trabalho elegível.</p>
             </div>
             <div>
               <span class="brief-index">03</span>
-              <h3>Continuidade posterior aprovada</h3>
-              <p>16 snapshots confirmados e zero locks após o backup. TLS, restauração isolada e checagem final sem atividade aprovados.</p>
+              <h3>TLS comprovado</h3>
+              <p>Cadeia, certificado, timer e renovação automática foram auditados somente por leitura e permanecem saudáveis.</p>
             </div>
           </div>
         </div>
@@ -278,30 +139,8 @@
             <p class="eyebrow">Próxima etapa</p>
             <h2 id="direction-title">Para onde vamos</h2>
             <p>
-              O corretivo do ciclo de conexão e o Guardião por três agentes estão validados
-              localmente. Eles só poderão ser implantados após pedido explícito de push, com
-              pacote e novos testes Linux na janela autorizada. O desempenho será tratado pela
-              migração do armazenamento para operações incrementais, com benchmark e corte
-              controlado; ampliar a máquina não substitui essa correção estrutural. A fundação ML-0 está
-              concluída e validada somente localmente, sem aceitar dados reais. Regex ou prefixo não
-              comprovam anonimização; âncora persistida, CAS, armazenamento isolado, tombstone, ledger e
-              deleção durável ainda não existem. O próximo gate é governança com armazenamento isolado,
-              CAS e deleção real; depois vem um shadow separado sem envio. Copiloto de rascunhos e canário
-              limitado a baixo risco ficam para fases posteriores. Não houve coleta real, treino,
-              embeddings, fine-tuning, inferência, integração com aplicativo, WhatsApp, SQLite ou
-              provedor, push nem mudança de produção ou VPS. Os 594 pares atuais não demonstram
-              equivalência semântica, e decisões financeiras ou clínicas permanecem humanas.
-              O novo contrato do Guardião não exige adicionar uma segunda origem e ainda não altera
-              a versão instalada.
-              O push anterior da versão já instalada em 31/08 foi explicitamente autorizado e
-              concluído às 02:52:31 de Brasília. Os integrais local e Linux daquele pacote foram
-              aprovados, e a reconstrução confirmou o pacote idêntico.
-              As cinco conexões, o backup posterior, a restauração isolada e a checagem final
-              sem atividade foram aprovados. IA real, entrega
-              no WhatsApp e os fluxos corrigidos ainda exigem aceite operacional acompanhado.
-              As 22 indisponibilidades — 20 anteriores e dois bloqueios técnicos novos —
-              dependem de reconciliação da fonte, sem fabricar imagens. Etiquetas,
-              credenciais e integração logística real permanecem fora desta entrega.
+              A integral local passou. Com autorização explícita, empacotar, validar no Linux e
+              executar o push. Os limites humanos e de continuidade permanecem.
             </p>
           </div>
           <ol class="roadmap" data-roadmap></ol>
@@ -395,8 +234,8 @@
           <p>SentinelZap · prestação de contas documental</p>
         </div>
         <div class="footer-meta">
-          <p><time datetime="2026-09-02T09:20:43-03:00" data-report-updated-at>Conteúdo atualizado em 02/09/2026 às 09:20:43, horário de Brasília</time></p>
-          <p>Conteúdo público sanitizado · 87 registros</p>
+          <p><time datetime="2026-09-02T15:45:58-03:00" data-report-updated-at>Conteúdo atualizado em 02/09/2026 às 15:45:58, horário de Brasília</time></p>
+          <p>Conteúdo público sanitizado · 88 registros</p>
         </div>
       </div>
     </footer>

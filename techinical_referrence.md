@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 87 registros sanitizados
+     └── métricas, roadmap e 88 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -41,6 +41,8 @@ JavaScript e ativos estáticos.
 - define a hierarquia semântica do documento;
 - abre com “Onde estamos agora”, seguido de “Para onde vamos” e “Progresso do
   mais recente ao mais antigo”;
+- mantém as duas primeiras seções como síntese curta; a evidência detalhada
+  permanece nas métricas e na linha do tempo;
 - contém metadados SEO, canonical, OpenGraph, Twitter Card e favicon;
 - oferece skip link, landmarks, rótulos, região `aria-live` e fallback `noscript`;
 - referencia exclusivamente recursos locais de execução.
@@ -48,8 +50,10 @@ JavaScript e ativos estáticos.
 ### `src/data.js`
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
-- exporta metadados do relatório, onze métricas executivas, oito prioridades do
-  roadmap, os 87 registros e as opções derivadas de filtro;
+- exporta metadados do relatório, doze métricas executivas, oito prioridades do
+  roadmap, os 88 registros e as opções derivadas de filtro;
+- exporta `roadmapPresentation`, contrato compartilhado dos números e rótulos
+  visíveis do roadmap usado pela interface e pelo gate de palavras;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -72,6 +76,8 @@ JavaScript e ativos estáticos.
 - deriva uma cópia imutável e invertida da fonte canônica e renderiza métricas,
   roadmap e linha do tempo agrupada por dia, do registro mais recente ao mais
   antigo;
+- renderiza o roadmap com largura numérica e rótulos obtidos do mesmo
+  `roadmapPresentation` aferido no build;
 - preenche os elementos `<time data-report-updated-at>` do hero e do rodapé com
   o rótulo persistente e o atributo semântico `datetime`, sem reconverter o
   instante pelo fuso local do visitante;
@@ -107,10 +113,12 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 87 registros, distribuição por data, sequência canônica,
+- verifica contagem de 88 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
-  cabeçalhos Vercel, scripts npm e ausência de conexão com API.
+  cabeçalhos Vercel, scripts npm, limite executivo e ausência de conexão com API;
+- cobre normalização NFC, hífen, apóstrofo, data, hora, decimal, barra, limite
+  inclusivo 500/501, unicidade das seções, roadmap completo e manifesto.
 
 ## 4. Fluxo de dados
 
@@ -131,6 +139,8 @@ O histórico bruto não deve ser copiado para o portal. Cada atualização exige
 - remoção de IPs, telefones, nomes de usuários, identificadores internos, hashes,
   caminhos, credenciais e pormenores exploráveis;
 - distinção explícita entre trabalho local, produção, decisão e validação;
+- no máximo 500 palavras somadas em “Onde estamos agora” (`#inicio`) e “Para
+  onde vamos” (`#direcao`), incluindo todo o roadmap visível;
 - atualização obrigatória do instante público com data e horário reais de
   Brasília, no formato ISO explícito `AAAA-MM-DDTHH:mm:ss±HH:mm` e com o offset
   UTC vigente para `America/Sao_Paulo`;
@@ -148,6 +158,7 @@ Comandos oficiais:
 ```bash
 npm ci
 npm run progress:verify
+npm run summary:verify
 npm test
 npm run build
 ```
@@ -159,14 +170,22 @@ cada execução nem incluir sua cadeia transitiva no build do portal. A sessão
 persistente fica fora do repositório. `.vercel/`, variáveis e tokens são ignorados
 pelo Git.
 
-`npm run check` executa primeiro `progress:verify` e depois testes/build. O gate
+`npm run check` executa `progress:verify`, `summary:verify`, testes e build. O gate
 de sincronização lê o `PROGRESS.md` raiz, calcula SHA-256 em memória e compara
 digest, contagem, cabeçalho mais recente e o instante `updatedAtIso` com
 `sync/progress-source.json` e com a última entrada pública. O instante público
 deve ser exatamente igual a `synchronizedAt` no manifesto. O gate nunca copia
-ou imprime o histórico. O build remoto,
-onde a fonte operacional não existe, usa `npm run deploy:check` para executar
-testes e build antes da publicação.
+ou imprime o histórico. O gate editorial usa `parse5` 8.0.1 para montar uma
+árvore HTML5 real e ler as duas seções por IDs únicos. Isso cobre atributos com
+aspas ou sem aspas, referências de caractere, comentários recuperáveis e as
+regras de texto bruto do padrão sem confundir `</section>` textual com
+fechamento estrutural. A coleta percorre nós de texto, exclui integralmente
+`script`, `style` e `template`, acrescenta o roadmap na ordem visual e aplica o
+contrato `pt-BR-unicode-v1`: NFC e a regex Unicode canônica. O limite
+de 500 é inclusivo; 501 falha. `publicSummary` no manifesto deve coincidir em
+contrato, limite, IDs e contagem. O build remoto, onde a fonte operacional não
+existe, usa `npm run deploy:check` para executar esse gate, testes e build antes
+da publicação.
 
 O deploy do portal substitui somente a landing web histórica. Não reinicia, migra
 ou modifica o dashboard/API operacional. A integração GitHub do projeto Vercel
@@ -192,16 +211,38 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 02/09/2026, a edição contém 86 registros técnicos da fonte e um registro
-documental de publicação, totalizando 87. O mais recente é “Início da
-implementação local de machine learning”, em estado `Validado localmente` e contexto
-`Local`. Os 86 registros anteriores foram mantidos. Os registros 79, 80, 81,
-82, 83, 84, 85 e 86 conservam, respectivamente, os instantes
+Em 02/09/2026, a edição finalizada localmente contém 87 registros técnicos da fonte e um
+registro documental de publicação, totalizando 88. O mais recente é “Diagnóstico
+de CPU, candidatos locais de outbox e auto-scan e auditoria TLS”, em estado
+`Validado localmente` e contexto `Local`. Os 87 registros anteriores foram
+mantidos. Os registros 79, 80, 81, 82, 83, 84, 85, 86 e 87 conservam,
+respectivamente, os instantes
 documentais `2026-08-30T09:34:04-03:00`, `2026-08-30T19:36:19-03:00`,
 `2026-08-31T03:19:54-03:00`, `2026-08-31T07:38:02-03:00`,
 `2026-09-01T13:02:26-03:00`, `2026-09-01T20:34:50-03:00` e
-`2026-09-01T21:49:28-03:00` e `2026-09-01T23:56:17-03:00`; somente o registro
-87 acompanha a constante renovada no fechamento.
+`2026-09-01T21:49:28-03:00`, `2026-09-01T23:56:17-03:00` e
+`2026-09-02T09:20:43-03:00`; somente o registro 88 acompanha a constante final
+`2026-09-02T15:45:58-03:00`.
+
+O registro 88 documenta o diagnóstico ao vivo e somente leitura que isolou o
+claim periódico da outbox vazia como causa dominante do consumo e da latência.
+Dois candidatos foram validados apenas no workspace: o caminho vazio deixa de
+abrir a transação completa, e o auto-scan passa a usar job persistido, microfatias
+de um chat e no máximo 25 mensagens, checkpoint, lease com geração de fence,
+deadline e cancelamento cooperativo. A produção continua na release anterior e
+nenhum desses candidatos foi implantado.
+
+O auto-scan mantém watermark próprio, separado da recuperação manual. A migração
+entra como `legacy_baseline`, sem certificação, e `verified_v1` só é emitido após
+uma barreira agregada bem-sucedida. O snapshot final limitado no navegador é o
+ponto de linearização. Não existe atomicidade entre navegador e SQLite, execução
+em worker thread ou preempção física; o cancelamento opera nos pontos cooperativos
+e permanece uma janela residual explícita após o snapshot. TLS, cadeia e renovação
+automática foram comprovados sem mutação operacional. A suíte integral autoritativa
+concluiu 1.309 testes, com 1.308 aprovações, zero falhas ou cancelamentos e um skip
+ambiental esperado: 218/218 em CRM e persistência, 1.071 gerais com 1.070
+aprovações e um skip, e 20/20 legados. A campanha offline aprovou
+160.000/160.000 em 655,568493104 segundos.
 
 O registro 87 fecha a fase ML-0, concluída e validada somente localmente para
 organizar estilo e estratégia de respostas. O contrato local puro aceita
@@ -311,6 +352,15 @@ foi publicada em `2026-09-02T07:44:36-03:00`; o fechamento usa o instante comum
 gates e a comprovação pública de
 cada edição possuem registro próprio no log interno; o aceite anterior não é
 reaproveitado.
+
+A edição de 88 registros está reconciliada localmente com os **87 registros
+técnicos**, o digest final da fonte raiz e o instante comum
+`2026-09-02T15:45:58-03:00` em `REPORT_UPDATED_AT`, nos três horários visíveis e
+no manifesto. O gate mede **444/500 palavras** no contrato
+`pt-BR-unicode-v1`; `progress:verify`, os **43/43 testes**, o build Vite, a
+auditoria de dependências e `git diff --check` passaram. O verificador também
+recusa marcadores pendentes. A publicação e sua prova externa ainda precisam
+ser registradas separadamente; o estado local não antecipa `Ready` nem HTTP 200.
 
 O registro anterior de produção documenta 13 seções acrescentadas ao Markdown de protocolos e
 oito seções faltantes à compilação, além do complemento da seção existente de
@@ -486,12 +536,10 @@ revisão manual. As 22 indisponibilidades (20 anteriores e dois bloqueios
 técnicos novos) permanecem em backlog com indisponibilidade segura, sem
 substituição por arte incorreta. IA real,
 WhatsApp, comparação semântica humana e aceite operacional continuam pendentes.
-O roadmap apresenta o corretivo de conexão e o consenso por três agentes como
-validados localmente e prioriza obter o pedido explícito de push, seguido do
-pacote conferido e dos novos testes Linux na janela autorizada, sem antecipar
-implantação. A fase funcional seguinte é aprendizado supervisionado sob
-governança, isolamento por conta e avaliação humana, sem automatizar decisões
-financeiras ou clínicas.
+O roadmap apresenta os candidatos locais de outbox e auto-scan e prioriza a suíte
+integral, o pacote conferido, os testes Linux e o pedido explícito de push, sem
+antecipar implantação. Ele preserva os gates do Guardião, do ML-0, de conteúdo,
+continuidade e decisões humanas.
 O item histórico concluído registra o pedido explícito de push recebido, os integrais local
 e Linux aprovados, a reconstrução idêntica do pacote e a implantação concluída
 às 02:52:31 de Brasília. A produção usa o release de 31/08, com conexões

@@ -4,7 +4,7 @@ Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 87 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 88 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,13 +12,35 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 86 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 87 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
 
-O registro mais recente é “Início da implementação local de machine learning”, em
-contexto `Local` e estado `Validado localmente`. A fase ML-0 foi concluída para
+O registro mais recente é “Diagnóstico de CPU, candidatos locais de outbox e
+auto-scan e auditoria TLS”, em contexto `Local` e estado `Validado localmente`.
+O diagnóstico ao vivo e somente leitura apontou o claim periódico da outbox vazia
+como causa dominante do consumo e da latência. O caminho vazio da outbox agora
+evita a transação completa, e o auto-scan foi redesenhado como job durável com
+microfatias de um chat e até 25 mensagens, checkpoint, lease, deadline e
+cancelamento cooperativo. Esses dois candidatos existem apenas no workspace; a
+produção continua na release anterior e requer pedido explícito de push para
+qualquer implantação.
+
+O watermark do auto-scan é separado da recuperação manual. A migração inicia em
+`legacy_baseline`, sem certificação, e só passa a `verified_v1` depois de uma
+barreira agregada bem-sucedida. O snapshot final limitado no navegador define o
+ponto de linearização. Não há atomicidade entre navegador e SQLite, worker thread
+ou preempção física; o cancelamento depende de pontos cooperativos e a janela
+residual após o snapshot permanece documentada. TLS, cadeia e renovação automática
+foram comprovados sem alteração operacional. A suíte integral autoritativa concluiu
+1.309 testes, com 1.308 aprovações, zero falhas ou cancelamentos e um skip ambiental
+esperado: 218/218 em CRM e persistência, 1.071 gerais com 1.070 aprovações e um
+skip, e 20/20 legados. A campanha offline aprovou 160.000/160.000 em
+655,568493104 segundos.
+
+O registro 87 é “Início da implementação local de machine learning”, em contexto
+`Local` e estado `Validado localmente`. A fase ML-0 foi concluída para
 organizar estilo e estratégia de respostas. Seu contrato local puro aceita
 exclusivamente fixture sintética, conversa privada e risco baixo; valida HMAC do
 envelope, retenção de 1 a 30 dias, revisão humana recente, âncora e revisão
@@ -311,13 +333,29 @@ npm run check
 
 Executado junto da raiz operacional, `npm run check` começa por
 `npm run progress:verify`, que confronta digest, contagem e registro mais recente
-do `PROGRESS.md`. O build da Vercel usa `npm run deploy:check`, porque a fonte
-operacional deliberadamente não é enviada ao repositório público.
+do `PROGRESS.md`, e por `npm run summary:verify`, que limita a 500 palavras
+somadas as seções “Onde estamos agora” e “Para onde vamos”. O build da Vercel
+usa `npm run deploy:check`, porque a fonte operacional deliberadamente não é
+enviada ao repositório público; esse gate remoto também executa
+`summary:verify`.
 
 Os testes usam `node:test` e validam contagem, fonte canônica crescente,
 apresentação decrescente, horários com evidência, sanitização, narrativa,
-acessibilidade estrutural, mobile first, metadados sociais, configuração Vercel
-e cabeçalhos de segurança.
+limite editorial, acessibilidade estrutural, mobile first, metadados sociais,
+configuração Vercel e cabeçalhos de segurança.
+
+O limite editorial usa o contrato determinístico `pt-BR-unicode-v1`: normaliza
+o texto em NFC e conta palavras com a expressão Unicode registrada no
+verificador. O texto estático visível de `#inicio` e `#direcao` é somado ao
+roadmap exatamente como aparece — número, prioridade, título, descrição,
+“Responsável”, responsável, “Gate” e gate. Tags, atributos e comentários não
+entram na contagem. O parser HTML5 versionado `parse5` monta a árvore real,
+reconhece IDs com aspas, sem aspas e referências de caractere conforme o padrão,
+e aplica a recuperação normativa de comentários e texto bruto. Assim,
+`</section>` textual em atributo ou `script` não encerra a seção; conteúdo de
+`script`, `style` e `template` não conta. O limite é inclusivo: 500 passa e 501
+reprova. Contrato, limite, IDs e contagem aferida ficam em `publicSummary` no
+manifesto.
 
 A última atualização pública é um contrato persistente em `reportMeta`: instante
 ISO 8601 com o offset UTC vigente, fuso IANA `America/Sao_Paulo` e rótulo
@@ -373,22 +411,28 @@ gates locais. O deploy não altera o dashboard operacional.
    `2026-08-31T07:38:02-03:00`; o registro 83 conserva
    `2026-09-01T13:02:26-03:00`, o registro 84 conserva
    `2026-09-01T20:34:50-03:00` e o registro 85 conserva
-   `2026-09-01T21:49:28-03:00`.
+   `2026-09-01T21:49:28-03:00`, o registro 86 conserva
+   `2026-09-01T23:56:17-03:00` e o registro 87 mantém
+   `2026-09-02T09:20:43-03:00`.
 4. Preserve a fonte canônica em ordem crescente e a ordem documental dentro do
    mesmo dia; a interface inverte uma cópia para mostrar o registro mais recente
    primeiro.
 5. Só preencha `time` quando houver evidência documental.
 6. Atualize as métricas apenas quando o estado correspondente tiver sido comprovado.
-7. Depois que o `PROGRESS.md` raiz estiver final, atualize digest, contagem,
+7. Mantenha `#inicio` e `#direcao`, incluindo o roadmap renderizado, em no
+   máximo 500 palavras somadas. Execute `npm run summary:verify` e atualize a
+   contagem declarada em `publicSummary` sem mudar o contrato, o limite ou os IDs.
+8. Depois que o `PROGRESS.md` raiz estiver final, atualize digest, contagem,
    último cabeçalho e `synchronizedAt` em `sync/progress-source.json`. O valor de
    `synchronizedAt` deve ser exatamente o mesmo de `reportMeta.updatedAtIso`.
-8. Registre a mudança em `progress.md` e revise `techinical_referrence.md`.
-9. Execute `npm run check`, envie `main` e confirme no conteúdo servido que a
+9. Registre a mudança em `progress.md` e revise `techinical_referrence.md`.
+10. Execute `npm run check`, envie `main` e confirme no conteúdo servido que a
    data, o horário e o rótulo de Brasília correspondem ao instante publicado,
    além do deploy `Ready` e HTTP 200.
 
-Se `npm run progress:verify` acusar divergência, a tarefa não está concluída. O
-histórico bruto nunca deve ser copiado para o portal para contornar o gate.
+Se `progress:verify` ou `summary:verify` acusar divergência, a tarefa não está
+concluída. O histórico bruto nunca deve ser copiado para o portal para contornar
+os gates.
 
 ## Estrutura
 
@@ -400,7 +444,8 @@ sentinelzap-progresso/
 │   ├── main.js                # renderização, busca, filtros e impressão
 │   └── styles.css             # sistema visual mobile first
 ├── scripts/
-│   └── verify-progress-sync.mjs # prova local de sincronização
+│   ├── verify-progress-sync.mjs # prova local de sincronização
+│   └── verify-public-summary-limit.mjs # limite executivo reproduzível
 ├── sync/
 │   └── progress-source.json   # digest e metadados não sensíveis da fonte
 ├── test/                      # testes node:test

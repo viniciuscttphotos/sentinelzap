@@ -5,6 +5,7 @@ import {
   progressEntries,
   reportMeta,
   roadmap,
+  roadmapPresentation,
 } from './data.js';
 
 const timelineEntries = Object.freeze([...progressEntries].reverse());
@@ -45,7 +46,11 @@ function appendMetric(metric) {
 
 function appendRoadmapItem(item, index) {
   const row = createElement('li', 'roadmap-item');
-  const number = createElement('span', 'roadmap-number', String(index + 1).padStart(2, '0'));
+  const number = createElement(
+    'span',
+    'roadmap-number',
+    String(index + 1).padStart(roadmapPresentation.numberWidth, '0'),
+  );
   number.setAttribute('aria-hidden', 'true');
 
   const content = createElement('div', 'roadmap-content');
@@ -56,9 +61,15 @@ function appendRoadmapItem(item, index) {
 
   const meta = createElement('dl', 'roadmap-meta');
   const ownerWrap = createElement('div');
-  ownerWrap.append(createElement('dt', null, 'Responsável'), createElement('dd', null, item.owner));
+  ownerWrap.append(
+    createElement('dt', null, roadmapPresentation.ownerLabel),
+    createElement('dd', null, item.owner),
+  );
   const gateWrap = createElement('div');
-  gateWrap.append(createElement('dt', null, 'Gate'), createElement('dd', null, item.gate));
+  gateWrap.append(
+    createElement('dt', null, roadmapPresentation.gateLabel),
+    createElement('dd', null, item.gate),
+  );
   meta.append(ownerWrap, gateWrap);
 
   row.append(number, content, meta);

@@ -1,9 +1,15 @@
 {
   "source": "../PROGRESS.md",
-  "sha256": "55edd3d17460b63d0ece5356ce68341a7b465f7729ae4fa372c1440ee58eecf5",
-  "entryCount": 87,
-  "technicalSourceRecords": 86,
+  "sha256": "76eda1534c4a90951459d95bfc4c747fdd08acc7cebd2adc2668c626b4313914",
+  "entryCount": 88,
+  "technicalSourceRecords": 87,
   "newestDate": "2026-09-02",
-  "newestHeading": "Início da implementação local de machine learning",
-  "synchronizedAt": "2026-09-02T09:20:43-03:00"
+  "newestHeading": "Diagnóstico de CPU, candidatos locais de outbox e auto-scan e auditoria TLS",
+  "synchronizedAt": "2026-09-02T15:45:58-03:00",
+  "publicSummary": {
+    "contract": "pt-BR-unicode-v1",
+    "limit": 500,
+    "sectionIds": ["inicio", "direcao"],
+    "wordCount": 444
+  }
 }

@@ -1,6 +1,6 @@
 const REPORT_TIME_ZONE = 'America/Sao_Paulo';
 const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
-const REPORT_UPDATED_AT = '2026-09-02T09:20:43-03:00';
+const REPORT_UPDATED_AT = '2026-09-02T15:45:58-03:00';
 
 function formatReportUpdatedAt(value) {
   const date = new Date(value);
@@ -32,8 +32,8 @@ export const reportMeta = Object.freeze({
   timeZone: REPORT_TIME_ZONE,
   timeZoneLabel: REPORT_TIME_ZONE_LABEL,
   period: '15 de agosto a 2 de setembro de 2026',
-  sourceRecords: 86,
-  publishedRecords: 87,
+  sourceRecords: 87,
+  publishedRecords: 88,
   productionReleaseDate: '1º de setembro de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -41,6 +41,11 @@ export const reportMeta = Object.freeze({
 });
 
 export const executiveMetrics = Object.freeze([
+  {
+    value: '2 locais',
+    label: 'corretivos aguardando release',
+    note: 'O diagnóstico ao vivo e somente leitura apontou o claim periódico da outbox vazia como causa dominante do consumo e da latência. O caminho vazio da fila e o auto-scan durável foram corrigidos apenas no workspace. TLS e renovação automática foram comprovados; a produção continua na release anterior e qualquer implantação exige push explícito.',
+  },
   {
     value: '31/10',
     label: 'corte do backup local temporário',
@@ -98,44 +103,50 @@ export const executiveMetrics = Object.freeze([
   },
 ]);
 
+export const roadmapPresentation = Object.freeze({
+  numberWidth: 2,
+  ownerLabel: 'Responsável',
+  gateLabel: 'Gate',
+});
+
 export const roadmap = Object.freeze([
   {
-    priority: 'Próximo gate',
-    title: 'Corrigir a varredura automática em uma release própria',
+    priority: 'Candidato local',
+    title: 'Preparar a release de desempenho',
     description:
-      'A saúde atual foi aprovada em repouso, mas a varredura automática ainda é sequencial, não possui deadline global e ocupa o mesmo processo da aplicação. Depois de um reinício, a fila pode se repetir. A correção estrutural deve usar job durável em lotes, checkpoint, orçamento total, cancelamento real, retomada idempotente e métricas, sem desligar silenciosamente a varredura. O Guardião por três agentes continua validado somente no ambiente local e exige pacote e aceite próprios.',
-    owner: 'Desenvolvimento local e revisão técnica',
-    gate: 'Release separada, testes de carga e recuperação, pacote conferido e novos gates Linux',
+      'Outbox vazia evita claim pesado; auto-scan usa job durável, 1 chat/25 mensagens, checkpoint, lease, deadline e cancelamento cooperativo.',
+    owner: 'Desenvolvimento e revisão técnica',
+    gate: 'Integral local aprovada; faltam pacote, Linux e push explícito',
   },
   {
     priority: 'Concluído',
-    title: 'Push instalado e validado',
+    title: 'Manter release e TLS',
     description:
-      'O push seletivo de 01/09 foi explicitamente autorizado e alterou 17 arquivos, sem adições ou remoções. O gate local concluiu 1.192 testes, com 1.191 aprovações e um skip ambiental esperado; o pacote Linux aprovou 1.192 de 1.192. A conta moderadora principal ficou pronta para o usuário abrir e ler o QR posteriormente, enquanto as quatro contas gerenciadas permaneceram conectadas. A checagem final encontrou zero varreduras e jobs ativos, e HTTPS e TLS passaram. O backup pré-push foi aprovado. O backup pós-push não foi executado porque exigiria novo reinício e poderia repetir os auto-scans; a restauração isolada não reinicia o serviço e também não foi repetida nessa janela. O Guardião por três agentes, IA real e a direção de aprendizado supervisionado não foram implantados.',
+      'Release de 01/09 permanece; TLS e renovação automática foram comprovados, sem implantar candidatos.',
     owner: 'Operação técnica',
-    gate: 'Concluído: implantação seletiva e saúde em repouso aceitas em 01/09',
+    gate: 'Saúde vigente acompanhada até uma nova autorização',
   },
   {
     priority: 'Conteúdo',
     title: 'Reconciliar as 22 indisponibilidades de cards',
     description:
-      'São 20 indisponibilidades anteriores, incluindo NAD nasal não reconciliado, e dois técnicos existentes bloqueados por divergência na fonte: Retatrutida 20 mg e Somatropina 240 UI. As apresentações desses dois produtos, os preços e os originais permanecem preservados. Não fabricar ou substituir imagens para declarar cobertura universal; a liberação depende de confirmação da fonte, sem adaptar números ou vias.',
+      'Confirmar as fontes dos 22 casos bloqueados, sem fabricar imagens ou adaptar números.',
     owner: 'Conteúdo e operação comercial',
-    gate: 'Artes corretas aprovadas e inventário de mídia revalidado',
+    gate: 'Fontes aprovadas e inventário revalidado',
   },
   {
     priority: 'Próximo gate',
     title: 'Consolidar governança e armazenamento isolado após o ML-0',
     description:
-      'A fundação ML-0 foi concluída e validada somente localmente com fixture exclusivamente sintética, conversa privada e risco baixo. Antes de qualquer dado real, o próximo gate exige governança, armazenamento isolado, controle de concorrência e deleção durável. Só depois cabe um shadow separado e sem envio; copiloto de rascunhos e canário restrito a baixo risco ficam para fases posteriores. Regex ou prefixo não comprovam anonimização, e os 594 pares de estilo existentes não comprovam equivalência semântica. Venda, pagamento, crédito, reembolso e qualquer decisão clínica continuam obrigatoriamente humanos.',
-    owner: 'Usuário autenticado e operação técnica',
-    gate: 'Governança aprovada, armazenamento isolado com CAS e deleção real antes do shadow sem envio',
+      'Antes de dados reais: governança, isolamento, CAS e deleção durável; depois, shadow, copiloto e canário de baixo risco.',
+    owner: 'Usuário autenticado e operação',
+    gate: 'Controles aprovados antes do shadow',
   },
   {
     priority: 'Imediato',
     title: 'Concluir as decisões humanas de acesso',
     description:
-      'Trocar as credenciais iniciais diretamente no painel, sem registrar valores em documentação ou telemetria.',
+      'Trocar as credenciais iniciais somente no painel.',
     owner: 'Equipe autorizada',
     gate: 'Ação humana no painel',
   },
@@ -143,7 +154,7 @@ export const roadmap = Object.freeze([
     priority: 'Antes de novas vendas',
     title: 'Atribuir a vendedora real de cada conta comercial',
     description:
-      'Completar os quatro vínculos sem confundir o papel de venda com o de indicação/comissionamento.',
+      'Completar os quatro vínculos sem confundir venda com indicação.',
     owner: 'Operação comercial',
     gate: 'Evidência comercial confiável',
   },
@@ -151,15 +162,15 @@ export const roadmap = Object.freeze([
     priority: 'Continuidade',
     title: 'Substituir a contingência colocalizada por novo destino externo',
     description:
-      'A contingência cifrada colocalizada está instalada, permanece estritamente manual e não possui timer. Novos backups ficam bloqueados a partir de 31/10/2026 às 20:00 de Brasília, inclusive. O primeiro snapshot e sua verificação, quatro varreduras persistidas, a saúde em repouso e a restauração isolada passaram. A infraestrutura antiga de backup foi desativada depois dos gates, com o acervo histórico preservado offline; se o host antigo for cancelado, esse acervo ficará indisponível. Como o modo local compartilha o domínio de falha da produção, um novo destino externo continua obrigatório.',
+      'A cópia compartilha o domínio de falha; contratar destino externo antes de 31/10/2026 às 20:00.',
     owner: 'Operação técnica',
-    gate: 'Novo destino externo comprovado antes do corte inclusivo',
+    gate: 'Destino externo comprovado antes do corte',
   },
   {
     priority: 'Contínuo',
     title: 'Manter a prestação de contas sincronizada',
     description:
-      'Publicar uma síntese sanitizada após cada push deste projeto, mantendo o histórico bruto e os detalhes operacionais fora do portal.',
+      'Publicar síntese sanitizada após cada push e manter os detalhes operacionais fora do portal.',
     owner: 'Operação técnica',
     gate: 'Gates locais verdes e publicação confirmada',
   },
@@ -1325,7 +1336,7 @@ const records = [
   },
   {
     date: '2026-09-02',
-    publishedAt: REPORT_UPDATED_AT,
+    publishedAt: '2026-09-02T09:20:43-03:00',
     title: 'Início da implementação local de machine learning',
     context: 'Local',
     kind: 'Implementação',
@@ -1337,6 +1348,21 @@ const records = [
     validation:
       'Duas revisões finais não encontraram P1/P2 no recorte. Regex ou prefixo não comprovam anonimização; âncora persistida, CAS, armazenamento isolado, tombstone, ledger e deleção durável ainda não existem. Não houve coleta real, treino, embeddings, fine-tuning, inferência, integração com aplicativo, WhatsApp, SQLite ou provedor, push nem mudança de produção ou VPS. O próximo gate é governança com armazenamento isolado, CAS e deleção real; depois vem shadow separado sem envio, e só mais tarde copiloto ou canário.',
     tags: ['machine learning', 'ML-0', 'governança', 'validado localmente'],
+  },
+  {
+    date: '2026-09-02',
+    publishedAt: REPORT_UPDATED_AT,
+    title: 'Diagnóstico de CPU, candidatos locais de outbox e auto-scan e auditoria TLS',
+    context: 'Local',
+    kind: 'Correção',
+    state: 'Validado localmente',
+    summary:
+      'O diagnóstico ao vivo e somente leitura apontou o claim periódico de uma outbox vazia como causa dominante do consumo e da latência. Dois corretivos foram concluídos apenas no workspace: o caminho vazio da outbox deixa de abrir a transação completa e o auto-scan passa a usar trabalho durável e limitado. A produção continua na release anterior; nenhuma implantação foi realizada.',
+    result:
+      'O auto-scan aplica microfatias de um chat e no máximo 25 mensagens, com job persistido, checkpoint, lease com geração de fence, deadline e cancelamento cooperativo. Seu watermark é próprio e separado da recuperação manual. A migração começa em legacy_baseline, sem certificação; verified_v1 só nasce após uma barreira agregada bem-sucedida. Um snapshot final limitado no navegador define o ponto de linearização.',
+    validation:
+      'TLS, cadeia e renovação automática foram comprovados em leitura, sem mudança operacional. O desenho não oferece atomicidade entre navegador e SQLite, worker thread nem preempção física; o cancelamento depende de pontos cooperativos e uma pequena janela residual após o snapshot final permanece explícita. A suíte integral concluiu 1.309 testes: 1.308 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado; foram 218/218 em CRM e persistência, 1.071 gerais com 1.070 aprovações e um skip, e 20/20 legados. A campanha offline aprovou 160.000/160.000 em 655,568493104 segundos. Qualquer implantação exige pacote, gates Linux e pedido explícito de push.',
+    tags: ['desempenho', 'outbox', 'auto-scan', 'TLS', 'validado localmente'],
   },
 ];
 
