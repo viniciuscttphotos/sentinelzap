@@ -18,12 +18,22 @@ nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
 
 O registro mais recente é “Início da implementação local de machine learning”, em
-contexto `Local` e estado `Em andamento`. A fase ML-0 começou pelo contrato e pelo
-construtor/validador puro de um conjunto versionado, sintético ou sanitizado e
-isolado por conta, com token HMAC rotacionável, versões de política e base, risco,
-expiração, revisão humana e remoção fail-closed. A implementação e os testes ainda
-estão pendentes. Não houve coleta de atendimentos reais, IA externa, automação,
-treino, embeddings, fine-tuning, envio pelo WhatsApp nem mutação da VPS.
+contexto `Local` e estado `Validado localmente`. A fase ML-0 foi concluída para
+organizar estilo e estratégia de respostas. Seu contrato local puro aceita
+exclusivamente fixture sintética, conversa privada e risco baixo; valida HMAC do
+envelope, retenção de 1 a 30 dias, revisão humana recente, âncora e revisão
+encadeadas e remoção de sujeito somente em memória. O focal ML passou 24/24, o
+pacote 5/5 e o combinado 29/29. A suíte integral concluiu 1.267 testes, com 1.266
+aprovações, zero falhas ou cancelamentos e um skip ambiental; a campanha aprovou
+160.000/160.000 em 936,683243611 segundos. O estado operacional monitorado
+permaneceu idêntico e duas revisões finais não encontraram P1/P2 no recorte.
+
+Regex ou prefixo não comprovam anonimização. Âncora persistida, CAS, armazenamento
+isolado, tombstone, ledger e deleção durável ainda não existem. Não houve coleta
+real, treino, embeddings, fine-tuning, inferência, integração com aplicativo,
+WhatsApp, SQLite ou provedor, push nem mudança de produção ou VPS. O próximo gate
+é governança com armazenamento isolado, CAS e deleção real; depois vem um shadow
+separado sem envio. Copiloto e canário ficam para fases posteriores.
 
 O registro 86 preserva o fechamento anterior, “Backup local temporário instalado,
 restore aprovado e VPS antiga desativada”, em contexto `Produção`, estado
@@ -68,14 +78,14 @@ porque exigiria novo reinício e poderia repetir os auto-scans. A restauração
 isolada também não foi repetida nessa janela, mas não chama `systemctl` nem
 reinicia o SentinelZap.
 
-A direção de aprendizado supervisionado começou localmente pela fundação ML-0.
-As fases posteriores permanecem condicionadas a governança, finalidade e opt-out;
-observação com memória própria, retenção limitada e avaliação humana sem envio;
-copiloto de rascunhos; canário restrito a baixo risco; e ajuste offline opcional
-por último. Os 594 pares existentes são referência de estilo e não comprovam
-equivalência semântica. Venda, pagamento, crédito, reembolso e decisões clínicas
-permanecem obrigatoriamente humanos. O início documental não equivale a uma
-implementação concluída, IA real ou etapa operacional de aprendizado.
+A direção de aprendizado supervisionado já concluiu localmente a fundação ML-0.
+As fases seguintes permanecem condicionadas a governança e armazenamento isolado
+com CAS e deleção durável; depois, shadow separado com avaliação humana e sem
+envio; copiloto de rascunhos e canário restrito a baixo risco somente mais tarde.
+Os 594 pares existentes são referência de estilo e não comprovam equivalência
+semântica. Venda, pagamento, crédito, reembolso e decisões clínicas permanecem
+obrigatoriamente humanos. A validação local não equivale a IA real ou etapa
+operacional de aprendizado.
 
 O registro anterior, “Consenso do Guardião por agentes, preservando os modelos
 atuais”, permanece em contexto `Local` e estado `Validado localmente`. A decisão usa
@@ -188,9 +198,10 @@ A publicação de 83 registros foi comprovada em 01/09, com conteúdo datado de
 200. A edição de 84 registros usa o instante `2026-09-01T20:34:50-03:00`,
 preservado como evidência histórica. A preparação documental de 85 registros
 conserva `2026-09-01T21:49:28-03:00`; a edição de 86 registros preserva
-`2026-09-01T23:56:17-03:00` no registro 86. A edição de 87 registros usa
-`2026-09-02T07:44:36-03:00`, idêntico entre os dados, os três horários visíveis
-e o manifesto. Os gates e a
+`2026-09-01T23:56:17-03:00` no registro 86. A abertura da edição de 87 registros
+foi publicada em `2026-09-02T07:44:36-03:00`; seu fechamento renovou o instante
+comum para `2026-09-02T09:20:43-03:00`, idêntico entre os dados, os três horários
+visíveis e o manifesto. Os gates e a
 comprovação pública de cada edição ficam registrados no log interno deste
 portal; o aceite anterior não é reaproveitado.
 

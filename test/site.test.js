@@ -35,10 +35,11 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.match(html, /fila terminou.*latência e consumo voltaram ao patamar normal/i);
   assert.match(html, /auto-scan é\s+sequencial.*não possui deadline global.*mesmo processo.*voltar a degradar.*após um reinício/is);
   assert.match(html, /job durável em lotes.*checkpoint.*orçamento total.*cancelamento real.*retomada\s+idempotente/is);
-  assert.match(html, /aprendizado supervisionado.*governança, finalidade e opt-out.*isolado\s+por conta.*observação sem envio.*avaliação humana/is);
-  assert.match(html, /fase ML-0 começou localmente.*conjunto versionado.*sintético ou sanitizado.*token HMAC rotacionável/is);
-  assert.match(html, /implementação e testes ainda estão pendentes.*nenhuma coleta real.*IA externa.*automação.*funcionalidade de aprendizado foi ativada/is);
-  assert.match(html, /594 pares atuais.*estilo.*não comprovam equivalência semântica.*decisão clínica permanecem humanos/is);
+  assert.match(html, /fase ML-0 foi concluída e validada somente localmente.*estilo e estratégia de respostas.*fixture\s+sintética.*conversa privada e risco baixo/is);
+  assert.match(html, /HMAC do envelope.*retenção de 1 a 30\s+dias.*revisão humana recente.*âncora e revisão.*remoção de sujeito somente em\s+memória/is);
+  assert.match(html, /focal ML passou 24\/24.*pacote 5\/5.*combinado 29\/29.*1\.267 testes.*1\.266 aprovações.*zero falhas ou cancelamentos.*um skip\s+ambiental.*160\.000\/160\.000.*936,683243611 segundos/is);
+  assert.match(html, /estado\s+operacional monitorado permaneceu idêntico.*duas revisões finais não encontraram P1\/P2/is);
+  assert.match(html, /594 pares atuais.*não demonstram\s+equivalência semântica.*decisões financeiras ou clínicas permanecem humanas/is);
   assert.match(html, /push de 31\/08 foi instalado e validado, com cinco contas conectadas/i);
   assert.match(html, /release de 31 de agosto foi instalado às 02:52:31 de Brasília/i);
   assert.match(html, /13 seções ao Markdown.*?oito seções\s+faltantes à compilação.*?complemento da seção existente de GHK-Cu/s);
@@ -126,9 +127,13 @@ test('hero distingue a release seletiva da pendência estrutural e preserva deci
   assert.match(html, /Conexões · principal pronta para QR/i);
   assert.match(html, /causa\s+estrutural da lentidão.*continua pendente/is);
   assert.match(html, /auto-scan.*sequencial.*deadline global.*próxima release.*lotes.*checkpoint/is);
-  assert.match(html, /copiloto de rascunhos.*canário de baixo risco.*Ajuste offline fica por último/is);
-  assert.match(html, /venda,\s+pagamento, crédito,\s+reembolso e qualquer decisão clínica permanecem humanos/is);
-  assert.match(html, /fase ML-0 começou localmente.*implementação e testes ainda estão pendentes.*nenhuma coleta real,\s+IA externa, automação ou funcionalidade de aprendizado foi ativada/is);
+  assert.match(html, /Copiloto de rascunhos e canário\s+limitado a baixo risco ficam para fases posteriores/is);
+  assert.match(html, /decisões financeiras ou clínicas permanecem humanas/is);
+  assert.match(html, /fundação ML-0 está\s+concluída e validada somente localmente.*sem aceitar dados reais/is);
+  assert.match(html, /Regex ou prefixo não\s+comprovam anonimização.*âncora persistida, CAS, armazenamento isolado, tombstone, ledger e\s+deleção durável ainda não existem/is);
+  assert.match(html, /próximo gate é governança com armazenamento isolado,\s+CAS e deleção real.*shadow separado sem envio.*Copiloto de rascunhos e canário/is);
+  assert.match(html, /Não houve coleta real, treino,\s+embeddings, fine-tuning, inferência, integração com aplicativo, WhatsApp, SQLite ou\s+provedor, push nem mudança de produção ou VPS/is);
+  assert.match(html, /ML-0 · validado localmente/i);
 });
 
 test('HTML oferece SEO, OpenGraph e marcos básicos de acessibilidade', async () => {

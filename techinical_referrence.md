@@ -194,7 +194,7 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 Em 02/09/2026, a edição contém 86 registros técnicos da fonte e um registro
 documental de publicação, totalizando 87. O mais recente é “Início da
-implementação local de machine learning”, em estado `Em andamento` e contexto
+implementação local de machine learning”, em estado `Validado localmente` e contexto
 `Local`. Os 86 registros anteriores foram mantidos. Os registros 79, 80, 81,
 82, 83, 84, 85 e 86 conservam, respectivamente, os instantes
 documentais `2026-08-30T09:34:04-03:00`, `2026-08-30T19:36:19-03:00`,
@@ -203,13 +203,22 @@ documentais `2026-08-30T09:34:04-03:00`, `2026-08-30T19:36:19-03:00`,
 `2026-09-01T21:49:28-03:00` e `2026-09-01T23:56:17-03:00`; somente o registro
 87 acompanha a constante renovada no fechamento.
 
-O registro 87 marca o início local da fase ML-0. O recorte definido é um
-contrato e um construtor/validador puro de conjunto versionado, sintético ou
-sanitizado e isolado por conta, com token HMAC rotacionável, versões de política
-e base, risco, expiração, revisão humana e remoção fail-closed. Implementação e
-testes permanecem pendentes. Não houve coleta de atendimentos reais, IA externa,
-automação, treino, embeddings, fine-tuning, envio pelo WhatsApp nem mutação ou
-acesso operacional à VPS.
+O registro 87 fecha a fase ML-0, concluída e validada somente localmente para
+organizar estilo e estratégia de respostas. O contrato local puro aceita
+exclusivamente fixture sintética, conversa privada e risco baixo; valida HMAC do
+envelope, retenção de 1 a 30 dias, revisão humana recente, âncora e revisão
+encadeadas e remoção de sujeito somente em memória. O focal ML passou 24/24, o
+pacote 5/5 e o combinado 29/29. A suíte integral concluiu 1.267 testes, com 1.266
+aprovações, zero falhas ou cancelamentos e um skip ambiental; a campanha aprovou
+160.000/160.000 em 936,683243611 segundos. O estado operacional monitorado
+permaneceu idêntico e duas revisões finais não encontraram P1/P2 no recorte.
+
+Regex ou prefixo não comprovam anonimização. Âncora persistida, CAS, armazenamento
+isolado, tombstone, ledger e deleção durável ainda não existem. Não houve coleta
+real, treino, embeddings, fine-tuning, inferência, integração com aplicativo,
+WhatsApp, SQLite ou provedor, push nem mudança de produção ou VPS. O próximo gate
+é governança com armazenamento isolado, CAS e deleção real; depois vem um shadow
+separado sem envio. Copiloto e canário ficam para fases posteriores.
 
 O registro 86 sintetiza o backup cifrado colocalizado sem transportar caminhos,
 credenciais ou detalhes exploráveis. Ele está instalado na infraestrutura
@@ -255,13 +264,12 @@ e um skip ambiental esperado, a campanha offline de 160.000/160.000 e o
 diagnóstico preliminar de desempenho. Seu instante comprovado não acompanha a
 nova constante de atualização.
 
-A direção de aprendizado supervisionado exige governança, finalidade e opt-out,
-conjunto versionado e isolado por conta, redação forte, observação sem envio com
-memória e retenção próprias, avaliação humana, copiloto de rascunhos e canário
-de baixo risco antes de qualquer ajuste offline opcional. Os 594 pares de estilo
-não são tratados como equivalência semântica. Decisões financeiras e clínicas
-continuam humanas. A fundação ML-0 já foi iniciada localmente, mas sua
-implementação e seus testes permanecem pendentes; nenhuma IA real, etapa de
+A direção de aprendizado supervisionado concluiu localmente a fundação ML-0, mas
+continua exigindo governança, armazenamento isolado com CAS e deleção durável
+antes de qualquer dado real. O passo posterior é shadow separado, com avaliação
+humana e sem envio; copiloto de rascunhos e canário de baixo risco ficam para mais
+tarde. Os 594 pares de estilo não são tratados como equivalência semântica.
+Decisões financeiras e clínicas continuam humanas. Nenhuma IA real, etapa de
 aprendizado contínuo, copiloto, shadow, canário ou ajuste offline foi ativado.
 
 O novo contrato local preserva os modelos atuais e usa três agentes com papéis
@@ -297,9 +305,9 @@ A publicação de 83 registros foi confirmada em 01/09 com o conteúdo de
 publicação de 84 registros preserva o instante comprovado
 `2026-09-01T20:34:50-03:00`. A preparação documental de 85 registros conserva
 `2026-09-01T21:49:28-03:00`; a edição de 86 registros preserva
-`2026-09-01T23:56:17-03:00` no registro 86. A edição de 87 registros usa o
-instante comum `2026-09-02T07:44:36-03:00` nos dados, três horários visíveis e
-manifesto. Os
+`2026-09-01T23:56:17-03:00` no registro 86. A abertura da edição de 87 registros
+foi publicada em `2026-09-02T07:44:36-03:00`; o fechamento usa o instante comum
+`2026-09-02T09:20:43-03:00` nos dados, três horários visíveis e manifesto. Os
 gates e a comprovação pública de
 cada edição possuem registro próprio no log interno; o aceite anterior não é
 reaproveitado.

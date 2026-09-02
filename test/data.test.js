@@ -608,17 +608,21 @@ test('backup local instalado fecha os gates e mantém explícito o risco colocal
   assert.match(cutoffMetric.note, /infraestrutura antiga de backup.*desativada.*não é recuperação de desastre.*novo destino externo/i);
 });
 
-test('ML-0 inicia localmente sem antecipar implementação, testes ou operação', () => {
+test('ML-0 fecha validado localmente sem antecipar dados reais ou operação', () => {
   const record = progressEntries.at(-1);
   assert.equal(record.sequence, 87);
   assert.equal(record.title, 'Início da implementação local de machine learning');
   assert.equal(record.context, 'Local');
   assert.equal(record.kind, 'Implementação');
-  assert.equal(record.state, 'Em andamento');
-  assert.match(record.summary, /fase ML-0.*iniciada localmente.*conjunto versionado.*sintético ou sanitizado.*isolado por conta/i);
-  assert.match(record.summary, /token HMAC rotacionável.*política.*risco.*expiração.*revisão humana.*remoção fail-closed/i);
-  assert.match(record.result, /implementação e os testes permanecem pendentes.*nenhuma funcionalidade.*pronta para uso operacional/i);
-  assert.match(record.validation, /não houve coleta.*reais.*IA externa.*automação.*treino.*embeddings.*fine-tuning.*WhatsApp.*VPS/i);
+  assert.equal(record.state, 'Validado localmente');
+  assert.match(record.summary, /fase ML-0.*concluída.*validada somente localmente.*estilo e estratégia.*fixture sintética.*conversa privada.*risco baixo/i);
+  assert.doesNotMatch(`${record.summary} ${record.result} ${record.validation}`, /sintétic[oa] ou sanitizad[oa]/i);
+  assert.match(record.result, /HMAC do envelope.*retenção de 1 a 30 dias.*revisão humana recente.*âncora e revisão.*remoção de sujeito somente em memória/i);
+  assert.match(record.result, /24\/24.*5\/5.*29\/29.*1\.267 testes.*1\.266 aprovações.*zero falhas ou cancelamentos.*um skip ambiental.*160\.000\/160\.000.*936,683243611 segundos.*estado operacional monitorado permaneceu idêntico/i);
+  assert.match(record.validation, /duas revisões finais.*não encontraram P1\/P2/i);
+  assert.match(record.validation, /Regex ou prefixo não comprovam anonimização.*âncora persistida, CAS, armazenamento isolado, tombstone, ledger e deleção durável ainda não existem/i);
+  assert.match(record.validation, /não houve coleta real.*treino.*embeddings.*fine-tuning.*inferência.*aplicativo.*WhatsApp.*SQLite.*provedor.*push.*produção ou VPS/i);
+  assert.match(record.validation, /próximo gate.*governança.*armazenamento isolado.*CAS.*deleção real.*shadow separado sem envio.*copiloto ou canário/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {
@@ -670,7 +674,9 @@ test('roadmap preserva os gates humanos, logísticos e externos vigentes', () =>
   assert.match(roadmapText, /Guardião por três agentes.*não foram implantados/i);
   assert.match(roadmapText, /varredura automática.*sequencial.*deadline global.*job durável em lotes.*checkpoint.*cancelamento real.*retomada idempotente/i);
   assert.match(roadmapText, /22 indisponibilidades.*20 indisponibilidades anteriores.*NAD.*dois técnicos existentes bloqueados/i);
-  assert.match(roadmapText, /aprendizado supervisionado.*governança.*opt-out.*isolado por conta.*observação.*avaliação humana sem envio.*copiloto.*canário.*baixo risco.*ajuste offline/i);
+  assert.match(roadmapText, /fundação ML-0.*concluída.*validada somente localmente.*fixture exclusivamente sintética.*conversa privada.*risco baixo/i);
+  assert.match(roadmapText, /próximo gate.*governança.*armazenamento isolado.*deleção durável.*shadow separado.*sem envio.*copiloto.*canário.*baixo risco/i);
+  assert.match(roadmapText, /Regex ou prefixo não comprovam anonimização/i);
   assert.match(roadmapText, /594 pares de estilo.*não comprovam equivalência semântica.*Venda, pagamento, crédito, reembolso.*decisão clínica.*humanos/i);
   assert.match(roadmapText, /contingência colocalizada.*está instalada.*estritamente manual.*não possui timer.*a partir de 31\/10\/2026 às 20:00 de Brasília, inclusive/i);
   assert.match(roadmapText, /primeiro snapshot.*verificação.*quatro varreduras persistidas.*saúde em repouso.*restauração isolada.*passaram/i);

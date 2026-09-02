@@ -1,6 +1,6 @@
 const REPORT_TIME_ZONE = 'America/Sao_Paulo';
 const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
-const REPORT_UPDATED_AT = '2026-09-02T07:44:36-03:00';
+const REPORT_UPDATED_AT = '2026-09-02T09:20:43-03:00';
 
 function formatReportUpdatedAt(value) {
   const date = new Date(value);
@@ -124,12 +124,12 @@ export const roadmap = Object.freeze([
     gate: 'Artes corretas aprovadas e inventário de mídia revalidado',
   },
   {
-    priority: 'Em andamento',
-    title: 'Implementar ML-0 com revisão humana',
+    priority: 'Próximo gate',
+    title: 'Consolidar governança e armazenamento isolado após o ML-0',
     description:
-      'O aprendizado supervisionado entrou em execução local na fase ML-0: governança, finalidade, opt-out e contrato de um conjunto versionado, sintético ou sanitizado, isolado por conta, com token HMAC rotacionável, política, risco, expiração, revisão humana e remoção fail-closed. Implementação e testes ainda estão pendentes. O recorte não está ligado ao runtime, WhatsApp, banco operacional ou provedor externo. Depois vêm observação com memória própria e retenção limitada, avaliação humana sem envio, copiloto de rascunhos, canário restrito a baixo risco e, somente por último, eventual ajuste offline. Os 594 pares de estilo existentes não comprovam equivalência semântica. Venda, pagamento, crédito, reembolso e qualquer decisão clínica continuam obrigatoriamente humanos.',
+      'A fundação ML-0 foi concluída e validada somente localmente com fixture exclusivamente sintética, conversa privada e risco baixo. Antes de qualquer dado real, o próximo gate exige governança, armazenamento isolado, controle de concorrência e deleção durável. Só depois cabe um shadow separado e sem envio; copiloto de rascunhos e canário restrito a baixo risco ficam para fases posteriores. Regex ou prefixo não comprovam anonimização, e os 594 pares de estilo existentes não comprovam equivalência semântica. Venda, pagamento, crédito, reembolso e qualquer decisão clínica continuam obrigatoriamente humanos.',
     owner: 'Usuário autenticado e operação técnica',
-    gate: 'Governança aprovada, isolamento por conta, avaliação humana e aceite operacional sanitizado',
+    gate: 'Governança aprovada, armazenamento isolado com CAS e deleção real antes do shadow sem envio',
   },
   {
     priority: 'Imediato',
@@ -1329,14 +1329,14 @@ const records = [
     title: 'Início da implementação local de machine learning',
     context: 'Local',
     kind: 'Implementação',
-    state: 'Em andamento',
+    state: 'Validado localmente',
     summary:
-      'A fase ML-0 foi iniciada localmente para criar o contrato e o construtor/validador puro de um conjunto versionado, sintético ou sanitizado e isolado por conta. A fundação prevê token HMAC rotacionável, origem, versões de política e base, classe de risco, expiração, revisão humana e remoção fail-closed.',
+      'A fase ML-0 foi concluída e validada somente localmente para organizar estilo e estratégia de respostas. O contrato local puro aceita exclusivamente fixture sintética, conversa privada e risco baixo; nenhum dado real entra neste marco.',
     result:
-      'O recorte inicial e seus limites de segurança foram definidos, aproveitando fundamentos já existentes sem apresentá-los como aprendizado contínuo. A implementação e os testes permanecem pendentes, e nenhuma funcionalidade de machine learning está pronta para uso operacional.',
+      'A fundação valida HMAC do envelope, retenção de 1 a 30 dias, revisão humana recente, âncora e revisão encadeadas e remoção de sujeito somente em memória. O focal ML passou 24/24, o pacote 5/5 e o combinado 29/29; a suíte integral concluiu 1.267 testes, com 1.266 aprovações, zero falhas ou cancelamentos e um skip ambiental. A campanha aprovou 160.000/160.000 em 936,683243611 segundos, e o estado operacional monitorado permaneceu idêntico.',
     validation:
-      'Este marco comprova somente o início documental da execução local. Não houve coleta de atendimentos reais, chamada a IA externa, automação, treino, embeddings, fine-tuning, envio pelo WhatsApp nem mutação, reinício ou acesso operacional à VPS.',
-    tags: ['machine learning', 'ML-0', 'governança', 'implementação local'],
+      'Duas revisões finais não encontraram P1/P2 no recorte. Regex ou prefixo não comprovam anonimização; âncora persistida, CAS, armazenamento isolado, tombstone, ledger e deleção durável ainda não existem. Não houve coleta real, treino, embeddings, fine-tuning, inferência, integração com aplicativo, WhatsApp, SQLite ou provedor, push nem mudança de produção ou VPS. O próximo gate é governança com armazenamento isolado, CAS e deleção real; depois vem shadow separado sem envio, e só mais tarde copiloto ou canário.',
+    tags: ['machine learning', 'ML-0', 'governança', 'validado localmente'],
   },
 ];
 
