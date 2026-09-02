@@ -18,7 +18,7 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(html, /86 consolidados/);
+  assert.match(html, /87 consolidados/);
   assert.match(html, /backup local temporário foi instalado e os gates reais passaram/i);
   assert.match(html, /acionamento\s+estritamente manual e sem timer.*a partir de 31\/10\/2026 às 20:00 de Brasília, inclusive/is);
   assert.match(html, /primeiro\s+snapshot e sua verificação, quatro varreduras persistidas, a saúde em repouso e\s+o restore drill isolado foram aprovados.*drill não reinicia o serviço/is);
@@ -36,6 +36,8 @@ test('a narrativa começa no estado atual, segue para a direção e termina no p
   assert.match(html, /auto-scan é\s+sequencial.*não possui deadline global.*mesmo processo.*voltar a degradar.*após um reinício/is);
   assert.match(html, /job durável em lotes.*checkpoint.*orçamento total.*cancelamento real.*retomada\s+idempotente/is);
   assert.match(html, /aprendizado supervisionado.*governança, finalidade e opt-out.*isolado\s+por conta.*observação sem envio.*avaliação humana/is);
+  assert.match(html, /fase ML-0 começou localmente.*conjunto versionado.*sintético ou sanitizado.*token HMAC rotacionável/is);
+  assert.match(html, /implementação e testes ainda estão pendentes.*nenhuma coleta real.*IA externa.*automação.*funcionalidade de aprendizado foi ativada/is);
   assert.match(html, /594 pares atuais.*estilo.*não comprovam equivalência semântica.*decisão clínica permanecem humanos/is);
   assert.match(html, /push de 31\/08 foi instalado e validado, com cinco contas conectadas/i);
   assert.match(html, /release de 31 de agosto foi instalado às 02:52:31 de Brasília/i);
@@ -125,8 +127,8 @@ test('hero distingue a release seletiva da pendência estrutural e preserva deci
   assert.match(html, /causa\s+estrutural da lentidão.*continua pendente/is);
   assert.match(html, /auto-scan.*sequencial.*deadline global.*próxima release.*lotes.*checkpoint/is);
   assert.match(html, /copiloto de rascunhos.*canário de baixo risco.*Ajuste offline fica por último/is);
-  assert.match(html, /venda,\s+pagamento, crédito, reembolso e qualquer decisão clínica permanecem humanos/is);
-  assert.match(html, /direção é planejamento.*nenhuma IA real ou etapa de aprendizado foi implantada/i);
+  assert.match(html, /venda,\s+pagamento, crédito,\s+reembolso e qualquer decisão clínica permanecem humanos/is);
+  assert.match(html, /fase ML-0 começou localmente.*implementação e testes ainda estão pendentes.*nenhuma coleta real,\s+IA externa, automação ou funcionalidade de aprendizado foi ativada/is);
 });
 
 test('HTML oferece SEO, OpenGraph e marcos básicos de acessibilidade', async () => {
@@ -239,13 +241,13 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const verifier = await read('scripts/verify-progress-sync.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 86);
-  assert.equal(manifest.technicalSourceRecords, 85);
+  assert.equal(manifest.entryCount, 87);
+  assert.equal(manifest.technicalSourceRecords, 86);
   assert.equal(manifest.synchronizedAt, reportMeta.updatedAtIso);
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Backup local temporário instalado, restore aprovado e VPS antiga desativada',
+    'Início da implementação local de machine learning',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /heading\.date >= latest\.date/);

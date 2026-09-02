@@ -8,15 +8,15 @@ import {
   roadmap,
 } from '../src/data.js';
 
-test('prepara 86 registros separando validação local, produção e publicação documental', () => {
-  assert.equal(reportMeta.sourceRecords, 85);
-  assert.equal(reportMeta.publishedRecords, 86);
-  assert.equal(progressEntries.length, 86);
-  assert.equal(progressEntries.at(-1).date, '2026-09-01');
+test('prepara 87 registros separando validação local, produção e publicação documental', () => {
+  assert.equal(reportMeta.sourceRecords, 86);
+  assert.equal(reportMeta.publishedRecords, 87);
+  assert.equal(progressEntries.length, 87);
+  assert.equal(progressEntries.at(-1).date, '2026-09-02');
   assert.equal(reportMeta.productionReleaseDate, '1º de setembro de 2026');
   assert.equal(
     progressEntries.at(-1).title,
-    'Backup local temporário instalado, restore aprovado e VPS antiga desativada',
+    'Início da implementação local de machine learning',
   );
 });
 
@@ -29,7 +29,7 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   assert.equal(reportMeta.timeZoneLabel, 'horário de Brasília');
   assert.match(
     reportMeta.updatedAtLabel,
-    /^01\/09\/2026 às \d{2}:\d{2}:\d{2}, horário de Brasília$/,
+    /^02\/09\/2026 às \d{2}:\d{2}:\d{2}, horário de Brasília$/,
   );
   assert.ok(reportMeta.updatedAtLabel.includes(reportMeta.updatedAtIso.slice(11, 19)));
 
@@ -56,7 +56,7 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   const latestRecord = progressEntries.at(-1);
   assert.equal(latestRecord.publishedAt, reportMeta.updatedAtIso);
   assert.equal(latestRecord.date, reportMeta.updatedAtIso.slice(0, 10));
-  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 8);
+  assert.equal(progressEntries.filter(({ publishedAt }) => publishedAt).length, 9);
   const priorPublication = progressEntries.find(({ sequence }) => sequence === 79);
   assert.equal(priorPublication.publishedAt, '2026-08-30T09:34:04-03:00');
   assert.notEqual(priorPublication.publishedAt, reportMeta.updatedAtIso);
@@ -69,6 +69,8 @@ test('fixa a última atualização em horário de Brasília sem depender do nave
   assert.notEqual(progressEntries.find(({ sequence }) => sequence === 84).publishedAt, reportMeta.updatedAtIso);
   assert.equal(progressEntries.find(({ sequence }) => sequence === 85).publishedAt, '2026-09-01T21:49:28-03:00');
   assert.notEqual(progressEntries.find(({ sequence }) => sequence === 85).publishedAt, reportMeta.updatedAtIso);
+  assert.equal(progressEntries.find(({ sequence }) => sequence === 86).publishedAt, '2026-09-01T23:56:17-03:00');
+  assert.notEqual(progressEntries.find(({ sequence }) => sequence === 86).publishedAt, reportMeta.updatedAtIso);
 });
 
 test('preserva a distribuição documental por data', () => {
@@ -88,6 +90,7 @@ test('preserva a distribuição documental por data', () => {
     '2026-08-30': 3,
     '2026-08-31': 2,
     '2026-09-01': 4,
+    '2026-09-02': 1,
   };
   const actual = progressEntries.reduce((counts, { date }) => {
     counts[date] = (counts[date] ?? 0) + 1;
@@ -101,9 +104,9 @@ test('mantém sequência única e cronologia crescente', () => {
   assert.deepEqual(dates, [...dates].sort());
   assert.deepEqual(
     progressEntries.map(({ sequence }) => sequence),
-    Array.from({ length: 86 }, (_, index) => index + 1),
+    Array.from({ length: 87 }, (_, index) => index + 1),
   );
-  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 86);
+  assert.equal(new Set(progressEntries.map(({ id }) => id)).size, 87);
 });
 
 test('só apresenta os horários respaldados por evidência', () => {
@@ -584,7 +587,7 @@ test('backup local temporário permanece candidato manual, local e com liberaç�
 });
 
 test('backup local instalado fecha os gates e mantém explícito o risco colocalizado', () => {
-  const record = progressEntries.at(-1);
+  const record = progressEntries.find(({ sequence }) => sequence === 86);
   assert.equal(record.sequence, 86);
   assert.equal(record.title, 'Backup local temporário instalado, restore aprovado e VPS antiga desativada');
   assert.equal(record.context, 'Produção');
@@ -603,6 +606,19 @@ test('backup local instalado fecha os gates e mantém explícito o risco colocal
   assert.match(cutoffMetric.note, /a partir de 31\/10\/2026 às 20:00 de Brasília, inclusive/i);
   assert.match(cutoffMetric.note, /primeiro snapshot.*verificação.*saúde em repouso.*restauração isolada.*passaram/i);
   assert.match(cutoffMetric.note, /infraestrutura antiga de backup.*desativada.*não é recuperação de desastre.*novo destino externo/i);
+});
+
+test('ML-0 inicia localmente sem antecipar implementação, testes ou operação', () => {
+  const record = progressEntries.at(-1);
+  assert.equal(record.sequence, 87);
+  assert.equal(record.title, 'Início da implementação local de machine learning');
+  assert.equal(record.context, 'Local');
+  assert.equal(record.kind, 'Implementação');
+  assert.equal(record.state, 'Em andamento');
+  assert.match(record.summary, /fase ML-0.*iniciada localmente.*conjunto versionado.*sintético ou sanitizado.*isolado por conta/i);
+  assert.match(record.summary, /token HMAC rotacionável.*política.*risco.*expiração.*revisão humana.*remoção fail-closed/i);
+  assert.match(record.result, /implementação e os testes permanecem pendentes.*nenhuma funcionalidade.*pronta para uso operacional/i);
+  assert.match(record.validation, /não houve coleta.*reais.*IA externa.*automação.*treino.*embeddings.*fine-tuning.*WhatsApp.*VPS/i);
 });
 
 test('cada registro traz prestação de contas completa', () => {

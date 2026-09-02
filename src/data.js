@@ -1,6 +1,6 @@
 const REPORT_TIME_ZONE = 'America/Sao_Paulo';
 const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
-const REPORT_UPDATED_AT = '2026-09-01T23:56:17-03:00';
+const REPORT_UPDATED_AT = '2026-09-02T07:44:36-03:00';
 
 function formatReportUpdatedAt(value) {
   const date = new Date(value);
@@ -31,9 +31,9 @@ export const reportMeta = Object.freeze({
   updatedAtLabel: formatReportUpdatedAt(REPORT_UPDATED_AT),
   timeZone: REPORT_TIME_ZONE,
   timeZoneLabel: REPORT_TIME_ZONE_LABEL,
-  period: '15 de agosto a 1º de setembro de 2026',
-  sourceRecords: 85,
-  publishedRecords: 86,
+  period: '15 de agosto a 2 de setembro de 2026',
+  sourceRecords: 86,
+  publishedRecords: 87,
   productionReleaseDate: '1º de setembro de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
@@ -124,10 +124,10 @@ export const roadmap = Object.freeze([
     gate: 'Artes corretas aprovadas e inventário de mídia revalidado',
   },
   {
-    priority: 'Próxima validação funcional',
-    title: 'Evoluir o aprendizado supervisionado com revisão humana',
+    priority: 'Em andamento',
+    title: 'Implementar ML-0 com revisão humana',
     description:
-      'Começar por governança, finalidade, opt-out e um conjunto versionado, fortemente redigido e isolado por conta. O modo de observação deve ter memória própria, retenção limitada e avaliação humana sem envio; depois vêm o copiloto de rascunhos, um canário restrito a intenções de baixo risco e, somente por último, eventual ajuste offline. Os 594 pares de estilo existentes não comprovam equivalência semântica. Venda, pagamento, crédito, reembolso e qualquer decisão clínica continuam obrigatoriamente humanos. IA real, moderação e entrega acompanhada exigem aceites próprios.',
+      'O aprendizado supervisionado entrou em execução local na fase ML-0: governança, finalidade, opt-out e contrato de um conjunto versionado, sintético ou sanitizado, isolado por conta, com token HMAC rotacionável, política, risco, expiração, revisão humana e remoção fail-closed. Implementação e testes ainda estão pendentes. O recorte não está ligado ao runtime, WhatsApp, banco operacional ou provedor externo. Depois vêm observação com memória própria e retenção limitada, avaliação humana sem envio, copiloto de rascunhos, canário restrito a baixo risco e, somente por último, eventual ajuste offline. Os 594 pares de estilo existentes não comprovam equivalência semântica. Venda, pagamento, crédito, reembolso e qualquer decisão clínica continuam obrigatoriamente humanos.',
     owner: 'Usuário autenticado e operação técnica',
     gate: 'Governança aprovada, isolamento por conta, avaliação humana e aceite operacional sanitizado',
   },
@@ -1310,7 +1310,7 @@ const records = [
   },
   {
     date: '2026-09-01',
-    publishedAt: REPORT_UPDATED_AT,
+    publishedAt: '2026-09-01T23:56:17-03:00',
     title: 'Backup local temporário instalado, restore aprovado e VPS antiga desativada',
     context: 'Produção',
     kind: 'Continuidade',
@@ -1322,6 +1322,21 @@ const records = [
     validation:
       'A instalação não incluiu outras mudanças pendentes. Snapshot, verificação, zero locks, saúde quiet, restauração em sandbox e ausência de timer foram comprovados. A cópia na mesma infraestrutura não é recuperação de desastre e um novo destino externo continua obrigatório antes do corte.',
     tags: ['backup', 'continuidade', 'produção', 'restore'],
+  },
+  {
+    date: '2026-09-02',
+    publishedAt: REPORT_UPDATED_AT,
+    title: 'Início da implementação local de machine learning',
+    context: 'Local',
+    kind: 'Implementação',
+    state: 'Em andamento',
+    summary:
+      'A fase ML-0 foi iniciada localmente para criar o contrato e o construtor/validador puro de um conjunto versionado, sintético ou sanitizado e isolado por conta. A fundação prevê token HMAC rotacionável, origem, versões de política e base, classe de risco, expiração, revisão humana e remoção fail-closed.',
+    result:
+      'O recorte inicial e seus limites de segurança foram definidos, aproveitando fundamentos já existentes sem apresentá-los como aprendizado contínuo. A implementação e os testes permanecem pendentes, e nenhuma funcionalidade de machine learning está pronta para uso operacional.',
+    validation:
+      'Este marco comprova somente o início documental da execução local. Não houve coleta de atendimentos reais, chamada a IA externa, automação, treino, embeddings, fine-tuning, envio pelo WhatsApp nem mutação, reinício ou acesso operacional à VPS.',
+    tags: ['machine learning', 'ML-0', 'governança', 'implementação local'],
   },
 ];
 

@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 86 registros sanitizados
+     └── métricas, roadmap e 87 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -49,7 +49,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, onze métricas executivas, oito prioridades do
-  roadmap, os 86 registros e as opções derivadas de filtro;
+  roadmap, os 87 registros e as opções derivadas de filtro;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
   resultado e validação;
 - preserva como fonte canônica a ordem crescente das datas e a ordem documental
@@ -107,7 +107,7 @@ JavaScript e ativos estáticos.
 ### `test/`
 
 - usa somente `node:test` e `node:assert`;
-- verifica contagem de 86 registros, distribuição por data, sequência canônica,
+- verifica contagem de 87 registros, distribuição por data, sequência canônica,
   inversão exclusiva da apresentação, horários, métricas, gates e sanitização;
 - verifica ordem da narrativa, SEO, acessibilidade estrutural, mobile first,
   cabeçalhos Vercel, scripts npm e ausência de conexão com API.
@@ -192,16 +192,24 @@ tarefa e a autorização documental não concede, por si só, acesso mutável à
 
 ## 9. Estado vigente
 
-Em 01/09/2026, a edição contém 85 registros técnicos da fonte e um registro
-documental de publicação, totalizando 86. O mais recente é “Backup local
-temporário instalado, restore aprovado e VPS antiga desativada”, em estado
-`Publicado` e contexto `Produção`. Os 85 registros anteriores foram mantidos.
-Os registros 79, 80, 81, 82, 83, 84 e 85 conservam, respectivamente, os instantes
+Em 02/09/2026, a edição contém 86 registros técnicos da fonte e um registro
+documental de publicação, totalizando 87. O mais recente é “Início da
+implementação local de machine learning”, em estado `Em andamento` e contexto
+`Local`. Os 86 registros anteriores foram mantidos. Os registros 79, 80, 81,
+82, 83, 84, 85 e 86 conservam, respectivamente, os instantes
 documentais `2026-08-30T09:34:04-03:00`, `2026-08-30T19:36:19-03:00`,
 `2026-08-31T03:19:54-03:00`, `2026-08-31T07:38:02-03:00`,
 `2026-09-01T13:02:26-03:00`, `2026-09-01T20:34:50-03:00` e
-`2026-09-01T21:49:28-03:00`; somente o registro 86 acompanha a constante
-renovada no fechamento.
+`2026-09-01T21:49:28-03:00` e `2026-09-01T23:56:17-03:00`; somente o registro
+87 acompanha a constante renovada no fechamento.
+
+O registro 87 marca o início local da fase ML-0. O recorte definido é um
+contrato e um construtor/validador puro de conjunto versionado, sintético ou
+sanitizado e isolado por conta, com token HMAC rotacionável, versões de política
+e base, risco, expiração, revisão humana e remoção fail-closed. Implementação e
+testes permanecem pendentes. Não houve coleta de atendimentos reais, IA externa,
+automação, treino, embeddings, fine-tuning, envio pelo WhatsApp nem mutação ou
+acesso operacional à VPS.
 
 O registro 86 sintetiza o backup cifrado colocalizado sem transportar caminhos,
 credenciais ou detalhes exploráveis. Ele está instalado na infraestrutura
@@ -252,8 +260,9 @@ conjunto versionado e isolado por conta, redação forte, observação sem envio
 memória e retenção próprias, avaliação humana, copiloto de rascunhos e canário
 de baixo risco antes de qualquer ajuste offline opcional. Os 594 pares de estilo
 não são tratados como equivalência semântica. Decisões financeiras e clínicas
-continuam humanas. Essa frente é planejamento: nenhuma IA real, etapa de
-aprendizado contínuo, copiloto, shadow, canário ou ajuste offline foi implantado.
+continuam humanas. A fundação ML-0 já foi iniciada localmente, mas sua
+implementação e seus testes permanecem pendentes; nenhuma IA real, etapa de
+aprendizado contínuo, copiloto, shadow, canário ou ajuste offline foi ativado.
 
 O novo contrato local preserva os modelos atuais e usa três agentes com papéis
 fixos de evidência, contexto e contestação. Exige pelo menos dois votos
@@ -287,8 +296,10 @@ A publicação de 83 registros foi confirmada em 01/09 com o conteúdo de
 `2026-09-01T13:02:26-03:00` nos três horários visíveis, `Ready` e HTTP 200. A
 publicação de 84 registros preserva o instante comprovado
 `2026-09-01T20:34:50-03:00`. A preparação documental de 85 registros conserva
-`2026-09-01T21:49:28-03:00`; a edição final de 86 registros usa o instante comum
-`2026-09-01T23:56:17-03:00` nos dados, três horários visíveis e manifesto. Os
+`2026-09-01T21:49:28-03:00`; a edição de 86 registros preserva
+`2026-09-01T23:56:17-03:00` no registro 86. A edição de 87 registros usa o
+instante comum `2026-09-02T07:44:36-03:00` nos dados, três horários visíveis e
+manifesto. Os
 gates e a comprovação pública de
 cada edição possuem registro próprio no log interno; o aceite anterior não é
 reaproveitado.
