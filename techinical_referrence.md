@@ -23,7 +23,7 @@ src/data.js ──► src/main.js ──► DOM do index.html
      │               ├── impressão e navegação
      │               └── estado dos filtros na URL
      │
-     └── métricas, roadmap e 88 registros sanitizados
+     └── métricas, roadmap e 91 registros sanitizados
 
 src/styles.css ──► identidade editorial mobile first
 public/*       ──► logo, favicon, robots e sitemap
@@ -51,7 +51,7 @@ JavaScript e ativos estáticos.
 
 - é a única fonte de conteúdo editorial renderizado dinamicamente;
 - exporta metadados do relatório, doze métricas executivas, oito prioridades do
-  roadmap, os 88 registros e as opções derivadas de filtro;
+  roadmap, os 91 registros e as opções derivadas de filtro;
 - exporta `roadmapPresentation`, contrato compartilhado dos números e rótulos
   visíveis do roadmap usado pela interface e pelo gate de palavras;
 - diferencia `context` (`Local`, `Produção`, `Documentação`), `kind`, `state`,
@@ -569,3 +569,21 @@ permaneciam ativos. Este complemento registra o aceite, sem alterar o conteúdo
 público ou seu instante canônico. O portal não
 concede controle sobre o dashboard e não automatiza as ações humanas pendentes. Os detalhes
 ficam no log cumulativo.
+## Atualização de 04/09/2026
+
+O portal contém 89 registros públicos derivados de 88 registros técnicos. O marco mais recente publica o push seletivo da correção de CPU, seus gates local e Linux, backup e restore, a eliminação do consumo contínuo e o risco residual das rajadas de QR. A arquitetura permanece estática e sem conexão com o runtime operacional.
+## Atualização de 04/09/2026 — Guardião
+
+O portal contém 90 registros públicos derivados de 89 registros técnicos. O marco mais recente publica a segunda release seletiva, limitada ao Guardião por três agentes, e mantém explícitos a ausência de prova com IA real e o bloqueio de ML-0 por falta de storage, CAS e deleção durável. A arquitetura do portal não mudou.
+
+## Atualização de 04/09/2026 — catálogo comercial
+
+O portal contém 91 registros públicos derivados de 90 registros técnicos. O
+marco mais recente publica a terceira release seletiva, limitada ao catálogo e
+à reconciliação do CRM: 37 produtos, 41 ofertas, preços confirmados, preservação
+dos saldos existentes e dez unidades somente para estoques realmente vazios.
+Os gates Linux, backups, restore, banco, serviço e HTTPS são apresentados de
+forma sanitizada. A arquitetura continua estática, sem conexão com o runtime
+operacional e sem expor dados, caminhos ou identificadores internos.
+
+Em 04/09/2026 às 21:51:49 de Brasília, o registro 92 documenta apenas a ficha de clientes validada localmente (106/106). O portal contém 92 registros/91 técnicos; produção operacional não mudou nesta etapa. Horário visível e manifesto sincronizados, preservando as seções e o limite público.

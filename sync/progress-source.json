@@ -1,15 +1,18 @@
 {
   "source": "../PROGRESS.md",
-  "sha256": "76eda1534c4a90951459d95bfc4c747fdd08acc7cebd2adc2668c626b4313914",
-  "entryCount": 88,
-  "technicalSourceRecords": 87,
-  "newestDate": "2026-09-02",
-  "newestHeading": "Diagnóstico de CPU, candidatos locais de outbox e auto-scan e auditoria TLS",
-  "synchronizedAt": "2026-09-02T15:45:58-03:00",
+  "sha256": "30c0966bc64ef4cc15fc630f5084834586f633113bd9819fb0c6d7ca6e0a4114",
+  "entryCount": 92,
+  "technicalSourceRecords": 91,
+  "newestDate": "2026-09-04",
+  "newestHeading": "Ficha de clientes com telefone, endereços e conversas validada localmente",
+  "synchronizedAt": "2026-09-04T21:51:49-03:00",
   "publicSummary": {
     "contract": "pt-BR-unicode-v1",
     "limit": 500,
-    "sectionIds": ["inicio", "direcao"],
-    "wordCount": 444
+    "sectionIds": [
+      "inicio",
+      "direcao"
+    ],
+    "wordCount": 427
   }
 }

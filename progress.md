@@ -1314,3 +1314,64 @@ Ele não substitui nem replica o histórico operacional completo do monólito.
 - O build remoto aprovou o novo gate de **444/500 palavras**, os **43/43 testes** e o build Vite. A URL canônica respondeu **HTTP 200** com os **8/8 cabeçalhos de segurança** previstos. HTML, JavaScript, CSS, favicon, logotipo, `robots.txt` e `sitemap.xml` coincidem byte a byte com o build local; os dois bundles versionados usam cache imutável e os **6/6 assets** responderam 200.
 - O HTML público exibe **88 registros totais** e os **3/3 horários visíveis** mostram exatamente **02/09/2026 às 15:45:58, horário de Brasília**, com `datetime="2026-09-02T15:45:58-03:00"`. O bundle confirma **87 registros técnicos/88 publicados**, o título exato do registro 88, contexto `Local`, estado `Validado localmente`, integral 1.309/1.308, campanha 160.000/160.000 e a exigência de pedido explícito de push.
 - Esta prova é exclusivamente documental. Os candidatos de outbox e auto-scan não foram implantados; nenhuma VPS, sessão, QR, configuração, credencial ou dado operacional foi alterado. A referência técnica foi revisada e permanece válida, pois este registro posterior não muda arquitetura nem comportamento do portal.
+## 2026-09-04 14:52:02 (horário de Brasília) — Push seletivo de CPU preparado para publicação 89/88
+
+- O registro 89 publica de forma sanitizada a release seletiva de desempenho, com sete arquivos alterados e três adicionados, sem Guardião ou ML-0.
+- A síntese registra os gates locais e Linux, backup, restore, zero reinícios automáticos e a eliminação do consumo contínuo. Também preserva o risco residual das rajadas do navegador durante a renovação do QR, sem declarar resolução integral da latência.
+- `src/data.js`, `index.html`, `README.md`, `test/data.test.js`, `test/site.test.js`, `techinical_referrence.md` e este log foram atualizados. O manifesto será regenerado após a estabilização da fonte raiz, e os gates locais e a publicação ainda não são antecipados nesta entrada.
+## 2026-09-04 15:03:29 (horário de Brasília) — Publicação 89/88 comprovada
+
+- O deployment de produção `dpl_HjJmPv9x8AmAJC9ztroS1rd4N4v4` terminou em estado **READY** e recebeu o alias canônico.
+- O build remoto repetiu o gate de 420/500 palavras, os 44/44 testes e o build Vite. A URL canônica respondeu HTTP 200 com 8/8 cabeçalhos de segurança.
+- O HTML público contém 89 registros e três ocorrências exatas do instante `2026-09-04T14:52:02-03:00`; o bundle contém o título do registro 89 e as contagens 88 técnicas/89 publicadas.
+- Esta entrada acrescenta somente a evidência posterior à publicação. Não altera o conteúdo executivo, o manifesto ou o instante canônico e não dispara sincronização recursiva da fonte técnica raiz.
+## 2026-09-04 15:32:55 (horário de Brasília) — Guardião preparado para publicação 90/89
+
+- O registro 90 publica a segunda release seletiva: oito arquivos alterados, um adicionado e ML-0 excluído.
+- A síntese registra 1.280/1.280 no Linux, campanha 160.000/160.000, backup, cinco perfis, zero reinícios e restore aprovado. Também declara que não houve IA real nem consenso funcional comprovado.
+- Dados, HTML, testes, README, referência técnica e este log foram alinhados. Manifesto, gates e publicação ainda não são antecipados nesta entrada.
+
+### 2026-09-04 às 15:42:10, horário de Brasília — Publicação do registro 90 comprovada
+
+- Arquivo ajustado: `test/site.test.js`, nas expectativas do resumo executivo sobre a correção de desempenho e a renovação TLS.
+- O que foi feito: as duas expressões obsoletas foram alinhadas ao texto vigente da página, sem alterar o estado operacional divulgado.
+- Gate final: `npm run check` passou com 45/45 testes e build Vite concluído.
+- Publicação: deployment de produção `dpl_Hu2zV9ksTqQGNkohEG8Nu2GTdWCR` em estado `READY`, associado a `https://sentinelzap.vercel.app`.
+- Verificação externa: HTTP 200, 8/8 cabeçalhos de segurança, 90 registros, três ocorrências do instante canônico `2026-09-04T15:32:55-03:00`, título do Guardião e contadores `sourceRecords: 89` / `publishedRecords: 90` presentes no bundle publicado.
+- Referência técnica: revisada após o ajuste; a arquitetura e o funcionamento documentados permanecem válidos, sem mudança adicional necessária.
+- Finalidade: encerrar a sincronização pública obrigatória da release seletiva do Guardião com evidência verificável e sanitizada.
+
+## 2026-09-04 17:51:30 (horário de Brasília) — Catálogo e CRM preparados para publicação 91/90
+
+- O registro 91 publica de forma sanitizada a terceira release seletiva, com
+  seis arquivos alterados e sem adições, remoções ou dependências novas.
+- A síntese registra 37 produtos e 41 ofertas ativas, zero divergência de
+  preço, preservação dos saldos existentes e dez unidades somente nos sete
+  estoques realmente vazios.
+- Os gates divulgados incluem 1.283/1.283 testes Linux, 160.000/160.000 casos
+  offline, backups antes e depois do push, restore isolado, banco, serviço,
+  cinco perfis de navegador e HTTPS. IPs, caminhos, hashes e identificadores
+  internos continuam fora do conteúdo público.
+- `src/data.js`, `index.html`, `README.md`, `test/data.test.js`,
+  `test/site.test.js`, `techinical_referrence.md` e este log foram atualizados.
+  A fonte canônica e o manifesto usam o mesmo instante de Brasília; gates e
+  publicação ainda não são antecipados nesta entrada.
+
+## 2026-09-04 17:58 (horário de Brasília) — Publicação do registro 91 comprovada
+
+- O deployment de produção `dpl_6wTpb2NmVGuzQXx5WbTMnae5GFW9` terminou em
+  estado `READY` e recebeu o alias canônico do portal.
+- O build remoto repetiu o gate de **427/500 palavras**, os **46/46 testes** e
+  o build Vite. A URL canônica respondeu HTTP 200 com **8/8 cabeçalhos de
+  segurança**.
+- HTML, JavaScript e CSS servidos coincidem byte a byte com o build local. Os
+  **6/6 assets** verificados responderam 200; o HTML contém 91 registros e
+  três ocorrências do instante `2026-09-04T17:51:30-03:00`, e o bundle contém
+  o título do registro 91 e as contagens 90 técnicas/91 publicadas.
+- Esta entrada acrescenta somente a evidência posterior à publicação. Ela não
+  altera o conteúdo executivo, o manifesto ou o instante canônico e não exige
+  nova sincronização recursiva da fonte técnica raiz.
+
+### 2026-09-04 — Ficha de clientes: sincronização documental
+
+Atualizados src/data.js, index.html, sync/progress-source.json, README.md e testes de contagem para 92 registros/91 técnicos e conteúdo de 04/09/2026 às 21:51:49 de Brasília. Referência técnica revisada. O registro novo descreve validação local 106/106 e nenhuma implantação operacional. Alterações documentais anteriores preservadas; publicação e checks pendentes de confirmação nesta etapa.

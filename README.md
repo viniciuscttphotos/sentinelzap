@@ -1,10 +1,14 @@
 # SentinelZap — Prestação de contas
 
+Estado vigente em 04/09/2026 às 17:51:30 de Brasília: o catálogo comercial foi instalado em uma terceira release seletiva, com seis arquivos alterados e sem adições ou remoções. O CRM foi reconciliado para 37 produtos e 41 ofertas ativas, sem divergência de preço ou oferta vigente sem estoque físico. Pacote Linux, backups, serviço e restore passaram; ML-0 permanece local.
+
+Estado vigente em 04/09/2026: a release seletiva de desempenho foi instalada com sete arquivos alterados e três adicionados, sem incluir Guardião ou ML-0. O consumo contínuo dos auto-scans foi eliminado; as rajadas periódicas do navegador durante a renovação do QR permanecem em observação.
+
 Página pública documental do SentinelZap. A narrativa apresenta, nesta ordem:
 
 1. onde o projeto está agora;
 2. para onde o projeto vai;
-3. os 88 registros de progresso, exibidos do mais recente ao mais antigo.
+3. os 92 registros de progresso, exibidos do mais recente ao mais antigo.
 
 O portal substitui a landing histórica do projeto web `sentinelzap`, mas não move,
 replica ou hospeda o dashboard operacional. Não existe conexão do site com a API,
@@ -12,13 +16,12 @@ com o banco, com sessões WhatsApp ou com qualquer runtime de produção.
 
 ## Conteúdo público
 
-Os 87 registros técnicos da fonte foram consolidados em sínteses públicas e
+Os 91 registros técnicos da fonte foram consolidados em sínteses públicas e
 somados ao registro de publicação deste portal. O material não publica IPs, telefones,
 nomes de usuários, identificadores internos, hashes, caminhos de servidor,
 credenciais ou detalhes operacionais exploráveis.
 
-O registro mais recente é “Diagnóstico de CPU, candidatos locais de outbox e
-auto-scan e auditoria TLS”, em contexto `Local` e estado `Validado localmente`.
+O registro mais recente é “Ficha de clientes com telefone, endereços e conversas validada localmente”, em contexto `Local` e estado `Validado localmente`.
 O diagnóstico ao vivo e somente leitura apontou o claim periódico da outbox vazia
 como causa dominante do consumo e da latência. O caminho vazio da outbox agora
 evita a transação completa, e o auto-scan foi redesenhado como job durável com

@@ -41,13 +41,14 @@ test('a narrativa começa no estado atual, segue para a direção e preserva a e
   assert.ok(nowIndex > -1);
   assert.ok(directionIndex > nowIndex);
   assert.ok(progressIndex > directionIndex);
-  assert.match(pageHtml, /88 consolidados/);
-  assert.match(pageHtml, /release operacional anterior/i);
-  assert.match(pageHtml, /claim da outbox vazia.*persistência\s+completa/is);
-  assert.match(pageHtml, /dois candidatos foram validados apenas localmente/i);
-  assert.match(pageHtml, /TLS e renovação automática foram comprovados/i);
+  assert.match(pageHtml, /92 consolidados/);
+  assert.match(pageHtml, /três releases seletivas: desempenho, Guardião por três\s+agentes e catálogo comercial/is);
+  assert.match(pageHtml, /Desempenho · release instalada/i);
+  assert.match(pageHtml, /Outbox vazia e auto-scan deixaram de executar o caminho pesado contínuo/i);
+  assert.match(pageHtml, /Cadeia, certificado, timer e renovação automática foram auditados/i);
   assert.match(pageHtml, /evidências e limites completos permanecem na linha do tempo/i);
-  assert.match(pageHtml, /implantar os candidatos ainda exige pacote, gates Linux\s+e push explícito/is);
+  assert.match(pageHtml, /risco residual distinto.*renovação do QR.*rajadas breves/is);
+  assert.match(pageHtml, /CRM agora possui 37 produtos e 41 ofertas vigentes/is);
 
   assert.match(detailedEvidence, /17 arquivos.*sem adições ou remoções/i);
   assert.match(detailedEvidence, /1\.192 testes locais.*1\.191 aprovações.*1\.192 de 1\.192 testes no Linux/i);
@@ -57,14 +58,15 @@ test('a narrativa começa no estado atual, segue para a direção e preserva a e
   assert.match(detailedEvidence, /22 indisponibilidades.*NAD nasal.*Retatrutida 20 mg.*Somatropina 240 UI/i);
   assert.match(detailedEvidence, /decisões financeiras ou clínicas continuam humanas/i);
 });
-test('síntese mantém candidatos locais e o histórico conserva os gates do Guardião', async () => {
+test('síntese mantém o Guardião local separado da release de desempenho', async () => {
   const pageHtml = await read('index.html');
   const detailedEvidence = progressEntries
     .flatMap((item) => Object.values(item))
     .flat()
     .join(' ');
 
-  assert.match(pageHtml, /Candidatos · somente locais/i);
+  assert.match(pageHtml, /Desempenho · release instalada/i);
+  assert.match(pageHtml, /Residual · rajadas do QR/i);
   assert.match(detailedEvidence, /Guardião por três agentes.*validado localmente/i);
   assert.match(detailedEvidence, /pelo menos dois votos concordantes de agentes distintos/i);
   assert.match(detailedEvidence, /mesmo modelo ou provedor.*sem garantia de independência estatística/i);
@@ -72,7 +74,7 @@ test('síntese mantém candidatos locais e o histórico conserva os gates do Gua
   assert.match(detailedEvidence, /1\.200 testes, 1\.199 aprovados.*um skip esperado no macOS/is);
   assert.match(detailedEvidence, /produção mantém o contrato anterior de duas origens.*não houve novo push operacional/i);
 });
-test('síntese distingue a release vigente dos candidatos locais e dos gates humanos', async () => {
+test('síntese distingue a release vigente, o residual e os gates humanos', async () => {
   const pageHtml = await read('index.html');
   const detailedEvidence = progressEntries
     .flatMap((item) => Object.values(item))
@@ -80,8 +82,9 @@ test('síntese distingue a release vigente dos candidatos locais e dos gates hum
     .join(' ');
 
   assert.match(pageHtml, /Produção · release vigente/i);
-  assert.match(pageHtml, /Causa · claim vazio da outbox/i);
-  assert.match(pageHtml, /auto-scan usa job durável e limitado/is);
+  assert.match(pageHtml, /Desempenho · release instalada/i);
+  assert.match(pageHtml, /Desempenho · release instalada/i);
+  assert.match(pageHtml, /Residual · rajadas do QR/i);
   assert.match(detailedEvidence, /trabalho sequencial sem deadline global.*causa estrutural não foi corrigida/is);
   assert.match(detailedEvidence, /lotes duráveis com checkpoint, orçamento total, cancelamento real e retomada idempotente/i);
   assert.match(detailedEvidence, /ML-0.*validada somente localmente/is);
@@ -216,7 +219,7 @@ test('resumo executivo combinado respeita o manifesto e a margem editorial', asy
   assert.deepEqual(measurement.sectionIds, [...SUMMARY_SECTION_IDS]);
   assert.equal(measurement.contract, SUMMARY_CONTRACT);
   assert.equal(measurement.limit, SUMMARY_WORD_LIMIT);
-  assert.equal(measurement.wordCount, 444);
+  assert.equal(measurement.wordCount, 427);
   assert.ok(measurement.wordCount >= 350 && measurement.wordCount <= 450);
   assert.equal(measurement.wordCount, measurePublicSummary({ html }).wordCount);
 
@@ -350,19 +353,19 @@ test('mantém um gate verificável entre o PROGRESS canônico e a publicação',
   const summaryVerifier = await read('scripts/verify-public-summary-limit.mjs');
 
   assert.match(packageJson.scripts.check, /progress:verify/);
-  assert.equal(manifest.entryCount, 88);
-  assert.equal(manifest.technicalSourceRecords, 87);
+  assert.equal(manifest.entryCount, 92);
+  assert.equal(manifest.technicalSourceRecords, 91);
   assert.equal(manifest.synchronizedAt, reportMeta.updatedAtIso);
   assert.deepEqual(manifest.publicSummary, {
     contract: SUMMARY_CONTRACT,
     limit: SUMMARY_WORD_LIMIT,
     sectionIds: [...SUMMARY_SECTION_IDS],
-    wordCount: 444,
+    wordCount: 427,
   });
   assert.match(manifest.sha256, /^[a-f0-9]{64}$/);
   assert.equal(
     manifest.newestHeading,
-    'Diagnóstico de CPU, candidatos locais de outbox e auto-scan e auditoria TLS',
+    'Ficha de clientes com telefone, endereços e conversas validada localmente',
   );
   assert.match(verifier, /createHash\('sha256'\)/);
   assert.match(verifier, /heading\.date >= latest\.date/);

@@ -1,6 +1,6 @@
 const REPORT_TIME_ZONE = 'America/Sao_Paulo';
 const REPORT_TIME_ZONE_LABEL = 'horário de Brasília';
-const REPORT_UPDATED_AT = '2026-09-02T15:45:58-03:00';
+const REPORT_UPDATED_AT = '2026-09-04T21:51:49-03:00';
 
 function formatReportUpdatedAt(value) {
   const date = new Date(value);
@@ -31,10 +31,10 @@ export const reportMeta = Object.freeze({
   updatedAtLabel: formatReportUpdatedAt(REPORT_UPDATED_AT),
   timeZone: REPORT_TIME_ZONE,
   timeZoneLabel: REPORT_TIME_ZONE_LABEL,
-  period: '15 de agosto a 2 de setembro de 2026',
-  sourceRecords: 87,
-  publishedRecords: 88,
-  productionReleaseDate: '1º de setembro de 2026',
+  period: '15 de agosto a 4 de setembro de 2026',
+  sourceRecords: 91,
+  publishedRecords: 92,
+  productionReleaseDate: '4 de setembro de 2026',
   publicUrl: 'https://sentinelzap.vercel.app/',
   orderingNote:
     'A linha do tempo mostra primeiro o registro documental mais recente. A fonte canônica permanece crescente; quando não há horário comprovado, nenhum horário é inventado.',
@@ -42,9 +42,9 @@ export const reportMeta = Object.freeze({
 
 export const executiveMetrics = Object.freeze([
   {
-    value: '2 locais',
-    label: 'corretivos aguardando release',
-    note: 'O diagnóstico ao vivo e somente leitura apontou o claim periódico da outbox vazia como causa dominante do consumo e da latência. O caminho vazio da fila e o auto-scan durável foram corrigidos apenas no workspace. TLS e renovação automática foram comprovados; a produção continua na release anterior e qualquer implantação exige push explícito.',
+    value: '37 / 41',
+    label: 'produtos e ofertas vigentes',
+    note: 'O catálogo comercial foi reconciliado em produção com 37 produtos e 41 ofertas ativas, sem divergência de preço e sem oferta vigente sem estoque físico. Saldos existentes foram preservados; somente os estoques realmente vazios receberam dez unidades.',
   },
   {
     value: '31/10',
@@ -111,18 +111,18 @@ export const roadmapPresentation = Object.freeze({
 
 export const roadmap = Object.freeze([
   {
-    priority: 'Candidato local',
-    title: 'Preparar a release de desempenho',
+    priority: 'Concluído',
+    title: 'Acompanhar a release de desempenho',
     description:
       'Outbox vazia evita claim pesado; auto-scan usa job durável, 1 chat/25 mensagens, checkpoint, lease, deadline e cancelamento cooperativo.',
     owner: 'Desenvolvimento e revisão técnica',
-    gate: 'Integral local aprovada; faltam pacote, Linux e push explícito',
+    gate: 'Push, Linux e restore aprovados; monitorar rajadas do QR',
   },
   {
     priority: 'Concluído',
     title: 'Manter release e TLS',
     description:
-      'Release de 01/09 permanece; TLS e renovação automática foram comprovados, sem implantar candidatos.',
+      'Release seletiva de 04/09 instalada; TLS e renovação automática permanecem comprovados.',
     owner: 'Operação técnica',
     gate: 'Saúde vigente acompanhada até uma nova autorização',
   },
@@ -1351,7 +1351,7 @@ const records = [
   },
   {
     date: '2026-09-02',
-    publishedAt: REPORT_UPDATED_AT,
+    publishedAt: '2026-09-02T15:45:58-03:00',
     title: 'Diagnóstico de CPU, candidatos locais de outbox e auto-scan e auditoria TLS',
     context: 'Local',
     kind: 'Correção',
@@ -1363,6 +1363,63 @@ const records = [
     validation:
       'TLS, cadeia e renovação automática foram comprovados em leitura, sem mudança operacional. O desenho não oferece atomicidade entre navegador e SQLite, worker thread nem preempção física; o cancelamento depende de pontos cooperativos e uma pequena janela residual após o snapshot final permanece explícita. A suíte integral concluiu 1.309 testes: 1.308 aprovações, zero falhas ou cancelamentos e um skip ambiental esperado; foram 218/218 em CRM e persistência, 1.071 gerais com 1.070 aprovações e um skip, e 20/20 legados. A campanha offline aprovou 160.000/160.000 em 655,568493104 segundos. Qualquer implantação exige pacote, gates Linux e pedido explícito de push.',
     tags: ['desempenho', 'outbox', 'auto-scan', 'TLS', 'validado localmente'],
+  },
+  {
+    date: '2026-09-04',
+    publishedAt: '2026-09-04T14:52:02-03:00',
+    title: 'Push seletivo da correção de CPU e continuidade validada',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'A release seletiva de desempenho foi instalada com sete arquivos alterados e três adicionados, sem incluir Guardião, ML-0 ou outras mudanças pendentes. O auto-scan passou a usar jobs duráveis e limitados, e a outbox vazia deixou de abrir a transação pesada.',
+    result:
+      'Os quatro jobs iniciados após o push encerraram sem falha e sem repetição infinita: um concluiu e três atingiram a deadline. O processo teve média de 4,07% de CPU em uma janela de 30 segundos, e respostas fora das renovações do QR ficaram entre 2 e 8 ms. A conta principal permanece pronta para leitura do QR em Contas; quatro gerenciadas continuam conectadas.',
+    validation:
+      'O gate local concluiu 1.309 testes, com 1.308 aprovações, zero falhas ou cancelamentos e um skip ambiental; o staging Linux aprovou 1.213/1.213. Backup pré-push, SQLite, HTTPS, cinco perfis de navegador, zero reinícios automáticos e restore isolado passaram. A renovação periódica do QR ainda pode causar rajadas do navegador: 2 de 30 requisições atingiram 3 segundos. Esse risco residual segue em observação e não é apresentado como resolvido.',
+    tags: ['desempenho', 'auto-scan', 'produção', 'continuidade'],
+  },
+  {
+    date: '2026-09-04',
+    publishedAt: '2026-09-04T15:32:55-03:00',
+    title: 'Guardião por três agentes instalado em release seletiva',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'Depois da release de desempenho, o Guardião foi escolhido entre os candidatos prontos e instalado em pacote seletivo com oito arquivos alterados e um adicionado. ML-0 permaneceu local por ainda não possuir armazenamento seguro, CAS, deleção durável ou integração operacional.',
+    result:
+      'O contrato usa três papéis fixos e exige dois votos válidos e concordantes de agentes distintos, vinculados à mensagem e à mesma rodada. Retentativas não multiplicam votos. O mesmo modelo ou provedor pode ser usado e não garante independência estatística.',
+    validation:
+      'O pacote Linux aprovou 1.280/1.280 testes e 160.000/160.000 casos offline. Backup pré-push, manifesto, serviço, SQLite, cinco perfis de navegador, HTTPS e restore isolado passaram, com zero reinícios automáticos e sem erro de startup do Guardião. Nenhuma chamada a IA real ou moderação de teste foi realizada; instalação não equivale a consenso real.',
+    tags: ['Guardião', 'consenso por agentes', 'produção', 'release seletiva'],
+  },
+  {
+    date: '2026-09-04',
+    publishedAt: '2026-09-04T17:51:30-03:00',
+    title: 'Catálogo e preços do CRM implantados em produção',
+    context: 'Produção',
+    kind: 'Implantação',
+    state: 'Publicado',
+    summary:
+      'O catálogo comercial foi instalado em uma release seletiva com seis arquivos alterados, sem adições, remoções, dependências novas ou inclusão do candidato local de machine learning.',
+    result:
+      'O CRM passou a apresentar 37 produtos e 41 ofertas vigentes, todos com preços confirmados e sem divergência frente à fonte aprovada. Ofertas antigas foram preservadas como inativas; saldos existentes permaneceram intactos e apenas sete estoques realmente vazios receberam dez unidades.',
+    validation:
+      'O staging Linux aprovou 1.283/1.283 testes e 160.000/160.000 combinações offline. Backups antes e depois do push, restauração isolada, banco, serviço, cinco perfis de navegador e HTTPS passaram, com zero reinícios automáticos. A conta principal continua pronta para leitura do QR em Contas e quatro contas gerenciadas permanecem conectadas.',
+    tags: ['catálogo', 'CRM', 'preços', 'produção'],
+  },
+  {
+    date: '2026-09-04',
+    publishedAt: REPORT_UPDATED_AT,
+    title: 'Ficha de clientes com telefone, endereços e conversas validada localmente',
+    context: 'Local',
+    kind: 'Melhoria',
+    state: 'Validado localmente',
+    summary: 'A lista de clientes recebeu abertura pelo nome e botão visível. A ficha reúne identificação, telefone, endereço atual, endereços usados nos pedidos e uma aba exclusiva de conversas.',
+    result: 'O detalhe autenticado passa a exibir o telefone e o texto das mensagens já armazenadas, preservando o acesso por conta. Conteúdo ausente é sinalizado, sem coleta ou recuperação automática.',
+    validation: 'O gate local aprovou 106 testes sem falhas, incluindo isolamento por conta, proteção contra respostas atrasadas, escape de conteúdo e snapshots de endereços. Validação com dados sintéticos e interface simulada; não houve implantação ou alteração em produção.',
+    tags: ['CRM', 'clientes', 'conversas', 'validação local'],
   },
 ];
 
